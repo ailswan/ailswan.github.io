@@ -1,0 +1,39 @@
+/* Table Styles inspired from https://maxming0.github.io/ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th, table td {
+    padding: 12px 15px;
+    border: 1px solid lightgray; // light gray border for all cells
+    text-align: left;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f2f2f2; // gray background for even rows
+  }
+  
+  /* Adding tags for hard, medium, and easy */
+  .tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.8em;
+  }
+  
+  .tag-hard {
+    background-color: #e74c3c; // red for hard
+    color: white;
+  }
+  
+  .tag-medium {
+    background-color: #f39c12; // orange for medium
+    color: white;
+  }
+  
+  .tag-easy {
+    background-color: #2ecc71; // green for easy
+    color: white;
+  }
+  
