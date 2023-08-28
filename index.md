@@ -9,12 +9,14 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
  
 <table style="border-collapse: collapse; width: 100%; padding: 18px;">
   <tr>
+    <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">No.</th>
     <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Level</th>
     <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">Problem Name</th>
     <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tags</th>
   </tr>
   {% for post in site.posts %}
   <tr>
+    <td style="border: 1px solid lightgrey; padding: 18px;">{{ forloop.index }}</td>
     <td style="border: 1px solid lightgrey; padding: 18px;">
       <a href="{{ post.url }}" 
          style="{% if post.level == 'hard' %}color: #f44336;{% elsif post.level == 'medium' %}color: #f68140;{% endif %}">
