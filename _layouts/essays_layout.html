@@ -23,7 +23,7 @@ title: Essayslist
       {% for essay in site.essays %}
           <div class="essay-item" data-tags="{{ essay.tags | join: ' ' }}">
               <h2><a href="{{ essay.url }}">{{ essay.title }}</a></h2>
-              <p class="essay-date">Date: {{ essay.date | date: "%B %d, %Y" }}</p> <!-- Added class here -->
+              <p class="essay-date">Date: {{ essay.date | date: "%B %d, %Y" }}</p>  
               {% if essay.tags %}
               <p>Tags: {{ essay.tags | join: ', ' }}</p>
               {% endif %}
