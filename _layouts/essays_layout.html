@@ -8,16 +8,25 @@ title: Essayslist
 <main class="main  container">
 
   <div class="content">
-
-    <article class="article  article--page  typeset">
-
+    <aside class="tags-index">
+      <h2>Tags</h2>
+      <ul id="tag-list">
+      {% assign all_tags = site.essays | map: "tags" | flatten | uniq %}
+      {% for tag in all_tags %}
+          <li><a href="javascript:void(0);" data-tag="{{ tag }}">{{ tag }}</a></li>
+      {% endfor %}
+      </ul>
+    </aside>
+    <article class="article article--page typeset">
       <h1>{{ page.title }}</h1>
       {% for essay in site.essays %}
-        <h2><a href="{{ essay.url }}">{{ essay.title }}</a></h2>
-        <p>Date: {{ essay.date | date: "%B %d, %Y" }}</p>
-        {% if essay.tags %}
-        <p>Tags: {{ essay.tags | join: ', ' }}</p>
-        {% endif %}
+          <div class="essay-item" data-tags="{{ essay.tags | join: ' ' }}">
+              <h2><a href="{{ essay.url }}">{{ essay.title }}</a></h2>
+              <p>Date: {{ essay.date | date: "%B %d, %Y" }}</p>
+              {% if essay.tags %}
+              <p>Tags: {{ essay.tags | join: ', ' }}</p>
+              {% endif %}
+          </div>
       {% endfor %}
     </article>
 
@@ -28,3 +37,25 @@ title: Essayslist
 </main>
 
 {% include site-footer.html %}
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const tagLinks = document.querySelectorAll("#tag-list a");
+      const essays = document.querySelectorAll(".article .essay-item");
+
+      tagLinks.forEach(link => {
+          link.addEventListener("click", function(e) {
+              const selectedTag = e.target.getAttribute("data-tag");
+
+              essays.forEach(essay => {
+                  if (essay.getAttribute("data-tags").includes(selectedTag)) {
+                      essay.style.display = "block";
+                  } else {
+                      essay.style.display = "none";
+                  }
+              });
+          });
+      });
+  });
+</script>
