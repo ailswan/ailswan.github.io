@@ -133,8 +133,8 @@ navigation_header:
 #   url: /elements/
 - title: Blog
   url: /blog/
-- title: Noteslist
-  url: /noteslist/
+- title: Essayslist
+  url: /essayslist/
 - title: Categories
   url: /categories/
 - title: Search
