@@ -22,20 +22,8 @@ title: Essayslist
       {% endfor %}
     </article>
 
-    <aside class="tags-index">
-        <h2>Tags</h2>
-        <ul id="tag-list">
-            <li><a href="javascript:void(0);" data-tag="all">Display All</a></li>  
-            {% assign all_tags = site.essays | map: "tags" | flatten | uniq %}
-            {% for tag in all_tags %}
-                <li><a href="javascript:void(0);" data-tag="{{ tag }}">{{ tag }}</a></li>
-            {% endfor %}
-        </ul>
-    </aside>
-
+    {% include tags-aside.html align="right" %}
   </div>
-
-  {% if page.aside == true %}{% include site-aside.html %}{% endif %}
 
 </main>
 
