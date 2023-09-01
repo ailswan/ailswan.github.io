@@ -74,7 +74,7 @@ collections:
     description: "List according dates"  
     feature_text: |
       Welcome to the essays/notes
-    feature_image: "https://picsum.photos/2560/600?image=866"
+    feature_image: "https://picsum.photos/2560/600?image=872"
 
 # 6. Jekyll collections settings
 defaults:
