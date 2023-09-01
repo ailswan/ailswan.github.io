@@ -459,4 +459,25 @@ pre code {
     white-space: pre;
     overflow-x: scroll;
   }
+  
+}
+
+.date-text {
+  color: lightgrey;
+  margin-right: 10px; 
+}
+
+.list--tags {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.item--tag {
+  display: inline-block;   
+  margin-right: 10px;     
+}
+
+.essay-tag {
+  text-decoration: underline; 
+  cursor: pointer;
 }
