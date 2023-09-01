@@ -1,68 +1,33 @@
 ---
 layout: default
-title: Essayslist
-aside: true
 ---
 
 {% include site-header.html %}
 
-<main class="main  container">
+<main class="main container">
 
   <div class="content">
-    
+
     <article class="article article--page typeset">
+
       <h1>{{ page.title }}</h1>
+
       {% for essay in site.essays %}
-          <div class="essay-item" data-tags="{{ essay.tags | join: ' ' }}">
-              <h2><a href="{{ essay.url }}">{{ essay.title }}</a></h2>
-              <p class="essay-date">Date: {{ essay.date | date: "%B %d, %Y" }}</p>  
-              {% if essay.tags %}
-              <p>Tags: {{ essay.tags | join: ', ' }}</p>
-              {% endif %}
-          </div>
+      <div class="essay-item">
+        <h2><a href="{{ essay.url }}">{{ essay.title }}</a></h2>
+        <p>Date: {{ essay.date | date: "%B %d, %Y" }}</p>
+        {% if essay.tags %}
+        <p>Tags: {{ essay.tags | join: ', ' }}</p>
+        {% endif %}
+      </div>
       {% endfor %}
+
     </article>
 
   </div>
+
   {% if page.aside == true %}{% include site-aside.html align="left" %}{% endif %}
+
 </main>
 
 {% include site-footer.html %}
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-      const tagLinks = document.querySelectorAll("#tag-list a");
-      const essays = document.querySelectorAll(".article .essay-item");
-
-      tagLinks.forEach(link => {
-          link.addEventListener("click", function(e) {
-              const selectedTag = e.target.getAttribute("data-tag");
-
-              if (selectedTag === "all") {
-                  essays.forEach(essay => {
-                      essay.style.display = "block"; // Display all essays
-                  });
-                  // Sort by date
-                  const sortedEssays = Array.from(essays).sort((a, b) => {
-                      const dateA = new Date(a.querySelector(".essay-date").textContent);
-                      const dateB = new Date(b.querySelector(".essay-date").textContent);
-                      return dateB - dateA;
-                  });
-                  const article = document.querySelector(".article");
-                  sortedEssays.forEach(essay => {
-                      article.appendChild(essay); // This rearranges the elements
-                  });
-              } else {
-                  essays.forEach(essay => {
-                      if (essay.getAttribute("data-tags").includes(selectedTag)) {
-                          essay.style.display = "block";
-                      } else {
-                          essay.style.display = "none";
-                      }
-                  });
-              }
-          });
-      });
-  });
-</script>
