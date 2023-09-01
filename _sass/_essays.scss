@@ -2,14 +2,22 @@
     display: flex;  /* Makes content a flex container */
     flex-direction: row;  /* Orders children in a row */
     justify-content: space-between;  /* Adds space between the columns */
-    align-items: flex-start;  /* Ensures columns start at the same vertical position */
-}
+    align-items: flex-start;   
 
 .article {
-    flex: 3;  /* Lets the article occupy more space compared to the tags index */
-    margin-right: 20px;  /* Adds some space between the article and the tags */
+    flex: 3;   
+    margin-right: 20px;  
 }
 
 .tags-index {
-    flex: 1;  /* Lets the tags index occupy less space compared to the article */
+    flex: 1;   
+}
+.date-text {
+    color: lightgrey;
+    margin-right: 10px;
+}
+
+.essay-tag {
+    cursor: pointer;
+    text-decoration: underline;
 }
