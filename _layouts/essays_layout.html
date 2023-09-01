@@ -13,7 +13,7 @@ layout: default
       <h1>{{ page.title }}</h1>
 
         {% for essay in site.essays %}
-            <section class="section typeset">
+            <section class="section typeset essay-item" data-tags="{{ essay.tags | join: ',' }}">
                 <h2 id="{{ essay.title | slugify }}">
                 <a href="{{ site.baseurl }}{{ essay.url }}">{{ essay.title }}</a>
                 </h2>
@@ -38,3 +38,23 @@ layout: default
 </main>
 
 {% include site-footer.html %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.essay-tag').on('click', function(e) {
+            e.preventDefault();
+
+            const tagClicked = $(this).data('tag');
+            const allEssays = $('.essay-item');
+
+            // Hide all essays initially
+            allEssays.hide();
+
+            // Filter and show only the essays that include the clicked tag
+            allEssays.filter(function() {
+                return $(this).data('tags') && $(this).data('tags').split(',').includes(tagClicked);
+            }).show();
+        });
+    });
+
+</script>
