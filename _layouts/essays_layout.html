@@ -11,6 +11,7 @@ title: Essayslist
     <aside class="tags-index">
       <h2>Tags</h2>
       <ul id="tag-list">
+      <li><a href="javascript:void(0);" data-tag="all">Display All</a></li>  
       {% assign all_tags = site.essays | map: "tags" | flatten | uniq %}
       {% for tag in all_tags %}
           <li><a href="javascript:void(0);" data-tag="{{ tag }}">{{ tag }}</a></li>
@@ -48,13 +49,29 @@ title: Essayslist
           link.addEventListener("click", function(e) {
               const selectedTag = e.target.getAttribute("data-tag");
 
-              essays.forEach(essay => {
-                  if (essay.getAttribute("data-tags").includes(selectedTag)) {
-                      essay.style.display = "block";
-                  } else {
-                      essay.style.display = "none";
-                  }
-              });
+              if (selectedTag === "all") {
+                  essays.forEach(essay => {
+                      essay.style.display = "block"; // Display all essays
+                  });
+                  // Sort by date
+                  const sortedEssays = Array.from(essays).sort((a, b) => {
+                      const dateA = new Date(a.querySelector(".essay-date").textContent);
+                      const dateB = new Date(b.querySelector(".essay-date").textContent);
+                      return dateB - dateA;
+                  });
+                  const article = document.querySelector(".article");
+                  sortedEssays.forEach(essay => {
+                      article.appendChild(essay); // This rearranges the elements
+                  });
+              } else {
+                  essays.forEach(essay => {
+                      if (essay.getAttribute("data-tags").includes(selectedTag)) {
+                          essay.style.display = "block";
+                      } else {
+                          essay.style.display = "none";
+                      }
+                  });
+              }
           });
       });
   });
