@@ -14,9 +14,9 @@ title: Essayslist
       <h1>{{ page.title }}</h1>
 
       <ul>
-      {% for note in site.notes %}
+      {% for note in site.essays %}
         <li>
-          <a href="{{ note.url }}">{{ note.title }}</a>
+          <a href="{{ essay.url }}">{{ essay.title }}</a>
           <p>{{ note.excerpt }}</p>
         </li>
       {% endfor %}
