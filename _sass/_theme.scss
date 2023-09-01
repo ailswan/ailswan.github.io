@@ -464,6 +464,7 @@ pre code {
 .meta {
   display: flex;
   align-items: center;
+  margin-top: 5px;
 }
 
 .date-text {
@@ -479,4 +480,9 @@ pre code {
 
 .item--tag {
   margin: 0;
+}
+
+.section h2 a {
+  text-decoration: underline;
+  margin-bottom: 5px;
 }
