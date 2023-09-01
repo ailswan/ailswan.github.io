@@ -22,11 +22,15 @@
     <section class="section section--essayslayout-index">
       <h3>Tags List</h3>
       <ul id="essay-tags-list">
-          {% assign all_tags = site.essays | map: "tags" | flatten | uniq %}
-          {% for tag in all_tags %}
+ 
+        <li><a href="javascript:void(0);" class="essay-tag display-all" data-tag="all">Display All</a></li>
+    
+        {% assign all_tags = site.essays | map: "tags" | flatten | uniq %}
+        {% for tag in all_tags %}
             <li><a href="javascript:void(0);" class="essay-tag" data-tag="{{ tag }}">{{ tag }}</a></li>
-          {% endfor %}
-      </ul>
+        {% endfor %}
+    </ul>
+    
     </section>
 
 
@@ -45,9 +49,16 @@ $(document).ready(function() {
         const tagClicked = $(this).data('tag');
         const allEssays = $('.essay-item');
 
+        if (tagClicked === "all") {
+  
+            allEssays.show();
+            return;
+        }
+
         allEssays.hide().filter(function() {
             return $(this).data('tags').split(',').includes(tagClicked);
         }).show();
     });
 });
+
 </script>
