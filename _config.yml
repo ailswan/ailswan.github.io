@@ -68,6 +68,13 @@ collections:
     feature_text: |
       Welcome to the blog
     feature_image: "https://picsum.photos/2560/600?image=866"
+  notes:
+    title: List of all notes # Needed for Siteleaf
+    output: true
+    description: "List according dates" # The post list page content
+    feature_text: |
+      Welcome to the blog
+    feature_image: "https://picsum.photos/2560/600?image=866"
 
 # 6. Jekyll collections settings
 defaults:
@@ -126,6 +133,8 @@ navigation_header:
 #   url: /elements/
 - title: Blog
   url: /blog/
+- title: Notes
+  url: /notes/
 - title: Categories
   url: /categories/
 - title: Search
