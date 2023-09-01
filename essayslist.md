@@ -1,6 +1,3 @@
 ---
-title: Essays
-excerpt: "list of Essays"
+layout: default
 ---
-
-{% include essayslist.html %}
