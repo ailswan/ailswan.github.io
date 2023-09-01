@@ -11,7 +11,7 @@ categories:
 feature_text: |
   ## My 2nd Essay
   Post by ailswan Sep. 1, 2023
-feature_image: "https://picsum.photos/2560/600?image=877"
+feature_image: "https://picsum.photos/2560/600?image=865"
 ---
 
 ### Summary
