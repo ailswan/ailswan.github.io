@@ -17,7 +17,7 @@ layout: default
                 <h2 id="{{ essay.title | slugify }}">
                 <a href="{{ site.baseurl }}{{ essay.url }}">{{ essay.title }}</a>
                 </h2>
-                <p class="date-text">Date: {{ essay.date | date: "%B %d, %Y" }}</p>
+                <p class="date-text">{{ essay.date | date: "%B %d, %Y" }}</p>
      
                 <ul class="list list--tags">
                 {% for tag in essay.tags %}
