@@ -18,8 +18,8 @@
       {% include nav-categories.html %}
     </section>
 
-  {% elsif page.layout == "essays_layout" %}
-    <section class="section  section--essayslayout-index">
+  {% elsif page.title == "Essayslist" %}
+    <section class="section section--essayslayout-index">
       <h3>Tags List</h3>
       <ul id="essay-tags-list">
         {% assign all_tags = site.essays | map: "tags" | flatten | uniq %}
