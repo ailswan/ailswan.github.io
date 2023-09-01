@@ -32,5 +32,22 @@
 
   {% endif %}
 
-  
 </aside>
+ 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ 
+<script>
+$(document).ready(function() {
+    $('.essay-tag').on('click', function(e) {
+        e.preventDefault();
+
+        const tagClicked = $(this).data('tag');
+        const allEssays = $('.essay-item');
+
+        allEssays.hide().filter(function() {
+            return $(this).data('tags').split(',').includes(tagClicked);
+        }).show();
+    });
+});
+</script>
