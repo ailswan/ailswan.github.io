@@ -18,14 +18,11 @@
       {% include nav-categories.html %}
     </section>
 
-  {% elsif page.title == "Essayslist" %}
-    <section class="section section--essayslayout-index">
+  {% elsif page.layout == "essays" %}
+    <section class="section section--category-index">
       <h3>Tags List</h3>
       <ul id="essay-tags-list">
-        {% assign all_tags = site.essays | map: "tags" | flatten | uniq %}
-        {% for tag in all_tags %}
-          <li><a href="javascript:void(0);" data-tag="{{ tag }}">{{ tag }}</a></li>
-        {% endfor %}
+        {% include nav-categories.html %}
       </ul>
     </section>
 
