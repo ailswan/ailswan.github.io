@@ -12,21 +12,21 @@ layout: default
 
       <h1>{{ page.title }}</h1>
 
-      {% for essay in site.essays %}
-        <section class="section typeset">
-            <h2 id="{{ essay.title | slugify }}">
-            <a href="{{ site.baseurl }}{{ essay.url }}">{{ essay.title }}</a>
-            </h2>
-            <p class="date-text">Date: {{ essay.date | date: "%B %d, %Y" }}</p>
-            Tags:
-            <ul class="list list--tags">
-            {% for tag in essay.tags %}
-                <li class="item item--tag"><a href="javascript:void(0);" class="essay-tag" data-tag="{{ tag }}">{{ tag }}</a></li>
-            {% endfor %}
-            </ul>
-            {{ essay.excerpt | truncatewords: 60 | markdownify }}
-            {% unless forloop.last %}<hr/>{% endunless %}
-        </section>
+        {% for essay in site.essays %}
+            <section class="section typeset">
+                <h2 id="{{ essay.title | slugify }}">
+                <a href="{{ site.baseurl }}{{ essay.url }}">{{ essay.title }}</a>
+                </h2>
+                <p class="date-text">Date: {{ essay.date | date: "%B %d, %Y" }}</p>
+                Tags:
+                <ul class="list list--tags">
+                {% for tag in essay.tags %}
+                    <li class="item item--tag"><a href="javascript:void(0);" class="essay-tag" data-tag="{{ tag }}">{{ tag }}</a></li>
+                {% endfor %}
+                </ul>
+                {{ essay.excerpt | truncatewords: 60 | markdownify }}
+                {% unless forloop.last %}<hr/>{% endunless %}
+            </section>
         {% endfor %}
     
       
