@@ -480,9 +480,11 @@ pre code {
 
 .item--tag {
   margin: 0;
+  text-decoration: none;
 }
 
 .section h3 {
   text-decoration: underline;
+  text-decoration-color: lightgrey; 
   margin-bottom: 5px;
 }
