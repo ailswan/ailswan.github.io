@@ -14,9 +14,9 @@ layout: default
 
         {% for essay in site.essays %}
             <section class="section typeset essay-item" data-tags="{{ essay.tags | join: ',' }}">
-                <h2 id="{{ essay.title | slugify }}">
+                <h3 id="{{ essay.title | slugify }}">
                 <a href="{{ site.baseurl }}{{ essay.url }}">{{ essay.title }}</a>
-                </h2>
+                </h3>
                 <div class="meta">
                     <span class="date-text">{{ essay.date | date: "%B %d, %Y" }}</span>
                     |
@@ -47,10 +47,8 @@ layout: default
             const tagClicked = $(this).data('tag');
             const allEssays = $('.essay-item');
 
-            // Hide all essays initially
             allEssays.hide();
 
-            // Filter and show only the essays that include the clicked tag
             allEssays.filter(function() {
                 return $(this).data('tags') && $(this).data('tags').split(',').includes(tagClicked);
             }).show();
