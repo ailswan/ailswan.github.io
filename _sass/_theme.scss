@@ -461,23 +461,22 @@ pre code {
   }
   
 }
-
-.date-text {
-  color: lightgrey;
-  margin-right: 10px; 
+.meta {
+  display: flex;
+  align-items: center;
 }
 
-.list--tags {
+.date-text {
+  margin-right: 10px;
+}
+
+.list--tags.inline-tags {
   list-style-type: none;
   padding-left: 0;
+  display: flex;
+  gap: 5px;
 }
 
 .item--tag {
-  display: inline-block;   
-  margin-right: 10px;     
-}
-
-.essay-tag {
-  text-decoration: underline; 
-  cursor: pointer;
+  margin: 0;
 }
