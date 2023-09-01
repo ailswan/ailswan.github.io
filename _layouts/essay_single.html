@@ -10,7 +10,11 @@ layout: default
       <h1>{{ page.title }}</h1>
       <p>Date: {{ page.date | date: "%B %d, %Y" }}</p>
       <p>Tags: {{ page.tags | join: ', ' }}</p>
-      {{ content }}
+      
+      <div class="essay" data-tags="{{ page.tags | join: ',' }}">
+        {{ content }}
+      </div>
+      
     </article>
   </div>
   {% if page.aside == true %}{% include site-aside.html %}{% endif %}
