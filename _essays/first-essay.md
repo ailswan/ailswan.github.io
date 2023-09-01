@@ -1,6 +1,11 @@
 ---
+layout: essay_single
 title: My First Essay
-level: 
+date: 2023-09-01
+tags:
+  - tag1
+  - tag2
+  - tag3
 categories:
 - Notes
 feature_text: |

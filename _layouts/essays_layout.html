@@ -14,12 +14,13 @@ title: Essayslist
       <h1>{{ page.title }}</h1>
 
       <ul>
-      {% for essay in site.essays %}
+        {% for essay in site.essays %}
         <li>
           <a href="{{ essay.url }}">{{ essay.title }}</a>
-          <p>{{ essay.excerpt }}</p>
+          <p>Date: {{ essay.date | date: "%B %d, %Y" }}</p>
+          <p>Tags: {{ essay.tags | join: ', ' }}</p>
         </li>
-      {% endfor %}
+      {% endfor %}      
       </ul>
 
     </article>
