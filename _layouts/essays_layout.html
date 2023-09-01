@@ -1,3 +1,6 @@
+---
+layout: default
+---
 
 {% include site-header.html %}
 
@@ -19,10 +22,7 @@
                     |
                     <ul class="list list--tags inline-tags">
                     {% for tag in essay.tags %}
-                        <li class="item item--tag">
-                            <a href="javascript:void(0);" class="essay-tag" data-tag="{{ tag }}">{{ tag }}</a>
-                            {% if forloop.last == false %}, {% endif %}
-                        </li>
+                        <li class="item item--tag"><a href="javascript:void(0);" class="essay-tag" data-tag="{{ tag }}">{{ tag }}</a></li>
                     {% endfor %}
                     </ul>
                 </div>
@@ -54,4 +54,5 @@
             }).show();
         });
     });
+
 </script>
