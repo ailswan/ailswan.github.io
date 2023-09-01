@@ -9,7 +9,7 @@ categories:
 - Notes
 feature_text: |
   ## My First Essay
-  Post by ailswan Sep. 1, 2023
+  Post by ailswan Sep. 2, 2023
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
 

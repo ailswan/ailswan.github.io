@@ -8,16 +8,7 @@ title: Essayslist
 <main class="main  container">
 
   <div class="content">
-    <aside class="tags-index">
-      <h2>Tags</h2>
-      <ul id="tag-list">
-      <li><a href="javascript:void(0);" data-tag="all">Display All</a></li>  
-      {% assign all_tags = site.essays | map: "tags" | flatten | uniq %}
-      {% for tag in all_tags %}
-          <li><a href="javascript:void(0);" data-tag="{{ tag }}">{{ tag }}</a></li>
-      {% endfor %}
-      </ul>
-    </aside>
+    
     <article class="article article--page typeset">
       <h1>{{ page.title }}</h1>
       {% for essay in site.essays %}
@@ -31,6 +22,17 @@ title: Essayslist
       {% endfor %}
     </article>
 
+    <aside class="tags-index">
+        <h2>Tags</h2>
+        <ul id="tag-list">
+            <li><a href="javascript:void(0);" data-tag="all">Display All</a></li>  
+            {% assign all_tags = site.essays | map: "tags" | flatten | uniq %}
+            {% for tag in all_tags %}
+                <li><a href="javascript:void(0);" data-tag="{{ tag }}">{{ tag }}</a></li>
+            {% endfor %}
+        </ul>
+    </aside>
+
   </div>
 
   {% if page.aside == true %}{% include site-aside.html %}{% endif %}
@@ -38,6 +40,7 @@ title: Essayslist
 </main>
 
 {% include site-footer.html %}
+
 
 
 <script>
