@@ -1,21 +1,21 @@
 ---
 layout: essay_single
-title: My 2nd Essay
+title: My 3 Essay
 date: 2023-09-01
 tags:
-  - tag2
-  - tag3
+  - tag1
+ 
 categories:
 - Notes
 feature_text: |
-  ## My 2nd Essay
+  ## My 3 Essay
   Post by ailswan Sep. 1, 2023
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
 
 ### Summary
 
-This is the summary of my 2nd note. It provides a brief overview of what the note discusses. Summaries help readers quickly determine the topic and its relevance.
+This is the summary of my 3 note. It provides a brief overview of what the note discusses. Summaries help readers quickly determine the topic and its relevance.
 
 ### Essays
 
