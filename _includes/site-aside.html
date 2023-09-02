@@ -43,8 +43,6 @@
  
 <script>
 $(document).ready(function() {
- 
-
     $('.essay-tag').on('click', function(e) {
         e.preventDefault();
 
@@ -52,17 +50,13 @@ $(document).ready(function() {
         const allEssays = $('.essay-item');
 
         if (tagClicked === "all") {
-            allEssays.hide().filter(function() {
-                const essayTags = $(this).data('tags').split(',').map(tag => tag);
-                return essayTags.includes(tagClicked);
-            }).show();
-            
-        } else {
-            allEssays.hide().filter(function() {
-                const essayTags = $(this).data('tags').split(',').map(tag => tag.trim());
-                return essayTags.includes(tagClicked);
-            }).show();
-        }
+            allEssays.css('display', 'block');
+            return;   
+
+        allEssays.hide().filter(function() {
+            const essayTags = $(this).data('tags').split(',').map(tag => tag.trim());
+            return essayTags.includes(tagClicked);
+        }).css('display', 'block');  
     });
 });
 
