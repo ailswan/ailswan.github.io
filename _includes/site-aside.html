@@ -63,8 +63,9 @@ $(document).ready(function() {
         const allEssays = $('.essay-item');
 
         if (tagClicked === "all") {
+            console.log(allEssays.length)
             allEssays.show();
-            sortEssaysByTags();  // Call the sorting function here
+            sortEssaysByTags(); 
         } else {
             allEssays.hide().filter(function() {
                 const essayTags = $(this).data('tags').split(',').map(tag => tag.trim());
