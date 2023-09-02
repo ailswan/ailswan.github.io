@@ -50,13 +50,13 @@ $(document).ready(function() {
         const allEssays = $('.essay-item');
 
         if (tagClicked === "all") {
-            allEssays.css('display', 'block');
-            return;   
-
-        allEssays.hide().filter(function() {
-            const essayTags = $(this).data('tags').split(',').map(tag => tag.trim());
-            return essayTags.includes(tagClicked);
-        }).css('display', 'block');  
+            location.reload(); 
+        } else {
+            allEssays.hide().filter(function() {
+                const essayTags = $(this).data('tags').split(',').map(tag => tag.trim());
+                return essayTags.includes(tagClicked);
+            }).show();
+        }
     });
 });
 
