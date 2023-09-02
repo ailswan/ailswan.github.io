@@ -64,8 +64,10 @@ $(document).ready(function() {
 
         if (tagClicked === "all") {
             console.log(allEssays.length)
-            allEssays.show();
-            allEssays.css('display', 'block'); 
+            allEssays.hide().filter(function() {
+                const essayTags = $(this).data('tags').split(',').map(tag => tag);
+                return essayTags.includes(tagClicked);
+            }).show();
             sortEssaysByTags(); 
         } else {
             allEssays.hide().filter(function() {
