@@ -1,7 +1,7 @@
 ---
 layout: essay_single
 title: My 3 Essay
-date: 2023-09-01
+date: 2023-09-04
 tags:
   - tag1
  
@@ -9,7 +9,7 @@ categories:
 - Notes
 feature_text: |
   ## My 3 Essay
-  Post by ailswan Sep. 1, 2023
+  Post by ailswan Sep. 4, 2023
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
 
