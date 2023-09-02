@@ -15,7 +15,7 @@ layout: default
         {% assign sorted_essays = site.essays | sort: "date" | reverse %}
         {% for essay in sorted_essays %}
             <section class="section typeset essay-item" data-tags="{{ essay.tags | join: ',' }}">
-                <h3 class="" id="{{ essay.title | slugify }}">
+                <h3 class="essaytitle" id="{{ essay.title | slugify }}">
                 <a href="{{ site.baseurl }}{{ essay.url }}">{{ essay.title }}</a>
                 </h3>
                 <div class="meta">
@@ -39,21 +39,4 @@ layout: default
 </main>
 
 {% include site-footer.html %}
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('.essay-tag').on('click', function(e) {
-            e.preventDefault();
-
-            const tagClicked = $(this).data('tag');
-            const allEssays = $('.essay-item');
-
-            allEssays.hide();
-
-            allEssays.filter(function() {
-                return $(this).data('tags') && $(this).data('tags').split(',').includes(tagClicked);
-            }).show();
-        });
-    });
-
-</script> -->
+ 
