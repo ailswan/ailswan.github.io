@@ -43,6 +43,19 @@
  
 <script>
 $(document).ready(function() {
+    
+ 
+    function sortEssaysByTags() {
+        const container = $('.essay-item').parent();  
+        const sortedEssays = $('.essay-item').sort((a, b) => {
+            const tagsA = $(a).data('tags').split(',').map(tag => tag.trim());
+            const tagsB = $(b).data('tags').split(',').map(tag => tag.trim());
+            return (tagsA[0] || "").localeCompare(tagsB[0] || "");
+        });
+
+        container.append(sortedEssays);
+    }
+
     $('.essay-tag').on('click', function(e) {
         e.preventDefault();
 
@@ -51,6 +64,7 @@ $(document).ready(function() {
 
         if (tagClicked === "all") {
             allEssays.show();
+            sortEssaysByTags();  // Call the sorting function here
         } else {
             allEssays.hide().filter(function() {
                 const essayTags = $(this).data('tags').split(',').map(tag => tag.trim());
