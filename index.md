@@ -19,8 +19,8 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">Problem Name</th>
     <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tags</th>
   </tr>
-  {% for post in site.posts %}
-  <tr>
+ {% for post in site.posts %}
+<tr data-time="{{ post.date | date_to_xmlschema }}">
     <td style="border: 1px solid lightgrey; padding: 18px;">{{ forloop.index }}</td>
     <td style="border: 1px solid lightgrey; padding: 18px;">
       <a href="{{ post.url }}" 
@@ -30,8 +30,8 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     </td>
     <td style="border: 1px solid lightgrey; padding: 18px;"><a href="{{ post.url }}"  style="color: #45818e" >{{ post.title }}</a></td>
     <td style="border: 1px solid lightgrey; padding: 18px;"><a href="{{ post.url }}" style="color: #0d94e7;">{{ post.categories | join: ", " }}</a></td>
-  </tr>
-  {% endfor %}
+</tr>
+{% endfor %}
 </table>
 
 <!-- JavaScript for sorting -->
@@ -43,8 +43,15 @@ document.getElementById('sortDropdown').addEventListener('change', function() {
     
     rows.sort(function(a, b) {
         switch(sortingMethod) {
-            case 'time':
-                return new Date(a.getAttribute('data-time')) - new Date(b.getAttribute('data-time'));  // Convert to date for comparison
+            rows.sort(function(a, b) {
+                switch(sortingMethod) {
+                    case 'time':
+                        var dateA = new Date(a.getAttribute('data-time'));
+                        var dateB = new Date(b.getAttribute('data-time'));
+                        return dateA - dateB;  
+            
+                }
+            });
             case 'level':
                 return a.querySelector('td:nth-child(2) a').textContent.localeCompare(b.querySelector('td:nth-child(2) a').textContent);
             case 'problemName':
