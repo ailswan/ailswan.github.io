@@ -43,15 +43,10 @@ document.getElementById('sortDropdown').addEventListener('change', function() {
     
     rows.sort(function(a, b) {
         switch(sortingMethod) {
-            rows.sort(function(a, b) {
-                switch(sortingMethod) {
-                    case 'time':
-                        var dateA = new Date(a.getAttribute('data-time'));
-                        var dateB = new Date(b.getAttribute('data-time'));
-                        return dateA - dateB;  
-            
-                }
-            });
+            case 'time':
+                var dateA = new Date(a.getAttribute('data-time'));
+                var dateB = new Date(b.getAttribute('data-time'));
+                return dateA - dateB;  
             case 'level':
                 return a.querySelector('td:nth-child(2) a').textContent.localeCompare(b.querySelector('td:nth-child(2) a').textContent);
             case 'problemName':
