@@ -48,7 +48,10 @@ document.getElementById('sortDropdown').addEventListener('change', function() {
             case 'level':
                 return a.querySelector('td:nth-child(2) a').textContent.localeCompare(b.querySelector('td:nth-child(2) a').textContent);
             case 'problemName':
-                return a.querySelector('td:nth-child(3) a').textContent.localeCompare(b.querySelector('td:nth-child(3) a').textContent);
+                // Extract the number from the beginning of the problem name
+                var numA = parseInt(a.querySelector('td:nth-child(3) a').textContent.match(/^\d+/));
+                var numB = parseInt(b.querySelector('td:nth-child(3) a').textContent.match(/^\d+/));
+                return numA - numB;
         }
     });
 
