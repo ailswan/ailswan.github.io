@@ -20,7 +20,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tags</th>
   </tr>
  {% for post in site.posts %}
-<tr data-time="{{ post.date | date_to_xmlschema }}">
+<tr data-time="{{ post.feature_text | slice: -12, 10 | date: '%Y-%m-%d' }}">
     <td style="border: 1px solid lightgrey; padding: 18px;">{{ forloop.index }}</td>
     <td style="border: 1px solid lightgrey; padding: 18px;">
       <a href="{{ post.url }}" 
@@ -46,13 +46,12 @@ document.getElementById('sortDropdown').addEventListener('change', function() {
             case 'time':
                 var dateA = new Date(a.getAttribute('data-time'));
                 var dateB = new Date(b.getAttribute('data-time'));
-                return dateA - dateB;  
+                return dateB - dateA;  // We are sorting in descending order for newer posts to appear first.
             case 'level':
-                return a.querySelector('td:nth-child(2) a').textContent.localeCompare(b.querySelector('td:nth-child(2) a').textContent);
+                return a.querySelector('td:nth-child(2)').textContent.localeCompare(b.querySelector('td:nth-child(2)').textContent);
             case 'problemName':
-                // Extract the number from the beginning of the problem name
-                var numA = parseInt(a.querySelector('td:nth-child(3) a').textContent.match(/^\d+/));
-                var numB = parseInt(b.querySelector('td:nth-child(3) a').textContent.match(/^\d+/));
+                var numA = parseInt(a.querySelector('td:nth-child(3)').textContent.match(/^\d+/));
+                var numB = parseInt(b.querySelector('td:nth-child(3)').textContent.match(/^\d+/));
                 return numA - numB;
         }
     });
