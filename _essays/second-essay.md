@@ -1,41 +1,51 @@
 ---
 layout: essay_single
-title: My 2nd Essay
-date: 2023-09-05
+title: Tricky Python One-Liners
+date: 2023-09-12
 tags:
-  - tag2
-  - tag3
+   - python language
 categories:
 - Notes
 feature_text: |
-  ## My 2nd Essay
-  Post by ailswan Sep. 5, 2023
+  ## Tricky Python One-Liners
+  Post by ailswan Sep. 12, 2023
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
 
-### Summary
+### Tricky Python One-Liners
 
-This is the summary of my 2nd note. It provides a brief overview of what the note discusses. Summaries help readers quickly determine the topic and its relevance.
+**Swap Two Variables**:
+- `a, b = b, a`: Swap values of `a` and `b` in just one line.
 
-### Essays
+**Flatten a List of Lists**:
+- `flat_list = [item for sublist in list_of_lists for item in sublist]`: Turn a nested list into a flat list.
 
-#### The Importance of Taking Notes
+**Factorial Using `lambda`**:
+- `factorial = lambda x: 1 if x == 0 else x * factorial(x-1)`: Calculate the factorial of a number.
 
-Notes play a crucial role in capturing thoughts, ideas, and observations. They act as a reflection of our cognitive processes and can be instrumental in consolidating our learnings. Read more about this in the essay [The Science Behind Taking Notes](#).
+**Find All Unique Values in a List**:
+- `unique = list(set(my_list))`: Get unique values from a list.
 
-#### Digital vs. Traditional Notetaking
+**Calculate Fibonacci Sequence**:
+- `fib = lambda x: x if x <= 1 else fib(x-1) + fib(x-2)`: Compute the Fibonacci number.
 
-In the age of technology, the debate between digital and traditional note-taking intensifies. This essay delves into the pros and cons of both methods, drawing insights from various research. Check out [Digital vs. Analog: A Comprehensive Comparison](#).
+**Transpose a Matrix**:
+- `transposed = zip(*matrix)`: Transpose a given matrix.
 
-### Example Code
+**One-liner If-Else Assignment**:
+- `value = "even" if n % 2 == 0 else "odd"`: Assign value based on a condition.
 
-In the world of programming, 'notes' often manifest as comments. Here's a simple Python code to demonstrate:
+**Multiple Assignments**:
+- `a, b, c = 1, 2, 3`: Assign multiple variables in a single line.
 
-```python
-def add(a, b):
-    # This function adds two numbers
-    return a + b
+**Check If All Items in List Are Equal**:
+- `all_equal = all(x == my_list[0] for x in my_list)`: Check if all items in the list are the same.
 
-# Sample usage
-result = add(10, 20)
-print(f"The sum is {result}")  # Outputs: The sum is 30
+**Check If Any Item in Matrix is Zero**:
+- `zero_exists = any(matrix[i][j] == 0 for i in range(m) for j in range(n))`: Check if any item in the matrix is zero.
+
+**Get the Mode of a List**:
+- `mode = max(set(my_list), key = my_list.count)`: Get the most frequent item from a list.
+
+**Chain Comparison**:
+- `is_between = 1 < a < 10`: Check if a number is between two values.
