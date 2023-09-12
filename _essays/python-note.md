@@ -100,3 +100,51 @@ Most of the set and dictionary methods change the set or dictionary in-place. Ho
 ### **Functional Programming Tools**:
 - `map()` and `filter()`: Return iterators. To convert to a list: `list(map(func, iterable))` or `list(filter(func, iterable))`.
 - `functools.reduce()`: Accumulates a single result. For example, using it to sum a list of numbers would return a single number.
+
+
+
+### **Lambda Functions in Different Scenarios**:
+
+Lambda functions offer a concise way to create simple functions. Here are several typical use cases:
+
+1. **Filtering**:
+    - Filtering out even numbers from a list:
+        ```python
+        nums = [1, 2, 3, 4, 5]
+        evens = filter(lambda x: x % 2 == 0, nums)
+        ```
+
+2. **Mapping**:
+    - Squaring all numbers in a list:
+        ```python
+        nums = [1, 2, 3, 4, 5]
+        squares = map(lambda x: x**2, nums)
+        ```
+
+3. **Reduce**:
+    - Multiplying all elements of a list:
+        ```python
+        from functools import reduce
+        nums = [1, 2, 3, 4]
+        result = reduce(lambda x, y: x * y, nums)
+        ```
+
+4. **Using with `max()` and `min()`**:
+    - Finding the longest string in a list:
+        ```python
+        words = ["apple", "banana", "cherry"]
+        longest = max(words, key=lambda s: len(s))
+        ```
+
+5. **List Comprehensions**:
+    - Using lambda within list comprehensions to adjust values:
+        ```python
+        nums = [1, 2, 3, 4]
+        squared = [lambda x: x**2 for x in nums]
+        ```
+
+6. **Event Callbacks**:
+    - Used in GUIs or event-driven programming to execute an action when an event occurs.
+
+7. **Custom Sorting**:
+    - As you mentioned, for `list.sort()` or `sorted()` to provide custom sort orders.
