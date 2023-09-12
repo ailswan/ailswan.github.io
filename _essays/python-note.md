@@ -72,3 +72,9 @@ This document provides a list of common Python methods and functions spanning va
 - `filter(func, iterable)`: Filter by function.
 - `functools.reduce(func, iterable)`: Accumulate values.
 
+### **Bisect Methods**:
+- `bisect.bisect_left(a, x)`: Locate the insertion point for `x` in `a` to maintain sorted order. If `x` is already present in `a`, the insertion point will be before (to the left of) any existing entries.
+- `bisect.bisect_right(a, x)`: Locate the insertion point for `x` in `a` to maintain sorted order. If `x` is already present in `a`, the insertion point will be after (to the right of) any existing entries. This is equivalent to `bisect.bisect()`.
+- `bisect.insort_left(a, x)`: Insert `x` in `a` in sorted order. If `x` is already present in `a`, the insertion point will be before (to the left of) any existing entries.
+- `bisect.insort_right(a, x)`: Insert `x` in `a` in sorted order. If `x` is already present in `a`, the insertion point will be after (to the right of) any existing entries.
+
