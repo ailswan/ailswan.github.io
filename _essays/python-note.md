@@ -78,3 +78,25 @@ This document provides a list of common Python methods and functions spanning va
 - `bisect.insort_left(a, x)`: Insert `x` in `a` in sorted order. If `x` is already present in `a`, the insertion point will be before (to the left of) any existing entries.
 - `bisect.insort_right(a, x)`: Insert `x` in `a` in sorted order. If `x` is already present in `a`, the insertion point will be after (to the right of) any existing entries.
 
+
+**Noteworthy Differences**:
+
+### **In-Place vs. Return Value**:
+- `list.sort()` vs `sorted(list)`:
+    - `list.sort()`: Modifies the list in-place and returns `None`. This means the original list is changed and you don't get a new list back.
+    - `sorted(list)`: Returns a new sorted list, leaving the original list unmodified.
+- `list.reverse()` vs `reversed(list)`:
+    - `list.reverse()`: Modifies the list in-place.
+    - `reversed(list)`: Returns a reverse iterator. To convert to a list: `list(reversed(original_list))`.
+
+### **String Operations**:
+Strings in Python are immutable. This means they cannot be changed after they are created. So, any operation on a string always produces a new string.
+- For example:
+    - `s.strip()`: Returns a new string with whitespace removed from both ends. The original string `s` remains unchanged.
+
+### **Set and Dictionary Operations**:
+Most of the set and dictionary methods change the set or dictionary in-place. However, some operations, like union (`|`) or intersection (`&`) between two sets, return new sets.
+
+### **Functional Programming Tools**:
+- `map()` and `filter()`: Return iterators. To convert to a list: `list(map(func, iterable))` or `list(filter(func, iterable))`.
+- `functools.reduce()`: Accumulates a single result. For example, using it to sum a list of numbers would return a single number.
