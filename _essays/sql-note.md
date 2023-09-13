@@ -77,4 +77,60 @@ This document provides an overview of common SQL commands and operations spannin
 - `NOT NULL`: Ensures that a column cannot have a NULL value.
 - `CHECK`: Ensures that the value in a column meets a specific condition.
 
-This note provides an overview of the commonly used SQL features and commands. It is a quick reference guide for database operations and management in SQL. 
+## SQL examples list:
+
+1. **Basic Operations**:
+    - Retrieve all records: `SELECT * FROM table_name;`
+    - Retrieve specific columns: `SELECT column1, column2 FROM table_name;`
+    - Retrieve with conditions: `SELECT column1, column2 FROM table_name WHERE column1 = value;`
+
+2. **Filtering and Sorting**:
+    - Using AND & OR: `SELECT * FROM table_name WHERE column1 = value1 AND column2 = value2;`
+    - Sorting in ascending order: `SELECT * FROM table_name ORDER BY column1 ASC;`
+    - Sorting in descending order: `SELECT * FROM table_name ORDER BY column1 DESC;`
+    - Limit results: `SELECT * FROM table_name LIMIT 10;`
+
+3. **Aggregate Functions**:
+    - Count: `SELECT COUNT(column1) FROM table_name;`
+    - Average: `SELECT AVG(column1) FROM table_name;`
+    - Maximum: `SELECT MAX(column1) FROM table_name;`
+    - Minimum: `SELECT MIN(column1) FROM table_name;`
+
+4. **Joining Tables**:
+    - Inner Join: `SELECT * FROM table1 INNER JOIN table2 ON table1.column = table2.column;`
+    - Left Join: `SELECT * FROM table1 LEFT JOIN table2 ON table1.column = table2.column;`
+    - Right Join: `SELECT * FROM table1 RIGHT JOIN table2 ON table1.column = table2.column;`
+    - Full Outer Join: `SELECT * FROM table1 FULL JOIN table2 ON table1.column = table2.column;`
+
+5. **Insert, Update, Delete**:
+    - Insert: `INSERT INTO table_name (column1, column2) VALUES (value1, value2);`
+    - Update: `UPDATE table_name SET column1 = value1 WHERE column2 = value2;`
+    - Delete: `DELETE FROM table_name WHERE column1 = value1;`
+
+6. **Creating & Modifying Tables**:
+    - Create Table: `CREATE TABLE table_name (column1 datatype, column2 datatype);`
+    - Add Column: `ALTER TABLE table_name ADD column_name datatype;`
+    - Drop (Delete) Table: `DROP TABLE table_name;`
+
+7. **Database Management**:
+    - Create Database: `CREATE DATABASE database_name;`
+    - Use Database: `USE database_name;`
+    - Drop (Delete) Database: `DROP DATABASE database_name;`
+
+8. **Constraints**:
+    - Primary Key: `ALTER TABLE table_name ADD PRIMARY KEY (column1);`
+    - Foreign Key: `ALTER TABLE table_name ADD FOREIGN KEY (column1) REFERENCES other_table (other_column);`
+    - Unique: `ALTER TABLE table_name ADD UNIQUE (column1);`
+    - Check: `ALTER TABLE table_name ADD CHECK (condition);`
+    - Not Null: `ALTER TABLE table_name MODIFY column1 datatype NOT NULL;`
+
+9. **Index**:
+    - Create Index: `CREATE INDEX index_name ON table_name (column1);`
+    - Drop Index: `DROP INDEX table_name.index_name;`
+
+10. **Transactions**:
+    - Start Transaction: `START TRANSACTION;`
+    - Commit: `COMMIT;`
+    - Rollback: `ROLLBACK;`
+
+Remember to always back up your database before making any changes. It's a safety best practice!
