@@ -1,13 +1,13 @@
 ---
 layout: essay_single
-title: Tricky Python One-Liners
+title: Python One-Liners
 date: 2023-09-12
 tags:
    - python language
 categories:
 - Notes
 feature_text: |
-  ## Tricky Python One-Liners
+  ## Python One-Liners
   Post by ailswan Sep. 12, 2023
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
