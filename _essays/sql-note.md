@@ -133,4 +133,4 @@ This document provides an overview of common SQL commands and operations spannin
     - Commit: `COMMIT;`
     - Rollback: `ROLLBACK;`
 
-Remember to always back up your database before making any changes. It's a safety best practice!
+ 
