@@ -25,11 +25,10 @@
  
         <li><a href="javascript:void(0);" class="essay-tag display-all" data-tag="all">Display All</a></li>
     
-        {% assign all_categories = site.posts | map: "categories" | flatten | uniq %}
-        {% for category in all_categories %}
-            <li><a href="javascript:void(0);" class="essay-tag" data-tag="{{ category }}">{{ category }}</a></li>
+        {% assign all_tags = site.essays | map: "tags" | flatten | uniq %}
+        {% for tag in all_tags %}
+            <li><a href="javascript:void(0);" class="essay-tag" data-tag="{{ tag }}">{{ tag }}</a></li>
         {% endfor %}
-
     </ul>
     
     </section>
@@ -47,20 +46,19 @@ $(document).ready(function() {
     $('.essay-tag').on('click', function(e) {
         e.preventDefault();
 
-        const categoryClicked = $(this).data('tag');
-        const allPosts = $('.essay-item');
+        const tagClicked = $(this).data('tag');
+        const allEssays = $('.essay-item');
 
-        if (categoryClicked === "all") {
-            allPosts.show();
+        if (tagClicked === "all") {
+            location.reload(); 
         } else {
-            allPosts.hide().filter(function() {
-                const postCategories = $(this).data('tags').split(',').map(cat => cat.trim());
-                return postCategories.includes(categoryClicked);
+            allEssays.hide().filter(function() {
+                const essayTags = $(this).data('tags').split(',').map(tag => tag.trim());
+                return essayTags.includes(tagClicked);
             }).show();
         }
     });
 });
-
 
 
 </script>
