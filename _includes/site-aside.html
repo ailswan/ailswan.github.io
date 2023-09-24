@@ -25,10 +25,11 @@
  
         <li><a href="javascript:void(0);" class="essay-tag display-all" data-tag="all">Display All</a></li>
     
-        {% assign all_tags = site.posts | map: "tags" | flatten | uniq %}
-        {% for tag in all_tags %}
-            <li><a href="javascript:void(0);" class="essay-tag" data-tag="{{ tag }}">{{ tag }}</a></li>
+        {% assign all_categories = site.posts | map: "categories" | flatten | uniq %}
+        {% for category in all_categories %}
+            <li><a href="javascript:void(0);" class="essay-tag" data-tag="{{ category }}">{{ category }}</a></li>
         {% endfor %}
+
     </ul>
     
     </section>
