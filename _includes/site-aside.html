@@ -47,19 +47,20 @@ $(document).ready(function() {
     $('.essay-tag').on('click', function(e) {
         e.preventDefault();
 
-        const tagClicked = $(this).data('tag');
-        const allEssays = $('.essay-item');
+        const categoryClicked = $(this).data('tag');
+        const allPosts = $('.essay-item');
 
-        if (tagClicked === "all") {
-            location.reload(); 
+        if (categoryClicked === "all") {
+            allPosts.show();
         } else {
-            allEssays.hide().filter(function() {
-                const essayTags = $(this).data('tags').split(',').map(tag => tag.trim());
-                return essayTags.includes(tagClicked);
+            allPosts.hide().filter(function() {
+                const postCategories = $(this).data('tags').split(',').map(cat => cat.trim());
+                return postCategories.includes(categoryClicked);
             }).show();
         }
     });
 });
+
 
 
 </script>
