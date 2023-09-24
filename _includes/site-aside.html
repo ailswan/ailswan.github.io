@@ -25,7 +25,7 @@
  
         <li><a href="javascript:void(0);" class="essay-tag display-all" data-tag="all">Display All</a></li>
     
-        {% assign all_tags = site.essays | map: "tags" | flatten | uniq %}
+        {% assign all_tags = site.posts | map: "tags" | flatten | uniq %}
         {% for tag in all_tags %}
             <li><a href="javascript:void(0);" class="essay-tag" data-tag="{{ tag }}">{{ tag }}</a></li>
         {% endfor %}
