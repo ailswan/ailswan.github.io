@@ -49,3 +49,6 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 
 **Chain Comparison**:
 - `is_between = 1 < a < 10`: Check if a number is between two values.
+
+**Remove Dictionary Keys from a Set**:
+- `wordList -= set(q.keys())`: Remove keys of dictionary `q` from the set `wordList`.
