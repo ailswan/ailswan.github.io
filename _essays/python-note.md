@@ -25,6 +25,7 @@ This document provides a list of common Python methods and functions spanning va
 - `s.replace(old, new)`: Replace substring.
 - `s.upper()`: Convert to uppercase.
 - `s.lower()`: Convert to lowercase.
+- `s.isalnum()`: Check if string is alphanumeric.
 
 ### **List Methods**:
 - `lst.append(item)`: Add item to list.
