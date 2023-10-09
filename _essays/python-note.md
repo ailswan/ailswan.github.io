@@ -149,3 +149,6 @@ Lambda functions offer a concise way to create simple functions. Here are severa
 
 7. **Custom Sorting**:
     - As you mentioned, for `list.sort()` or `sorted()` to provide custom sort orders.
+8. **Deep copy**:
+    - original_array = `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]`
+    - copied_array = `[row[:] for row in original_array]]`
