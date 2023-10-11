@@ -1,14 +1,14 @@
 ---
 layout: essay_single
 title: Python One-Liners
-date: 2023-09-12
+date: 2023-10-10
 tags:
    - python language
 categories:
 - Notes
 feature_text: |
   ## Python One-Liners
-  Post by ailswan Sep. 12, 2023
+  Post by ailswan Oct.10 , 2023
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
 
@@ -52,3 +52,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 
 **Remove Dictionary Keys from a Set**:
 - `wordList -= set(q.keys())`: Remove keys of dictionary `q` from the set `wordList`.
+
+**Add Neighboring Grid Positions to Stack**:
+
+- `stack += (i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)`: Add up, down, left, and right positions of a grid cell (i, j) to a stack.
