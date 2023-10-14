@@ -19,7 +19,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">Problem Name</th>
     <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tags</th>
   </tr>
- {% for post in site.posts %}
+{% for post in paginator.posts %}
 <tr data-time="{{ post.feature_text | slice: -12, 10 | date: '%Y-%m-%d' }}">
     <td style="border: 1px solid lightgrey; padding: 18px;">{{ forloop.index }}</td>
     <td style="border: 1px solid lightgrey; padding: 18px;">
