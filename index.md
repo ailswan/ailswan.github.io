@@ -19,7 +19,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">Problem Name</th>
     <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tags</th>
   </tr>
-{% for post in paginator.posts %}
+{% for post in site.posts %}
 <tr data-time="{{ post.feature_text | slice: -12, 10 | date: '%Y-%m-%d' }}">
     <td style="border: 1px solid lightgrey; padding: 18px;">{{ forloop.index }}</td>
     <td style="border: 1px solid lightgrey; padding: 18px;">
@@ -34,14 +34,6 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
 {% endfor %}
 </table>
 
-<div class="algorithm-pagination">
-    {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path }}" class="algorithm-prev">Previous</a>
-    {% endif %}
-    {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path }}" class="algorithm-next">Next</a>
-    {% endif %}
-</div>
 <!-- JavaScript for sorting -->
 <script>
 document.getElementById('sortDropdown').addEventListener('change', function() {
