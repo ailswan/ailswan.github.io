@@ -11,6 +11,23 @@ table td, table th {
     padding: 8px;
 }
 
+.algorithm-pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.algorithm-pagination a {
+    padding: 10px 15px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s;
+}
+
+.algorithm-pagination a:hover {
+    background-color: #f8f8f8;
+}
+
 
 
 // @import "alembic";
