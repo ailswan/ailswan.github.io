@@ -24,6 +24,7 @@ exclude:
 
 # 2. Installed Gems
 plugins:
+- jekyll-paginate
 - jekyll-sitemap
 - jekyll-mentions
 - jekyll-paginate
@@ -35,8 +36,10 @@ plugins:
 - jemoji
 
 # 3. Gem settings
-paginate: 2 # jekyll-paginate > items per page
-paginate_path: blog/page:num # jekyll-paginate > blog page
+paginate: 200
+paginate_path: "/page:num/" # jekyll-paginate > blog page
+gems:
+  - jekyll-paginate
 jekyll-mentions: https://twitter.com # jekyll-mentions > service used when @replying
 twitter:
   username: ailswan # jekyll-seo-tag > Owners twitter username
@@ -167,3 +170,6 @@ fonts:
     - https://fonts.gstatic.com
   font_urls:
     - https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap
+liquid:
+  loops:
+    max: 200
