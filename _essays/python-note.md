@@ -94,6 +94,10 @@ This document provides a list of common Python methods and functions spanning va
 Strings in Python are immutable. This means they cannot be changed after they are created. So, any operation on a string always produces a new string.
 - For example:
     - `s.strip()`: Returns a new string with whitespace removed from both ends. The original string `s` remains unchanged.
+    - `ord(char)`: Convert a single character to its corresponding ASCII value.
+        * Example: `ord('A')` returns 65. 
+        * Use Case: Useful for arithmetic with characters, e.g., converting spreadsheet column names ('A' to 'Z', 'AA' to 'ZZ', etc.) to numbers.
+
 
 ### **Set and Dictionary Operations**:
 Most of the set and dictionary methods change the set or dictionary in-place. However, some operations, like union (`|`) or intersection (`&`) between two sets, return new sets.
