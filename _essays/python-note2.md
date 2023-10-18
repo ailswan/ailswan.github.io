@@ -53,6 +53,10 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 **Remove Dictionary Keys from a Set**:
 - `wordList -= set(q.keys())`: Remove keys of dictionary `q` from the set `wordList`.
 
-**Add Neighboring Grid Positions to Stack**:
+**Sorting with Old-Style Comparison using `cmp_to_key`**:
+- `sorted_lst = sorted(lst, key=cmp_to_key(lambda x, y: -1 if x < y else (1 if x > y else 0)))`: Sorts a list `lst` using old-style comparison via `cmp_to_key`.
 
+
+**Add Neighboring Grid Positions to Stack**:
 - `stack += (i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)`: Add up, down, left, and right positions of a grid cell (i, j) to a stack.
+
