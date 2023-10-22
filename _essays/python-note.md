@@ -156,3 +156,19 @@ Lambda functions offer a concise way to create simple functions. Here are severa
 8. **Deep copy**:
     - original_array = `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]`
     - copied_array = `[row[:] for row in original_array]]`
+### **Looping Through Dictionaries**:
+1. **Loop through keys**:
+    ```python
+    for key in my_dict:
+        print(key)
+    ```
+2. **Loop through values**:
+    ```python
+    for value in my_dict.values():
+        print(value)
+    ```
+3. **Loop through both keys and values**:
+    ```python
+    for key, value in my_dict.items():
+        print(key, value)
+    ```
