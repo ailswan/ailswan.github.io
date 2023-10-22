@@ -7,7 +7,7 @@ tags:
 categories:
 - Notes
 feature_text: |
-  ## Python debug note
+  ## Python Random note
   Post by ailswan Oct.10 , 2023
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
@@ -18,4 +18,9 @@ feature_image: "https://picsum.photos/2560/600?image=865"
   res.append(path[:])
 **# rotated array must use module**:
   k %= n  
+**# create defaultdict**:
+  `dic = defaultdict(list)`
+  `for word in wordList:`
+    `for i in range(len(word)):`
+      `dic [word[:i] + "_" word[i + 1:]]. append(word)`
  
