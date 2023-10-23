@@ -60,3 +60,5 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 **Add Neighboring Grid Positions to Stack**:
 - `stack += (i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)`: Add up, down, left, and right positions of a grid cell (i, j) to a stack.
 
+**function as numpy.prod**:
+- `res = reduce(lambda x, y: x * y, nums, 1)`: Add up, down, left, and right positions of a grid cell (i, j) to a stack.
