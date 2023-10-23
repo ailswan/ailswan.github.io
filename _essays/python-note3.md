@@ -12,7 +12,7 @@ feature_text: |
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
 
-### Tricky Python One-Liners
+### Tricky Python note for debug
 
 **# backtracking must use the deep copy**:
  ```python
