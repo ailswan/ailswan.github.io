@@ -172,3 +172,79 @@ Lambda functions offer a concise way to create simple functions. Here are severa
     for key, value in my_dict.items():
         print(key, value)
     ```
+
+
+### **Bitwise Operations**:
+
+Python supports the following bitwise operations:
+
+- `&`: Bitwise AND
+- `|`: Bitwise OR
+- `^`: Bitwise XOR
+- `~`: Bitwise NOT
+- `<<`: Left shift
+- `>>`: Right shift
+
+#### **Functions and Methods**:
+- `bin(x)`: Convert an integer number to a binary string. The result will be a valid Python expression.
+    - Example:
+        ```python
+        print(bin(10))  # Output: '0b1010'
+        ```
+
+- `int(x, 2)`: Convert a binary string back to an integer.
+    - Example:
+        ```python
+        print(int('1010', 2))  # Output: 10
+        ```
+
+- `x.bit_length()`: Return the number of bits necessary to represent an integer in binary, excluding the sign and leading zeros.
+    - Example:
+        ```python
+        num = 5
+        print(num.bit_length())  # Output: 3
+        ```
+
+#### **Usage Examples**:
+
+1. **Bitwise AND**:
+    ```python
+    a, b = 12, 15
+    result = a & b
+    print(bin(result))  # Output: '0b1100'
+    ```
+
+2. **Bitwise OR**:
+    ```python
+    a, b = 12, 15
+    result = a | b
+    print(bin(result))  # Output: '0b1111'
+    ```
+
+3. **Bitwise XOR**:
+    ```python
+    a, b = 12, 15
+    result = a ^ b
+    print(bin(result))  # Output: '0b0011'
+    ```
+
+4. **Bitwise NOT**:
+    ```python
+    a = 12
+    result = ~a
+    print(bin(result))  # Output: '-0b1101'
+    ```
+
+5. **Left Shift**:
+    ```python
+    a = 5
+    result = a << 1
+    print(bin(result))  # Output: '0b1010'
+    ```
+
+6. **Right Shift**:
+    ```python
+    a = 5
+    result = a >> 1
+    print(bin(result))  # Output: '0b10'
+    ```
