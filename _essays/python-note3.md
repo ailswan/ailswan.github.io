@@ -30,3 +30,5 @@ feature_image: "https://picsum.photos/2560/600?image=865"
       dic [word[:i] + "_" word[i + 1:]]. append(word)
   ```
  
+ **pending:**
+ implement multiple threads
