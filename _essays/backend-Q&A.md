@@ -6,7 +6,7 @@ tags:
    - backend
 categories:
 - Q&A
-- backend
+- Backend
 feature_text: |
   ## Backend Q&A
   Post by ailswan Oct.24 , 2023
@@ -357,3 +357,95 @@ These are some of the common lock types in Java, each serving specific synchroni
 - **Pessimistic Locking:** Suitable when the likelihood of concurrent updates is high, ensuring exclusive access to shared resources during operations.
 
 In summary, the choice between optimistic and pessimistic locking depends on the specific characteristics of data operations and the expected concurrency scenarios.
+
+### **18. Understanding Spin Locks: Purpose and Mechanism**
+
+**Spin Lock:**
+- Thread blocking and waking involve a transition from user mode to kernel mode, imposing a considerable burden on the CPU. Frequent blocking and waking can significantly impact the concurrent performance of a system.
+- The duration of an object lock state is often short, making frequent thread blocking and waking inefficient. To address this, spin locks are introduced.
+
+**How Spin Lock Works:**
+- A spin lock makes a thread wait for a short period without immediately suspending it, checking if the thread holding the lock will release it quickly.
+- During this wait, the spin lock executes a meaningless loop, known as spinning.
+- Spinning is not a replacement for blocking; it aims to avoid the overhead of thread switching but consumes processor time. If the lock is released quickly, spinning proves valuable; otherwise, it might waste resources.
+- Spin waiting must have a limit. If spinning exceeds a set duration without acquiring the lock, the thread needs to be suspended.
+
+**Why Spin Locks Exist:**
+- The overhead of frequent thread blocking and waking, especially for short lock durations, led to the introduction of spin locks.
+- Spin locks attempt to strike a balance by allowing a short waiting period before resorting to thread suspension, optimizing performance for scenarios where locks are quickly released.
+
+**Adaptive Spin Lock:**
+- Introduced in JDK 1.6, adaptive spin locks dynamically adjust the spin count based on the success of previous spins and the state of the lock owner.
+- If a thread succeeds in spinning, the next spin count increases, anticipating potential success. Conversely, frequent unsuccessful spins reduce the subsequent spin count.
+- Adaptive spin locks aim to optimize spin lock behavior based on past performance, enhancing efficiency.
+
+In summary, spin locks attempt to mitigate the cost of frequent thread blocking and waking, offering a balance between waiting and resource consumption in short lock scenarios.
+
+### **19. Understanding Gap Locks**
+
+**Gap in the Context of Databases:**
+- In a database, a gap refers to records that fall within a specified range condition but do not actually exist.
+
+**Gap Lock:**
+- When indexing data with a range condition rather than an equality condition and requesting a shared or exclusive lock, InnoDB introduces a gap lock on existing data records that match the condition.
+- Gap locks are associated with ranges and are open-ended. Combining gap locks with row locks results in what is known as a "next-key lock," where each next-key lock represents a left-open, right-closed interval.
+- The introduction of gap locks and next-key locks aims to address issues like phantom reads in database transactions.
+
+**Key Characteristics of Gap Locks:**
+- Gap locks are used in conjunction with range conditions during index scans.
+- They are open-ended intervals, and when combined with row locks, they form next-key locks.
+- Each next-key lock represents a left-open, right-closed interval, ensuring consistency in range locking.
+- Gap locks and next-key locks are instrumental in preventing phenomena like phantom reads.
+
+**Purpose of Gap Locks:**
+- Gap locks are utilized in scenarios where transactions involve range queries, preventing phantom reads by providing a consistent view of the data.
+- They play a crucial role in maintaining data integrity and consistency during concurrent transactions involving range conditions.
+
+In summary, gap locks serve as a mechanism to ensure consistency in range locking, preventing inconsistencies in scenarios involving open-ended intervals and contributing to the resolution of issues like phantom reads.
+
+### **20. Understanding the TCP/IP Model**
+
+**Introduction:**
+- The TCP/IP model, also known as the Internet protocol suite, serves as the conceptual framework for the Internet. It consists of four layers and is often referred to as the Internet layer or Internet reference model.
+
+**Four Layers of the TCP/IP Model:**
+
+1. **Network Interface Layer:**
+   - Responsible for coordinating the transmission of IP data over existing network media.
+   - Protocols: ARP (Address Resolution Protocol), RARP (Reverse Address Resolution Protocol).
+
+2. **Internet Layer:**
+   - Corresponds to the OSI seven-layer reference model's network layer.
+   - Handles data encapsulation, addressing, and routing.
+   - Includes protocols such as IP (Internet Protocol), RIP (Routing Information Protocol), and ICMP (Internet Control Message Protocol) for network diagnostics.
+
+3. **Transport Layer:**
+   - Corresponds to the OSI seven-layer reference model's transport layer.
+   - Provides end-to-end communication services.
+   - TCP (Transmission Control Protocol) ensures reliable data stream transmission, while UDP (User Datagram Protocol) offers unreliable user data packet services.
+
+4. **Application Layer:**
+   - Corresponds to the OSI seven-layer reference model's application and presentation layers.
+   - Hosts various application-layer protocols for specific functionalities.
+   - Application layer protocols include Finger, Whois, FTP (File Transfer Protocol), Gopher, HTTP (Hypertext Transfer Protocol), Telnet, SMTP (Simple Mail Transfer Protocol), IRC (Internet Relay Chat), NNTP (Network News Transfer Protocol), and more.
+
+**Collaboration and Limitations:**
+- TCP/IP does not include the physical and data link layers, requiring collaboration with other protocols to complete the entire computer network system's functionality.
+- The TCP/IP model is effective when coordinated with various other protocols, forming a comprehensive framework for Internet communication.
+
+In summary, the TCP/IP model's four layers facilitate the organization and understanding of Internet communication protocols, enabling effective end-to-end data transmission and reception.
+
+### **21. Differences Between TCP and UDP**
+
+**TCP (Transmission Control Protocol):** | **UDP (User Datagram Protocol):**
+---------------------------------------|------------------------------------------
+- **Connection:** Connected (oriented) | - **Connection:** Connectionless (unoriented)
+- **Reliability:** Reliable transmission with flow control and congestion control | - **Reliability:** Unreliable transmission, no flow control or congestion control
+- **Ordering:** Maintains order of messages (sequential) | - **Ordering:** No guarantee of message order (may be received out of order)
+- **Transmission Speed:** Slower due to reliability mechanisms | - **Transmission Speed:** Faster, as it lacks complex reliability mechanisms
+- **Connection Objects:** Supports one-to-one, one-to-many, many-to-one, and many-to-many interactions | - **Connection Objects:** Limited to one-to-one communication
+- **Transmission Mode:** Message-oriented | - **Transmission Mode:** Byte-stream-oriented
+- **Header Overhead:** Small header overhead (8 bytes) | - **Header Overhead:** Variable header size, minimum 20 bytes, maximum 60 bytes
+- **Applicability:** Suitable for applications requiring reliable transmission, such as file transfers | - **Applicability:** Suitable for real-time applications (e.g., IP telephony, video conferencing, live streaming) where slight data loss is acceptable
+
+In summary, TCP and UDP differ in terms of connection, reliability, ordering, transmission speed, connection objects, transmission mode, header overhead, and applicability. TCP is suitable for applications requiring reliability, while UDP is favored in real-time scenarios with a preference for speed over reliability.
