@@ -32,11 +32,11 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 | **Interface Implementation**  | Can only inherit interfaces, cannot implement them | Can implement interfaces, including not implementing interface methods |
 
 ### **2. Multiple Inheritance:**
-**Java:**
+- **Java:**
 Supports only single inheritance, where a class can inherit from one superclass.
-**C++:**
+- **C++:**
 Allows multiple inheritance, enabling a class to inherit from more than one class.
-**Python:**
+- **Python:**
 Supports multiple inheritance like C++. A class can inherit from multiple classes.
 
 ### **3. Java Parameter Passing: Value or Reference?**
