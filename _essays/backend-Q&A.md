@@ -16,7 +16,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 ###  Backend Q&A
 
 **link:**
-[python backend q&a](https://www.cative.io/blog/python-interview-questions?utm_campaign=coding_interview_pattern&utm_source=google&utm_medium=ppc&utm_content=pmax&utm_term=&eid=5082902844932096&utm_term=&utm_campaign=%5BNew+-+Nov+23%5D+PMAX-Coding+Interview+Patterns&utm_source=adwords&utm_medium=ppc&hsa_acc=5451446008&hsa_cam=20757269941&hsa_grp=&hsa_ad=&hsa_src=x&hsa_tgt=&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gad_source=1&gclid=CjwKCAiAyp-sBhBSEiwAWWzTnl-rjkeXiaLfOQ67fv1PNXZkqkG8tNc2FArX6Oo5bFQC3e0fSnelNBoCDxAQAvD_BwE)
+[  backend q&a](https://www.cative.io/blog/python-interview-questions?utm_campaign=coding_interview_pattern&utm_source=google&utm_medium=ppc&utm_content=pmax&utm_term=&eid=5082902844932096&utm_term=&utm_campaign=%5BNew+-+Nov+23%5D+PMAX-Coding+Interview+Patterns&utm_source=adwords&utm_medium=ppc&hsa_acc=5451446008&hsa_cam=20757269941&hsa_grp=&hsa_ad=&hsa_src=x&hsa_tgt=&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gad_source=1&gclid=CjwKCAiAyp-sBhBSEiwAWWzTnl-rjkeXiaLfOQ67fv1PNXZkqkG8tNc2FArX6Oo5bFQC3e0fSnelNBoCDxAQAvD_BwE)
  
  
 ### **1. Interface vs. Abstract Class**
@@ -31,6 +31,8 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 | **Constructor**               | Cannot have constructors            | Can have constructors               |
 | **Interface Implementation**  | Can only inherit interfaces, cannot implement them | Can implement interfaces, including not implementing interface methods |
 
+---
+
 ### **2. Multiple Inheritance:**
 - **Java:**
 Supports only single inheritance, where a class can inherit from one superclass.
@@ -38,6 +40,9 @@ Supports only single inheritance, where a class can inherit from one superclass.
 Allows multiple inheritance, enabling a class to inherit from more than one class.
 - **Python:**
 Supports multiple inheritance like C++. A class can inherit from multiple classes.
+
+---
+
 
 ### **3. Java Parameter Passing: Value or Reference?**
 
@@ -56,6 +61,9 @@ In Java, the mechanism for parameter passing is often a point of confusion. Java
 
 In summary, Java uses a pass-by-value mechanism, where the value of the variable is passed to the method. For objects, this means passing the value of the reference to the object, not the object itself.
 
+---
+
+
 ### **4. Procedural Programming vs. Object-Oriented Programming (OOP)**
 
 **Procedural Programming:**
@@ -73,6 +81,9 @@ In summary, Java uses a pass-by-value mechanism, where the value of the variable
 - OOP provides higher maintainability, lower coupling, and better code organization.
 - Procedural suits smaller projects, while OOP is suitable for larger, complex projects.
 
+---
+
+
 ### **5. Differences between final, finally, and finalize**
 
 **final:**
@@ -87,6 +98,9 @@ In summary, Java uses a pass-by-value mechanism, where the value of the variable
 - A method in the `java.lang.Object` class.
 - Inherited by every object. It is invoked during the execution of the garbage collection mechanism, allowing the recovery of unused memory garbage.
 
+---
+
+
 ### **6. What is Serialization? What is Deserialization?**
 
 **Serialization:**
@@ -99,9 +113,15 @@ In summary, Java uses a pass-by-value mechanism, where the value of the variable
 
 Serialization and deserialization are essential concepts in handling object persistence and communication in various programming contexts.
 
+---
+
+
 ### **7. What is an Immutable Class?**
 
 An immutable class refers to a class whose instance properties cannot be modified. Once an instance of an immutable class is created, its member variables cannot be altered. The Java platform's class library includes many immutable classes, such as String and primitive data type wrappers. Immutable classes offer enhanced safety compared to their mutable counterparts.
+
+---
+
 
 ### **8. Why is String Immutable in Java?**
 
@@ -123,6 +143,9 @@ The immutability of the String class in Java is attributed to several factors:
 
 The combination of a private, final, and unmodifiable internal representation, along with the String Pool mechanism, ensures the immutability of the String class in Java.
 
+---
+
+
 ### **9. Difference Between API and SPI**
 
 **API (Application Programming Interface):**
@@ -142,6 +165,9 @@ The combination of a private, final, and unmodifiable internal representation, a
 
 In summary, while API is defined and implemented by the provider, SPI allows consumers to define an interface and leave the implementation to various service providers, providing flexibility in choosing different implementations.
 
+---
+
+
 ### **10. Differences Between Threads and Processes**
 
 | Feature          | Process                               | Thread                                      |
@@ -154,6 +180,9 @@ In summary, while API is defined and implemented by the provider, SPI allows con
 
 In summary, processes are instances of running programs, managed by the operating system, and cannot share resources directly. Threads, on the other hand, are the smallest units of computation within a process, allowing for resource sharing and faster context switching, and are controlled by the programmer.
 
+---
+
+
 ### **11. Differences Between Threads and Coroutines**
 
 | Feature                | Thread                                | Coroutine                                   |
@@ -165,6 +194,9 @@ In summary, processes are instances of running programs, managed by the operatin
 | **Use Cases for Coroutines** | High-concurrency services like seckill systems, RPC servers, etc. | Web scraping development, real-time communication services such as chat rooms and game servers |
 
 In summary, threads are the smallest units of execution managed by the operating system, while coroutines are smaller units of resource management not tied to the operating system. Coroutines are often used in scenarios requiring high concurrency, such as seckill systems and RPC servers, as well as in web scraping and real-time communication services.
+
+---
+
 
 ### **12. Understanding Thread Safety in Containers and Specific Implementations**
 
@@ -204,6 +236,9 @@ In summary, threads are the smallest units of execution managed by the operating
    - Modifications by a thread only affect its local copy, avoiding interference with other threads.
 
 In summary, thread safety in containers is achieved through various mechanisms such as mutex synchronization, non-blocking synchronization, or even opting for no synchronization in specific cases. Additional strategies include implementing reentrant code and utilizing thread-local storage to isolate modifications made by individual threads.
+
+---
+
 
 ### **13. Achieving Thread Safety in Java**
 
@@ -260,6 +295,9 @@ public class ThreadLocalExample {
 ```
 These approaches, whether using atomic classes, synchronization, or TLS, contribute to creating thread-safe Java programs by preventing data corruption and ensuring proper synchronization.
 
+---
+
+
 ### **14. Thread Pool Implementations Provided by the Concurrency Library**
 
 1. **`newCachedThreadPool()`**
@@ -284,6 +322,9 @@ These approaches, whether using atomic classes, synchronization, or TLS, contrib
    - Efficiently handles tasks with varying execution times.
 
 These thread pool implementations provided by the concurrency library offer different strategies for managing threads and tasks, catering to various concurrency requirements.
+
+---
+
 
 ### **15. Key Parameters in Thread Pools and Setting Strategies**
 
@@ -319,6 +360,9 @@ In a thread pool, several parameters, such as core pool size and maximum pool si
 
 By employing these strategies, you can tailor thread pool parameters to the specific requirements of CPU-intensive or I/O-intensive tasks, ensuring optimal performance in different scenarios.
 
+---
+
+
 ### **16.Lock Types in Java**
 
 | Lock Type                    | Description                                                                                                     |
@@ -335,6 +379,9 @@ By employing these strategies, you can tailor thread pool parameters to the spec
 | **LockSupport**              | Supports synchronization primitives for creating locks and other synchronization utilities.                       |
 
 These are some of the common lock types in Java, each serving specific synchronization and concurrency control purposes.
+
+---
+
 
 ### **17.Understanding Optimistic Locking and Pessimistic Locking**
 
@@ -357,6 +404,9 @@ These are some of the common lock types in Java, each serving specific synchroni
 - **Pessimistic Locking:** Suitable when the likelihood of concurrent updates is high, ensuring exclusive access to shared resources during operations.
 
 In summary, the choice between optimistic and pessimistic locking depends on the specific characteristics of data operations and the expected concurrency scenarios.
+
+---
+
 
 ### **18. Understanding Spin Locks: Purpose and Mechanism**
 
@@ -381,6 +431,9 @@ In summary, the choice between optimistic and pessimistic locking depends on the
 
 In summary, spin locks attempt to mitigate the cost of frequent thread blocking and waking, offering a balance between waiting and resource consumption in short lock scenarios.
 
+---
+
+
 ### **19. Understanding Gap Locks**
 
 **Gap in the Context of Databases:**
@@ -402,6 +455,9 @@ In summary, spin locks attempt to mitigate the cost of frequent thread blocking 
 - They play a crucial role in maintaining data integrity and consistency during concurrent transactions involving range conditions.
 
 In summary, gap locks serve as a mechanism to ensure consistency in range locking, preventing inconsistencies in scenarios involving open-ended intervals and contributing to the resolution of issues like phantom reads.
+
+---
+
 
 ### **20. Understanding the TCP/IP Model**
 
@@ -435,6 +491,9 @@ In summary, gap locks serve as a mechanism to ensure consistency in range lockin
 
 In summary, the TCP/IP model's four layers facilitate the organization and understanding of Internet communication protocols, enabling effective end-to-end data transmission and reception.
 
+---
+
+
 ### **21. Differences Between TCP and UDP**
 
 **TCP (Transmission Control Protocol):** | **UDP (User Datagram Protocol):**
@@ -449,6 +508,9 @@ In summary, the TCP/IP model's four layers facilitate the organization and under
 - **Applicability:** Suitable for applications requiring reliable transmission, such as file transfers | - **Applicability:** Suitable for real-time applications (e.g., IP telephony, video conferencing, live streaming) where slight data loss is acceptable
 
 In summary, TCP and UDP differ in terms of connection, reliability, ordering, transmission speed, connection objects, transmission mode, header overhead, and applicability. TCP is suitable for applications requiring reliability, while UDP is favored in real-time scenarios with a preference for speed over reliability.
+
+---
+
 
 ### **22. TCP Reliability Mechanisms**
 
@@ -482,6 +544,9 @@ In summary, TCP and UDP differ in terms of connection, reliability, ordering, tr
 
 In summary, TCP ensures reliability through a combination of checksum verification, sequence numbering, acknowledgment mechanisms, timeout and retransmission strategies, connection management, flow control, and congestion control. These mechanisms collectively contribute to the robust and reliable communication provided by TCP.
 
+---
+
+
 ### **23. Common HTTP Request Methods**
 
 | Method   | Purpose                                       |
@@ -497,6 +562,9 @@ In summary, TCP ensures reliability through a combination of checksum verificati
 | TRACE    | Server returns the communication path to the client |
 
 These HTTP request methods define the actions that can be performed on resources identified by URLs. Each method serves a specific purpose, such as retrieving, creating, updating, or deleting resources.
+
+---
+
 
 ### **24. Difference between HTTP and HTTPS**
 
@@ -533,6 +601,9 @@ HTTPS ensures secure transmission through the following steps:
 
 By combining asymmetric encryption (for secure key exchange) and symmetric encryption (for efficient data transmission), HTTPS ensures the confidentiality and integrity of data during communication.
 
+---
+
+
 ### **25. Understanding TIME_WAIT State in TCP**
 
 **TIME_WAIT State in TCP:**
@@ -556,6 +627,9 @@ In scenarios where a TCP server experiences high concurrency with short-lived co
 
 **Conclusion:**
 TIME_WAIT state plays a critical role in ensuring the reliability and integrity of TCP connections, especially during connection termination. While it introduces a waiting period, it serves essential purposes for maintaining protocol consistency and preventing potential data conflicts.
+
+---
+
 
 ### **26. TCP Three-Way Handshake and Four-Way Wave**
 
@@ -588,6 +662,9 @@ TIME_WAIT state plays a critical role in ensuring the reliability and integrity 
 **Note:**
 - The TIME_WAIT state prevents potential old data packets from resurfacing in a new connection.
 - SO_REUSEADDR can be employed to reuse ports in high-concurrency scenarios, reducing the impact of TIME_WAIT on server responsiveness.
+
+---
+
 
 ### **27. TCP Flow Control and Sliding Window Protocol**
 
@@ -632,6 +709,9 @@ The sum of the second and third parts represents the size of the sender's window
 **Note:**
 - This example highlights how the sliding window adjusts based on acknowledgment and available buffer space, ensuring efficient and controlled data flow.
 
+---
+
+
 ### **28. TCP Slow Start and Congestion Avoidance**
 
 #### **Slow Start Mechanism:**
@@ -668,6 +748,9 @@ The sum of the second and third parts represents the size of the sender's window
 
 **Note:**
 - The Slow Start mechanism helps TCP adapt to the network's capacity without causing congestion. It is a critical component of TCP's congestion control algorithm.
+
+---
+
 
 ### **29. Java Synchronized Keyword**
 
@@ -724,9 +807,16 @@ The `synchronized` keyword is used to implement implicit locks in Java. It ensur
       }
   }
 ```
+
+---
+
+
 ### **30. What is a Database?**
 
 A database is a container that organizes structured data, typically stored in one or more files, and is created and manipulated through a Database Management System (DBMS).
+
+---
+
 
 ### **31. Types of Databases:**
 There are two main types of databases:
@@ -740,6 +830,9 @@ There are two main types of databases:
    - Do not use the traditional tabular relational database management systems.
    - Can handle large sets of unstructured, semi-structured, or structured data.
    - Examples include MongoDB, Cassandra, Redis.
+
+---
+
 
 ### **32. Three Normal Forms in Databases:**
 
@@ -760,6 +853,9 @@ Database normalization involves organizing the data efficiently and reducing dat
 **Note:**
 - Following these normal forms helps in reducing data redundancy and maintaining data integrity in relational databases.
 
+---
+
+
 ### **33. Triggers and Their Use Cases:**
 
 Triggers in databases are special types of stored procedures that automatically respond to specific events. Here are some scenarios where triggers are commonly used:
@@ -771,6 +867,9 @@ Triggers in databases are special types of stored procedures that automatically 
 2. **Real-time Monitoring and Response:**
    - Monitors changes in a specific field of a table in real-time.
    - Executes predefined actions based on the detected changes.
+
+---
+
 
 ### **34. Types of Database Indexing Based on Structure:**
 
@@ -788,6 +887,9 @@ There are three main types of database indexes:
    - Represents a set of keys using a bitmap.
    - Efficient for low-cardinality columns.
 
+---
+
+
 ### **35. Characteristics of B+ Tree:**
 
 B+ Tree shares similarities with B-Tree but has its own characteristics:
@@ -796,9 +898,15 @@ B+ Tree shares similarities with B-Tree but has its own characteristics:
    - Leaf nodes contain information about all elements.
    - Leaf nodes are connected with a linked list.
 
+---
+
+
 ### **36. Hash Index vs. B+ Tree Index:**
 
 Hash Index does not support fuzzy queries and multi-column indexes with leftmost prefix matching. This is because the hash function's unpredictability makes range queries and prefix matching challenging, often requiring full-table scans.
+
+---
+
 
 ### **37. Principles to Consider When Adding Index:**
 
@@ -808,9 +916,15 @@ Hash Index does not support fuzzy queries and multi-column indexes with leftmost
 - Consider the balance between read and write performance when deciding to create an index.
 - Index foreign key columns to enhance join performance.
 
+---
+
+
 ### **38. Database Transaction:**
 
 A database transaction is a mechanism that ensures a set of operations on a database either all succeed or all fail, maintaining the database's consistency.
+
+---
+
 
 ### **39. Four Characteristics of Transactions:**
 
@@ -825,6 +939,9 @@ A database transaction is a mechanism that ensures a set of operations on a data
 
 4. **Durability:**
    - Ensures that the changes made by a transaction are permanent, surviving system failures.
+
+---
+
 
 ### **40. MySQL Isolation Levels:**
 
@@ -866,15 +983,24 @@ MySQL supports multiple isolation levels, which define the visibility of changes
 
 These isolation levels provide flexibility for developers to choose the appropriate level based on the specific requirements of their applications.
 
+---
+
+
 ### **41. MVCC (Multi-Version Concurrency Control):**
 
 MVCC is a concurrency control mechanism used to provide transaction isolation in database systems. It ensures that each transaction sees a snapshot of the database as of the transaction's start time, allowing multiple transactions to coexist without interfering with each other.
+
+---
+
 
 #### **42. MVCC Mechanism in InnoDB:**
 - InnoDB, a storage engine used by MySQL, implements MVCC through the use of hidden columns in clustered index records:
   - **ROW ID:** A hidden auto-incremented ID used for clustered index trees if the table has no primary key.
   - **Transaction ID:** Records the transaction ID of the last modification to the record.
   - **Rollback Pointer:** Points to the previous version of the record.
+
+---
+
 
 ### **43. Redis vs. MySQL: Functional Differences:**
 
@@ -888,6 +1014,9 @@ MVCC is a concurrency control mechanism used to provide transaction isolation in
 - Extremely fast read speed, significantly improving operational efficiency.
 - Cached data typically has a limited lifespan.
   
+---
+
+
 ### **44. Redis vs. MongoDB: Memory and Storage Differences:**
 
 #### **MongoDB:**
@@ -899,6 +1028,9 @@ MVCC is a concurrency control mechanism used to provide transaction isolation in
 - Introduced virtual memory in Redis 2.0 to overcome physical memory limitations.
 - Offers the flexibility to set expiration times for data.
   
+---
+
+
 ### **45. Redis Pros and Cons:**
 
 #### **Pros:**
@@ -912,6 +1044,8 @@ MVCC is a concurrency control mechanism used to provide transaction isolation in
 #### **Cons:**
 - Limited database size due to reliance on physical memory.
 - Possible data inconsistency in case of master failure.
+
+---
 
 ### **46. Redis Advantages and Disadvantages:**
 
@@ -927,9 +1061,15 @@ MVCC is a concurrency control mechanism used to provide transaction isolation in
 - Limited database size due to reliance on physical memory.
 - Potential data inconsistency in case of master failure, reducing system availability.
 
+---
+
+
 ### **47. Redis Data Structures:**
 - Five common data types: String, Hash, Set, List, SortedSet.
 - Three special data types: Bitmap, HyperLogLog, Geospatial (with HyperLogLog and Bitmap using the underlying String data type and Geospatial using the Sorted Set data type).
+
+---
+
 
 ### **48. Why is Redis Fast?**
 1. **In-Memory Storage:** Redis uses in-memory storage, similar to HashMap, with O(1) time complexity for lookups and operations.
@@ -937,6 +1077,9 @@ MVCC is a concurrency control mechanism used to provide transaction isolation in
 3. **Non-Blocking I/O:** Redis employs non-blocking I/O with epoll, converting connections, reads, writes, and closures into events.
 4. **Optimized Data Structures:** Redis offers optimized data structures that applications can directly use for improved performance.
 5. **Different Low-Level Model:** Redis constructs its virtual memory mechanism to reduce overhead from typical system calls.
+
+---
+
 
 ### **49. Redis Cache Eviction Strategies:**
 - **LRU (Least Recently Used):** Removes the least recently accessed items first.
@@ -947,6 +1090,9 @@ MVCC is a concurrency control mechanism used to provide transaction isolation in
 #### **Performance Considerations:**
 - Direct cache operations can handle significantly more requests than accessing the database directly, improving overall system performance.
 - Caching frequently accessed data in Redis enhances read speed, as data retrieval from memory is faster than from disk.
+
+---
+
 
 ### **50. Redis Data Persistence:**
 
@@ -966,6 +1112,9 @@ To reuse Redis data and prevent data loss in case of system failures, Redis prov
 - AOF introduces a rewrite mechanism to prevent the AOF file from becoming too large.
 - AOF can be more suitable for scenarios where data integrity is crucial, as it provides options for every modification to be immediately synchronized.
 
+---
+
+
 ### **51. Efficiency of Red-Black Trees in Query Operations:**
 
 Red-Black Trees exhibit high query efficiency due to their balanced nature, which makes them a specialized form of a balanced binary search tree. The query process in Red-Black Trees is similar to binary search, and the efficiency is primarily determined by the height of the tree. This enables Red-Black Trees to achieve a query time complexity of O(log N).
@@ -978,6 +1127,9 @@ Red-Black Trees exhibit high query efficiency due to their balanced nature, whic
 3. **Binary Search Property:** Red-Black Trees preserve the binary search property, where elements in the left subtree are smaller, and elements in the right subtree are larger. This property facilitates efficient binary search-like queries.
 
 **Note:** Red-Black Trees strike a balance between maintaining a relatively balanced structure and minimizing the overhead associated with strict balancing criteria, making them suitable for scenarios where frequent insertions and deletions occur.
+
+---
+
 
 ### **52. Handling Hash Collisions: Methods Beyond Red-Black Trees**
 
@@ -1004,6 +1156,9 @@ Handling hash collisions is crucial for efficient hash table operations. Several
 
 These collision resolution strategies offer different trade-offs, and the choice depends on factors such as the nature of the data and the types of operations performed on the hash table.
 
+---
+
+
 ### **53. Handling Hash Collisions: Methods Beyond Red-Black Trees**
 
 Handling hash collisions is crucial for efficient hash table operations. Several methods address this issue:
@@ -1029,6 +1184,9 @@ Handling hash collisions is crucial for efficient hash table operations. Several
 
 These collision resolution strategies offer different trade-offs, and the choice depends on factors such as the nature of the data and the types of operations performed on the hash table.
  
+---
+
+
  ### **54. MySQL Transaction Isolation Levels and Associated Locks**
 
 Different transaction isolation levels in MySQL involve the use of various locks:
@@ -1051,6 +1209,9 @@ Different transaction isolation levels in MySQL involve the use of various locks
 
 These isolation levels dictate how transactions acquire and release locks, affecting the concurrency and consistency of the database. Choosing the appropriate isolation level depends on the specific requirements of the application and the desired balance between data integrity and system performance.
 
+---
+
+
 ### **55. Isolation of Transactions in DBMS: Implementation through Lock Mechanism**
 
 The isolation of transactions in a Database Management System (DBMS) is achieved through the use of a lock mechanism. This mechanism ensures that transactions are executed in a way that maintains consistency and prevents conflicts between concurrent transactions.
@@ -1072,17 +1233,20 @@ Here's how the lock mechanism contributes to achieving transaction isolation:
 
 By employing a lock mechanism, DBMS ensures that transactions are executed in a controlled manner, with proper synchronization and isolation, thereby maintaining the integrity of the database even in a multi-user and concurrent access environment.
 
+---
+
+
 ### **56. Inner Joins in SQL: Types and Examples**
 
 **Types of Inner Joins:**
 
-1. **Equi Join (等值连接):**
+1. **Equi Join :**
    - Syntax: `ON A.id = B.id`
 
-2. **Non-Equi Join (不等值连接):**
+2. **Non-Equi Join :**
    - Syntax: `ON A.id > B.id`
 
-3. **Self Join (自连接):**
+3. **Self Join :**
    - Syntax: `SELECT * FROM A T1 INNER JOIN A T2 ON T1.id = T2.pid`
 
 ---
