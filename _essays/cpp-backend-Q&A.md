@@ -19,7 +19,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
  
  ### **1. Redis Data Structures and Use Cases**
 
-1. **String (字符串)**
+1. **String**
    - **Structure:** 
      ```java
      struct SDS {
