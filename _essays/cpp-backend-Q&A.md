@@ -32,30 +32,32 @@ feature_image: "https://picsum.photos/2560/600?image=865"
    - **Application Scenarios:**
      - Storing key-value pairs.
 
-2. **List (列表)**
+2. **List**
    - **Storage Structure:** 
      - Ziplist for small data, Quicklist for large data.
    - **Application Scenarios:**
      - Message queues, friend timelines, comment lists, and rankings.
 
-3. **Hash (字典)**
+3. **Hash**
    - **Structure:** 
      - Array + List structure for handling hash collisions.
    - **Application Scenarios:**
      - User information storage, shopping carts.
 
-4. **Set (集合)**
+4. **Set**
    - **Internal Structure:** 
      - Acts as a special dictionary with all values set to NULL.
    - **Application Scenarios:**
      - Collecting friends, followers, fans, and people of interest.
 
-5. **Sorted Set (有序集合)**
+5. **Sorted Set**
    - **Also Known As:** SortedSet.
    - **Internal Structure:** 
      - Implemented using a data structure called "skip list."
    - **Application Scenarios:**
      - Storing fan lists, ranking users based on scores (e.g., grades).
+
+---
 
 ### **2. Redis Memory Eviction Strategies**
 
@@ -79,6 +81,8 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 
 **Summary:**
 - Scheduled deletion is a centralized approach, while lazy deletion is a decentralized approach.
+
+---
 
 ### **3. MySQL and Redis Data Consistency Issues**
 
@@ -256,6 +260,8 @@ feature_image: "https://picsum.photos/2560/600?image=865"
   - Suitable for scenarios where ensuring exclusive access is critical.
   - Addresses situations with frequent writes and potential conflicts.
 
+---
+
 ### **11. Differences Between Processes and Threads**
 
 **Basic Concepts:**
@@ -300,6 +306,8 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 **Considerations:**
 - IPC is used for communication between different processes, while threads within the same process can communicate more directly using shared memory and synchronization mechanisms.
 - The choice of communication method depends on the specific requirements and constraints of the application.
+
+---
 
 ### **13. Virtual Address Mapping to Physical Address**
 
@@ -561,6 +569,9 @@ To count online users efficiently in Redis, various methods can be employed, inc
 - N: Number of elements.
 - M: Number of digits in the maximum element.
 - k: Range of input (maximum - minimum + 1).
+
+---
+
 ### **24. Advantages of DNS Load Balancing**
 
 The primary advantages of DNS load balancing include:
@@ -574,6 +585,8 @@ The primary advantages of DNS load balancing include:
    - Exhibits strong scalability by supporting multiple IP addresses for a single domain resolution.
    - The system can handle more IP addresses without significant performance concerns.
 
+---
+
 ### **25. Inter-Process Communication Methods**
 
 There are six main methods for inter-process communication:
@@ -584,6 +597,8 @@ There are six main methods for inter-process communication:
 4. **Signals**
 5. **Shared Memory**
 6. **Sockets**
+
+---
 
 ### **26. Differences in epoll's ET and LT Modes**
 
@@ -601,6 +616,8 @@ In epoll, there are two working modes: LT (level-triggered) and ET (edge-trigger
   - Kernel notifies when a descriptor transitions from not ready to ready.
   - Assumes the user knows when a file descriptor is ready and does not continuously notify if no action is taken.
   - Often faster but requires more caution in programming.
+
+---
 
 ### **27. Design Patterns - Six Main Principles**
 
@@ -622,6 +639,8 @@ In epoll, there are two working modes: LT (level-triggered) and ET (edge-trigger
 6. **Law of Demeter (LoD):**
    - A module should not have knowledge of the inner workings of the objects it manipulates, and it should interact only with its immediate neighbors.
 
+---
+
 ### **28. Understanding MySQL Architecture**
 
 MySQL architecture consists of two layers: MySQL Server layer and Storage Engine layer.
@@ -637,6 +656,8 @@ MySQL architecture consists of two layers: MySQL Server layer and Storage Engine
    - Storage engines interact with the MySQL Server through a standardized API.
 
 The MySQL Server layer includes components for connection handling, SQL processing, and interfaces for application connectivity. The Storage Engine layer manages the storage and retrieval of data, allowing for flexibility and optimization based on specific use cases.
+
+---
 
 ### **29. Execution Flow of a SQL Statement in a Database Framework**
 
@@ -661,6 +682,8 @@ For a query statement, the execution flow in a database framework typically invo
 5. **Result Return:**
    - Return the query result to the client.
 
+---
+
 ### **30. Three Normal Forms in Databases**
 
 1. **First Normal Form (1NF):**
@@ -675,6 +698,8 @@ For a query statement, the execution flow in a database framework typically invo
    - Eliminate transitive dependencies between non-primary key fields.
    - No non-prime attribute depends on other non-prime attributes.
 
+---
+
 ### **31. Difference between CHAR and VARCHAR**
 
 - **CHAR:**
@@ -687,14 +712,20 @@ For a query statement, the execution flow in a database framework typically invo
 
 - Both store non-Unicode character data.
 
+---
+
 ### **32. Difference between VARCHAR(10) and VARCHAR(20)**
 
 - Both have the same disk space usage.
 - Longer VARCHAR values may consume more memory during file sorting or disk-based temporary table operations.
 
+---
+
 ### **33. Underlying Data Structure of Indexes**
 
 Indexes in databases typically use the B+ tree data structure.
+
+---
 
 ### **34. Clustered Index vs. Non-Clustered Index**
 
@@ -705,6 +736,8 @@ Indexes in databases typically use the B+ tree data structure.
 - **Non-Clustered Index:**
   - Data storage and index are separate.
   - Index structure's leaf nodes point to the actual data rows.
+
+---
 
 ### **35. Understanding Hash Index**
 
@@ -717,11 +750,15 @@ Indexes in databases typically use the B+ tree data structure.
 - Supports only equality comparisons (=, IN(), <=>). Does not support range queries (e.g., WHERE price > 100).
 - Hash collisions (different indexed columns having the same hash code) can impact query speed, requiring traversal of row pointers and individual comparisons.
 
+---
+
 ### **36. Understanding Covering Index**
 
 - Covering index refers to an index that includes all the columns required for a query, making it unnecessary to look up the actual table data.
 - It avoids the need to search the primary key index after finding the data in a non-primary key index.
 - Reduces the number of tree traversal steps, significantly improving performance.
+
+---
 
 ### **37. Understanding the Leftmost Prefix Principle**
 
@@ -729,11 +766,15 @@ Indexes in databases typically use the B+ tree data structure.
 - If you have a composite index (col1, col2, col3), all prefixes (col1), (col1, col2), (col1, col2, col3) can be used for queries.
 - Any query that includes the leading columns of the index will utilize that index.
 
+---
+
 ### **38. Checking Index Usage and Identifying Slow Queries**
 
 - To check if an index is used, you can use the `EXPLAIN` command before your query.
 - `EXPLAIN` provides insights into the query execution plan, including which indexes are used, if any.
 - Slow query analysis involves looking at the execution plan, identifying steps with high rows or key counts, and understanding where performance bottlenecks occur.
+
+---
 
 ### **39. InnoDB vs. MyISAM Comparison**
 
@@ -750,6 +791,8 @@ Indexes in databases typically use the B+ tree data structure.
 - Utilizes a non-clustered index structure.
 - Saves the exact row count, enabling faster `SELECT COUNT(*)` queries.
 - Uses table-level locking, which can limit concurrency and performance.
+
+---
 
 ### **40. Understanding Horizontal and Vertical Sharding**
 
@@ -781,6 +824,8 @@ Indexes in databases typically use the B+ tree data structure.
 - Increased difficulty in later data maintenance, making it more challenging to locate data manually.
 - Higher coupling between application modules; potential difficulties in data migration and sharding.
 
+---
+
 ### **41. Main Threads in MySQL Master-Slave Replication**
 
 1. **Binlog Thread (Master):** Records all statements altering database data and stores them in the master's binary log.
@@ -788,6 +833,8 @@ Indexes in databases typically use the B+ tree data structure.
 2. **I/O Thread (Slave):** Responsible for fetching binary log events from the master and storing them in the slave's relay log.
 
 3. **SQL Execution Thread (Slave):** Reads events from the relay log and executes them on the slave.
+
+---
 
 ### **42. Causes of Replication Delay and Solutions**
 
@@ -808,9 +855,13 @@ Indexes in databases typically use the B+ tree data structure.
 3. On the slave side, if using InnoDB, set `innodb_flush_log_at_trx_commit` to 2.
 4. Adjust synchronization parameters. For the master (write), higher data security is required (e.g., `sync_binlog=1`, `innodb_flush_log_at_trx_commit=1`). For the slave (read), lower data security is acceptable (`sync_binlog=0` or turning off binlog, `innodb_flushlog=0`).
 
+---
+
 ### **43. MySQL Default Isolation Level**
 
 MySQL's default isolation level is **Repeatable Read (RR)**.
+
+---
 
 ### **44. Locking Algorithms in the InnoDB Storage Engine**
 
@@ -830,7 +881,9 @@ The InnoDB storage engine employs three types of row-locking algorithms:
 
 These locking mechanisms are essential for maintaining consistency and ensuring data integrity in a multi-user database environment.
 
-### **44. Why Is Redis So Fast?**
+---
+
+### **45. Why Is Redis So Fast?**
 
 Redis achieves its high performance due to several factors:
 
@@ -849,7 +902,9 @@ Redis achieves its high performance due to several factors:
 5. **Custom Protocol and VM Mechanism:**
    - Redis uses its own communication protocol and virtual machine (VM) mechanism. The custom VM mechanism avoids the overhead associated with standard system calls, contributing to its speed.
 
-### **45. What Is Cache Avalanche? How to Solve It?**
+---
+
+### **46. What Is Cache Avalanche? How to Solve It?**
 
 **Cache Avalanche:**
 Cache avalanche occurs when a large number of cache entries expire simultaneously, leading to a surge in requests hitting the database simultaneously. This can overload the database and degrade system performance.
@@ -869,7 +924,9 @@ To prevent or mitigate cache avalanche, the following solutions can be employed:
 4. **Monitoring and Alerting:**
    - Implement monitoring and alerting systems to detect unusual patterns in cache usage or database load. This allows proactive measures to be taken before an avalanche occurs.
 
-### **46. What Is Cache Penetration? How to Solve It?**
+---
+
+### **47. What Is Cache Penetration? How to Solve It?**
 
 **Cache Penetration:**
 Cache penetration happens when requests with invalid or non-existent keys are sent to the cache, resulting in cache misses and subsequent unnecessary database queries.
@@ -885,7 +942,9 @@ To address cache penetration, consider the following solutions:
 
 Remember that each solution has its trade-offs, and the choice depends on specific use cases and requirements.
 
-### **47. Signal Handling Methods**
+---
+
+### **48. Signal Handling Methods**
 
 Signal handling in Unix-like operating systems involves different methods:
 
@@ -898,7 +957,9 @@ Signal handling in Unix-like operating systems involves different methods:
 3. **Catching:**
    - Processes can catch signals by installing a signal handler. The handler is a function that gets executed when the process receives a specific signal. This allows custom actions to be performed in response to signals.
 
-### **48. Redis Persistence Mechanisms**
+---
+
+### **49. Redis Persistence Mechanisms**
 
 Redis provides two main mechanisms for persistence:
 
@@ -908,7 +969,9 @@ Redis provides two main mechanisms for persistence:
 2. **AOF (Append-Only File):**
    - Logs every write operation received by the server. It is a log of commands that can be replayed to reconstruct the dataset.
 
-### **49. Redis Eviction Policies**
+---
+
+### **50. Redis Eviction Policies**
 
 Redis eviction policies determine how Redis selects which keys to remove when it needs to free up space. Common policies include:
 
@@ -916,7 +979,9 @@ Redis eviction policies determine how Redis selects which keys to remove when it
 - Volatile eviction policies (e.g., `volatile-random`, `volatile-ttl`, `volatile-lru`, `volatile-lfu`) apply to keys with expiration times.
 - All keys eviction policies (e.g., `allkeys-lru`, `allkeys-random`, `allkeys-lfu`) apply to all keys, regardless of expiration.
 
-### **50. Common Redis Performance Issues and Solutions**
+---
+
+### **51. Common Redis Performance Issues and Solutions**
 
 Common Redis performance issues and solutions include:
 
@@ -932,7 +997,9 @@ Common Redis performance issues and solutions include:
 4. **Single Point of Failure in Replication:**
    - Implement solutions like proactive replication, proxies, or slave promotion for handling single points of failure.
 
-### **51. TCP vs. UDP: Differences and Use Cases**
+---
+
+### **52. TCP vs. UDP: Differences and Use Cases**
 
 1. **Connection-Oriented vs. Connectionless:**
    - TCP is connection-oriented, establishing a connection before data transfer. UDP is connectionless, allowing direct data transmission.
@@ -958,7 +1025,9 @@ Common Redis performance issues and solutions include:
 8. **Use Cases:**
    - TCP is suitable for applications requiring reliability, such as file transfer and web browsing. UDP is preferred for real-time applications, including online gaming and live video streaming.
 
-### **52. Differences Among HTTP 1.0, 1.1, and 2.0**
+---
+
+### **53. Differences Among HTTP 1.0, 1.1, and 2.0**
 
 #### **HTTP 1.0 vs. HTTP 1.1:**
 
@@ -982,7 +1051,9 @@ Common Redis performance issues and solutions include:
 3. **Server Push:**
    - HTTP 2.0 supports server push, where the server can push resources to the client before they are explicitly requested, optimizing resource loading.
 
-### **53. Difference Between POST and GET: Use Cases**
+---
+
+### **54. Difference Between POST and GET: Use Cases**
 
 #### **Differences:**
 
@@ -1004,7 +1075,9 @@ Common Redis performance issues and solutions include:
 
 - **POST:** Used for transmitting entity-body to the resource identified by the URI. Suitable for requests that modify server resources, such as form submissions.
 
-### **54. Common HTTP Status Codes and Use Cases**
+---
+
+### **55. Common HTTP Status Codes and Use Cases**
 
 #### **1xx Informational:**
 
@@ -1042,7 +1115,9 @@ Common Redis performance issues and solutions include:
 
 - **504 Gateway Timeout:** Gateway timeout.
 
-### **55. Difference Between HTTP Status Codes 301 and 302**
+---
+
+### **56. Difference Between HTTP Status Codes 301 and 302**
 
 #### **Differences:**
 
@@ -1066,7 +1141,9 @@ Common Redis performance issues and solutions include:
   - Temporary content changes.
   - A/B testing or temporary maintenance pages.
 
-### **56. Implementation of Polymorphism**
+---
+
+### **57. Implementation of Polymorphism**
 
 Polymorphism is implemented through virtual functions. The address of virtual functions is stored in a virtual function table (vtable), and the address of the vtable is stored in the memory space of an instance object that belongs to a class with virtual functions.
 
@@ -1090,7 +1167,9 @@ Here is a brief explanation of the implementation:
    - The actual function to be called is determined at runtime (dynamic binding).
    - This allows the program to invoke the correct overridden function based on the actual type of the object being referred to.
 
-### **57. Mechanism Behind Virtual Functions**
+---
+
+### **58. Mechanism Behind Virtual Functions**
 
 **Implementation Mechanism:**
 
