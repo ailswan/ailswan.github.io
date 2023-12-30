@@ -3,10 +3,10 @@ layout: essay_single
 title: CPP backend Q&A
 date: 2023-12-24
 tags:
-   - CPP language
+   - backend
 categories:
 - Q&A
-- backend
+- Backend
 feature_text: |
   ## CPP backend Q&A
   Post by ailswan Oct.24 , 2023
