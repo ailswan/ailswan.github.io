@@ -248,3 +248,22 @@ Python supports the following bitwise operations:
     result = a >> 1
     print(bin(result))  # Output: '0b10'
     ```
+
+## Caching with `functools.lru_cache`
+
+In some cases, especially when dealing with recursive functions or functions with expensive computations, it's beneficial to use caching to avoid redundant calculations. Python provides the `functools.lru_cache` decorator for this purpose.
+
+### Example: Memoizing a Recursive Function
+
+Consider the following recursive Fibonacci function:
+
+```python
+from functools import lru_cache
+
+@lru_cache(None)
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+```
