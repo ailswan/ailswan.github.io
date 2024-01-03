@@ -640,6 +640,8 @@ A time event has three main attributes:
 
 Events can be either one-shot or periodic, determined by the return value of the time event handler.
 
+---
+
 ### **39. Efficiency of Single-Threaded Redis**
 
 Redis achieves high efficiency with a single-threaded design by leveraging an event-driven architecture. The file event processor operates in a single thread, utilizing I/O multiplexing to monitor multiple sockets. This design simplifies Redis internals and facilitates seamless integration with other single-threaded modules within the server.
