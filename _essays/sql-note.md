@@ -7,6 +7,7 @@ tags:
  
 categories:
 - Notes
+- SQL
 feature_text: |
   ## SQL language note
   Post by ailswan Sep. 13, 2023
