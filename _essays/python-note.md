@@ -270,9 +270,18 @@ def fibonacci(n):
 ## Heapq Methods
 
 Python's `heapq` module provides an efficient implementation of heap queue algorithms. A heap is a specialized tree-based data structure that satisfies the heap property.
-
 ### **Heapq Methods**:
-####`heapq.heapify(iterable)`:Transform the iterable into a heap, in-place.
+
+- `heapq.heapify(iterable)`: Transform the iterable into a heap, in-place.
+- `heapq.heappop(heap)`: Pop and return the smallest item from the heap, maintaining the heap property.
+- `heapq.heappush(heap, item)`: Push the value onto the heap, maintaining the heap property.
+- `heapq.heappushpop(heap, item)`: Push item onto the heap, then pop and return the smallest item from the heap.
+- `heapq.heapreplace(heap, item)`: Pop and return the smallest item from the heap, and then push item. The heap size remains unchanged.
+- `heapq.nlargest(n, iterable, key=None)`: Return the n largest elements from the iterable.
+- `heapq.nsmallest(n, iterable, key=None)`: Return the n smallest elements from the iterable.
+
+#### **Usage Examples**:
+1. **heapify**: 
 ```python
   import heapq
 
@@ -280,38 +289,35 @@ Python's `heapq` module provides an efficient implementation of heap queue algor
   heapq.heapify(data)
 
 ```
-#### `heapq.heappop(heap)`:Pop and return the smallest item from the heap, maintaining the heap property.
+2. **heappop**: 
  ```python
     import heapq
 
     heap = [0, 1, 2, 3, 5, 9, 4, 6, 5, 3, 5]
     smallest = heapq.heappop(heap)
 ```
-
-#### `heapq.heappush(heap, item)`: Push the value onto the heap, maintaining the heap property.
+3. **heappush**: 
   ```python
   import heapq
   
   heap = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
   heapq.heappush(heap, 0)
   ```
-
-#### `heapq.heappushpop(heap, item)`: Push item onto the heap, then pop and return the smallest item from the heap.
+4. **heappush**: 
  ```python
   import heapq
   
   heap = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
   heapq.heappush(heap, 0)
  ```
- #### `heapq.heapreplace(heap, item)`:Pop and return the smallest item from the heap, and then push item. The heap size remains unchanged.
+5. **heapreplace**: 
  ```python
   import heapq
 
   heap = [1, 3, 5, 7, 9]
   replaced = heapq.heapreplace(heap, 8)
  ```
-
-#### `heapq.nlargest(n, iterable, key=None)`:Return the n largest elements from the iterable.
+6. **nlargest**: 
 ```python
   import heapq
 
@@ -319,8 +325,7 @@ Python's `heapq` module provides an efficient implementation of heap queue algor
   largest_three = heapq.nlargest(3, data)
 
 ```
-
-#### `heapq.nsmallest(n, iterable, key=None)`:Return the n smallest elements from the iterable.
+7. **nsmallest**: 
 ``` python
 import heapq
 
