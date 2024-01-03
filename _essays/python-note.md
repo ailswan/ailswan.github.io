@@ -267,3 +267,64 @@ def fibonacci(n):
     else:
         return fibonacci(n - 1) + fibonacci(n - 2)
 ```
+## Heapq Methods
+
+Python's `heapq` module provides an efficient implementation of heap queue algorithms. A heap is a specialized tree-based data structure that satisfies the heap property.
+
+### **Heapq Methods**:
+####`heapq.heapify(iterable)`:Transform the iterable into a heap, in-place.
+```python
+  import heapq
+
+  data = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+  heapq.heapify(data)
+
+```
+#### `heapq.heappop(heap)`:Pop and return the smallest item from the heap, maintaining the heap property.
+ ```python
+    import heapq
+
+    heap = [0, 1, 2, 3, 5, 9, 4, 6, 5, 3, 5]
+    smallest = heapq.heappop(heap)
+```
+
+#### `heapq.heappush(heap, item)`: Push the value onto the heap, maintaining the heap property.
+  ```python
+  import heapq
+  
+  heap = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+  heapq.heappush(heap, 0)
+  ```
+
+#### `heapq.heappushpop(heap, item)`: Push item onto the heap, then pop and return the smallest item from the heap.
+ ```python
+  import heapq
+  
+  heap = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+  heapq.heappush(heap, 0)
+ ```
+ #### `heapq.heapreplace(heap, item)`:Pop and return the smallest item from the heap, and then push item. The heap size remains unchanged.
+ ```python
+  import heapq
+
+  heap = [1, 3, 5, 7, 9]
+  replaced = heapq.heapreplace(heap, 8)
+ ```
+
+#### `heapq.nlargest(n, iterable, key=None)`:Return the n largest elements from the iterable.
+```python
+  import heapq
+
+  data = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+  largest_three = heapq.nlargest(3, data)
+
+```
+
+#### `heapq.nsmallest(n, iterable, key=None)`:Return the n smallest elements from the iterable.
+``` python
+import heapq
+
+data = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+smallest_three = heapq.nsmallest(3, data)
+```
+
