@@ -3,8 +3,7 @@ layout: essay_single
 title: SQL language note
 date: 2023-09-13
 tags:
-  - sql language
- 
+  - SQL
 categories:
 - Notes
 - SQL
