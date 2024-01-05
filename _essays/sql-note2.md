@@ -1,7 +1,7 @@
 ---
 layout: essay_single
 title: SQL Q&A
-date: 2023-12-24
+date: 2024-01-03
 tags:
    - SQL
 categories:

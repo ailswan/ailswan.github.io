@@ -9,7 +9,7 @@ categories:
 - Backend
 feature_text: |
   ## Java Backend Q&A
-  Post by ailswan Oct.24 , 2023
+  Post by ailswan Dec.24 , 2023
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
 

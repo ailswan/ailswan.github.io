@@ -333,3 +333,66 @@ data = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
 smallest_three = heapq.nsmallest(3, data)
 ```
 
+### **Random Module**:
+
+Python's `random` module offers various functions for generating random numbers and performing random selections.
+
+- `random.random()`: Return a random floating-point number in the range [0.0, 1.0).
+- `random.uniform(a, b)`: Return a random floating-point number between `a` and `b`, inclusive.
+- `random.randint(a, b)`: Return a random integer between `a` and `b`, inclusive.
+- `random.choice(seq)`: Return a random element from the non-empty sequence `seq`.
+- `random.shuffle(lst)`: Shuffle the elements of the list `lst` in place.
+- `random.sample(population, k)`: Return a k-length list of unique elements chosen from the population sequence.
+- `random.seed(a=None, version=2)`: Initialize the random number generator. If `a` is omitted or `None`, the current system time is used as the seed.
+
+#### **Usage Examples**:
+
+1. **Random Floating-Point Number**:
+   ```python
+   import random
+   
+   random_float = random.random()
+   ```
+2. **Random Uniform Number**:
+  ```python
+  import random
+
+  random_uniform = random.uniform(1, 10)
+  ```
+3. **Random Integer**:
+  ```python
+  import random
+
+  random_integer = random.randint(1, 100)
+  ```
+4. **Random Choice from Sequence**:
+  ```python
+  import random
+
+  options = ["apple", "banana", "cherry"]
+  random_selection = random.choice(options)
+  ```
+5. **Shuffle a List**:
+  ```python
+  import random
+
+  my_list = [1, 2, 3, 4, 5]
+  random.shuffle(my_list)
+
+  ```
+6. **Random Sample from Population**:
+  ```python
+  import random
+
+  population = range(1, 100)
+  random_sample = random.sample(population, 5)
+
+  ```
+7. **Seed the Random Number Generator**:
+  ```python
+  import random
+
+  random.seed(42)
+  random_number = random.random()
+
+  ```
