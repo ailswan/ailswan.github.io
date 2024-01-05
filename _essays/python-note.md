@@ -280,7 +280,7 @@ Python's `heapq` module provides an efficient implementation of heap queue algor
 - `heapq.nlargest(n, iterable, key=None)`: Return the n largest elements from the iterable.
 - `heapq.nsmallest(n, iterable, key=None)`: Return the n smallest elements from the iterable.
 
-#### **Usage Examples**:
+#### **Heapq Usage Examples**:
 1. **heapify** 
   ```python
   import heapq
@@ -336,7 +336,7 @@ Python's `random` module offers various functions for generating random numbers 
 - `random.sample(population, k)`: Return a k-length list of unique elements chosen from the population sequence.
 - `random.seed(a=None, version=2)`: Initialize the random number generator. If `a` is omitted or `None`, the current system time is used as the seed.
 
-#### **Usage Examples**:
+#### ** Random Usage Examples**:
 
 1. **Random Floating-Point Number**:
    ```python
