@@ -284,49 +284,42 @@ Python's `heapq` module provides an efficient implementation of heap queue algor
 1. **heapify** 
   ```python
   import heapq
-
   data = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
   heapq.heapify(data)
   ```
 2. **heappop**: 
   ```python
     import heapq
-
     heap = [0, 1, 2, 3, 5, 9, 4, 6, 5, 3, 5]
     smallest = heapq.heappop(heap)
   ```
 3. **heappush**: 
   ```python
   import heapq
-  
   heap = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
   heapq.heappush(heap, 0)
   ```
 4. **heappush**: 
   ```python
   import heapq
-  
   heap = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
   heapq.heappush(heap, 0)
   ```
 5. **heapreplace**: 
   ```python
   import heapq
-
   heap = [1, 3, 5, 7, 9]
   replaced = heapq.heapreplace(heap, 8)
   ```
 6. **nlargest**: 
   ```python
   import heapq
-
   data = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
   largest_three = heapq.nlargest(3, data)
   ```
 7. **nsmallest**: 
   ``` python
   import heapq
-
   data = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
   smallest_three = heapq.nsmallest(3, data)
   ```
@@ -348,49 +341,39 @@ Python's `random` module offers various functions for generating random numbers 
 1. **Random Floating-Point Number**:
    ```python
    import random
-   
    random_float = random.random()
    ```
 2. **Random Uniform Number**:
   ```python
   import random
-
   random_uniform = random.uniform(1, 10)
   ```
 3. **Random Integer**:
   ```python
   import random
-
   random_integer = random.randint(1, 100)
   ```
 4. **Random Choice from Sequence**:
   ```python
   import random
-
   options = ["apple", "banana", "cherry"]
   random_selection = random.choice(options)
   ```
 5. **Shuffle a List**:
   ```python
   import random
-
   my_list = [1, 2, 3, 4, 5]
   random.shuffle(my_list)
-
   ```
 6. **Random Sample from Population**:
   ```python
   import random
-
   population = range(1, 100)
   random_sample = random.sample(population, 5)
-
   ```
 7. **Seed the Random Number Generator**:
   ```python
   import random
-
   random.seed(42)
   random_number = random.random()
-
   ```
