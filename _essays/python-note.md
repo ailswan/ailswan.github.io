@@ -281,21 +281,20 @@ Python's `heapq` module provides an efficient implementation of heap queue algor
 - `heapq.nsmallest(n, iterable, key=None)`: Return the n smallest elements from the iterable.
 
 #### **Usage Examples**:
-1. **heapify**: 
-```python
+1. **heapify** 
+  ```python
   import heapq
 
   data = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
   heapq.heapify(data)
-
-```
+  ```
 2. **heappop**: 
- ```python
+  ```python
     import heapq
 
     heap = [0, 1, 2, 3, 5, 9, 4, 6, 5, 3, 5]
     smallest = heapq.heappop(heap)
-```
+  ```
 3. **heappush**: 
   ```python
   import heapq
@@ -304,34 +303,33 @@ Python's `heapq` module provides an efficient implementation of heap queue algor
   heapq.heappush(heap, 0)
   ```
 4. **heappush**: 
- ```python
+  ```python
   import heapq
   
   heap = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
   heapq.heappush(heap, 0)
- ```
+  ```
 5. **heapreplace**: 
- ```python
+  ```python
   import heapq
 
   heap = [1, 3, 5, 7, 9]
   replaced = heapq.heapreplace(heap, 8)
- ```
+  ```
 6. **nlargest**: 
-```python
+  ```python
   import heapq
 
   data = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
   largest_three = heapq.nlargest(3, data)
-
-```
+  ```
 7. **nsmallest**: 
-``` python
-import heapq
+  ``` python
+  import heapq
 
-data = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
-smallest_three = heapq.nsmallest(3, data)
-```
+  data = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+  smallest_three = heapq.nsmallest(3, data)
+  ```
 
 ### **Random Module**:
 
