@@ -3503,7 +3503,7 @@ Master-Slave replication involves three main threads: the binlog thread, I/O thr
 - **I/O Thread:** Responsible for reading the binary log from the master server and writing it to the slave server's relay log.
 - **SQL Thread:** Responsible for reading the relay log, parsing executed data changes from the master server, and replaying them on the slave server.
 
-# Read-Write Separation
+### Read-Write Separation
 
 Read-write separation involves the master server handling write operations and high real-time requirement reads, while the slave server handles read operations.
 
