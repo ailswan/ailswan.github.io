@@ -510,7 +510,7 @@ BGP seeks a good route, not necessarily the best one, and requires each AS to co
 
 ---
 
-### **28. UDP Header Format**
+### **30. UDP Header Format**
 
 The UDP header is only 8 bytes, including source port, destination port, length, and checksum. An additional 12-byte pseudo-header is used for checksum calculation.
 
