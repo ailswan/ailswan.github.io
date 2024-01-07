@@ -156,7 +156,7 @@ Analog signals are continuous, while digital signals are discrete. Bandpass modu
 
 ---
 
-### **9. Channel Classification**
+### **10. Channel Classification**
 
 #### **1. Broadcast Channel**
    - One-to-many communication, where data sent by one node can be received by all nodes on the broadcast channel.
@@ -168,7 +168,9 @@ Analog signals are continuous, while digital signals are discrete. Bandpass modu
 
    - Since collisions do not occur, it is relatively simple, using the PPP protocol for control.
 
-### **10. Channel Multiplexing Techniques**
+---
+
+### **11. Channel Multiplexing Techniques**
 
 #### **1. Frequency Division Multiplexing (FDM)**
    - All hosts in FDM occupy different frequency bandwidth resources at the same time.
@@ -205,7 +207,7 @@ Analog signals are continuous, while digital signals are discrete. Bandpass modu
 
 ---
 
-### **10. CSMA/CD Protocol**
+### **12. CSMA/CD Protocol**
 
 **CSMA/CD** stands for Carrier Sense Multiple Access with Collision Detection.
 
@@ -221,7 +223,7 @@ When a collision occurs, the station must cease transmission and wait for a cert
 
 ---
 
-### **11. PPP Protocol**
+### **13. PPP Protocol**
 
 Internet users typically need to connect to an Internet Service Provider (ISP) to access the internet. The **PPP (Point-to-Point Protocol)** is a data link layer protocol used for communication between a user's computer and an ISP.
 
@@ -237,7 +239,7 @@ Internet users typically need to connect to an Internet Service Provider (ISP) t
 
 ---
 
-### **12. MAC Address**
+### **14. MAC Address**
 
 The MAC (Media Access Control) address is a data link layer address with a length of 6 bytes (48 bits), used to uniquely identify a network adapter (NIC).
 
@@ -245,7 +247,7 @@ A host has as many MAC addresses as it has network adapters. For example, a lapt
 
 ---
 
-### **13. Local Area Network (LAN)**
+### **15. Local Area Network (LAN)**
 
 A LAN is a typical broadcast channel, characterized by the network being owned by a single entity with limited geographical range and a finite number of sites.
 
@@ -255,7 +257,7 @@ LANs can be classified based on network topology:
 
 ---
 
-### **14. Ethernet**
+### **16. Ethernet**
 
 Ethernet is a LAN with a star topology.
 
@@ -273,7 +275,7 @@ Today, Ethernet uses switches instead of hubs. Switches, operating at the data l
 
 ---
 
-### **15. Switch**
+### **17. Switch**
 
 A switch possesses self-learning capabilities, focusing on the content of its switching table, which stores the mapping of MAC addresses to interfaces.
 
@@ -283,7 +285,7 @@ In the diagram below, the switch has four interfaces. When Host A sends a data f
 
 ---
 
-### **16. Virtual Local Area Network (VLAN)**
+### **18. Virtual Local Area Network (VLAN)**
 
 VLANs can establish logical groups independent of physical locations. Only members within the same VLAN receive link-layer broadcast messages.
 
@@ -293,7 +295,7 @@ VLANs are created using trunk connections, with a specific interface on each swi
 
 ---
 
-### **17. Overview**
+### **19. Overview**
 
 As the core of the entire internet, the network layer should be as simple as possible. The network layer provides a simple, flexible, connectionless, and best-effort datagram service upwards.
 
@@ -309,7 +311,7 @@ Complementary to the IP protocol, three other protocols are commonly used:
 
 ---
 
-### **18. IP Datagram Format**
+### **20. IP Datagram Format**
 
 - **Version:** There are two values, 4 (IPv4) and 6 (IPv6).
   
@@ -331,7 +333,7 @@ Complementary to the IP protocol, three other protocols are commonly used:
 
 ---
 
-### **19. IP Addressing Methods**
+### **21. IP Addressing Methods**
 
 IP address addressing has gone through three historical stages:
 
@@ -365,7 +367,7 @@ In the routing table, entries consist of "network prefix" and "next-hop address.
 
 ---
 
-### **20. Address Resolution Protocol (ARP)**
+### **22. Address Resolution Protocol (ARP)**
 
 The network layer facilitates communication between hosts, and the link layer handles communication between segments. Therefore, during communication, the source and destination addresses of IP datagrams remain constant, while MAC addresses change with the link.
 
@@ -377,7 +379,7 @@ If Host A knows the IP address of Host B, but the ARP cache lacks the mapping of
 
 ---
 
-### **21. Internet Control Message Protocol (ICMP)**
+### **23. Internet Control Message Protocol (ICMP)**
 
 ICMP serves to forward IP datagrams more efficiently and enhance the chances of successful delivery. It is encapsulated in IP datagrams but does not belong to any higher-level protocol.
 
@@ -403,7 +405,7 @@ ICMP messages are divided into error reporting messages and query messages.
 
 ---
 
-### **22. Virtual Private Network (VPN)**
+### **24. Virtual Private Network (VPN)**
 
 Due to the scarcity of IP addresses, an organization can often obtain a number of IP addresses far less than the total number of hosts it owns. Moreover, an organization doesn't need to connect all hosts to the external internet. Computers within an organization can use IP addresses (private addresses) that are valid only within that organization.
 
@@ -419,7 +421,7 @@ In the diagram below, communication between locations A and B occurs over the in
 
 ---
 
-### **23. Network Address Translation (NAT)**
+### **25. Network Address Translation (NAT)**
 
 When hosts within a private network, using local IP addresses, need to communicate with hosts on the internet, NAT can be used to convert local IP to global IP.
 
@@ -427,7 +429,7 @@ In the past, NAT mapped local IP to global IP on a one-to-one basis, allowing a 
 
 ---
 
-### **24. Router Structure**
+### **26. Router Structure**
 
 Functionally, routers can be divided into two parts: routing selection and packet forwarding.
 
@@ -435,7 +437,7 @@ The packet forwarding structure consists of three components: switching structur
 
 ---
 
-### **25. Router Packet Forwarding Process**
+### **27. Router Packet Forwarding Process**
 
 1. Extract the destination host's IP address D from the datagram header to obtain the destination network address N.
 2. If N is directly connected to this router, perform direct delivery.
@@ -446,7 +448,7 @@ The packet forwarding structure consists of three components: switching structur
 
 ---
 
-### **26. Routing Protocols**
+### **28. Routing Protocols**
 
 Routing protocols are adaptive, adjusting themselves based on changes in network communication volume and topology.
 
@@ -491,7 +493,7 @@ BGP seeks a good route, not necessarily the best one, and requires each AS to co
 
 ---
 
-### **27. Characteristics of UDP and TCP**
+### **29. Characteristics of UDP and TCP**
 
 **User Datagram Protocol (UDP):**
 - Connectionless, aiming for best-effort delivery.
