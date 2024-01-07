@@ -2845,42 +2845,42 @@ MySQL account information is stored in the 'mysql' database.
     USE mysql;
     SELECT user FROM user;
 ```
-## Creating an Account:
+### Creating an Account:
 
 Newly created accounts have no permissions by default.
 ```sql
     CREATE USER myuser IDENTIFIED BY 'mypassword';
 ```
 
-## Modifying Account Name:
+### Modifying Account Name:
 
 The account name can be modified.
 ```sql
     RENAME USER myuser TO newuser;
 ```
 
-## Deleting an Account:
+### Deleting an Account:
 
 An account can be deleted.
 ```sql
     DROP USER myuser;
 ```
 
-## Viewing Permissions:
+### Viewing Permissions:
 
 View the permissions of an account.
 ```sql
     SHOW GRANTS FOR myuser;
 ```
 
-## Granting Permissions:
+### Granting Permissions:
 
 Accounts are defined in the form username@host; username@% uses the default hostname.
 ```sql
     GRANT SELECT, INSERT ON mydatabase.* TO myuser;
 ```
 
-## Revoking Permissions:
+### Revoking Permissions:
 
 GRANT and REVOKE control access permissions at various levels:
 
@@ -2892,7 +2892,7 @@ GRANT and REVOKE control access permissions at various levels:
 ```sql
     REVOKE SELECT, INSERT ON mydatabase.* FROM myuser;
 ```
-## Changing Password
+### Changing Password
 
 To change a password, you must use the Password() function for encryption.
 ```sql
