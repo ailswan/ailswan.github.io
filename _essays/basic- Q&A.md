@@ -132,13 +132,16 @@ According to the direction of information transmission on the transmission line,
 
 #### **3. Full-Duplex Communication:**
    - Bidirectional simultaneous transmission.
+
+---
+
 ### **8. Bandpass Modulation**
 
 Analog signals are continuous, while digital signals are discrete. Bandpass modulation converts digital signals into analog signals.
 
 ---
 
-### **8. Basic Questions**
+### **9. Link Layer**
 
 #### **1. Frame Encapsulation**
    - Adds headers and trailers to the packets from the network layer to mark the start and end of frames.
