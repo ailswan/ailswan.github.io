@@ -2893,3 +2893,618 @@ To change a password, you must use the Password() function for encryption.
 ```sql
     SET PASSWROD FOR myuser = Password('new_password');
 ```
+---
+### **127. Transaction**
+
+**Concept:**
+A transaction refers to a set of operations that satisfy the ACID properties. It can be committed using `COMMIT` or rolled back using `ROLLBACK`.
+
+**ACID:**
+1. **Atomicity:**
+   A transaction is considered as the smallest indivisible unit. All operations within a transaction must either be committed successfully or rolled back entirely.
+
+   Rollback is implemented using an undo log, which records the modification operations performed by the transaction. During rollback, these operations are reversed.
+
+2. **Consistency:**
+   The database maintains a consistent state before and after a transaction is executed. In a consistent state, the results of all transactions reading the same data are identical.
+
+3. **Isolation:**
+   Modifications made by a transaction are not visible to other transactions until the transaction is committed.
+
+4. **Durability:**
+   Once a transaction is committed, its modifications are permanently stored in the database. Even in the event of a system crash, the results of a committed transaction should not be lost.
+
+   Durability is achieved using a redo log for recovery in case of a system crash. Unlike the undo log, which records logical modifications, the redo log records physical modifications to data pages.
+
+**Understanding ACID Properties:**
+- Consistency is essential for correct transaction results.
+- In a non-concurrent scenario with transactions executed serially, isolation is guaranteed as long as atomicity is satisfied. In this case, as long as atomicity is met, consistency is ensured.
+- In a concurrent scenario with multiple transactions running in parallel, transactions must satisfy both atomicity and isolation to ensure consistency.
+- Durability ensures data persistence to handle system crashes.
+
+**AUTOCOMMIT:**
+MySQL defaults to automatic commit mode. This means that if you don't explicitly use the `START TRANSACTION` statement to begin a transaction, each query operation is treated as a transaction and automatically committed.
+
+---
+
+### **128. Concurrent Consistency Issues**
+
+In a concurrent environment, ensuring the isolation of transactions is challenging, leading to various concurrency consistency issues.
+
+#### **Lost Update**
+Lost update refers to the scenario where the update operation of one transaction is replaced by the update operation of another transaction. This commonly occurs in real-life situations, for example:
+  
+   - Transaction T1 and T2 both modify the same data.
+   - T1 modifies and commits first.
+   - T2 modifies afterward, and its changes overwrite the changes made by T1.
+
+#### **Dirty Read**
+Dirty read occurs when, in different transactions, the current transaction can read data that another transaction has not yet committed. For example:
+  
+   - T1 modifies data but does not commit.
+   - T2 reads this data.
+   - If T1 rolls back the modification, T2's read is based on dirty data.
+
+#### **Non-Repeatable Read**
+Non-repeatable read happens when a transaction reads the same data set multiple times, and another transaction accesses and modifies the data set before the first transaction completes. This can lead to inconsistent data between the two reads. For example:
+   
+   - T2 reads a piece of data.
+   - T1 modifies the data.
+   - If T2 reads the same data again, the result may differ from the first read.
+
+#### **Phantom Read**
+Phantom read is essentially a case of non-repeatable read.
+  
+   - T1 reads a range of data.
+   - T2 inserts new data within that range.
+   - T1 reads the same range again, resulting in different data from the initial read.
+
+The main reason for concurrency inconsistency problems is the violation of transaction isolation. The solution is to ensure isolation through concurrency control. Concurrency control can be achieved through locking, but manual lock management can be complex. Database management systems provide transaction isolation levels to simplify handling concurrency consistency issues.
+
+---
+
+### **129. Locking**
+
+#### **Lock Granularity**
+MySQL offers two lock granularities: row-level locking and table-level locking.
+
+It is advisable to lock only the necessary data to be modified rather than all resources. The smaller the locked data, the lower the likelihood of lock contention, leading to higher system concurrency.
+
+However, locking consumes resources, and various lock operations (including acquiring, releasing, and checking lock status) add to system overhead. Therefore, a balance must be struck between lock overhead and system concurrency when choosing lock granularity.
+
+#### **Types of Locks**
+1. **Read-Write Locks**
+   - Exclusive lock (X lock), also known as a write lock.
+   - Shared lock (S lock), also known as a read lock.
+   
+   Rules:
+   - A transaction holding an X lock can read and update the data object.
+   - A transaction holding an S lock can read the data object but cannot perform updates. During the S lock period, other transactions can acquire S locks but not X locks.
+ 
+2. **Intention Locks**
+   Intention locks (IX/IS) facilitate multi-granularity locking.
+
+   Rules:
+   - Before obtaining an S lock on a data row, a transaction must first acquire an IS lock or a stronger lock on the table.
+   - Before obtaining an X lock on a data row, a transaction must first acquire an IX lock on the table.
+
+#### **Locking Protocols**
+1. **Three-Level Locking Protocol**
+   - First Level: A transaction must obtain an X lock to modify data (no other transactions can acquire any locks).
+   - Second Level: A transaction must obtain an S lock to read data (no other transactions can obtain X locks but can obtain S locks).
+   - Third Level: A transaction must hold an S lock until it finishes (no other transactions can obtain X or S locks).
+
+2. **Two-Phase Locking Protocol**
+   Locking and unlocking occur in two distinct phases.
+   - Locks are acquired but not released until the end of the transaction.
+   - Guarantees serializability, a condition for a schedule to be conflict-serializable.
+  
+   Example of a schedule satisfying two-phase locking:
+    lock-x(A)...lock-s(B)...lock-s(C)...unlock(A)...unlock(C)...unlock(B)
+
+   Example of a schedule violating two-phase locking:
+    lock-x(A)...unlock(A)...lock-s(B)...unlock(B)...lock-s(C)...unlock(C)
+
+
+### **MySQL Implicit and Explicit Locking**
+InnoDB, MySQL's storage engine, follows the two-phase locking protocol. It automatically acquires locks as needed based on the isolation level. All locks are released at the same time, known as implicit locking.
+
+InnoDB also allows for explicit locking using specific statements:
+
+- `SELECT ... FOR UPDATE`: Acquires a shared or exclusive lock on selected rows.
+- `SELECT ... FOR SHARE`: Acquires a shared lock on selected rows.
+- `UPDATE ... LOCK IN SHARE MODE`: Acquires a shared lock on the affected rows.
+
+These statements provide users with more control over locking behavior in MySQL.
+```sql
+    SELECT ... LOCK In SHARE MODE;
+    SELECT ... FOR UPDATE;
+```
+
+---
+### **130. Isolation Levels**
+
+Isolation levels in database systems determine the degree to which transactions are isolated from each other. Each isolation level offers a balance between data consistency and system performance.
+
+#### **Read Uncommitted (READ UNCOMMITTED)**
+In this isolation level, modifications made within a transaction are visible to other transactions, even if the changes have not been committed.
+
+#### **Read Committed (READ COMMITTED)**
+A transaction can only read modifications made by other transactions after they have been committed. In other words, changes made by a transaction are not visible to other transactions until the modifying transaction is committed.
+
+#### **Repeatable Read (REPEATABLE READ)**
+This level ensures that multiple reads of the same data within the same transaction yield consistent results. Other transactions cannot modify the data being read by a transaction until it completes. While it addresses non-repeatable reads, it may still allow phantom reads.
+
+#### **Serializable (SERIALIZABLE)**
+Transactions are forced to execute serially, ensuring that multiple transactions do not interfere with each other. This level provides the highest isolation, preventing issues such as dirty reads, non-repeatable reads, and phantom reads. However, it may lead to reduced concurrency due to strict serialization.
+
+This isolation level requires locking mechanisms to guarantee that only one transaction executes at a time, ensuring serial execution.
+
+---
+
+### **131. Multi-Version Concurrency Control (MVCC)**
+
+MVCC is a specific way InnoDB, MySQL's storage engine, implements isolation levels, particularly focusing on achieving the READ COMMITTED and REPEATABLE READ isolation levels. The READ UNCOMMITTED isolation level, where transactions can see uncommitted modifications, has low requirements and does not need MVCC. Serializable isolation level requires locking, as MVCC alone cannot achieve it.
+
+#### Basic Idea
+
+As mentioned in the locking section, locks can address concurrency consistency issues during simultaneous transactions. Since read operations often outnumber write operations, read-write locks were introduced to avoid unnecessary locking for operations like reading, where there is no mutual exclusion. In MVCC, the system utilizes the idea of multiple versions, updating the latest snapshot for write operations and allowing read operations to access older snapshots without mutual exclusion, similar to CopyOnWrite.
+
+In MVCC, modifications (DELETE, INSERT, UPDATE) in a transaction create a new snapshot for the data row.
+
+#### Versioning
+
+- System Version (SYS_ID): An incrementing number that increases each time a new transaction starts.
+- Transaction Version (TRX_ID): The system version at the beginning of a transaction.
+
+#### Undo Log
+
+The multiple versions in MVCC refer to multiple snapshots stored in the Undo Log. This log connects all snapshots of a data row using a rollback pointer (ROLL_PTR).
+
+For instance, in MySQL, if a table 't' is created with primary key 'id' and a field 'x', and an insert and two subsequent update operations are performed:
+
+```sql
+INSERT INTO t(id, x) VALUES(1, "a");
+UPDATE t SET x="b" WHERE id=1;
+UPDATE t SET x="c" WHERE id=1;
+```
+Since we did not use START TRANSACTION to treat the operations as one transaction, each operation becomes a separate transaction due to MySQL's AUTOCOMMIT mechanism. Thus, three transactions are involved in the operations. The snapshot includes the transaction version (TRX_ID) and a DEL bit to mark deletions.
+
+INSERT, UPDATE, DELETE operations create a log and write the transaction version (TRX_ID). DELETE, being a special case of UPDATE, also sets the DEL bit to 1.
+
+### **ReadView**
+
+MVCC maintains a ReadView structure containing the list of currently uncommitted transactions (TRX_IDs {TRX_ID_1, TRX_ID_2, ...}), along with the minimum (TRX_ID_MIN) and maximum (TRX_ID_MAX) values from that list.
+
+During a SELECT operation, the usability of a data row snapshot is determined by comparing the snapshot's TRX_ID with TRX_ID_MIN and TRX_ID_MAX:
+
+- TRX_ID < TRX_ID_MIN: The snapshot was changed before all current uncommitted transactions, making it usable.
+- TRX_ID > TRX_ID_MAX: The snapshot was changed after the transaction started, making it unusable.
+- TRX_ID_MIN <= TRX_ID <= TRX_ID_MAX: Further judgment depends on the isolation level:
+  - **READ COMMITTED:** If TRX_ID is in the TRX_IDs list, the snapshot corresponds to an uncommitted transaction, making it unusable. Otherwise, it is usable.
+  - **REPEATABLE READ:** Not usable because allowing it would enable other transactions to read and modify the data row, causing a non-repeatable read issue.
+
+If the data row snapshot is not usable, the next snapshot is found using the rollback pointer ROLL_PTR in the Undo Log, and the above judgment is repeated.
+
+### **Snapshot Read vs. Current Read**
+
+**Snapshot Read:**
+
+SELECT operations in MVCC retrieve data from snapshots without requiring locks.
+```sql
+SELECT * FROM table ...;
+```
+**Current Read:**
+
+Other operations (INSERT, UPDATE, DELETE) that modify the database need locks for reading the latest data. It is noteworthy that MVCC does not completely eliminate locking; it only avoids locks for SELECT operations.
+```sql
+INSERT;
+UPDATE;
+DELETE;
+```
+
+During a SELECT operation, locks can be forced, requiring an S lock for the first statement and an X lock for the second.
+```sql
+SELECT * FROM table WHERE ? lock in share mode;
+SELECT * FROM table WHERE ? for update;
+
+```
+---
+### **132. Next-Key Locks**
+
+Next-Key Locks is a locking mechanism implemented by MySQL's InnoDB storage engine.
+
+MVCC alone cannot resolve the phantom read problem, and Next-Key Locks exist specifically to address this issue. When using MVCC + Next-Key Locks under the REPEATABLE READ isolation level, it becomes possible to solve phantom read problems.
+
+#### **Record Locks**
+
+Locks an index on a specific record rather than the record itself.
+
+If a table does not have an index set, InnoDB will automatically create a hidden clustered index on the primary key. Therefore, Record Locks can still be utilized.
+
+#### **Gap Locks**
+
+Locks the gap between index values but does not include the index itself. For example, if one transaction executes the following statement, other transactions cannot insert into t.c between 10 and 15.
+
+#### **Next-Key Locks**
+
+It combines Record Locks and Gap Locks, locking both an index on a specific record and the gap between index values. It locks a half-open interval; for instance, if an index contains the values 10, 11, 13, and 20, the following interval needs to be locked:
+
+---
+### **133. Relational Database Design Theory
+
+### Functional Dependency
+Let A->B indicate that A functionally determines B, or in other words, B depends on A.
+
+If {A1, A2, ..., An} is a set of attributes in a relation, and this set determines all other attributes in the relation and is minimal, it is referred to as the key.
+
+For A->B, if there exists a proper subset A' of A such that A'->B, then A->B is a partial functional dependency; otherwise, it is a complete functional dependency.
+
+For A->B and B->C, A->C is a transitive functional dependency.
+
+### Anomalies
+The functional dependencies for the student-course relationship are {Sno, Cname} -> {Sname, Sdept, Mname, Grade}, and the key is {Sno, Cname}. This implies that once the student and course are determined, all other information can be derived.
+
+| Sno | Sname    | Sdept        | Mname   | Cname     | Grade |
+| --- | -------- | ------------ | ------- | --------- | ----- |
+| 1   | Student-1 | Department-1 | Dean-1  | Course-1  | 90    |
+| 2   | Student-2 | Department-2 | Dean-2  | Course-2  | 80    |
+| 2   | Student-2 | Department-2 | Dean-2  | Course-1  | 100   |
+| 3   | Student-3 | Department-2 | Dean-2  | Course-2  | 95    |
+
+Failure to adhere to normalization principles can lead to various anomalies:
+
+- Redundancy: e.g., Student-2 appearing twice.
+- Modification anomaly: Changing information in one record without updating others.
+- Deletion anomaly: Deleting one piece of information may result in the loss of other information.
+- Insertion anomaly: Unable to insert information, for instance, if a student hasn't chosen a course.
+
+### Normalization
+The normalization theory addresses these anomalies.
+
+Higher-level normal forms depend on lower-level ones, with 1NF being the lowest.
+
+1. **First Normal Form (1NF):**
+   - Attributes are indivisible.
+
+2. **Second Normal Form (2NF):**
+   - Every non-prime attribute is fully functionally dependent on the key.
+   - Achieved through decomposition.
+
+3. **Third Normal Form (3NF):**
+   - Non-prime attributes do not transitively depend on the key.
+
+---
+
+## **134. Entity-Relationship (ER) Diagram**
+
+Entity-Relationship diagrams consist of three components: entities, attributes, and relationships. They are used for conceptual design in relational database systems.
+
+### Three Types of Entity Relationships
+
+Three types of relationships exist: one-to-one, one-to-many, and many-to-many.
+
+- For a one-to-many relationship from A to B, draw an arrow pointing to B.
+- For a one-to-one relationship, draw two arrows.
+- For a many-to-many relationship, draw two lines without arrows.
+
+In the following diagram, Course and Student have a one-to-many relationship.
+
+### Representing Repeated Relationships
+
+If an entity appears multiple times in a relationship, connect it with as many lines as needed.
+
+In the example below, a course's prerequisite relationship involves two Course entities: the first is the prerequisite, and the second is the subsequent course. Therefore, two lines represent this relationship.
+
+### Multi-Directional Relationships
+
+While a teacher can offer multiple courses and teach multiple students, for a specific student and course, only one teacher is involved, forming a ternary relationship.
+
+### Representing Subclasses
+
+Use a triangle and two lines to connect a class with its subclasses. Connect attributes and relationships related to the subclass to the subclass itself. Attributes and relationships related to both the superclass and subclass are connected to the superclass.
+
+---
+## **135. B+ Tree Principles**
+### 1. Data Structure
+B Tree refers to a Balanced Tree, which is a balanced search tree with all leaf nodes at the same level.
+
+B+ Tree is implemented based on B Tree and sequential access pointers to leaf nodes. It inherits the balance property of B Tree and enhances the performance of range queries through sequential access pointers.
+
+In B+ Tree, the keys in a node are non-decreasing from left to right. If a pointer has left and right adjacent keys, keyi and keyi+1, respectively, and is not null, then the pointer points to a node where all keys are greater than or equal to keyi and less than or equal to keyi+1.
+
+### 2. Operations
+During a search operation, start with the root node, perform a binary search to find a pointer containing the key, and recursively search in the node pointed to by that pointer. Continue this process until a leaf node is reached, then perform a binary search on the leaf node to find the corresponding data for the key.
+
+Insert and delete operations may disrupt the balance of the tree, so after performing these operations, the tree needs to undergo split, merge, rotation, etc., to maintain balance.
+
+### 3. Comparison with Red-Black Tree
+Balanced trees like Red-Black Tree can also be used for indexing, but file systems and database systems commonly choose B+ Tree as the index structure because accessing disk data using B+ Tree is more efficient.
+
+#### (i) Lower Tree Height of B+ Tree
+The height h of a balanced tree (h) = O(h) = O(logdN), where d is the outdegree of each node. The outdegree of Red-Black Tree is 2, while B+ Tree typically has a much larger outdegree, making the height h of Red-Black Tree significantly larger than that of B+ Tree.
+
+#### (ii) Disk Access Principles
+Operating systems usually divide memory and disk into fixed-size blocks, each called a page. Data exchange between memory and disk occurs in units of pages. The size of an index node is set to the size of a page in the database system, ensuring that a single I/O operation can completely load a node.
+
+If data is not in the same disk block, it usually requires moving the arm for seeking. The efficiency of arm movement is low due to its physical structure, increasing disk data retrieval time. B+ Tree has a lower tree height than Red-Black Tree, and the number of seeks is proportional to the tree height. Accessing data on the same disk block requires a short disk rotation time, making B+ Tree more suitable for disk data retrieval.
+
+#### (iii) Disk Prefetching Feature
+To reduce disk I/O operations, disks often do not strictly read on demand but prefetch during each read. During prefetching, the disk reads sequentially without seeking, requiring only a short disk rotation time. Utilizing the prefetching feature, adjacent nodes can also be preloaded.
+
+## MySQL Index
+Indexes are implemented at the storage engine level, not at the server level. Therefore, different storage engines have different types of indexes and implementations.
+
+### 1. B+Tree Index
+It is the default index type for most MySQL storage engines.
+
+As it eliminates the need for full table scans, searching is much faster by only traversing the tree.
+
+Due to the ordered nature of B+ Tree, it can be used not only for searching but also for sorting and grouping.
+
+Multiple columns can be specified as index columns, collectively forming a key.
+
+Applicable for full key-value, key-value range, and key-prefix searches. Key-prefix searches are only applicable for leftmost prefix searches. If the search is not performed in the order of the index columns, the index cannot be used.
+
+InnoDB's B+Tree index is divided into the primary index and secondary index. The leaf node's data field of the primary index records complete data records, known as a clustered index. Since data rows cannot be stored in two different locations, a table can only have one clustered index.
+
+The leaf node's data field of the secondary index records the primary key's values. Therefore, when using a secondary index for searching, it is necessary to first find the primary key value and then perform the search in the primary index.
+
+### 2. Hash Index
+A hash index allows O(1) time for searching but loses ordering:
+
+- Cannot be used for sorting and grouping.
+- Only supports exact searches and cannot be used for partial searches and range searches.
+
+InnoDB storage engine has a special feature called "adaptive hash index." When a particular index value is used very frequently, it creates a hash index on top of the B+Tree index, giving B+Tree index some advantages of hash index, such as fast hash searches.
+
+### 3. Full-Text Index
+The MyISAM storage engine supports a full-text index for finding keywords in text rather than direct equality comparison.
+
+The search condition uses MATCH AGAINST instead of the regular WHERE.
+
+The full-text index is implemented using an inverted index, which maps keywords to their location in documents.
+
+InnoDB storage engine started supporting full-text index from MySQL version 5.6.4.
+
+### 4. Spatial Data Index
+The MyISAM storage engine supports a spatial data index (R-Tree), used for storing geographic data. Spatial data indexing indexes data from all dimensions, enabling effective combination queries using any dimension.
+
+GIS-related functions must be used to maintain data.
+
+## Index Optimization
+### 1. Independent Columns
+During queries, indexed columns cannot be part of an expression or a function parameter; otherwise, the index cannot be used.
+
+For example, the following query cannot use the index on the actor_id column:
+
+```sql
+SELECT actor_id FROM sakila.actor WHERE actor_id + 1 = 5;
+```
+
+### 2. Multi-column Index
+
+When multiple columns are required as conditions for a query, using a multi-column index performs better than using multiple single-column indexes. For example, in the following statement, it is preferable to set `actor_id` and `film_id` as a multi-column index.
+```sql
+SELECT film_id, actor_ id FROM sakila.film_actor
+WHERE actor_id = 1 AND film_id = 1;
+```
+
+### 3. Order of Index Columns
+
+Place the most selective index column at the beginning.
+
+Index selectivity refers to the ratio of the number of unique index values to the total number of records. The maximum value is 1, where each record has a unique corresponding index. The higher the selectivity, the higher the distinctiveness of each record, leading to improved query efficiency.
+
+In the example below, the selectivity of `customer_id` is higher than that of `staff_id`, so it's better to place the `customer_id` column at the front of the multi-column index.
+```sql
+SELECT COUNT(DISTINCT staff_id)/COUNT(*) AS staff_id_selectivity,
+COUNT(DISTINCT customer_id)/COUNT(*) AS customer_id_selectivity,
+COUNT(*)
+FROM payment;
+```
+```sql
+   staff_id_selectivity: 0.0001
+customer_id_selectivity: 0.0373
+               COUNT(*): 16049
+```
+
+### 4. Prefix Index
+
+For columns of types BLOB, TEXT, and VARCHAR, it is necessary to use a prefix index, indexing only the starting part of the characters.
+
+The choice of prefix length depends on the index selectivity.
+
+### 5. Covering Index
+
+An index that includes values for all fields needed for a query.
+
+It has the following advantages:
+
+- Indexes are usually much smaller than the size of data rows, reducing data access significantly.
+- Some storage engines (such as MyISAM) only cache indexes in memory, while data relies on the operating system for caching. Therefore, accessing only the index can avoid system calls (which are usually time-consuming).
+- For the InnoDB engine, if auxiliary indexes can cover the query, there is no need to access the primary index.
+
+### Advantages of Indexing
+
+- Greatly reduces the number of data rows the server needs to scan.
+- Helps the server avoid sorting and grouping, as well as avoiding the creation of temporary tables (B+Tree indexes are ordered and can be used for ORDER BY and GROUP BY operations. Temporary tables are mainly created during sorting and grouping, which is not required if there is no need for sorting and grouping).
+- Converts random I/O to sequential I/O (B+Tree indexes are ordered, storing adjacent data together).
+
+### Conditions for Using Indexes
+
+- For very small tables, in most cases, a simple full table scan is more efficient than creating an index.
+- For medium to large tables, indexes are very effective.
+- However, for very large tables, the cost of creating and maintaining indexes will increase. In such cases, a technology that can directly distinguish a set of data needed for a query, rather than matching record by record, should be used, such as partitioning techniques.
+
+---
+
+## **136.Query Performance Optimization**
+
+### Analyzing with Explain
+Explain is used to analyze SELECT queries, and developers can optimize queries by analyzing the Explain results.
+
+Key fields to consider:
+
+- `select_type`: Query type, including simple queries, union queries, subqueries, etc.
+- `key`: Index used
+- `rows`: Number of rows scanned
+
+### Optimizing Data Access
+1. Reduce the amount of requested data
+   - Return only necessary columns: Avoid using `SELECT *` statements.
+   - Return only necessary rows: Use the LIMIT statement to restrict the returned data.
+   - Cache duplicate query data: Caching can prevent queries in the database, especially when the data to be queried is frequently repeated.
+
+2. Reduce the number of rows scanned on the server side
+   - The most effective way is to use indexes to cover the query.
+
+### Refactoring Query Methods
+1. Splitting large queries
+   - If a large query is executed all at once, it may lock a lot of data, fill up the entire transaction log, deplete system resources, and block many small but important queries.
+   ```sql
+   DELETE FROM messages WHERE created_at < DATE_SUB(NOW(), INTERVAL 3 MONTH);
+
+### Decomposing Large Join Queries
+
+Decompose a large join query into single-table queries for each table and then associate them in the application. The benefits include:
+
+- **More Efficient Caching**: For join queries, if one table changes, the entire query cache cannot be used. However, after decomposition, the caches of single-table queries can still be utilized, even if one table changes.
+
+- **Reduced Redundancy in Record Queries**.
+
+- **Reduced Lock Contention**.
+
+- **Easier Database Splitting in the Application Layer for Better Performance and Scalability**.
+
+- **Potential Improvement in Query Efficiency**: For example, using `IN()` instead of join queries allows MySQL to query in ID order, which might be more efficient than random joins.
+
+```sql
+SELECT * FROM tag
+JOIN tag_post ON tag_post.tag_id=tag.id
+JOIN post ON tag_post.post_id=post.id
+WHERE tag.tag='mysql';
+```
+---
+## **137. Storage Engines**
+
+### InnoDB
+
+InnoDB is MySQL's default transactional storage engine. It should be considered only when features not supported by InnoDB are needed.
+
+- Implements four standard isolation levels, with the default level being Repeatable Read.
+- Uses Multi-Version Concurrency Control (MVCC) + Next-Key Locking to prevent phantom reads under Repeatable Read isolation.
+- The primary index is a clustered index, saving data in the index and significantly improving query performance by avoiding direct disk reads.
+- Internal optimizations include predictable reads when fetching data from the disk, automatically created adaptive hash indexes for faster reads, and an insert buffer to speed up insert operations.
+- Supports true online hot backup. Other storage engines don't support online hot backups, requiring a halt to write operations on all tables to achieve a consistent view, which may also mean stopping reads in mixed read-write scenarios.
+
+### MyISAM
+
+MyISAM is designed for simplicity, storing data in a compact format. It can still be used for read-only data, small tables, or situations where repair operations are acceptable.
+
+- Provides various features, including compressed tables and spatial data indexing.
+- Does not support transactions.
+- Lacks row-level locking; it only supports table-level locking. Reads impose shared locks on all tables that need to be read, while writes impose exclusive locks on the entire table. Concurrent inserts (CONCURRENT INSERT) are allowed even during table reads.
+- Can perform manual or automatic checks and repair operations. Unlike transaction recovery and crash recovery, repair operations may result in some data loss and are slow.
+- If the DELAY_KEY_WRITE option is specified, modifications to index data are not immediately written to disk after each modification. Instead, changes are written to an in-memory key buffer and are only flushed to disk when clearing the key buffer or closing the table. While this can significantly improve write performance, it may lead to index corruption in the event of a database or host crash, requiring repair operations.
+
+### Comparison
+
+- **Transaction Support**: InnoDB supports transactions with Commit and Rollback statements, while MyISAM does not.
+  
+- **Concurrency**: MyISAM supports table-level locking, whereas InnoDB supports both table-level and row-level locking.
+
+- **Foreign Keys**: InnoDB supports foreign keys; MyISAM does not.
+
+- **Backup**: InnoDB supports online hot backups, whereas MyISAM does not.
+
+- **Crash Recovery**: MyISAM has a higher probability of corruption after a crash compared to InnoDB.
+
+---
+
+## **138. Data Types**
+
+### Integer Types
+- **TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT:** These use 8, 16, 24, 32, and 64 bits of storage space, and generally, smaller columns are preferred.
+- The number in `INT(11)` only specifies the number of characters to display in the interactive tool and has no significance for storage and computation.
+
+### Floating-Point Types
+- **FLOAT and DOUBLE:** These are floating-point types.
+- **DECIMAL:** This is a high-precision decimal type. CPUs natively support floating-point operations but do not support DECIMAL type calculations, making DECIMAL calculations more costly than floating-point types.
+- All three types, FLOAT, DOUBLE, and DECIMAL, can specify column width. For example, `DECIMAL(18, 9)` means a total of 18 digits, with 9 digits for the decimal part and the remaining 9 digits for the integer part.
+
+### String Types
+- Two main types: **CHAR** and **VARCHAR**, one fixed-length and the other variable-length.
+- VARCHAR can save space as it only stores necessary content. However, during UPDATE operations, rows may become longer than the original, requiring additional operations. MyISAM stores rows in different fragments, while InnoDB may need to split pages to fit rows within a page.
+- When storing and retrieving, VARCHAR retains trailing spaces, while CHAR removes trailing spaces.
+
+### Time and Date Types
+MySQL provides two similar date-time types: **DATETIME** and **TIMESTAMP**.
+
+1. **DATETIME**
+   - Can store dates and times from the year 1000 to 9999 with second precision, using 8 bytes of storage.
+   - Timezone-independent.
+   - By default, MySQL displays DATETIME values in a sortable, unambiguous format, such as "2008-01-16 22:37:08".
+
+2. **TIMESTAMP**
+   - Similar to UNIX timestamps, saving seconds since January 1, 1970 (Greenwich Mean Time), using 4 bytes. It can represent times from 1970 to 2038.
+   - Timezone-dependent; the same timestamp represents different times in different time zones.
+   - MySQL provides `FROM_UNIXTIME()` to convert UNIX timestamps to dates and `UNIX_TIMESTAMP()` to convert dates to UNIX timestamps.
+   - By default, if no value is specified for a TIMESTAMP column during insertion, it is set to the current time.
+   - TIMESTAMP is preferable as it is more space-efficient than DATETIME.
+
+---
+
+## **139. Data Splitting**
+
+### Horizontal Splitting (Sharding)
+Horizontal splitting, also known as Sharding, involves dividing records from the same table into multiple tables with identical structures.
+
+As data in a table continues to grow, Sharding becomes a necessary choice. It distributes data across different nodes in a cluster, alleviating the pressure on a single database.
+
+### Vertical Splitting
+Vertical splitting involves dividing a table into multiple tables based on columns. It is usually done based on the intensity of relationships between columns. Vertical splitting can also segregate frequently used columns from rarely used ones into different tables.
+
+At the database level, vertical splitting can deploy tables with varying density levels into different databases. For example, an e-commerce database could be vertically split into product and user databases.
+
+### Sharding Strategies
+1. **Hash Modulo:** hash(key) % N
+2. **Range:** Can be ID ranges or time ranges.
+3. **Mapping Table:** Use a separate database to store mapping relationships.
+
+### Issues with Sharding
+1. **Transaction Issues:**
+   - Resolve using distributed transaction mechanisms, such as the XA interface.
+
+2. **Joins:**
+   - Decompose original joins into multiple single-table queries and perform joins in the user's program.
+
+3. **ID Uniqueness:**
+   - Use globally unique IDs (GUID).
+   - Assign an ID range for each shard.
+   - Implement a distributed ID generator (e.g., Twitter's Snowflake algorithm).
+
+---
+## **140. Replication**
+
+### Master-Slave Replication
+Master-Slave replication involves three main threads: the binlog thread, I/O thread, and SQL thread.
+
+- **Binlog Thread:** Responsible for writing data changes from the master server to the binary log.
+- **I/O Thread:** Responsible for reading the binary log from the master server and writing it to the slave server's relay log.
+- **SQL Thread:** Responsible for reading the relay log, parsing executed data changes from the master server, and replaying them on the slave server.
+
+# Read-Write Separation
+
+Read-write separation involves the master server handling write operations and high real-time requirement reads, while the slave server handles read operations.
+
+The performance benefits of read-write separation are:
+
+- Separate handling of reads and writes by master and slave servers greatly alleviates lock contention.
+- The slave server can use MyISAM, improving query performance and saving system overhead.
+- Increased redundancy enhances availability.
+
+Read-write separation is commonly implemented using proxy servers. The proxy server receives read and write requests from the application layer and decides which server to forward them to.
+
+---
+
