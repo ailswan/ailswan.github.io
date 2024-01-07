@@ -2808,7 +2808,7 @@ If no savepoint is set, ROLLBACK will revert to the START TRANSACTION statement.
 
 ---
 
-### **125. Character Sets
+### **125. Character Sets**
 
 ## Basic Terms:
 
