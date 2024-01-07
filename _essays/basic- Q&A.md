@@ -516,7 +516,7 @@ The UDP header is only 8 bytes, including source port, destination port, length,
 
 ---
 
-### **29. TCP Header Format**
+### **31. TCP Header Format**
 
 **Fields:**
 1. **Sequence Number:** Identifies the first byte in the TCP data stream. For example, if the sequence number is 301, it means the first byte's number is 301. If the transmitted data is 100 bytes long, the next segment's sequence number should be 401.
@@ -529,7 +529,7 @@ The UDP header is only 8 bytes, including source port, destination port, length,
 
 ---
 
-### **30. TCP Three-Way Handshake**
+### **32. TCP Three-Way Handshake**
 
 Assuming A is the client and B is the server:
 
@@ -545,7 +545,7 @@ The third handshake is essential to prevent expired connection requests from rea
 
 ---
 
-### **31. TCP Four-Way Handshake**
+### **33. TCP Four-Way Handshake**
 
 This description excludes sequence and acknowledgment numbers for simplicity and omits ACK as it is always set to 1 post-connection establishment.
 
@@ -561,7 +561,7 @@ After the client sends a FIN connection release, the server enters CLOSE-WAIT to
 
 ---
 
-### **32. TCP Reliable Transmission**
+### **34. TCP Reliable Transmission**
 
 TCP achieves reliable transmission using timeout retransmission. If a sent segment isn't acknowledged within the timeout, it gets retransmitted.
 
@@ -579,7 +579,7 @@ Where \( RTT_d \) is the weighted average deviation.
 
 ---
 
-### **33. TCP Sliding Window**
+### **35. TCP Sliding Window**
 
 The window is part of the buffer, temporarily holding the byte stream. Both the sender and receiver have a window, and the receiver uses the window field in TCP segments to inform the sender of its window size. The sender adjusts its window size based on this value and other information.
 
@@ -589,13 +589,13 @@ The receiving window confirms only the last sequentially arrived byte in the win
 
 ---
 
-### **34. TCP Flow Control**
+### **36. TCP Flow Control**
 
 Flow control aims to regulate the sender's transmission rate, ensuring the receiver can keep up. The window field in acknowledgment messages sent by the receiver controls the sender's window size, influencing its transmission rate. Setting the window field to 0 prevents the sender from transmitting data.
 
 ---
 
-### **35. TCP Congestion Control**
+### **37. TCP Congestion Control**
 
 In case of network congestion leading to packet loss, the sender continues retransmission, worsening the congestion. Hence, during congestion, it's crucial to control the sender's rate. Although similar to flow control, the motivation is different. Flow control ensures the receiver can keep up, while congestion control aims to reduce overall network congestion.
 
@@ -624,7 +624,7 @@ Slow start and fast recovery refer to the set values of cwnd, not their growth r
 
 ---
 
-### **36. Domain Name System (DNS)**
+### **38. Domain Name System (DNS)**
 
 DNS is a distributed database that provides services for the mutual conversion of hostnames and IP addresses. The distributed nature means that each site retains only its portion of the data.
 
@@ -636,7 +636,7 @@ DNS can use UDP or TCP for transmission, both using port 53. In most cases, DNS 
 
 ---
 
-### **37. File Transfer Protocol (FTP)**
+### **39. File Transfer Protocol (FTP)**
 
 FTP uses TCP for connections and requires two connections for file transfer:
 1. **Control Connection:** The server opens port 21, awaiting the client's connection. The client actively establishes a connection to send commands to the server and receive responses.
@@ -650,7 +650,7 @@ Active mode requires the client to open a port for the server, necessitating fir
 
 ---
 
-### **38. Dynamic Host Configuration Protocol (DHCP)**
+### **40. Dynamic Host Configuration Protocol (DHCP)**
 
 DHCP provides a plug-and-play networking method, eliminating the need for manual configuration of IP addresses, etc.
 
@@ -664,7 +664,7 @@ DHCP process:
 
 ---
 
-### **39. Telnet - Remote Login Protocol**
+### **41. Telnet - Remote Login Protocol**
 
 TELNET is used to log in to remote hosts, and the output from the remote host is also returned.
 
@@ -672,7 +672,7 @@ TELNET can adapt to differences in computers and operating systems, such as vary
 
 ---
 
-### **40. Email Protocols**
+### **42. Email Protocols**
 
 An email system consists of three parts: user agent, mail server, and email protocols.
 
@@ -689,7 +689,7 @@ Email protocols include sending protocols and retrieval protocols, with SMTP com
 
 ---
 
-### **41. Common Ports**
+### **43. Common Ports**
 
 | Application | Application Layer Protocol | Port Number | Transport Layer Protocol | Remarks |
 |-------------|-----------------------------|-------------|---------------------------|---------|
@@ -705,7 +705,7 @@ Email protocols include sending protocols and retrieval protocols, with SMTP com
 
 ---
 
-### **42. Web Page Request Process**
+### **44. Web Page Request Process**
 
 1. **DHCP Host Configuration**
 
@@ -748,7 +748,7 @@ Email protocols include sending protocols and retrieval protocols, with SMTP com
 
 ---
 
-### **43. Processes and Threads**
+### **45. Processes and Threads**
 
 1. **Processes**
    
@@ -786,7 +786,7 @@ Email protocols include sending protocols and retrieval protocols, with SMTP com
 
 ---
 
-### **44. Process State Transitions**
+### **46. Process State Transitions**
 
 - **Ready State (ready):** Awaits scheduling.
 - **Running State (running):** Currently executing.
@@ -800,7 +800,7 @@ It's important to note the following:
 
 ---
 
-### **45. Process Scheduling Algorithms**
+### **47. Process Scheduling Algorithms**
 
 Different environments necessitate different scheduling algorithm objectives. Let's discuss scheduling algorithms based on specific environments:
 
@@ -833,7 +833,7 @@ Different environments necessitate different scheduling algorithm objectives. Le
 
 ---
 
-### **46. Process Synchronization**
+### **48. Process Synchronization**
 
 1. **Critical Section**
 - **Critical Section:**
@@ -986,7 +986,7 @@ end;
 
 ---
 
-### **47. Classic Synchronization Problems**
+### **49. Classic Synchronization Problems**
 
 ### 1. The Dining Philosophers Problem
 
@@ -1102,7 +1102,7 @@ void writer() {
 
 ---
 
-### **48. Inter-Process Communication (IPC)**
+### **50. Inter-Process Communication (IPC)**
 
 The concepts of process synchronization and process communication are easy to confuse. The difference lies in:
 
@@ -1159,7 +1159,7 @@ Different from other communication mechanisms, sockets can be used for communica
 
 ---
 
-### **49. Basic Characteristics**
+### **51. Basic Characteristics**
 
 ### 1. Concurrency
 
@@ -1192,7 +1192,7 @@ Virtual memory uses space-multiplexing, abstracting physical memory into address
 Asynchrony indicates that a process does not complete all at once but progresses intermittently at an unknown pace.
 
 ---
-### **50. Basic Functions**
+### **52. Basic Functions**
 
 ### 1. Process Management
 Process control, process synchronization, process communication, deadlock handling, CPU scheduling, etc.
@@ -1210,7 +1210,7 @@ Includes buffer management, device allocation, device handling, virtual devices,
 
 ---
 
-### **51. System Calls**
+### **53. System Calls**
 
 If a process in user mode needs to use kernel mode functionality, it makes a system call to enter the kernel, and the operating system performs the task on behalf of the process.
 
@@ -1225,7 +1225,7 @@ Linux system calls mainly include:
 
 ---
 
-### **52. Monolithic Kernel and Microkernel**
+### **54. Monolithic Kernel and Microkernel**
 
 ### 1. Monolithic Kernel
 A monolithic kernel places the entire operating system functionality as a tightly integrated whole within the kernel.
@@ -1240,7 +1240,7 @@ In the microkernel structure, the operating system is divided into small, well-d
 Due to frequent switching between user mode and kernel mode, there is some performance loss.
 
 ---
-### **53. Classification of Interrupts**
+### **55. Classification of Interrupts**
 
 ### 1. External Interrupts
 Generated by events other than the CPU executing instructions, such as I/O completion interrupts, indicating that the device input/output processing is complete, and the processor can send the next input/output request. Additionally, there are clock interrupts, console interrupts, etc.
@@ -1253,7 +1253,7 @@ Used in user programs through system calls.
 
 ---
 
-### **54. Necessary Conditions for Deadlocks**
+### **56. Necessary Conditions for Deadlocks**
 
 - Mutual Exclusion: Each resource is either allocated to a process or available.
 - Hold and Wait: A process holding resources may request new resources.
@@ -1262,7 +1262,7 @@ Used in user programs through system calls.
 
 ---
 
-### **55. Handling Methods for Deadlocks**
+### **57. Handling Methods for Deadlocks**
 
 There are mainly four methods:
 
@@ -1273,7 +1273,7 @@ There are mainly four methods:
 
 ---
 
-### **56. Ostrich Algorithm**
+### **58. Ostrich Algorithm**
 
 This strategy involves burying one's head in the sand and pretending that there is no problem.
 
@@ -1285,7 +1285,7 @@ Most operating systems, including Unix, Linux, and Windows, simply ignore the de
 
 ---
 
-### **57. Deadlock Detection and Recovery**
+### **59. Deadlock Detection and Recovery**
 
 Instead of attempting to prevent deadlocks, this approach detects deadlocks and takes measures to recover when detected.
 
@@ -1325,7 +1325,7 @@ Instead of attempting to prevent deadlocks, this approach detects deadlocks and 
 
 ---
 
-### **58. Deadlock Prevention**
+### **60. Deadlock Prevention**
 
 Preventing deadlocks before the program runs.
 
@@ -1341,7 +1341,7 @@ Preventing deadlocks before the program runs.
 
 ---
 
-### **59. Deadlock Avoidance**
+### **61. Deadlock Avoidance**
 
 Avoiding deadlocks during program execution.
 
@@ -1367,7 +1367,7 @@ Avoiding deadlocks during program execution.
 
 ---
 
-### **60. Virtual Memory**
+### **62. Virtual Memory**
 
 The purpose of virtual memory is to extend physical memory into larger logical memory, allowing programs to access more available memory.
 
@@ -1375,7 +1375,7 @@ To better manage memory, the operating system abstracts memory into an address s
 
 From the description above, virtual memory allows programs to not map every page in the address space to physical memory. This means a program doesn't need to be entirely loaded into memory to run, making it possible to run large programs with limited memory. For example, a computer with a 16-bit address can generate a range of 0 to 64K for a program's address space. If the computer has only 32KB of physical memory, virtual memory allows it to run a program of size 64K.
 
-### **61. Paging System Address Mapping**
+### **63. Paging System Address Mapping**
 
 The Memory Management Unit (MMU) manages the translation between the address space and physical memory, with the Page table storing the mapping of pages (program address space) and page frames (physical memory space).
 
@@ -1385,7 +1385,7 @@ In the page table below, there are 16 pages, and these 16 pages need 4 bits for 
 
 ---
 
-### **62. Page Replacement Algorithms**
+### **64. Page Replacement Algorithms**
 
 During program execution, if the page to be accessed is not in memory, a page fault occurs, and the page is brought into memory. If there's no free space in memory, the system must swap out a page to the disk swap area to free up space.
 
@@ -1428,7 +1428,7 @@ These are common page replacement algorithms, each with its advantages and disad
 
 ---
 
-### **63. Segmentation**
+### **65. Segmentation**
 
 While virtual memory utilizes paging, which involves dividing the address space into fixed-sized pages mapped to memory, segmentation is another approach. In segmentation, the address space is divided into segments, each representing an independent address space. Unlike paging, the size of each segment can vary, and segments can dynamically grow.
 
@@ -1441,13 +1441,13 @@ Segmentation addresses this by dividing each table into segments, with each segm
 Segmentation provides a more flexible memory management approach, accommodating varying sizes and dynamic growth requirements for different segments.
 
 ---
-### **64. Segmentation with Paging**
+### **66. Segmentation with Paging**
 
 The address space of a program is divided into segments, each having an independent address space. The address space within each segment is further divided into pages of equal size. This approach combines the benefits of segmentation, providing shared and protected segments, with the virtual memory capabilities of paging.
 
 ---
 
-### **65. Comparison between Paging and Segmentation**
+### **67. Comparison between Paging and Segmentation**
 
 1. **Transparency to Programmers:**
    - Paging: Transparent; programmers don't need to explicitly divide segments.
@@ -1467,7 +1467,7 @@ The address space of a program is divided into segments, each having an independ
 
 ---
 
-### **66. Disk Structure**
+### **68. Disk Structure**
 
 - **Platter:** A disk has multiple platters.
 - **Track:** Circular bands on a platter; a platter can have multiple tracks.
@@ -1478,7 +1478,7 @@ The address space of a program is divided into segments, each having an independ
 
 ---
 
-### **67. Disk Scheduling Algorithms**
+### **69. Disk Scheduling Algorithms**
 
 Factors affecting the time to read or write a disk block include:
 - Rotation time (spinning the spindle to position the head over the appropriate sector)
@@ -1502,7 +1502,7 @@ Among these, seek time is usually the longest, so disk scheduling aims to minimi
 
 ---
 
-### **68. Compilation System**
+### **70. Compilation System**
 
 In a compilation system, the process of transforming a source file into an executable involves several stages. Let's take the example of a simple `hello.c` program compiled on a Unix system:
 
@@ -1543,7 +1543,7 @@ This process transforms high-level source code into machine-executable instructi
 
 ---
 
-### **69. Static Linking**
+### **71. Static Linking**
 A static linker takes a set of relocatable object files as input and produces a fully linked executable object file as output. The linker primarily performs the following two tasks:
 
 1. Symbol Resolution: Each symbol corresponds to a function, a global variable, or a static variable. The purpose of symbol resolution is to associate each symbol reference with a symbol definition.
@@ -1551,14 +1551,14 @@ A static linker takes a set of relocatable object files as input and produces a 
 2. Relocation: The linker associates each symbol definition with a memory location by modifying all references to these symbols to point to this memory location.
 
 ---
-### **70. Object Files**
+### **72. Object Files**
 - **Executable Object File:** Can be directly executed in memory.
 - **Relocatable Object File:** Can be merged with other relocatable object files during the linking stage to create an executable object file.
 - **Shared Object File:** A special type of relocatable object file that can be dynamically loaded into memory and linked during runtime.
 
 ---
 
-### **71. Dynamic Linking**
+### **73. Dynamic Linking**
 Static libraries have two main issues:
 1. When a static library is updated, the entire program needs to be relinked.
 2. For standard function libraries like `printf`, if each program has its own code, it would lead to significant resource wastage.
@@ -1569,7 +1569,7 @@ Shared libraries are designed to address these issues. In Linux systems, they ar
 
 ---
 
-### **72. Basic Concepts**
+### **74. Basic Concepts**
 1. **Message Format**
    - **Request Message:**
      - The first line includes the request method, URL, and protocol version.
@@ -1588,7 +1588,7 @@ Shared libraries are designed to address these issues. In Linux systems, they ar
 
 ---
 
-### **73. HTTP Methods**
+### **75. HTTP Methods**
 When a client sends a [request message](#message-format), the first line of the request is the request line, which includes the method field.
 
 1. **GET**
@@ -1641,7 +1641,7 @@ When a client sends a [request message](#message-format), the first line of the 
 
 ---
 
-### **74. HTTP Status Codes**
+### **76. HTTP Status Codes**
 
 When a server returns a [response message](#message-format), the first line of the response is the status line, which includes the status code and the reason phrase to inform the client about the result of the request.
 
@@ -1682,7 +1682,7 @@ When a server returns a [response message](#message-format), the first line of t
 
 ---
 
-### **75. HTTP Headers**
+### **77. HTTP Headers**
 
 There are four types of header fields in HTTP: general headers, request headers, response headers, and entity headers. Below are various header fields and their meanings (you don't need to memorize all of them, just for reference):
 
@@ -1755,7 +1755,7 @@ There are four types of header fields in HTTP: general headers, request headers,
 
 ---
 
-### **76. Cookie Usage**
+### **78. Cookie Usage**
 
 Cookies are commonly used for various purposes, including:
 
@@ -1765,7 +1765,7 @@ Cookies are commonly used for various purposes, including:
 
 ---
 
-### **77. Cookie Creation Process**
+### **79. Cookie Creation Process**
 
 The creation process involves the server sending a response containing the Set-Cookie header field. Upon receiving the response, the client stores the cookie information in the browser.
 
@@ -1786,7 +1786,7 @@ Host: www.example.org
 Cookie: yummy_cookie=choco; tasty_cookie=strawberry
 ```
 ---
-### **78. Cookie Classification**
+### **80. Cookie Classification**
 
 Cookies can be classified into:
 
@@ -1796,14 +1796,14 @@ Cookies can be classified into:
 
 ---
 
-### **79. Cookie Scope**
+### **81. Cookie Scope**
 
 - **Domain:** Identifies which hosts can accept the cookie. If not specified, it defaults to the current document's host (excluding subdomains). If specified, it generally includes subdomains. For example, if set to Domain=mozilla.org, the cookie is included in subdomains (e.g., developer.mozilla.org).
 
 - **Path:** Specifies which paths on the host can accept the cookie (the URL path must be present in the request URL). Subpaths are also matched. For instance, setting Path=/docs would match paths like /docs, /docs/Web/, and /docs/Web/HTTP.
 
 ---
-### **80. JavaScript and Cookies**
+### **82. JavaScript and Cookies**
 
 Browsers can create new cookies and access non-HttpOnly cookies using the `document.cookie` property in JavaScript.
 
@@ -1815,7 +1815,7 @@ document.cookie = "tasty_cookie=strawberry";
 console.log(document.cookie);
 ```
 ---
-### **81. HttpOnly**
+### **83. HttpOnly**
 
 Cookies marked as HttpOnly cannot be accessed by JavaScript scripts. Cross-Site Scripting (XSS) attacks often exploit JavaScript's `document.cookie` API to steal user cookie information. Therefore, using the HttpOnly flag can help mitigate XSS attacks to some extent.
 
@@ -1826,13 +1826,13 @@ Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly
 ```
 ---
 
-### **82. Secure**
+### **84. Secure**
 
 Cookies marked as `Secure` can only be sent to the server over an HTTPS-encrypted connection. However, even with the `Secure` flag, sensitive information should not be transmitted through cookies as cookies inherently have security vulnerabilities. The `Secure` flag cannot guarantee absolute security.
 
 ---
 
-### **83. Session**
+### **85. Session**
 
 Apart from storing user information in cookies on the user's browser, session data can also be stored on the server-side for increased security.
 
@@ -1849,13 +1849,13 @@ Ensure Session ID security to prevent easy access by malicious attackers. It sho
 
 ---
 
-### **84. Browser Disable Cookie**
+### **86. Browser Disable Cookie**
 
 In scenarios where cookies are disabled, and Cookie cannot be used to store user information, only sessions can be utilized. In such cases, Session ID should not be stored in a cookie. Instead, URL rewriting is employed, passing the Session ID as a parameter in the URL.
 
 ---
 
-### **85. Browser Disable Cookie (Duplicate Entry)**
+### **87. Browser Disable Cookie (Duplicate Entry)**
 
 When cookies are disabled, preventing the use of cookies to store user information, only sessions are available. In addition, Session ID should not be stored in a cookie. Instead, URL rewriting is used to pass the Session ID as a parameter in the URL.
 
@@ -1863,7 +1863,7 @@ Feel free to use or modify this content. If you have more questions or need furt
 
 ---
 
-### **86. Advantages**
+### **88. Advantages**
 
 - **Alleviates Server Load:**
   - Helps ease the pressure on servers.
@@ -1872,7 +1872,7 @@ Feel free to use or modify this content. If you have more questions or need furt
   - Caches are often located in memory, providing faster read access.
   - Cache servers may also be geographically closer to clients than the source server, reducing latency (e.g., browser cache).
 
-### **87. Implementation Methods**
+### **89. Implementation Methods**
 
 - **Proxy Server Caching:**
   - Delegate caching responsibilities to a proxy server.
@@ -1880,7 +1880,7 @@ Feel free to use or modify this content. If you have more questions or need furt
 - **Client Browser Caching:**
   - Utilize caching mechanisms within the client's browser.
 
-### **88. Cache-Control**
+### **90. Cache-Control**
 
 HTTP/1.1 controls caching through the Cache-Control header.
 
@@ -1913,7 +1913,7 @@ HTTP/1.1 controls caching through the Cache-Control header.
    Expires: Wed, 04 Jul 2012 08:26:05 GMT
 
 ---
-### **89. Cache Validation**
+### **91. Cache Validation**
 
 To understand cache validation, it is necessary to grasp the meaning of the ETag header field, which serves as a unique identifier for a resource. URLs cannot uniquely represent resources; for example, http://www.google.com/ may have both Chinese and English versions of a resource, and only the ETag can uniquely identify these two resources.
 
@@ -1929,7 +1929,7 @@ Last-Modified: Wed, 21 Oct 2015 07:28:00 GMT
 
 ---
 
-### **90. Concepts**
+### **92. Concepts**
 
 HTTP faces the following security issues:
 
@@ -1943,7 +1943,7 @@ By utilizing SSL, HTTPS gains encryption (preventing eavesdropping), authenticat
 
 ---
 
-### **91. Encryption**
+### **93. Encryption**
 
 1. **Symmetric-Key Encryption**
    - Symmetric-Key Encryption uses the same key for both encryption and decryption.
@@ -1965,7 +1965,7 @@ By utilizing SSL, HTTPS gains encryption (preventing eavesdropping), authenticat
 
 ---
 
-### **92. Authentication**
+### **94. Authentication**
 
 Authentication of communication parties is achieved through the use of certificates.
 
@@ -1977,7 +1977,7 @@ During HTTPS communication, the server sends the certificate to the client. Upon
 
 ---
 
-### **93. Integrity Protection**
+### **95. Integrity Protection**
 
 SSL provides a message digest feature to ensure integrity protection.
 
@@ -1987,7 +1987,7 @@ The security of HTTPS's message digest functionality stems from its combination 
 
 ---
 
-### **94. Drawbacks**
+### **96. Drawbacks**
 
 1. Slower Speed:
    - Due to the need for encryption and decryption processes, the speed is relatively slower.
@@ -1996,7 +1996,7 @@ The security of HTTPS's message digest functionality stems from its combination 
    - There is a requirement to pay high fees for certificate authorization.
 
 ---
-### **95. Comparison of GET and POST**
+### **97. Comparison of GET and POST**
 
 1. **Purpose**
    - GET is used to retrieve resources, while POST is used to transmit entity bodies.
@@ -2062,7 +2062,7 @@ The security of HTTPS's message digest functionality stems from its combination 
 
 ---
 
-### **96. HTTP/2.0**
+### **98. HTTP/2.0**
 
 1. **Deficiencies of HTTP/1.x**
    - The simplicity of HTTP/1.x comes at the cost of performance:
@@ -2087,7 +2087,7 @@ The security of HTTPS's message digest functionality stems from its combination 
 
 --- 
 
-### **97. New Features in HTTP/1.1**
+### **99. New Features in HTTP/1.1**
 
 Detailed information can be found in the preceding text.
 
@@ -2101,7 +2101,7 @@ Detailed information can be found in the preceding text.
 
 ---
 
-### **98. Connection Management**
+### **100. Connection Management**
 
 1. **Short Connection vs. Persistent Connection**
    - When a browser accesses an HTML page containing multiple images, in addition to requesting the HTML page, it also requests image resources. If a new TCP connection is established for each HTTP communication, it incurs significant overhead.
@@ -2115,7 +2115,7 @@ Detailed information can be found in the preceding text.
 
 ---
 
-### **99. Content Negotiation**
+### **101. Content Negotiation**
 
 Content negotiation helps return the most suitable content based on factors such as the browser's default language.
 
@@ -2136,7 +2136,7 @@ Content negotiation helps return the most suitable content based on factors such
    - For example, if a client sends a request with the Accept-Language header, and the server's response contains Vary: Accept-Language, the caching server will only use the cache if the next client request for the same URL has the matching Accept-Language value.
 ---
 
-### **100. Content Encoding**
+### **102. Content Encoding**
 
 Content encoding compresses the entity body to reduce the amount of transmitted data.
 
@@ -2146,7 +2146,7 @@ When a browser sends the Accept-Encoding header, it includes supported compressi
 
 --- 
 
-### **101 Range Requests**
+### **103. Range Requests**
 
 If there is a network interruption and the server has only sent a portion of the data, range requests allow the client to request only the portion of data that the server hasn't sent, thus avoiding the need for the server to resend all the data.
 
@@ -2175,12 +2175,12 @@ If there is a network interruption and the server has only sent a portion of the
    - If the requested range is out of bounds, the server returns the `416 Requested Range Not Satisfiable` status code.
    - If range requests are not supported, the server returns the `200 OK` status code.
 ---
-### **102. Chunked Transfer Encoding**
+### **104. Chunked Transfer Encoding**
 Chunked Transfer Encoding divides data into multiple chunks, allowing the browser to progressively display the page.
 
 ---
 
-### **103. Multipart Content**
+### **105. Multipart Content**
 Within a message body, multiple types of entities can be sent simultaneously. Each part is separated by a boundary defined by the `boundary` field, and each part can have its own set of header fields.
 
 For example, when uploading multiple forms, you can use the following format:
@@ -2201,7 +2201,7 @@ Content-Type: text/plain
 
 ---
 
-### **104. Communication Data Forwarding**
+### **106. Communication Data Forwarding**
 
 1. **Proxy**
    A proxy server receives requests from clients and forwards them to other servers.
@@ -2223,7 +2223,7 @@ Content-Type: text/plain
    Using encryption methods like SSL, a secure communication channel is established between the client and the server.
 
 ---
-### **105. Basics**
+### **107. Basics**
 
 A schema defines how data is stored, what type of data is stored, and how data is decomposed. Both databases and tables have schemas.
 
@@ -2241,7 +2241,7 @@ SQL statements are case-insensitive, but whether database table names, column na
     USE test;
 
 ---
-### **106. Creating Tables**
+### **108. Creating Tables**
 ```sql
   CREATE TABLE mytable (
   # int
@@ -2253,7 +2253,7 @@ SQL statements are case-insensitive, but whether database table names, column na
   PRIMARY KEY (`id`));
 ```
 ---
-## 107. Modify Table
+## 109. Modify Table
 Add Column
 ```sql
 ALTER TABLE mytable
@@ -2287,7 +2287,7 @@ CREATE TABLE newtable AS
 SELECT * FROM mytable;
 ```
 ---
-### **109. Updating Data**
+### **111. Updating Data**
 Update Specific Row
 ```sql
 UPDATE mytable
@@ -2295,7 +2295,7 @@ SET col = val
 WHERE id = 1;
 ```
 ---
-### **110. Deleting Data**
+### **112. Deleting Data**
 Delete Specific Row
 ```sql
 DELETE FROM mytable
@@ -2309,7 +2309,7 @@ When using UPDATE and DELETE operations, it's crucial to use the WHERE clause to
 
 ---
 
-### **111. Querying Data**
+### **113. Querying Data**
 Distinct Values
 ```sql
 SELECT DISTINCT col1, col2
@@ -2330,7 +2330,7 @@ LIMIT 2, 3;
 ```
 ---
 
-### **112. Sorting Data**
+### **114. Sorting Data**
 Ascending and Descending Order
 ```sql
 SELECT *
@@ -2344,7 +2344,7 @@ You can sort by multiple columns and specify different sorting orders for each c
 
 ---
 
-### **113. Filtering Data**
+### **115. Filtering Data**
 Filtering data directly in SQL is preferable to transferring unnecessary data over the network, which can lead to wasted bandwidth. Utilize SQL statements to filter data, avoiding the transmission of all data to the client for filtering.
 Filtering by NULL Values
 ```sql
@@ -2372,7 +2372,7 @@ The IN operator is used to match a set of values, and it can also take a SELECT 
 The NOT operator is used to negate a condition.
 
 ---
-### **114. Wildcards**
+### **116. Wildcards**
 Wildcards are used in filtering statements and are specifically applicable to text fields.
 
 `%` matches zero or more arbitrary characters.
@@ -2389,7 +2389,7 @@ Avoid overusing wildcards, as matching at the beginning can be slow.
 
 ---
 
-### **115. Calculating Fields**
+### **117. Calculating Fields**
 Performing data transformation and formatting on the database server is often much faster than on the client side. Additionally, reducing the amount of data through conversion and formatting can minimize network communication.
 
 Calculation fields typically require the use of AS to provide an alias; otherwise, the output will use the calculation expression as the field name.
@@ -2407,7 +2407,7 @@ SELECT CONCAT(TRIM(col1), '(', TRIM(col2), ')') AS concat_col
 FROM mytable;
 ```
 ---
-### **116. Functions in MySQL**
+### **118. Functions in MySQL**
 
 ## Aggregation
 | Function | Description                   |
@@ -2473,7 +2473,7 @@ FROM mytable;
 
 ---
 
-### **117. Grouping**
+### **119. Grouping**
 Grouping involves placing rows with the same data values into the same group.
 
 Summary functions can be applied to grouped data, such as calculating the average of grouped data.
@@ -2511,7 +2511,7 @@ Filtering rows is done with WHERE, and filtering groups is done with HAVING. Row
 
 ---
 
-### **118. Subqueries**
+### **120. Subqueries**
 A subquery is a query embedded within another query. It can only return a single field of data.
 
 Subquery results can be used as filtering conditions in the WHERE statement:
@@ -2535,7 +2535,7 @@ Subqueries are powerful tools for combining and extracting information from mult
 
 ---
 
-### **119. Joins**
+### **121. Joins**
 Joins are used to combine data from multiple tables using the JOIN keyword, and the join conditions are specified using ON instead of WHERE.
 
 Joins can replace subqueries and are often more efficient than subqueries.
@@ -2622,7 +2622,9 @@ The result of a LEFT OUTER JOIN to retrieve all customer order information, incl
 | 3       | c         | 4        |
 | 2       | b         | Null     |
 
-### **120. Combining Queries**
+---
+
+### **122. Combining Queries**
 Use UNION to combine the results of two queries. If the first query returns M rows and the second query returns N rows, the combined query result will generally have M + N rows.
 
 Each query in the UNION must have the same columns, expressions, and aggregate functions.
@@ -2640,7 +2642,7 @@ Only one ORDER BY clause is allowed, and it must be placed at the end of the sta
     WHERE col =2;
 ```
 ---
-### **121. Views**
+### **123. Views**
 A view is a virtual table that does not contain data itself and cannot be indexed.
 
 Operations on views are similar to operations on regular tables.
@@ -2668,7 +2670,7 @@ Views provide a layer of abstraction, allowing users to interact with data in a 
     WHERE col5 = val;
  ```
  ---
-### **122. Stored Procedures**
+### **124. Stored Procedures**
 A stored procedure can be viewed as a batch of SQL operations.
 
 Benefits of using stored procedures:
@@ -2704,7 +2706,7 @@ Stored procedures enhance code organization and execution efficiency, making the
     delimiter ;
 ```
 ---
-### **122. Cursors
+### **125. Cursors
 
 In a stored procedure, a cursor can be used to navigate and traverse through a result set.
 
@@ -2747,7 +2749,9 @@ The four steps of using a cursor are as follows:
  
 ```
 
-### **123. Triggers**
+---
+
+### **126. Triggers**
 
 Triggers automatically execute when certain statements are performed on a table: DELETE, INSERT, UPDATE.
 
@@ -2771,7 +2775,7 @@ MySQL does not allow the use of CALL statements in triggers, meaning stored proc
 
 ---
 
-### **124. Transaction Management**
+### **127. Transaction Management**
 
 ## Basic Terms:
 
@@ -2808,7 +2812,7 @@ If no savepoint is set, ROLLBACK will revert to the START TRANSACTION statement.
 
 ---
 
-### **125. Character Sets**
+### **128. Character Sets**
 
 ## Basic Terms:
 
@@ -2838,7 +2842,7 @@ In addition to specifying character set and collation for a table, it can also b
 
 ---
 
-### **126. Permission Management**
+### **129. Permission Management**
 
 MySQL account information is stored in the 'mysql' database. 
 ```sql
@@ -2899,7 +2903,7 @@ To change a password, you must use the Password() function for encryption.
     SET PASSWROD FOR myuser = Password('new_password');
 ```
 ---
-### **127. Transaction**
+### **130. Transaction**
 
 **Concept:**
 A transaction refers to a set of operations that satisfy the ACID properties. It can be committed using `COMMIT` or rolled back using `ROLLBACK`.
@@ -2932,7 +2936,7 @@ MySQL defaults to automatic commit mode. This means that if you don't explicitly
 
 ---
 
-### **128. Concurrent Consistency Issues**
+### **131. Concurrent Consistency Issues**
 
 In a concurrent environment, ensuring the isolation of transactions is challenging, leading to various concurrency consistency issues.
 
@@ -2968,7 +2972,7 @@ The main reason for concurrency inconsistency problems is the violation of trans
 
 ---
 
-### **129. Locking**
+### **132. Locking**
 
 #### **Lock Granularity**
 MySQL offers two lock granularities: row-level locking and table-level locking.
@@ -3027,7 +3031,7 @@ These statements provide users with more control over locking behavior in MySQL.
 ```
 
 ---
-### **130. Isolation Levels**
+### **133. Isolation Levels**
 
 Isolation levels in database systems determine the degree to which transactions are isolated from each other. Each isolation level offers a balance between data consistency and system performance.
 
@@ -3047,7 +3051,7 @@ This isolation level requires locking mechanisms to guarantee that only one tran
 
 ---
 
-### **131. Multi-Version Concurrency Control (MVCC)**
+### **134. Multi-Version Concurrency Control (MVCC)**
 
 MVCC is a specific way InnoDB, MySQL's storage engine, implements isolation levels, particularly focusing on achieving the READ COMMITTED and REPEATABLE READ isolation levels. The READ UNCOMMITTED isolation level, where transactions can see uncommitted modifications, has low requirements and does not need MVCC. Serializable isolation level requires locking, as MVCC alone cannot achieve it.
 
@@ -3115,7 +3119,7 @@ SELECT * FROM table WHERE ? for update;
 
 ```
 ---
-### **132. Next-Key Locks**
+### **135. Next-Key Locks**
 
 Next-Key Locks is a locking mechanism implemented by MySQL's InnoDB storage engine.
 
@@ -3136,7 +3140,7 @@ Locks the gap between index values but does not include the index itself. For ex
 It combines Record Locks and Gap Locks, locking both an index on a specific record and the gap between index values. It locks a half-open interval; for instance, if an index contains the values 10, 11, 13, and 20, the following interval needs to be locked:
 
 ---
-### **133. Relational Database Design Theory
+### **136. Relational Database Design Theory
 
 ### Functional Dependency
 Let A->B indicate that A functionally determines B, or in other words, B depends on A.
@@ -3181,7 +3185,7 @@ Higher-level normal forms depend on lower-level ones, with 1NF being the lowest.
 
 ---
 
-## **134. Entity-Relationship (ER) Diagram**
+## **137. Entity-Relationship (ER) Diagram**
 
 Entity-Relationship diagrams consist of three components: entities, attributes, and relationships. They are used for conceptual design in relational database systems.
 
@@ -3210,7 +3214,7 @@ While a teacher can offer multiple courses and teach multiple students, for a sp
 Use a triangle and two lines to connect a class with its subclasses. Connect attributes and relationships related to the subclass to the subclass itself. Attributes and relationships related to both the superclass and subclass are connected to the superclass.
 
 ---
-## **135. B+ Tree Principles**
+## **138. B+ Tree Principles**
 ### 1. Data Structure
 B Tree refers to a Balanced Tree, which is a balanced search tree with all leaf nodes at the same level.
 
@@ -3344,7 +3348,7 @@ It has the following advantages:
 
 ---
 
-## **136.Query Performance Optimization**
+### **139.Query Performance Optimization**
 
 ### Analyzing with Explain
 Explain is used to analyze SELECT queries, and developers can optimize queries by analyzing the Explain results.
@@ -3391,7 +3395,7 @@ JOIN post ON tag_post.post_id=post.id
 WHERE tag.tag='mysql';
 ```
 ---
-## **137. Storage Engines**
+### **140. Storage Engines**
 
 ### InnoDB
 
@@ -3427,7 +3431,7 @@ MyISAM is designed for simplicity, storing data in a compact format. It can stil
 
 ---
 
-## **138. Data Types**
+### **141. Data Types**
 
 ### Integer Types
 - **TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT:** These use 8, 16, 24, 32, and 64 bits of storage space, and generally, smaller columns are preferred.
@@ -3460,7 +3464,7 @@ MySQL provides two similar date-time types: **DATETIME** and **TIMESTAMP**.
 
 ---
 
-## **139. Data Splitting**
+### **142. Data Splitting**
 
 ### Horizontal Splitting (Sharding)
 Horizontal splitting, also known as Sharding, involves dividing records from the same table into multiple tables with identical structures.
@@ -3490,7 +3494,7 @@ At the database level, vertical splitting can deploy tables with varying density
    - Implement a distributed ID generator (e.g., Twitter's Snowflake algorithm).
 
 ---
-## **140. Replication**
+### **143. Replication**
 
 ### Master-Slave Replication
 Master-Slave replication involves three main threads: the binlog thread, I/O thread, and SQL thread.
