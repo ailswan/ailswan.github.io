@@ -572,8 +572,6 @@ The Retransmission Timeout (RTO) should be slightly greater than RTTs. RTO calcu
 
 Where \( RTT_d \) is the weighted average deviation.
 
-Feel free to include these revised sections in your existing markdown file. If you have any more questions or need further assistance, let me know!
-
 ---
 
 ### **33. TCP Sliding Window**
@@ -700,11 +698,9 @@ Email protocols include sending protocols and retrieval protocols, with SMTP com
 | Post Office Protocol version 3 | POP3 | 110 | TCP | |
 | Internet Message Access Protocol | IMAP | 143 | TCP | |
 
-Feel free to incorporate these revisions into your existing markdown file. If you have additional questions or need further assistance, please let me know!
-
 ---
 
-### 42. Web Page Request Process
+### **42. Web Page Request Process**
 
 1. **DHCP Host Configuration**
 
@@ -747,7 +743,7 @@ Feel free to incorporate these revisions into your existing markdown file. If yo
 
 ---
 
-### 43. Processes and Threads
+### **43. Processes and Threads**
 
 1. **Processes**
    
@@ -785,7 +781,7 @@ Feel free to incorporate these revisions into your existing markdown file. If yo
 
 ---
 
-### 44. Process State Transitions
+### **44. Process State Transitions**
 
 - **Ready State (ready):** Awaits scheduling.
 - **Running State (running):** Currently executing.
@@ -799,7 +795,7 @@ It's important to note the following:
 
 ---
 
-### 45. Process Scheduling Algorithms
+### **45. Process Scheduling Algorithms**
 
 Different environments necessitate different scheduling algorithm objectives. Let's discuss scheduling algorithms based on specific environments:
 
@@ -829,3 +825,2071 @@ Different environments necessitate different scheduling algorithm objectives. Le
 
 3. **Real-Time System**
    Real-time systems demand responses within a specified time. Differentiated into hard real-time (absolute deadline) and soft real-time (tolerates some latency).
+
+---
+
+### **46. Process Synchronization**
+
+1. **Critical Section**
+- **Critical Section:**
+  The code segment that accesses a critical resource is referred to as the critical section.
+- **Mutual Exclusion:**
+  To mutually exclude access to the critical resource, each process needs to perform a check before entering the critical section.
+
+   The code segment that accesses a critical resource is termed the critical section.
+
+    ```html
+    // entry section
+    // critical section;
+    // exit section
+    ```
+2. **Synchronization and Mutual Exclusion**
+
+- **Synchronization:** A direct restrictive relationship resulting from the cooperation of multiple processes, creating a certain order of execution.
+- **Mutual Exclusion:** At any given moment, only one process can enter the critical section.
+
+3. **Semaphore**
+
+A semaphore is an integer variable on which down and up operations (commonly denoted as P and V operations) can be performed.
+
+- **down:** If the semaphore is greater than 0, perform a -1 operation. If the semaphore is equal to 0, the process sleeps, waiting for the semaphore to be greater than 0.
+- **up:** Perform a +1 operation on the semaphore, awakening sleeping processes to complete the down operation.
+
+The down and up operations need to be designed as atomic, indivisible operations. Typically, interrupts are masked during the execution of these operations.
+
+If the semaphore's value can only be 0 or 1, it becomes a Mutex (Mutual Exclusion). 0 indicates the critical section is locked, and 1 indicates the critical section is unlocked.
+``` c
+typedef int semaphore;
+semaphore mutex = 1;
+void P1() {
+    down(&mutex);
+    up(&mutex);
+}
+
+void P2() {
+    down(&mutex);
+    up(&mutex);
+}
+```
+
+**Using Semaphores to Implement the Producer-Consumer Problem**
+
+Problem Description:Utilizing a buffer to store items, the producer can only place an item into the buffer when it is not full. Similarly, the consumer can only take an item from the buffer when it is not empty.
+
+As the buffer is considered a critical resource, a mutex (mutual exclusion) is required to control mutual access to the buffer.
+
+To synchronize the behavior of producers and consumers, it is necessary to keep track of the quantity of items in the buffer. This is achieved using two semaphores: `empty`, which records the number of empty slots in the buffer, and `full`, which records the number of filled slots in the buffer. In the producer process, the `empty` semaphore is used to ensure that the producer can only place items when `empty` is not zero. In the consumer process, the `full` semaphore is used to ensure that the consumer can only take items when `full` is not zero.
+
+It is crucial not to lock the buffer before testing the semaphores. In other words, the sequence of operations should not be to execute `down(mutex)` before `down(empty)`. If this is done, there is a possibility of encountering a situation where the producer locks the buffer, performs `down(empty)` operation, discovers that `empty = 0`, and subsequently sleeps. The consumer cannot enter the critical section because the producer has locked the buffer, preventing the execution of `up(empty)`. As a result, `empty` remains perpetually zero, causing the producer to wait indefinitely without releasing the lock. Consequently, the consumer also waits indefinitely.
+```c
+#define N 100
+typedef int semaphore;
+semaphore mutex = 1;
+semaphore empty = N;
+semaphore full = 0;
+
+void producer() {
+    while(TRUE) {
+        int item = produce_item();
+        down(&empty);
+        down(&mutex);
+        insert_item(item);
+        up(&mutex);
+        up(&full);
+    }
+}
+
+void consumer() {
+    while(TRUE) {
+        down(&full);
+        down(&mutex);
+        int item = remove_item();
+        consume_item(item);
+        up(&mutex);
+        up(&empty);
+    }
+}
+```
+
+4. **Monitor**
+
+Using semaphore mechanisms to solve the producer-consumer problem requires a lot of control in client code. A monitor separates control code, making it less error-prone and easier to call for client code.
+
+C language does not support monitors. The following pseudo-Pascal code describes a monitor. A significant feature of monitors is that only one process can use the monitor at a time. A process should not indefinitely occupy the monitor when unable to proceed.
+``` c
+    monitor ProducerConsumer
+        integer i;
+        condition c;
+
+        procedure insert();
+        begin
+            // ...
+        end;
+
+        procedure remove();
+        begin
+            // ...
+        end;
+    end monitor;
+ ```
+A crucial characteristic of a monitor is that at any given moment, only one process can utilize the monitor. A process should not indefinitely occupy the monitor when unable to proceed; otherwise, other processes will never be able to use the monitor.
+
+The monitor introduces condition variables and related operations, namely `wait()` and `signal()`, to achieve synchronization. Executing `wait()` on a condition variable causes the calling process to block, relinquishing the monitor to another process. The `signal()` operation is used to awaken a blocked process.
+
+**Implementing the Producer-Consumer Problem Using a Monitor**
+```C
+monitor ProducerConsumer
+    condition full, empty;
+    integer count := 0;
+    condition c;
+
+    procedure insert(item: integer);
+    begin
+        if count = N then wait(full);
+        insert_item(item);
+        count := count + 1;
+        if count = 1 then signal(empty);
+    end;
+
+    function remove: integer;
+    begin
+        if count = 0 then wait(empty);
+        remove = remove_item;
+        count := count - 1;
+        if count = N -1 then signal(full);
+    end;
+end monitor;
+
+procedure producer
+begin
+    while true do
+    begin
+        item = produce_item;
+        ProducerConsumer.insert(item);
+    end
+end;
+
+procedure consumer
+begin
+    while true do
+    begin
+        item = ProducerConsumer.remove;
+        consume_item(item);
+    end
+end;
+```
+
+---
+
+### **47. Classic Synchronization Problems**
+
+### 1. The Dining Philosophers Problem
+
+The Dining Philosophers Problem involves five philosophers seated around a circular table, each with a plate of food. Philosophers alternate between two activities: eating and thinking. When a philosopher decides to eat, they must pick up the two chopsticks on their left and right sides, taking only one chopstick at a time.
+
+The following is an incorrect solution: if all philosophers simultaneously pick up the chopstick on their left, they end up waiting for others to finish eating and release their chopsticks, leading to a deadlock.
+
+```C
+#define N 5
+
+void philosopher(int i) {
+    while(TRUE) {
+        think();
+        take(i);     
+        take((i+1)%N); 
+        eat();
+        put(i);
+        put((i+1)%N);
+    }
+}
+
+```
+
+To prevent deadlock, two conditions can be set:
+
+1. Philosophers must pick up both left and right chopsticks simultaneously.
+2. Eating is only allowed when neither neighboring philosopher is currently eating.
+```C
+#define N 5
+#define LEFT (i + N - 1) % N 
+#define RIGHT (i + 1) % N 
+#define THINKING 0
+#define HUNGRY   1
+#define EATING   2
+typedef int semaphore;
+int state[N];        
+semaphore mutex = 1;   
+semaphore s[N];       
+
+void philosopher(int i) {
+    while(TRUE) {
+        think(i);
+        take_two(i);
+        eat(i);
+        put_two(i);
+    }
+}
+
+void take_two(int i) {
+    down(&mutex);
+    state[i] = HUNGRY;
+    check(i);
+    up(&mutex);
+    down(&s[i]);
+}
+
+void put_two(i) {
+    down(&mutex);
+    state[i] = THINKING;
+    check(LEFT); 
+    check(RIGHT);
+    up(&mutex);
+}
+
+void eat(int i) {
+    down(&mutex);
+    state[i] = EATING;
+    up(&mutex);
+}
+
+void check(i) {         
+    if(state[i] == HUNGRY && state[LEFT] != EATING && state[RIGHT] !=EATING) {
+        state[i] = EATING;
+        up(&s[i]);
+    }
+}
+
+```
+### 2. The Reader-Writer Problem
+
+This problem allows multiple processes to read data simultaneously but restricts the occurrence of simultaneous read-write and write-write operations.
+
+An integer variable, `count`, keeps track of the number of processes currently reading the data. A mutex, `count_mutex`, is used to lock the access to `count`, and another mutex, `data_mutex`, is used to lock the reading and writing of data.
+
+```C
+typedef int semaphore;
+semaphore count_mutex = 1;
+semaphore data_mutex = 1;
+int count = 0;
+
+void reader() {
+    while(TRUE) {
+        down(&count_mutex);
+        count++;
+        if(count == 1) down(&data_mutex); // 第一个读者需要对数据进行加锁，防止写进程访问
+        up(&count_mutex);
+        read();
+        down(&count_mutex);
+        count--;
+        if(count == 0) up(&data_mutex);
+        up(&count_mutex);
+    }
+}
+
+void writer() {
+    while(TRUE) {
+        down(&data_mutex);
+        write();
+        up(&data_mutex);
+    }
+}
+```
+
+---
+
+### **48. Inter-Process Communication (IPC)**
+
+The concepts of process synchronization and process communication are easy to confuse. The difference lies in:
+
+- Process Synchronization: Controlling the execution order of multiple processes.
+- Process Communication: Transmitting information between processes.
+
+Process communication is a means, while process synchronization is a goal. In other words, to achieve process synchronization, processes need to communicate and transmit the necessary information for synchronization.
+
+### 1. Pipes
+
+Pipes are created using the `pipe` function, where `fd[0]` is used for reading, and `fd[1]` is used for writing.
+
+```c
+#include <unistd.h>
+int pipe(int fd[2]);
+```
+It has the following limitations:
+
+- Supports only half-duplex communication (one-way alternating transmission).
+- Can only be used in parent-child or sibling processes.
+### 2. FIFO
+
+Also known as named pipes, it removes the restriction that pipes can only be used in parent-child processes.
+
+```c
+#include <sys/stat.h>
+int mkfifo(const char *path, mode_t mode);
+int mkfifoat(int fd, const char *path, mode_t mode);
+```
+
+FIFO is commonly used in client-server applications, serving as a gathering point for passing data between client and server processes.
+
+### 3. Message Queues
+Compared to FIFO, message queues have the following advantages:
+
+- Message queues can exist independently of reading and writing processes, avoiding synchronization difficulties during FIFO's open and close operations.
+- Avoids FIFO's synchronization blocking issue, as processes do not need to provide their synchronization methods.
+- Reading processes can selectively receive messages based on message types, unlike FIFO, which defaults to receiving messages.
+### 4. Semaphores
+
+It is a counter used to provide access to a shared data object for multiple processes.
+
+### 5. Shared Memory
+
+Allows multiple processes to share a given storage area. Since data does not need to be copied between processes, this is the fastest form of IPC.
+
+Semaphore usage is required to synchronize access to shared storage.
+
+Multiple processes can map the same file into their address space, thereby achieving shared memory. Additionally, XSI shared memory does not use a file but rather utilizes an anonymous segment of memory.
+
+### 6. Sockets
+
+Different from other communication mechanisms, sockets can be used for communication between processes on different machines.
+
+---
+
+### **49. Basic Characteristics**
+
+### 1. Concurrency
+
+Concurrency refers to the macroscopic ability to run multiple programs simultaneously over a period of time, while parallelism indicates the ability to execute multiple instructions at the same moment.
+
+Parallelism requires hardware support, such as multiple pipelines, multi-core processors, or distributed computing systems.
+
+The operating system introduces processes and threads to enable program concurrency.
+
+### 2. Sharing
+
+Sharing means that resources in the system can be used jointly by multiple concurrent processes.
+
+There are two sharing modes: mutual exclusion sharing and simultaneous sharing.
+
+Resources in mutual exclusion sharing are termed critical resources (e.g., printers), allowing only one process to access at any given moment, requiring synchronization mechanisms to achieve mutual exclusion.
+
+### 3. Virtualization
+
+Virtualization transforms a physical entity into multiple logical entities.
+
+There are mainly two virtualization techniques: time-multiplexing and space-multiplexing.
+
+Processes can concurrently execute on the same processor using time-multiplexing, allowing each process to occupy the processor in turns, executing for a small time slice and quickly switching.
+
+Virtual memory uses space-multiplexing, abstracting physical memory into address spaces. Each process has its address space, and the pages of the address space are mapped to physical memory. Not all pages of the address space need to be in physical memory. When a page that is not in physical memory is accessed, a page replacement algorithm is executed to swap the page into memory.
+
+### 4. Asynchrony
+
+Asynchrony indicates that a process does not complete all at once but progresses intermittently at an unknown pace.
+
+---
+### **50. Basic Functions**
+
+### 1. Process Management
+Process control, process synchronization, process communication, deadlock handling, CPU scheduling, etc.
+
+### 2. Memory Management
+Memory allocation, address mapping, memory protection and sharing, virtual memory, etc.
+
+### 3. File Management
+Management of file storage space, directory management, file read/write management, and protection.
+
+### 4. Device Management
+Handling user I/O requests, facilitating the use of various devices, and improving device utilization.
+
+Includes buffer management, device allocation, device handling, virtual devices, etc.
+
+---
+
+### **51. System Calls**
+
+If a process in user mode needs to use kernel mode functionality, it makes a system call to enter the kernel, and the operating system performs the task on behalf of the process.
+
+Linux system calls mainly include:
+
+- **Process Control:** `fork()`, `exit()`, `wait()`
+- **Inter-Process Communication:** `pipe()`, `shmget()`, `mmap()`
+- **File Operations:** `open()`, `read()`, `write()`
+- **Device Operations:** `ioctl()`, `read()`, `write()`
+- **Information Maintenance:** `getpid()`, `alarm()`, `sleep()`
+- **Security:** `chmod()`, `umask()`, `chown()`
+
+---
+
+### **52. Monolithic Kernel and Microkernel**
+
+### 1. Monolithic Kernel
+A monolithic kernel places the entire operating system functionality as a tightly integrated whole within the kernel.
+
+Due to shared information between modules, it achieves high performance.
+
+### 2. Microkernel
+As the operating system becomes more complex, a portion of the operating system's functionality is moved out of the kernel to reduce kernel complexity. The extracted part is divided into several services based on a layered principle, each functioning independently.
+
+In the microkernel structure, the operating system is divided into small, well-defined modules. Only the microkernel module runs in kernel mode, while the other modules run in user mode.
+
+Due to frequent switching between user mode and kernel mode, there is some performance loss.
+
+---
+### **53. Classification of Interrupts**
+
+### 1. External Interrupts
+Generated by events other than the CPU executing instructions, such as I/O completion interrupts, indicating that the device input/output processing is complete, and the processor can send the next input/output request. Additionally, there are clock interrupts, console interrupts, etc.
+
+### 2. Exception Interrupts
+Caused by internal events of the CPU executing instructions, such as illegal opcodes, address out of bounds, arithmetic overflow, etc.
+
+### 3. Trap Interrupts
+Used in user programs through system calls.
+
+---
+
+### **54. Necessary Conditions for Deadlocks**
+
+- Mutual Exclusion: Each resource is either allocated to a process or available.
+- Hold and Wait: A process holding resources may request new resources.
+- No Preemption: Resources allocated to a process cannot be forcefully preempted; they can only be released explicitly by the owning process.
+- Circular Wait: Two or more processes form a circular chain, with each process waiting for the next process to release resources.
+
+---
+
+### **55. Handling Methods for Deadlocks**
+
+There are mainly four methods:
+
+1. Ostrich Algorithm
+2. Deadlock Detection and Recovery
+3. Deadlock Prevention
+4. Deadlock Avoidance
+
+---
+
+### **56. Ostrich Algorithm**
+
+This strategy involves burying one's head in the sand and pretending that there is no problem.
+
+Because solving deadlock problems comes at a high cost, the ostrich algorithm, which involves taking no action, can achieve higher performance.
+
+It is suitable when a deadlock occurrence has minimal impact on users or when the probability of a deadlock is low.
+
+Most operating systems, including Unix, Linux, and Windows, simply ignore the deadlock problem.
+
+---
+
+### **57. Deadlock Detection and Recovery**
+
+Instead of attempting to prevent deadlocks, this approach detects deadlocks and takes measures to recover when detected.
+
+1. Deadlock detection with one resource of each type.
+
+   The graph below represents a resource allocation graph, where rectangles represent resources, and circles represent processes. Arrows indicate resource allocation, with processes pointing to resources indicating the allocation.
+
+   - Figure a can be extracted into a cycle, as shown in figure b. It satisfies the condition of circular waiting, indicating a deadlock.
+
+   The deadlock detection algorithm for one resource of each type is implemented by checking whether there is a cycle in the directed graph. Starting from a node, a depth-first search is performed, marking visited nodes, and if a visited node is encountered again, a cycle is present, indicating deadlock detection.
+
+2. Deadlock detection with multiple resources of each type
+
+   In the image below, there are three processes and four resources, with each data representing the following:
+
+   E vector: Total resources
+   A vector: Remaining resources
+   C matrix: The quantity of resources each process owns, with each row representing the quantity of resources a process has.
+   R matrix: The quantity of resources each process requests.
+
+   Processes P1 and P2 cannot execute, but process P3 can. Letting P3 execute and releasing the resources it owns results in A = (2 2 2 0).
+
+   P2 can now execute, followed by P1. All processes can execute smoothly, with no deadlock.
+
+   The algorithm for deadlock detection with multiple resources of each type involves:
+
+   - Each process is initially unmarked, and the execution process may be marked. When the algorithm finishes, any unmarked processes are considered deadlock processes.
+   - Find an unmarked process Pᵢ whose requested resources are less than or equal to A.
+   - If such a process is found, add the ith row vector of the C matrix to A, mark the process, and return to step 1.
+   - If no such process is found, the algorithm terminates.
+
+3. Deadlock Recovery
+
+   - Utilizing preemption
+   - Utilizing rollback
+   - Recovery by killing processes
+
+---
+
+### **58. Deadlock Prevention**
+
+Preventing deadlocks before the program runs.
+
+1. **Breaking Mutual Exclusion**
+   - For example, using spooling printer technology allows several processes to output simultaneously. The only process that truly requests the physical printer is the printer daemon process.
+
+2. **Breaking Hold and Wait**
+   - One implementation is to specify that all processes must request all the resources they need before starting execution.
+
+3. **Breaking No Preemption**
+4. **Breaking Circular Wait**
+   - Assign a unified number to resources, and processes can only request resources in numerical order.
+
+---
+
+### **59. Deadlock Avoidance**
+
+Avoiding deadlocks during program execution.
+
+1. **Safe State**
+   - In the graph (a), the second column 'Has' represents the number of resources already owned, the third column 'Max' represents the total number of resources needed, and 'Free' represents the number of resources that can still be used. Starting from graph (a), first let B have all the needed resources (graph b), release B after execution, and Free becomes 5 (graph c). Then run C and A in the same way, ensuring that all processes can run successfully. Therefore, the state shown in graph (a) is considered safe.
+
+   **Definition:** If no deadlock occurs, and even if all processes suddenly request their maximum demand for resources, there still exists a scheduling sequence that allows each process to complete, then the state is considered safe.
+
+   Safety state detection is similar to deadlock detection because a safe state must ensure that deadlocks do not occur. The following Banker's algorithm is similar to deadlock detection algorithms and can be referenced and compared.
+
+2. **Banker's Algorithm for a Single Resource**
+   - The algorithm involves a banker in a small town who has promised certain loan amounts to a group of customers. The algorithm determines whether satisfying a request will lead to an unsafe state. If it does, the request is denied; otherwise, it is granted.
+   
+   - In the example, graph (c) represents an unsafe state. The algorithm rejects the previous requests to avoid entering the state shown in graph (c).
+
+3. **Banker's Algorithm for Multiple Resources**
+   - The image below has five processes and four resources. The left side represents allocated resources, and the right side represents resources still to be allocated. The rightmost E, P, and A represent: total resources, allocated resources, and available resources, respectively (these are vectors, not specific values, e.g., A=(1 0 2 0) means 1 unit of resource 1, 0 of resource 2, 2 of resource 3, and 0 of resource 4 are available).
+
+   The algorithm to check if a state is safe involves:
+   - Check if there is a row in the right matrix that is less than or equal to vector A. If no such row exists, the system is in an unsafe state, and the request is denied to avoid entering the state.
+   - If such a row is found, mark the process as terminated and add its allocated resources to vector A.
+   - Repeat the above two steps until all processes are marked as terminated. If a state is not safe, requests entering that state are rejected.
+
+---
+
+### **60. Virtual Memory**
+
+The purpose of virtual memory is to extend physical memory into larger logical memory, allowing programs to access more available memory.
+
+To better manage memory, the operating system abstracts memory into an address space. Each program has its own address space, divided into multiple blocks, each called a page. These pages are mapped to physical memory but do not need to be mapped to contiguous physical memory, and not all pages must be in physical memory. When a program references a page not in physical memory, the hardware performs necessary mapping, loads the missing part into physical memory, and re-executes the failed instruction.
+
+From the description above, virtual memory allows programs to not map every page in the address space to physical memory. This means a program doesn't need to be entirely loaded into memory to run, making it possible to run large programs with limited memory. For example, a computer with a 16-bit address can generate a range of 0 to 64K for a program's address space. If the computer has only 32KB of physical memory, virtual memory allows it to run a program of size 64K.
+
+### **61. Paging System Address Mapping**
+
+The Memory Management Unit (MMU) manages the translation between the address space and physical memory, with the Page table storing the mapping of pages (program address space) and page frames (physical memory space).
+
+A virtual address is split into two parts: one part stores the page number, and the other part stores the offset.
+
+In the page table below, there are 16 pages, and these 16 pages need 4 bits for indexing. For example, for the virtual address (0010 000000000100), the first 4 bits store the page number 2. Reading the table entry gives (110 1), where the last bit of the page table entry indicates whether it exists in memory, with 1 indicating existence. The next 12 bits store the offset. The address of the page corresponding to this page frame is (110 000000000100).
+
+---
+
+### **62. Page Replacement Algorithms**
+
+During program execution, if the page to be accessed is not in memory, a page fault occurs, and the page is brought into memory. If there's no free space in memory, the system must swap out a page to the disk swap area to free up space.
+
+Page replacement algorithms are similar to cache eviction policies, considering memory as a cache for the disk. In a cache system, when new data arrives, some existing cache needs to be evicted to make space for new data.
+
+The main goal of page replacement algorithms is to minimize the page replacement frequency (or minimize the page fault rate).
+
+1. **Optimal Replacement Algorithm (OPT)**
+   - The selected page to be replaced is the one that will not be accessed for the longest time. It typically ensures the lowest page fault rate. It's a theoretical algorithm because it's impossible to know how long a page won't be accessed.
+
+   **Example:** A system allocates three physical blocks for a process with the following page reference sequence: 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1. Initially, pages 7, 0, 1 are loaded into memory. When the process wants to access page 2, a page fault occurs, and page 7 is swapped out because it has the longest time until it will be accessed again.
+
+2. **Least Recently Used (LRU)**
+   - Although we can't predict future page usage, we can know past page usage. LRU replaces the page that has been least recently used.
+
+   To implement LRU, a list of all pages needs to be maintained in memory. When a page is accessed, it is moved to the head of the list. This ensures that the page at the tail of the list is the least recently accessed.
+
+   **Example:** Page reference sequence: 4, 7, 0, 7, 1, 0, 1, 2, 1, 2, 6
+
+3. **Not Recently Used (NRU)**
+   - Each page has two status bits: R (Referenced) and M (Modified). When a page is accessed, R is set to 1. R bits are cleared periodically. Pages are categorized based on R and M bits into four classes:
+
+      R=0, M=0
+      R=0, M=1
+      R=1, M=0
+      R=1, M=1
+
+   When a page fault occurs, NRU randomly selects a page from the smallest non-empty class to be replaced. NRU prioritizes replacing dirty pages (R=0, M=1) over frequently used clean pages (R=1, M=0).
+
+4. **First In First Out (FIFO)**
+   - FIFO replaces the page that entered memory first. This algorithm may replace frequently accessed pages, leading to an increased page fault rate.
+
+5. **Clock Algorithm**
+   - The FIFO algorithm may replace frequently used pages. To avoid this, a simple modification to FIFO is made:
+
+      - When a page is accessed (read or write), set its R bit to 1.
+      - When a replacement is needed, check the R bit of the oldest page. If the R bit is 0, immediately replace that page. If it is 1, clear the R bit, move the page to the end of the list, update its load time to make it appear freshly loaded, and continue searching from the head of the list.
+
+These are common page replacement algorithms, each with its advantages and disadvantages. The choice of which algorithm to use depends on the specific requirements and characteristics of the system.
+
+---
+
+### **63. Segmentation**
+
+While virtual memory utilizes paging, which involves dividing the address space into fixed-sized pages mapped to memory, segmentation is another approach. In segmentation, the address space is divided into segments, each representing an independent address space. Unlike paging, the size of each segment can vary, and segments can dynamically grow.
+
+The diagram below illustrates multiple tables created by a compiler during the compilation process. Four of these tables dynamically grow. If a one-dimensional address space of a paging system were used, the dynamic growth could lead to overlay issues.
+
+[Diagram: Compiler Tables with Segmentation]
+
+Segmentation addresses this by dividing each table into segments, with each segment forming an independent address space. Segments can have different lengths and dynamically grow as needed.
+
+Segmentation provides a more flexible memory management approach, accommodating varying sizes and dynamic growth requirements for different segments.
+
+---
+### **64. Segmentation with Paging**
+
+The address space of a program is divided into segments, each having an independent address space. The address space within each segment is further divided into pages of equal size. This approach combines the benefits of segmentation, providing shared and protected segments, with the virtual memory capabilities of paging.
+
+---
+
+### **65. Comparison between Paging and Segmentation**
+
+1. **Transparency to Programmers:**
+   - Paging: Transparent; programmers don't need to explicitly divide segments.
+   - Segmentation: Requires explicit segmentation by programmers.
+
+2. **Address Space Dimension:**
+   - Paging: One-dimensional address space.
+   - Segmentation: Two-dimensional address space.
+
+3. **Changeability of Size:**
+   - Paging: Page size is fixed and cannot be changed.
+   - Segmentation: Segment size can dynamically change.
+
+4. **Purpose:**
+   - Paging: Primarily for implementing virtual memory, providing a larger address space.
+   - Segmentation: Enables logical separation of programs and data for sharing and protection.
+
+---
+
+### **66. Disk Structure**
+
+- **Platter:** A disk has multiple platters.
+- **Track:** Circular bands on a platter; a platter can have multiple tracks.
+- **Track Sector (or Sector):** A portion of a track; a track can have multiple sectors. It is the smallest physical storage unit, typically 512 bytes or 4 K.
+- **Head:** Positioned close to the platter, converts magnetic fields to electrical signals (read) or vice versa (write).
+- **Actuator Arm:** Moves the head between tracks.
+- **Spindle:** Rotates the entire platter.
+
+---
+
+### **67. Disk Scheduling Algorithms**
+
+Factors affecting the time to read or write a disk block include:
+- Rotation time (spinning the spindle to position the head over the appropriate sector)
+- Seek time (moving the actuator arm to position the head over the appropriate track)
+- Actual data transfer time
+
+Among these, seek time is usually the longest, so disk scheduling aims to minimize the average seek time.
+
+1. **First Come First Served (FCFS):**
+   - Schedule requests in the order they arrive.
+
+2. **Shortest Seek Time First (SSTF):**
+   - Prioritize scheduling the track closest to the current head position.
+
+   While SSTF reduces the average seek time, it may lead to starvation for requests at the extremes of the disk if newer requests are consistently closer.
+3. **Elevator Algorithm (SCAN):**
+   - The elevator always maintains a direction of movement until there are no requests in that direction, then it changes direction.
+   - The disk scheduling algorithm (SCAN algorithm) operates similarly to the elevator's process. It performs disk scheduling in one direction until there are no pending disk requests in that direction, then changes the direction.
+
+   This algorithm considers the direction of movement, ensuring that all disk requests are satisfied and addressing the starvation issue observed in SSTF.
+
+---
+
+### **68. Compilation System**
+
+In a compilation system, the process of transforming a source file into an executable involves several stages. Let's take the example of a simple `hello.c` program compiled on a Unix system:
+
+**hello.c:**
+```c
+    #include <stdio.h>
+
+    int main()
+    {
+        printf("hello, world\n");
+        return 0;
+    }
+```
+Compilation Process:
+    gcc -o hello hello.c
+
+The compilation process can be summarized as:
+
+- **Preprocessing Stage:**
+  - Handle `#` directives.
+  - Expand macros and include header files.
+  - Generate preprocessed source code.
+
+- **Compilation Stage:**
+  - Translate source code to assembly code.
+  - Produce an intermediate assembly file.
+
+- **Assembly Stage:**
+  - Translate assembly code to relocatable object code.
+  - Generate a relocatable object file (e.g., `hello.o`).
+
+- **Linking Stage:**
+  - Combine object files (e.g., `hello.o`) with external libraries.
+  - Resolve external symbol references.
+  - Produce the final executable file (e.g., `hello`).
+
+This process transforms high-level source code into machine-executable instructions, involving preprocessing, compilation, assembly, and linking stages.
+
+---
+
+### **69. Static Linking**
+A static linker takes a set of relocatable object files as input and produces a fully linked executable object file as output. The linker primarily performs the following two tasks:
+
+1. Symbol Resolution: Each symbol corresponds to a function, a global variable, or a static variable. The purpose of symbol resolution is to associate each symbol reference with a symbol definition.
+
+2. Relocation: The linker associates each symbol definition with a memory location by modifying all references to these symbols to point to this memory location.
+
+---
+### **70. Object Files**
+- **Executable Object File:** Can be directly executed in memory.
+- **Relocatable Object File:** Can be merged with other relocatable object files during the linking stage to create an executable object file.
+- **Shared Object File:** A special type of relocatable object file that can be dynamically loaded into memory and linked during runtime.
+
+---
+
+### **71. Dynamic Linking**
+Static libraries have two main issues:
+1. When a static library is updated, the entire program needs to be relinked.
+2. For standard function libraries like `printf`, if each program has its own code, it would lead to significant resource wastage.
+
+Shared libraries are designed to address these issues. In Linux systems, they are usually indicated by the `.so` extension, while on Windows systems, they are known as DLLs. They have the following characteristics:
+- In a given file system, a library exists as a single file shared by all executable object files referencing it. It is not duplicated into each executable file.
+- In memory, a copy of the `.text` section (compiled machine code) of a shared library can be shared by different running processes.
+
+---
+
+### **72. Basic Concepts**
+1. **Message Format**
+   - **Request Message:**
+     - The first line includes the request method, URL, and protocol version.
+     - The following lines are request headers, each with a header name and corresponding value.
+     - An empty line separates headers from the message body.
+     - The last part is the request's content body.
+
+   - **Response Message:**
+     - The first line contains the protocol version, status code, and description. The most common is `200 OK` indicating a successful request.
+     - The following lines are headers.
+     - An empty line separates headers from the message body.
+     - The last part is the response's content body.
+
+2. **URL (Uniform Resource Locator)**
+   - HTTP uses URLs to locate resources. URLs are a subset of URIs (Uniform Resource Identifiers) with added locating capabilities. URIs also include URNs (Uniform Resource Names), which define a resource's name without the ability to locate it. For example, `urn:isbn:0451450523` defines a book's name but doesn't specify how to find the book.
+
+---
+
+### **73. HTTP Methods**
+When a client sends a [request message](#message-format), the first line of the request is the request line, which includes the method field.
+
+1. **GET**
+   - Retrieves a resource.
+   - The most commonly used method in current network requests.
+
+2. **HEAD**
+   - Retrieves only the message headers.
+   - Similar to GET but does not return the entity body.
+   - Primarily used to confirm the validity of a URL and obtain information like the last modification date.
+
+3. **POST**
+   - Transfers the entity body.
+   - Mainly used for data transmission, in contrast to GET that is primarily used for resource retrieval.
+
+4. **PUT**
+   - Uploads a file.
+   - Due to the lack of inherent authentication, anyone can upload a file, posing security concerns. Generally not used extensively.
+
+5. **PATCH**
+   - Partially modifies a resource.
+   - While PUT can also be used for modification, it completely replaces the original resource, whereas PATCH allows partial modifications.
+
+6. **DELETE**
+   - Deletes a file.
+   - Opposite functionality to PUT and also lacks inherent authentication.
+
+   Example:
+   ```html
+   DELETE /file.html HTTP/1.1
+
+7. **OPTIONS**
+   - Queries supported methods for a resource.
+   - Retrieves the methods supported by the specified URL.
+   - Returns something like `Allow: GET, POST, HEAD, OPTIONS`.
+
+8. **CONNECT**
+   - Requests the establishment of a tunnel when communicating through a proxy.
+   - Uses SSL (Secure Sockets Layer) and TLS (Transport Layer Security) protocols to encrypt communication content before transmission through a network tunnel.
+
+   Example:
+   ```html
+   CONNECT www.example.com:443 HTTP/1.1
+
+9. **TRACE**
+   - Traces the communication path.
+   - The server returns the communication path to the client.
+   - When sending a request, a numeric value is placed in the Max-Forwards header field. It decreases by 1 for each server it passes through, and when the value is 0, the transmission stops.
+   - TRACE is generally not used extensively and is susceptible to Cross-Site Tracing (XST) attacks.
+
+---
+
+### **74. HTTP Status Codes**
+
+When a server returns a [response message](#message-format), the first line of the response is the status line, which includes the status code and the reason phrase to inform the client about the result of the request.
+
+**Status Codes by Categories:**
+- **1XX Informational:** Indicates that the received request is being processed.
+- **2XX Success:** Indicates that the request was successfully processed.
+- **3XX Redirection:** Indicates additional action is needed to complete the request.
+- **4XX Client Error:** Indicates that the server cannot process the request.
+- **5XX Server Error:** Indicates that the server encountered an error while processing the request.
+
+1. **1XX Informational**
+   - **100 Continue:** Indicates that everything is normal so far, and the client can continue to send the request or ignore this response.
+
+2. **2XX Success**
+   - **200 OK:** Indicates that the request was successful.
+   - **204 No Content:** Indicates that the request was successful, but the response message does not contain a body. Typically used when only sending information from the client to the server without expecting data in return.
+   - **206 Partial Content:** Indicates that the client has made a range request, and the response contains the content in the specified range.
+
+3. **3XX Redirection**
+   - **301 Moved Permanently:** Indicates permanent redirection.
+   - **302 Found:** Indicates temporary redirection.
+   - **303 See Other:** Similar to 302 but explicitly instructs the client to use the GET method to retrieve the resource.
+
+   Note: Although HTTP protocol states that in 301, 302 redirects, the POST method should not be changed to GET, most browsers will change POST to GET in these cases.
+
+   - **304 Not Modified:** If the request headers contain certain conditions (e.g., If-Match, If-Modified-Since, If-None-Match, If-Range, If-Unmodified-Since), and the conditions are not met, the server returns 304.
+   - **307 Temporary Redirect:** Temporary redirection, similar to 302, but 307 instructs the browser not to change the POST method to GET during redirection.
+
+4. **4XX Client Error**
+   - **400 Bad Request:** Indicates a syntax error in the request message.
+   - **401 Unauthorized:** Requires authentication information. If a previous request has been made, it indicates authentication failure.
+   - **403 Forbidden:** The request is refused.
+   - **404 Not Found:** The requested resource is not found.
+
+5. **5XX Server Error**
+   - **500 Internal Server Error:** Indicates an error occurred on the server while processing the request.
+   - **503 Service Unavailable:** The server is temporarily overloaded or undergoing maintenance and cannot handle the request at the moment.
+
+---
+
+### **75. HTTP Headers**
+
+There are four types of header fields in HTTP: general headers, request headers, response headers, and entity headers. Below are various header fields and their meanings (you don't need to memorize all of them, just for reference):
+
+### 1. General Headers
+
+| Header Field        | Description                                |
+|---------------------|--------------------------------------------|
+| Cache-Control       | Control caching behavior                   |
+| Connection          | Control forwarding of headers, manage persistent connections |
+| Date                | Creation date and time of the message      |
+| Pragma              | Message directives                         |
+| Trailer             | A list of header fields at the message's end |
+| Transfer-Encoding   | Specify the transfer encoding of the message body |
+| Upgrade             | Upgrade to another protocol                |
+| Via                 | Information about proxies involved in the request/response chain |
+| Warning             | Warning messages about potential issues    |
+
+### 2. Request Headers
+
+| Header Field         | Description                                |
+|----------------------|--------------------------------------------|
+| Accept               | Media types that the user agent can handle |
+| Accept-Charset       | Preferred character set                    |
+| Accept-Encoding      | Preferred content encoding                |
+| Accept-Language      | Preferred language (natural language)      |
+| Authorization        | Web authentication information             |
+| Expect               | Specific behaviors expected from the server |
+| From                 | User's email address                       |
+| Host                 | Server hosting the resource                |
+| If-Match             | Comparison of entity tags (ETags)         |
+| If-Modified-Since    | Comparison of resource modification times |
+| If-None-Match        | Comparison of entity tags (opposite of If-Match) |
+| If-Range             | Range request if resource has been updated |
+| If-Unmodified-Since  | Comparison of resource modification times (opposite of If-Modified-Since) |
+| Max-Forwards         | Maximum number of hops                      |
+| Proxy-Authorization | Authentication information for the proxy  |
+| Range                | Byte range request for a partial entity   |
+| Referer              | Original referring URI in the request     |
+| TE                   | Priority of transfer encodings             |
+| User-Agent           | Information about the HTTP client program |
+
+### 3. Response Headers
+
+| Header Field          | Description                                |
+|-----------------------|--------------------------------------------|
+| Accept-Ranges         | Whether the server supports byte range requests |
+| Age                   | Time elapsed since the resource was created |
+| ETag                  | Matching information for the resource      |
+| Location              | URI to redirect the client to              |
+| Proxy-Authenticate    | Proxy server authentication information    |
+| Retry-After           | When to retry the request                  |
+| Server                | Information about the server installation  |
+| Vary                  | Cache management information for proxies  |
+| WWW-Authenticate      | Server authentication information for the client |
+
+### 4. Entity Headers
+
+| Header Field           | Description                                |
+|------------------------|--------------------------------------------|
+| Allow                  | Supported HTTP methods by the resource     |
+| Content-Encoding      | Encoding of the message body               |
+| Content-Language      | Natural language of the message body       |
+| Content-Length        | Size of the message body                   |
+| Content-Location      | Alternate URI for the resource             |
+| Content-MD5           | MD5 digest of the message body             |
+| Content-Range         | Byte range of the message body             |
+| Content-Type          | Media type of the message body             |
+| Expires               | Expiry date and time of the message        |
+| Last-Modified         | Last modification date and time of the resource |
+
+---
+
+### **76. Cookie Usage**
+
+Cookies are commonly used for various purposes, including:
+
+- Session state management (e.g., user login status, shopping carts, game scores, or any information that needs to be recorded).
+- Personalized settings (e.g., user-customized preferences, themes, etc.).
+- Browser behavior tracking (e.g., analyzing user behavior).
+
+---
+
+### **77. Cookie Creation Process**
+
+The creation process involves the server sending a response containing the Set-Cookie header field. Upon receiving the response, the client stores the cookie information in the browser.
+
+**Example:**
+```http
+HTTP/1.0 200 OK
+Content-type: text/html
+Set-Cookie: yummy_cookie=choco
+Set-Cookie: tasty_cookie=strawberry
+```
+
+Subsequently, when the client sends another request to the same server, it retrieves the stored cookie information from the browser and includes it in the Cookie request header field.
+
+**Example:**
+```http
+GET /sample_page.html HTTP/1.1
+Host: www.example.org
+Cookie: yummy_cookie=choco; tasty_cookie=strawberry
+```
+---
+### **78. Cookie Classification**
+
+Cookies can be classified into:
+
+- **Session Cookies:** Automatically deleted when the browser is closed, i.e., they are only valid during the session.
+  
+- **Persistent Cookies:** Have a specified expiration time (Expires) or validity period (max-age) and become persistent cookies after that.
+
+---
+
+### **79. Cookie Scope**
+
+- **Domain:** Identifies which hosts can accept the cookie. If not specified, it defaults to the current document's host (excluding subdomains). If specified, it generally includes subdomains. For example, if set to Domain=mozilla.org, the cookie is included in subdomains (e.g., developer.mozilla.org).
+
+- **Path:** Specifies which paths on the host can accept the cookie (the URL path must be present in the request URL). Subpaths are also matched. For instance, setting Path=/docs would match paths like /docs, /docs/Web/, and /docs/Web/HTTP.
+
+---
+### **80. JavaScript and Cookies**
+
+Browsers can create new cookies and access non-HttpOnly cookies using the `document.cookie` property in JavaScript.
+
+**Example:**
+
+```javascript
+document.cookie = "yummy_cookie=choco";
+document.cookie = "tasty_cookie=strawberry";
+console.log(document.cookie);
+```
+---
+### **81. HttpOnly**
+
+Cookies marked as HttpOnly cannot be accessed by JavaScript scripts. Cross-Site Scripting (XSS) attacks often exploit JavaScript's `document.cookie` API to steal user cookie information. Therefore, using the HttpOnly flag can help mitigate XSS attacks to some extent.
+
+**Example:**
+
+```http
+Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly
+```
+---
+
+### **82. Secure**
+
+Cookies marked as `Secure` can only be sent to the server over an HTTPS-encrypted connection. However, even with the `Secure` flag, sensitive information should not be transmitted through cookies as cookies inherently have security vulnerabilities. The `Secure` flag cannot guarantee absolute security.
+
+---
+
+### **83. Session**
+
+Apart from storing user information in cookies on the user's browser, session data can also be stored on the server-side for increased security.
+
+Session data can be stored on the server in files, databases, or memory. It can also be stored in memory databases like Redis for higher efficiency.
+
+The process of maintaining user login status using sessions is as follows:
+
+1. When a user logs in, the user submits a form containing the username and password, included in the HTTP request.
+2. The server verifies the username and password. If correct, the user information is stored in Redis, and its key in Redis is known as the Session ID.
+3. The Set-Cookie header in the server's response contains this Session ID. The client stores this cookie value in the browser.
+4. Subsequent requests to the same server from the client will include this cookie value. The server extracts the Session ID, retrieves user information from Redis, and continues with business operations.
+
+Ensure Session ID security to prevent easy access by malicious attackers. It should not be easily guessable, and it's crucial to frequently regenerate Session IDs. In scenarios demanding high security, such as financial transactions, user revalidation is necessary, like re-entering a password or using methods like SMS verification.
+
+---
+
+### **84. Browser Disable Cookie**
+
+In scenarios where cookies are disabled, and Cookie cannot be used to store user information, only sessions can be utilized. In such cases, Session ID should not be stored in a cookie. Instead, URL rewriting is employed, passing the Session ID as a parameter in the URL.
+
+---
+
+### **85. Browser Disable Cookie (Duplicate Entry)**
+
+When cookies are disabled, preventing the use of cookies to store user information, only sessions are available. In addition, Session ID should not be stored in a cookie. Instead, URL rewriting is used to pass the Session ID as a parameter in the URL.
+
+Feel free to use or modify this content. If you have more questions or need further assistance, let me know!
+
+---
+
+### **86. Advantages**
+
+- **Alleviates Server Load:**
+  - Helps ease the pressure on servers.
+
+- **Reduces Client Resource Retrieval Latency:**
+  - Caches are often located in memory, providing faster read access.
+  - Cache servers may also be geographically closer to clients than the source server, reducing latency (e.g., browser cache).
+
+### **87. Implementation Methods**
+
+- **Proxy Server Caching:**
+  - Delegate caching responsibilities to a proxy server.
+
+- **Client Browser Caching:**
+  - Utilize caching mechanisms within the client's browser.
+
+### **88. Cache-Control**
+
+HTTP/1.1 controls caching through the Cache-Control header.
+
+1. Disable caching
+   - The `no-store` directive specifies that no part of the request or response should be cached.
+
+   Cache-Control: no-store
+
+2. Force revalidation of the cache
+   - The `no-cache` directive specifies that the caching server must validate the cache resource with the origin server before responding to the client's request. The cache can only be used if the resource is valid.
+
+   Cache-Control: no-cache
+
+3. Private and public caching
+   - The `private` directive designates the resource as a private cache, accessible only to a single user and usually stored in the user's browser.
+   - The `public` directive designates the resource as a public cache, accessible to multiple users and typically stored on a proxy server.
+
+   Cache-Control: private
+
+   Cache-Control: public
+
+4. Cache expiration mechanism
+   - The `max-age` directive appears in the request message, allowing acceptance of the cache if the cache resource's caching time is less than the specified time.
+   - The `max-age` directive in the response message indicates the time the cache resource is saved in the caching server.
+
+   Cache-Control: max-age=31536000
+
+   - The `Expires` header can also be used to inform the caching server when the resource will expire. In HTTP/1.1, the `max-age` directive takes precedence; in HTTP/1.0, the `max-age` directive is ignored.
+
+   Expires: Wed, 04 Jul 2012 08:26:05 GMT
+
+---
+### **89. Cache Validation**
+
+To understand cache validation, it is necessary to grasp the meaning of the ETag header field, which serves as a unique identifier for a resource. URLs cannot uniquely represent resources; for example, http://www.google.com/ may have both Chinese and English versions of a resource, and only the ETag can uniquely identify these two resources.
+
+ETag: "82e22293907ce725faf67773957acd12"
+
+The ETag value of a cached resource can be placed in the If-None-Match header. Upon receiving this request, the server compares the ETag value of the cached resource with the latest ETag value of the resource. If they match, it indicates the cached resource is valid, and the server responds with a 304 Not Modified status.
+
+If-None-Match: "82e22293907ce725faf67773957acd12"
+
+The Last-Modified header field can also be used for cache validation. It is included in the response message sent by the origin server, indicating the last modification time of the resource. However, it is a weak validator as it only provides accuracy up to one second. Therefore, it is often considered as a backup to the ETag. If this information is present in the response header, the client can include If-Modified-Since in subsequent requests to validate the cache. The server will only return the resource if it has been modified since the specified date and time, with a status code of 200 OK. If the requested resource has not been modified since then, a 304 Not Modified response message without an entity body is returned.
+
+Last-Modified: Wed, 21 Oct 2015 07:28:00 GMT
+
+---
+
+### **90. Concepts**
+
+HTTP faces the following security issues:
+
+1. Communication in plaintext, making the content susceptible to eavesdropping.
+2. Lack of authentication for communication parties, making them susceptible to impersonation.
+3. Inability to prove the integrity of messages, making them susceptible to tampering.
+
+HTTPS is not a new protocol but rather allows HTTP to communicate with SSL (Secure Sockets Layer). HTTPS involves communication through a tunnel where HTTP communicates with SSL, which, in turn, communicates with TCP. In other words, HTTPS uses a tunnel for communication.
+
+By utilizing SSL, HTTPS gains encryption (preventing eavesdropping), authentication (preventing impersonation), and integrity protection (preventing tampering).
+
+---
+
+### **91. Encryption**
+
+1. **Symmetric-Key Encryption**
+   - Symmetric-Key Encryption uses the same key for both encryption and decryption.
+   - Pros: Fast computation.
+   - Cons: Unable to securely transmit the key to communication parties.
+
+2. **Asymmetric-Key Encryption**
+   - Asymmetric-Key Encryption, also known as Public-Key Encryption, uses different keys for encryption and decryption.
+   - Anyone can obtain the public key. The sender encrypts the message using the recipient's public key, and the recipient decrypts it using their private key.
+   - Asymmetric keys can also be used for signatures. The sender signs the message with their private key, and the recipient uses the sender's public key to verify the signature.
+   - Pros: Secure transmission of public keys; however, slower computation.
+   - Cons: Slow computation.
+
+3. **Encryption Methods Used by HTTPS**
+   - While symmetric-key encryption is more efficient for transmission, securely transmitting the secret key (Secret Key) is a challenge. Asymmetric-key encryption ensures the security of transmission. Hence, HTTPS employs a hybrid encryption mechanism:
+
+     - Utilizes asymmetric-key encryption to transmit the Secret Key required for symmetric-key encryption securely.
+     - After obtaining the Secret Key, communication occurs using symmetric-key encryption for efficiency. (The "Session Key" in the diagram below is the Secret Key.)
+
+---
+
+### **92. Authentication**
+
+Authentication of communication parties is achieved through the use of certificates.
+
+A Certificate Authority (CA) is a trusted third-party entity for both the client and server.
+
+When server operators apply for a public key from the CA, the CA, after verifying the applicant's identity, digitally signs the applied public key. The signed public key is then assigned and bound to a public key certificate.
+
+During HTTPS communication, the server sends the certificate to the client. Upon obtaining the public key from it, the client verifies the digital signature first. If the verification is successful, communication can proceed.
+
+---
+
+### **93. Integrity Protection**
+
+SSL provides a message digest feature to ensure integrity protection.
+
+While HTTP also offers MD5 message digest functionality, it is not secure. For instance, if the message content is tampered with and the MD5 value is recalculated, the communication recipient cannot detect the tampering.
+
+The security of HTTPS's message digest functionality stems from its combination of encryption and authentication operations. Consider encrypted messages that, if tampered with, are challenging to recalculate the message digest since obtaining the plaintext is not straightforward.
+
+---
+
+### **94. Drawbacks**
+
+1. Slower Speed:
+   - Due to the need for encryption and decryption processes, the speed is relatively slower.
+
+2. High Certificate Authorization Costs:
+   - There is a requirement to pay high fees for certificate authorization.
+
+---
+### **95. Comparison of GET and POST**
+
+1. **Purpose**
+   - GET is used to retrieve resources, while POST is used to transmit entity bodies.
+
+2. **Parameters**
+   - Both GET and POST requests can use additional parameters. However, GET parameters appear in the URL as a query string, whereas POST parameters are stored in the entity body. Storing POST parameters in the entity body doesn't necessarily make it more secure, as they can still be viewed using packet capture tools (such as Fiddler).
+
+   - Because URLs only support ASCII characters, Chinese characters in GET parameters need to be encoded. For example, "中文" would be converted to "%E4%B8%AD%E6%96%87," and spaces would be converted to "%20." POST parameters support standard character sets.
+
+3. **Security**
+   - Secure HTTP methods do not alter the server's state, meaning they are read-only.
+
+   - GET is a secure method, while POST is not, as the purpose of POST is to transmit the content of the entity body. After a successful upload, the server may store this data in the database, resulting in a change of state.
+
+   - Other secure methods besides GET include HEAD and OPTIONS.
+
+   - Other insecure methods besides POST include PUT and DELETE.
+
+4. **Idempotence**
+   - Idempotent HTTP methods produce the same result whether executed once or multiple times. In other words, idempotent methods should not have side effects (except for statistical purposes).
+
+   - All secure methods are idempotent.
+
+   - Under correct implementation conditions, GET, HEAD, PUT, and DELETE methods are idempotent, while POST is not.
+   GET /test/demo_form.asp?name1=value1&name2=value2 HTTP/1.1
+
+    POST /test/demo_form.asp HTTP/1.1
+    Host: w3schools.com
+    name1=value1&name2=value2
+
+   - `GET /pageX HTTP/1.1` is idempotent; multiple consecutive calls yield the same result.
+    
+    GET /pageX HTTP/1.1
+    GET /pageX HTTP/1.1
+    GET /pageX HTTP/1.1
+    GET /pageX HTTP/1.1
+
+   - `POST /add_row HTTP/1.1` is not idempotent; multiple calls may add multiple rows.
+
+    POST /add_row HTTP/1.1   -> Adds a 1nd row
+    POST /add_row HTTP/1.1   -> Adds a 2nd row
+    POST /add_row HTTP/1.1   -> Adds a 3rd row
+
+ 
+   - `DELETE /idX/delete HTTP/1.1` is idempotent, even if different requests receive     different status codes.
+
+    DELETE /idX/delete HTTP/1.1   -> Returns 200 if idX exists
+    DELETE /idX/delete HTTP/1.1   -> Returns 404 as it just got deleted
+    DELETE /idX/delete HTTP/1.1   -> Returns 404
+
+ 
+5. **Cacheability**
+   - To cache a response, the following conditions must be met:
+     - The HTTP method of the request message itself is cacheable, including GET and HEAD, but not PUT and DELETE. POST is typically not cacheable.
+     - The status code of the response message is cacheable, including 200, 203, 204, 206, 300, 301, 404, 405, 410, 414, and 501.
+     - The Cache-Control header field in the response message does not specify no caching.
+
+6. **XMLHttpRequest**
+   - To illustrate another difference between POST and GET, let's understand XMLHttpRequest:
+     - XMLHttpRequest is an API that provides clients with the ability to transfer data between the client and server. It offers a simple way to retrieve data via URL without refreshing the entire page. This allows updating a portion of the webpage without disturbing the user. XMLHttpRequest is extensively used in AJAX.
+     - When using the POST method with XMLHttpRequest, the browser sends the header first and then the data. However, not all browsers follow this approach; for example, Firefox does not.
+     - For the GET method, the header and data are sent together.
+
+---
+
+### **96. HTTP/2.0**
+
+1. **Deficiencies of HTTP/1.x**
+   - The simplicity of HTTP/1.x comes at the cost of performance:
+     - Clients need multiple connections to achieve concurrency and reduce latency.
+     - Lack of compression for request and response headers leads to unnecessary network traffic.
+     - Ineffective resource prioritization results in low utilization of underlying TCP connections.
+
+2. **Binary Framing Layer**
+   - HTTP/2.0 divides messages into HEADERS frames and DATA frames, both in binary format.
+   - During communication, there is only one TCP connection, carrying any number of bidirectional data streams (Streams).
+   - Each data stream has a unique identifier and optional priority information for handling bidirectional information.
+   - A message is a complete sequence of frames corresponding to a logical request or response.
+   - A frame is the smallest unit of communication. Frames from different data streams can be interleaved and then reassembled based on the data stream identifier in each frame header.
+
+3. **Server Push**
+   - In HTTP/2.0, when a client requests a resource, the server sends related resources to the client, eliminating the need for additional client requests. For example, when a client requests the page.html page, the server sends script.js, style.css, and other related resources together.
+
+4. **Header Compression**
+   - HTTP/1.1 headers contain a significant amount of information, and this information is repeatedly sent each time.
+   - HTTP/2.0 requires clients and servers to maintain and update a header field table containing previously seen headers, avoiding redundant transmissions.
+   - Moreover, HTTP/2.0 uses Huffman coding to compress header fields.
+
+--- 
+
+### **97. New Features in HTTP/1.1**
+
+Detailed information can be found in the preceding text.
+
+- Default is persistent connection.
+- Supports pipelining.
+- Supports opening multiple TCP connections simultaneously.
+- Supports virtual hosting.
+- Introduces the status code 100.
+- Supports chunked transfer encoding.
+- Introduces cache control directive max-age.
+
+---
+
+### **98. Connection Management**
+
+1. **Short Connection vs. Persistent Connection**
+   - When a browser accesses an HTML page containing multiple images, in addition to requesting the HTML page, it also requests image resources. If a new TCP connection is established for each HTTP communication, it incurs significant overhead.
+   - Persistent connections require establishing a TCP connection once and enable multiple HTTP communications.
+   - From HTTP/1.1 onwards, persistent connections are the default. To terminate the connection, it needs to be initiated by the client or server using `Connection: close`.
+   - In HTTP/1.0, short connections were the default, and for persistent connections, `Connection: Keep-Alive` was used.
+
+2. **Pipelining**
+   - By default, HTTP requests are sent sequentially, with the next request being sent only after receiving a response to the current request. Due to network latency and bandwidth limitations, there could be a significant wait time before the next request is sent to the server.
+   - Pipelining involves sending consecutive requests on the same persistent connection without waiting for responses. This reduces latency.
+
+---
+
+### **99. Content Negotiation**
+
+Content negotiation helps return the most suitable content based on factors such as the browser's default language.
+
+1. **Types**
+   1. **Server-Driven**
+      - Clients set specific HTTP header fields such as Accept, Accept-Charset, Accept-Encoding, Accept-Language. Servers return specific resources based on these fields.
+      - Challenges:
+         - Servers find it challenging to know all information about the client's browser.
+         - Client-provided information is quite verbose (addressed by HTTP/2's header compression mechanism), and there's a privacy risk (HTTP fingerprinting technology).
+         - Resources need to be returned in different representations, reducing the efficiency of shared caching, and server-side implementation becomes more complex.
+
+   2. **Agent-Driven**
+      - Servers return 300 Multiple Choices or 406 Not Acceptable. Clients choose the most suitable resource.
+      
+2. **Vary**
+    Vary: Accept-Language
+   - In content negotiation scenarios, a cached response in a caching server can only be used if it satisfies the content negotiation conditions; otherwise, the resource should be requested from the origin server.
+   - For example, if a client sends a request with the Accept-Language header, and the server's response contains Vary: Accept-Language, the caching server will only use the cache if the next client request for the same URL has the matching Accept-Language value.
+---
+
+### **100. Content Encoding**
+
+Content encoding compresses the entity body to reduce the amount of transmitted data.
+
+Common content encodings include gzip, compress, deflate, and identity.
+
+When a browser sends the Accept-Encoding header, it includes supported compression algorithms and their respective priorities. The server then selects one algorithm, compresses the response message body using that algorithm, and sends the Content-Encoding header to inform the browser of the chosen algorithm. Since this content negotiation process is based on the encoding type to select the representation form of the resource, the Vary header field in the response message must include at least Content-Encoding.
+
+--- 
+
+### **101 Range Requests**
+
+If there is a network interruption and the server has only sent a portion of the data, range requests allow the client to request only the portion of data that the server hasn't sent, thus avoiding the need for the server to resend all the data.
+
+1. **Range Request Addition**
+   Add the `Range` header field in the request message to specify the requested range.
+    ```html
+    GET /z4d4kWk.jpg HTTP/1.1
+    Host: i.imgur.com
+    Range: bytes=0-1023
+    ```
+   If the request is successful, the server's response includes the `206 Partial Content` status code.
+    ```html
+    HTTP/1.1 206 Partial Content
+    Content-Range: bytes 0-1023/146515
+    Content-Length: 1024
+    ...
+    (binary content)
+    ```
+2. **Accept-Ranges**
+   The response header field `Accept-Ranges` informs the client whether it can handle range requests. If the server can handle them, it uses `bytes`; otherwise, it uses `none`.
+
+    Accept-Ranges: bytes
+  
+3. **Response Status Codes**
+   - In the case of a successful request, the server returns the `206 Partial Content` status code.
+   - If the requested range is out of bounds, the server returns the `416 Requested Range Not Satisfiable` status code.
+   - If range requests are not supported, the server returns the `200 OK` status code.
+---
+### **102. Chunked Transfer Encoding**
+Chunked Transfer Encoding divides data into multiple chunks, allowing the browser to progressively display the page.
+
+---
+
+### **103. Multipart Content**
+Within a message body, multiple types of entities can be sent simultaneously. Each part is separated by a boundary defined by the `boundary` field, and each part can have its own set of header fields.
+
+For example, when uploading multiple forms, you can use the following format:
+```html
+Content-Type: multipart/form-data; boundary=AaB03x
+
+--AaB03x
+Content-Disposition: form-data; name="submit-name"
+
+Larry
+--AaB03x
+Content-Disposition: form-data; name="files"; filename="file1.txt"
+Content-Type: text/plain
+
+... contents of file1.txt ...
+--AaB03x--
+```
+
+---
+
+### **104. Communication Data Forwarding**
+
+1. **Proxy**
+   A proxy server receives requests from clients and forwards them to other servers.
+
+   The main purposes of using a proxy are:
+   - Caching
+   - Load balancing
+   - Network access control
+   - Access log recording
+
+   Proxies are divided into two types: forward proxy and reverse proxy:
+   - Users are aware of the existence of a forward proxy.
+   - A reverse proxy is typically located within the internal network, and users are not aware of its presence.
+
+2. **Gateway**
+   Unlike a proxy server, a gateway server translates HTTP into other protocols for communication, enabling it to request services from non-HTTP servers.
+
+3. **Tunnel**
+   Using encryption methods like SSL, a secure communication channel is established between the client and the server.
+
+---
+### **105. Basics**
+
+A schema defines how data is stored, what type of data is stored, and how data is decomposed. Both databases and tables have schemas.
+
+The values of primary keys are not allowed to be modified, and they cannot be reused (the primary key values of deleted rows cannot be assigned to new data rows).
+
+SQL (Structured Query Language), standardized by the ANSI committee, is known as ANSI SQL. Each DBMS has its own implementation, such as PL/SQL, Transact-SQL, etc.
+
+SQL statements are case-insensitive, but whether database table names, column names, and values are case-sensitive depends on the specific DBMS and its configuration.
+
+- SQL supports the following three types of comments:
+    SELECT *
+    FROM mytable; -
+- Database creation and usage:
+    CREATE DATABASE test;
+    USE test;
+
+---
+### **106. Creating Tables**
+```sql
+  CREATE TABLE mytable (
+  # int
+  id INT NOT NULL AUTO_INCREMENT,
+  # int 
+  col1 INT NOT NULL DEFAULT 1,
+  col2 VARCHAR(45) NULL,
+  col3 DATE NULL,
+  PRIMARY KEY (`id`));
+```
+---
+## 107. Modify Table
+Add Column
+```sql
+ALTER TABLE mytable
+ADD col CHAR(20);
+```
+Drop Column
+```sql
+ALTER TABLE mytable
+DROP COLUMN col;
+```
+Drop Table
+```sql
+DROP TABLE mytable;
+```
+---
+## 108. Inserting Data
+Regular Insertion
+```sql
+INSERT INTO mytable(col1, col2)
+VALUES(val1, val2);
+```
+Inserting Retrieved Data
+```sql
+INSERT INTO mytable1(col1, col2)
+SELECT col1, col2
+FROM mytable2;
+```
+Copying Contents of One Table to a New Table
+```sql
+CREATE TABLE newtable AS
+SELECT * FROM mytable;
+```
+---
+### **109. Updating Data**
+Update Specific Row
+```sql
+UPDATE mytable
+SET col = val
+WHERE id = 1;
+```
+---
+### **110. Deleting Data**
+Delete Specific Row
+```sql
+DELETE FROM mytable
+WHERE id = 1;
+```
+Truncate Table
+```sql
+TRUNCATE TABLE mytable;
+```
+When using UPDATE and DELETE operations, it's crucial to use the WHERE clause to avoid damaging the entire table. You can perform a test using SELECT statements first to prevent accidental data deletion.
+
+---
+
+### **111. Querying Data**
+Distinct Values
+```sql
+SELECT DISTINCT col1, col2
+FROM mytable;
+```
+Limiting Rows Returned
+Return the first 5 rows:
+```sql
+SELECT *
+FROM mytable
+LIMIT 5;
+```
+Return rows 3 to 5:
+```sql
+SELECT *
+FROM mytable
+LIMIT 2, 3;
+```
+---
+
+### **112. Sorting Data**
+Ascending and Descending Order
+```sql
+SELECT *
+FROM mytable
+ORDER BY col1 DESC, col2 ASC;
+```
+ASC: Ascending (Default)
+DESC: Descending
+
+You can sort by multiple columns and specify different sorting orders for each column.
+
+---
+
+### **113. Filtering Data**
+Filtering data directly in SQL is preferable to transferring unnecessary data over the network, which can lead to wasted bandwidth. Utilize SQL statements to filter data, avoiding the transmission of all data to the client for filtering.
+Filtering by NULL Values
+```sql
+SELECT *
+FROM mytable
+WHERE col IS NULL;
+```
+The following table shows the operators available in the WHERE clause:
+
+Operator	Description
+=	Equal
+<	Less than
+>	Greater than
+<> !=	Not equal
+<= !>	Less than or equal
+>= !<	Greater than or equal
+BETWEEN	Between two values
+IS NULL	NULL value
+Note that NULL is distinct from 0 and an empty string.
+
+Use AND and OR to connect multiple filtering conditions. AND is processed with higher priority. When dealing with multiple AND and OR in a filtering expression, parentheses () can be used to determine priority and clarify the relationship.
+
+The IN operator is used to match a set of values, and it can also take a SELECT clause to match a set of values from a subquery.
+
+The NOT operator is used to negate a condition.
+
+---
+### **114. Wildcards**
+Wildcards are used in filtering statements and are specifically applicable to text fields.
+
+`%` matches zero or more arbitrary characters.
+`_` matches exactly one arbitrary character.
+`[ ]` can match characters within a set, e.g., `[ab]` matches either 'a' or 'b'. The caret (^) inside negates the set, meaning it doesn't match characters in the set.
+Use the `LIKE` keyword for wildcard matching.
+
+```sql
+SELECT *
+FROM mytable
+WHERE col LIKE '[^AB]%'; -- Any text not starting with A or B
+```
+Avoid overusing wildcards, as matching at the beginning can be slow.
+
+---
+
+### **115. Calculating Fields**
+Performing data transformation and formatting on the database server is often much faster than on the client side. Additionally, reducing the amount of data through conversion and formatting can minimize network communication.
+
+Calculation fields typically require the use of AS to provide an alias; otherwise, the output will use the calculation expression as the field name.
+
+Basic Calculation
+
+```sql
+SELECT col1 * col2 AS alias
+FROM mytable;
+```
+Concatenating Fields
+The CONCAT() function is used to concatenate two fields. Many databases use spaces to pad a value to the column width, so unnecessary spaces may appear in the concatenated result. Using TRIM() can remove leading and trailing spaces.
+```sql
+SELECT CONCAT(TRIM(col1), '(', TRIM(col2), ')') AS concat_col
+FROM mytable;
+```
+---
+### **116. Functions in MySQL**
+
+## Aggregation
+| Function | Description                   |
+|----------|-------------------------------|
+| AVG()    | Returns the average value of a column |
+| COUNT()  | Returns the number of rows in a column |
+| MAX()    | Returns the maximum value in a column |
+| MIN()    | Returns the minimum value in a column |
+| SUM()    | Returns the sum of values in a column |
+
+*Note: AVG() ignores NULL rows. Use DISTINCT to aggregate distinct values.*
+
+## Text Processing
+| Function | Description                   |
+|----------|-------------------------------|
+| LEFT()   | Returns the leftmost characters of a string |
+| RIGHT()  | Returns the rightmost characters of a string |
+| LOWER()  | Converts a string to lowercase |
+| UPPER()  | Converts a string to uppercase |
+| LTRIM()  | Removes leading spaces from a string |
+| RTRIM()  | Removes trailing spaces from a string |
+| LENGTH() | Returns the length of a string |
+| SOUNDEX()| Converts a string to a phonetic representation |
+
+*Note: SOUNDEX() can convert a string into an alphanumeric pattern describing its phonetic representation.*
+
+## Date and Time Processing
+- Date Format: YYYY-MM-DD
+- Time Format: HH:MM:SS
+
+| Function     | Description                   |
+|--------------|-------------------------------|
+| ADDDATE()    | Adds a specified period to a date (days, weeks, etc.) |
+| ADDTIME()    | Adds a specified period to a time (hours, minutes, etc.) |
+| CURDATE()    | Returns the current date       |
+| CURTIME()    | Returns the current time       |
+| DATE()       | Returns the date part of a datetime value |
+| DATEDIFF()   | Calculates the difference between two dates |
+| DATE_ADD()   | Highly flexible date operation function |
+| DATE_FORMAT()| Returns a formatted date or time string |
+| DAY()        | Returns the day part of a date  |
+| DAYOFWEEK()  | Returns the day of the week for a date |
+| HOUR()       | Returns the hour part of a time |
+| MINUTE()     | Returns the minute part of a time |
+| MONTH()      | Returns the month part of a date |
+| NOW()        | Returns the current date and time |
+| SECOND()     | Returns the second part of a time |
+| TIME()       | Returns the time part of a datetime value |
+| YEAR()       | Returns the year part of a date |
+
+## Numeric Processing
+| Function | Description                   |
+|----------|-------------------------------|
+| SIN()    | Sine                          |
+| COS()    | Cosine                        |
+| TAN()    | Tangent                       |
+| ABS()    | Absolute value                |
+| SQRT()   | Square root                   |
+| MOD()    | Remainder                     |
+| EXP()    | Exponential                   |
+| PI()     | Pi                            |
+| RAND()   | Random number                 |
+
+---
+
+### **117. Grouping**
+Grouping involves placing rows with the same data values into the same group.
+
+Summary functions can be applied to grouped data, such as calculating the average of grouped data.
+
+The specified grouping fields not only determine the groups but also automatically sort the data based on those fields.
+```sql
+    SELECT col, COUNT(*) AS num
+    FROM mytable
+    GROUP BY col;
+```
+- GROUP BY automatically sorts based on the grouping fields.
+- ORDER BY can also be used to sort based on aggregated fields.
+ ```sql
+    SELECT col, COUNT(*) AS num
+    FROM mytable
+    GROUP BY col
+    ORDER BY num;
+```
+Filtering rows is done with WHERE, and filtering groups is done with HAVING. Row filtering should precede group filtering.
+
+```sql
+    SELECT col, COUNT(*) AS num
+    FROM mytable
+    WHERE col > 2
+    GROUP BY col
+    HAVING num >= 2;
+```
+
+**Grouping Rules:**
+- The GROUP BY clause appears after the WHERE clause and before the ORDER BY clause.
+
+- Every field in the SELECT statement, except for aggregated fields, must be included in the GROUP BY clause.
+- Rows with NULL values are treated as a separate group.
+- Most SQL implementations do not support GROUP BY columns with variable-length data types.
+
+---
+
+### **118. Subqueries**
+A subquery is a query embedded within another query. It can only return a single field of data.
+
+Subquery results can be used as filtering conditions in the WHERE statement:
+
+```sql
+    SELECT *
+    FROM mytable1
+    WHERE col1 IN (SELECT col2
+                FROM mytable2);
+```
+In the following example, the query retrieves the customer name along with the number of orders for each customer. The subquery is executed once for each customer retrieved in the outer query:
+```sql
+    SELECT cust_name, (SELECT COUNT(*)
+                    FROM Orders
+                    WHERE Orders.cust_id = Customers.cust_id)
+                    AS orders_num
+    FROM Customers
+    ORDER BY cust_name;
+```
+Subqueries are powerful tools for combining and extracting information from multiple tables within a single query. They provide a way to perform operations on the results of another query seamlessly.
+
+---
+
+### **119. Joins**
+Joins are used to combine data from multiple tables using the JOIN keyword, and the join conditions are specified using ON instead of WHERE.
+
+Joins can replace subqueries and are often more efficient than subqueries.
+
+Aliases using AS can be assigned to column names, computed fields, and table names. Table aliases are particularly useful for simplifying SQL statements and when joining the same table.
+
+**Inner Join**
+Inner join, also known as an equijoin, uses the INNER JOIN keyword.
+
+```sql
+    SELECT A.value, B.value
+    FROM tablea AS A INNER JOIN tableb AS B
+    ON A.key = B.key;
+```
+Alternatively, you can use a regular query and connect the columns from both tables in the WHERE clause using equality:
+
+```sql
+    SELECT A.value, B.value
+    FROM tablea AS A, tableb AS B
+    WHERE A.key = B.key;
+```
+**Self Join**
+A self-join is a variation of an inner join where the table is joined with itself.
+
+For example, finding all employees in the same department as Jim:
+
+Subquery version:
+```sql
+    SELECT name
+    FROM employee
+    WHERE department = (
+        SELECT department
+        FROM employee
+        WHERE name = "Jim");
+```
+Self-join version:
+```sql
+    SELECT e1.name
+    FROM employee AS e1 INNER JOIN employee AS e2
+    ON e1.department = e2.department
+        AND e2.name = "Jim";
+```
+**Natural Join**
+A natural join connects columns with the same name through an equality test. Multiple columns with the same name are allowed.
+
+The difference between inner join and natural join: Inner join specifies the columns for joining, while natural join automatically joins all columns with the same name.
+```sql
+    SELECT A.value, B.value
+    FROM tablea AS A NATURAL JOIN tableb AS B;
+```
+**Outer Join**
+Outer joins retain the rows without associations. They are categorized into left outer join, right outer join, and full outer join. Left outer join retains rows from the left table without associations.
+
+For example, retrieving all customer order information, including customers with no orders:
+```sql
+SELECT Customers.cust_id, Customer.cust_name, Orders.order_id
+FROM Customers LEFT OUTER JOIN Orders
+ON Customers.cust_id = Orders.cust_id;
+```
+**Customers Table:**
+
+| cust_id | cust_name |
+| ------- | --------- |
+| 1       | a         |
+| 2       | b         |
+| 3       | c         |
+
+**Orders Table:**
+
+| order_id | cust_id |
+| -------- | ------- |
+| 1        | 1       |
+| 2        | 1       |
+| 3        | 3       |
+| 4        | 3       |
+
+The result of a LEFT OUTER JOIN to retrieve all customer order information, including customers with no orders:
+
+| cust_id | cust_name | order_id |
+| ------- | --------- | -------- |
+| 1       | a         | 1        |
+| 1       | a         | 2        |
+| 3       | c         | 3        |
+| 3       | c         | 4        |
+| 2       | b         | Null     |
+
+### **120. Combining Queries**
+Use UNION to combine the results of two queries. If the first query returns M rows and the second query returns N rows, the combined query result will generally have M + N rows.
+
+Each query in the UNION must have the same columns, expressions, and aggregate functions.
+
+By default, duplicate rows are removed. If you want to retain duplicate rows, use UNION ALL.
+
+Only one ORDER BY clause is allowed, and it must be placed at the end of the statement.
+```sql
+    SELECT col
+    FROM mytable
+    WHERE col = 1
+    UNION
+    SELECT col
+    FROM mytable
+    WHERE col =2;
+```
+---
+### **121. Views**
+A view is a virtual table that does not contain data itself and cannot be indexed.
+
+Operations on views are similar to operations on regular tables.
+
+Views offer the following advantages:
+
+1. **Simplifies Complex SQL Operations:**
+   Views simplify complex SQL operations, such as intricate joins.
+
+2. **Uses a Subset of Data:**
+   Views allow the use of only a subset of data from actual tables.
+
+3. **Enhances Data Security:**
+   By granting users access only to the view, data security is ensured.
+
+4. **Changes Data Format and Representation:**
+   Views facilitate changes in data format and representation.
+
+Views provide a layer of abstraction, allowing users to interact with data in a more convenient and controlled manner.
+ 
+ ```sql
+    CREATE VIEW myview AS
+    SELECT Concat(col1, col2) AS concat_col, col3*col4 AS compute_col
+    FROM mytable
+    WHERE col5 = val;
+ ```
+ ---
+### **122. Stored Procedures**
+A stored procedure can be viewed as a batch of SQL operations.
+
+Benefits of using stored procedures:
+
+1. **Code Encapsulation for Security:**
+   Stored procedures encapsulate code, ensuring a certain level of security.
+
+2. **Code Reusability:**
+   Stored procedures facilitate code reusability.
+
+3. **High Performance:**
+   Due to precompilation, stored procedures exhibit high performance.
+
+Creating a stored procedure in the command line requires custom delimiters since the command line uses ';' as an ending symbol. However, stored procedures themselves also contain semicolons, leading to syntax errors if not handled correctly.
+
+Stored procedures can have three types of parameters: in, out, and inout.
+
+Assigning values to variables is done using the `SELECT INTO` statement.
+
+Only one variable can be assigned a value at a time, and operations with collections are not supported.
+
+Stored procedures enhance code organization and execution efficiency, making them a powerful tool in database management.
+```sql
+    delimiter //
+    create procedure myprocedure( out ret int )
+        begin
+            declare y int;
+            select sum(col1)
+            from mytable
+            into y;
+            select y*y into ret;
+        end //
+    delimiter ;
+```
+---
+### **122. Cursors
+
+In a stored procedure, a cursor can be used to navigate and traverse through a result set.
+
+Cursors are primarily employed in interactive applications where users need to browse and modify arbitrary rows within a dataset.
+
+The four steps of using a cursor are as follows:
+
+1. **Declare Cursor:**
+   - Declare the cursor; this process does not actually retrieve data.
+
+2. **Open Cursor:**
+   - Open the cursor.
+
+3. **Fetch Data:**
+   - Retrieve data from the cursor.
+
+4. **Close Cursor:**
+   - Close the cursor.
+```sql
+    delimiter //
+    create procedure myprocedure(out ret int)
+        begin
+            declare done boolean default 0;
+
+            declare mycursor cursor for
+            select col1 from mytable;
+            # 定义了一个 continue handler，当 sqlstate '02000' 这个条件出现时，会执行 set done = 1
+            declare continue handler for sqlstate '02000' set done = 1;
+
+            open mycursor;
+
+            repeat
+                fetch mycursor into ret;
+                select ret;
+            until done end repeat;
+
+            close mycursor;
+        end //
+    delimiter ;
+ 
+```
+
+### **123. Triggers**
+
+Triggers automatically execute when certain statements are performed on a table: DELETE, INSERT, UPDATE.
+
+Triggers must specify whether to execute automatically before or after the statement, using the BEFORE keyword for pre-execution and AFTER for post-execution. BEFORE is used for data validation and purification, while AFTER is used for audit tracking, logging modifications to another table.
+
+- **INSERT Trigger:**
+  - Includes a virtual table named NEW.
+  ```sql
+    CREATE TRIGGER mytrigger AFTER INSERT ON mytable
+    FOR EACH ROW SELECT NEW.col into @result;
+
+    SELECT @result;
+  ```
+- **DELETE Trigger:**
+  - Includes a read-only virtual table named OLD.
+
+- **UPDATE Trigger:**
+  - Includes two virtual tables named NEW (modifiable) and OLD (read-only).
+
+MySQL does not allow the use of CALL statements in triggers, meaning stored procedures cannot be called within triggers.
+
+---
+
+### **124. Transaction Management**
+
+## Basic Terms:
+
+- **Transaction:**
+  - Refers to a group of SQL statements.
+
+- **Rollback:**
+  - The process of undoing specified SQL statements.
+
+- **Commit:**
+  - Involves writing the uncommitted results of SQL statements to the database table.
+
+- **Savepoint:**
+  - A temporary placeholder set during transaction processing. You can roll back to it (different from rolling back the entire transaction).
+
+- Cannot roll back SELECT statements; rolling back SELECT statements is meaningless. Also, CREATE and DROP statements cannot be rolled back.
+
+MySQL's transaction commitment is implicit by default, treating each executed statement as a separate transaction and committing it. When a START TRANSACTION statement is encountered, implicit commitment is disabled. After executing COMMIT or ROLLBACK statements, the transaction automatically closes, reverting to implicit commitment.
+
+Setting autocommit to 0 can disable automatic commitment, and the autocommit flag is specific to each connection rather than the server.
+
+If no savepoint is set, ROLLBACK will revert to the START TRANSACTION statement. If a savepoint is established and specified in the ROLLBACK, it will roll back to that savepoint.
+
+**SQL:**
+```sql
+    START TRANSACTION
+    // ...
+    SAVEPOINT delete1
+    // ...
+    ROLLBACK TO delete1
+    // ...
+    COMMIT
+```
+
+---
+
+### **125. Character Sets
+
+## Basic Terms:
+
+- **Character Set:**
+  - A collection of letters and symbols.
+
+- **Encoding:**
+  - The internal representation of a member of a character set.
+
+- **Collation:**
+  - Specifies how to compare characters, primarily used for sorting and grouping.
+
+In addition to specifying character set and collation for a table, it can also be specified for columns:
+```sql
+    CREATE TABLE mytable
+    (col VARCHAR(10) CHARACTER SET latin COLLATE latin1_general_ci )
+    DEFAULT CHARACTER SET hebrew COLLATE hebrew_general_ci;
+    
+```
+
+- Collation can be specified during sorting and grouping:
+```sql
+    SELECT *
+    FROM mytable
+    ORDER BY col COLLATE latin1_general_ci;
+```
+
+---
+
+### **126. Permission Management**
+
+MySQL account information is stored in the 'mysql' database. 
+```sql
+    USE mysql;
+    SELECT user FROM user;
+```
+## Creating an Account:
+
+Newly created accounts have no permissions by default.
+```sql
+    CREATE USER myuser IDENTIFIED BY 'mypassword';
+```
+
+## Modifying Account Name:
+
+The account name can be modified.
+```sql
+    RENAME USER myuser TO newuser;
+```
+
+## Deleting an Account:
+
+An account can be deleted.
+```sql
+    DROP USER myuser;
+```
+
+## Viewing Permissions:
+
+View the permissions of an account.
+```sql
+    SHOW GRANTS FOR myuser;
+```
+
+## Granting Permissions:
+
+Accounts are defined in the form username@host; username@% uses the default hostname.
+```sql
+    GRANT SELECT, INSERT ON mydatabase.* TO myuser;
+```
+
+## Revoking Permissions:
+
+GRANT and REVOKE control access permissions at various levels:
+
+- Entire server using GRANT ALL and REVOKE ALL.
+- Entire database using ON database.*.
+- Specific table using ON database.table.
+- Specific columns.
+- Specific stored procedures.
+```sql
+    REVOKE SELECT, INSERT ON mydatabase.* FROM myuser;
+```
+## Changing Password
+
+To change a password, you must use the Password() function for encryption.
+```sql
+    SET PASSWROD FOR myuser = Password('new_password');
+```
