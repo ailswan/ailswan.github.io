@@ -15,7 +15,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 ---
 
 ## BD Compare: ProtgreSQL, MySQL, MongoDB and Cassandra Q & A
-### Feature Comparison Table
+### **Feature Comparison Table**
 
 | Feature                 | PostgreSQL                           | MySQL                                | MongoDB                              | Cassandra                            |
 |-------------------------|--------------------------------------|--------------------------------------|--------------------------------------|--------------------------------------|
@@ -40,7 +40,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 | **Licensing**           | Open source with PostgreSQL License   | Open source with GPL or commercial   | Server Side Public License (SSPL)   | Open source with Apache License      |
 
  
-### Detailed Feature Comparison
+### **Detailed Feature Comparison**
 
 | Feature                          | PostgreSQL                                      | MySQL                                          | MongoDB                                        | Cassandra                                      |
 |----------------------------------|-------------------------------------------------|-------------------------------------------------|------------------------------------------------|------------------------------------------------|
