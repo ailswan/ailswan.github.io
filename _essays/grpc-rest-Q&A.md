@@ -153,45 +153,46 @@ feature_image: "https://picsum.photos/2560/600?image=865"
  
  ---
 ### Compare
-| Feature                | gRPC                                     | RESTful                                 | Socket                                  |
-|------------------------|------------------------------------------|-----------------------------------------|-----------------------------------------|
-| **Communication Protocol** | HTTP/2                                   | HTTP/1.1 or HTTP/2                      | Custom (depends on implementation)       |
-| **Data Format**         | Protocol Buffers (protobuf) or JSON       | Typically JSON                          | Custom (depends on implementation)       |
-| **Performance**         | Generally faster due to binary protocol  | Slower compared to gRPC                | Depends on implementation and use case  |
-| **Message Types**       | Request-Response, Streaming, Bi-directional streaming | Request-Response, Stateless Operations | Bi-directional Streaming, Datagram       |
-| **Flexibility**         | Strongly typed messages, schema-based    | Flexible, less strict                   | Flexible, less strict                    |
-| **Service Definition**  | Protocol Buffers (.proto files)          | No standard, typically OpenAPI (Swagger)| Custom, often defined by the application |
-| **Error Handling**      | Rich status codes and details            | HTTP status codes, custom messages     | Depends on implementation and protocol  |
-| **Tooling Support**     | Rich tooling for various languages       | Widely supported in many languages     | Various libraries and frameworks available |
+
+| Feature                      | gRPC                                     | RESTful                                 | Socket                                  |
+| ---------------------------- | ---------------------------------------- | --------------------------------------- | --------------------------------------- |
+| **Communication Protocol**   | HTTP/2                                   | HTTP/1.1 or HTTP/2                      | Custom (depends on implementation)       |
+| **Data Format**              | Protocol Buffers (protobuf) or JSON       | Typically JSON                          | Custom (depends on implementation)       |
+| **Performance**              | Generally faster due to binary protocol  | Slower compared to gRPC                | Depends on implementation and use case  |
+| **Message Types**            | Request-Response, Streaming, Bi-directional streaming | Request-Response, Stateless Operations | Bi-directional Streaming, Datagram       |
+| **Flexibility**              | Strongly typed messages, schema-based    | Flexible, less strict                   | Flexible, less strict                    |
+| **Service Definition**       | Protocol Buffers (.proto files)          | No standard, typically OpenAPI (Swagger)| Custom, often defined by the application |
+| **Error Handling**           | Rich status codes and details            | HTTP status codes, custom messages     | Depends on implementation and protocol  |
+| **Tooling Support**          | Rich tooling for various languages       | Widely supported in many languages     | Various libraries and frameworks available |
 | **Bi-directional Communication** | Yes, built-in support for bidirectional streaming | Limited support, may use WebSockets    | Yes, inherent support for bidirectional communication |
-| **Security**            | Built-in support for SSL/TLS              | Typically relies on HTTPS for security | Requires additional implementation for security |
-| **Standardization**     | Standardized by CNCF (Cloud Native Computing Foundation) | No official standard, but widely used conventions | No strict standard, implementation-dependent |
-| **State Management**    | Stateless or stateful (depending on implementation) | Stateless                               | Stateful or Stateless (depends on implementation) |
-| **Resource Discovery**  | Service discovery through DNS or gRPC's built-in features | Often relies on service discovery mechanisms (e.g., DNS or load balancers) | Not inherently supported, may require custom implementation |
-| **Compatibility**       | May require gRPC-specific clients        | Compatible with various clients (browsers, mobile apps, etc.) | Depends on the protocol and libraries used |
-| **Usage**               | Commonly used in microservices, cloud-native applications | Widely used in web development and APIs | Broad range of applications, including real-time applications and gaming |
-| **Community Support**   | Growing community with support from major tech companies | Large and mature community            | Diverse support from various communities and industries |
-| **Concurrency**         | Supports high concurrency with multiplexing | Limited concurrency in comparison to gRPC | Depends on implementation and use case |
-| **HTTP Methods**        | Uses HTTP/2 methods (GET, POST, PUT, DELETE, etc.) | Standard HTTP methods (GET, POST, PUT, DELETE, etc.) | No standardized methods, application-specific |
-| **Caching**             | Built-in support for caching using HTTP headers | Supports caching using HTTP headers   | Implementation-dependent                   |
-| **Scalability**         | Highly scalable due to multiplexing and efficient serialization | Scalable, but may face challenges with large-scale systems | Depends on implementation and architecture |
-| **Maturity**            | Maturing rapidly with growing adoption   | Mature and well-established            | Varies widely based on the specific technology and implementation |
-| **Ease of Use**         | Requires understanding of Protobuf and generated code | Relatively easy to use with standard HTTP methods | Depends on the complexity of the implementation |
-| **Request Metadata**   | Supports metadata headers for additional request information | Typically relies on headers for additional information | Depends on the implementation and protocol |
-| **Response Metadata**  | Supports metadata headers for additional response information | Headers can be used for additional response information | Depends on the implementation and protocol |
-| **Timeouts**           | Built-in support for timeouts and deadlines | Timeouts can be managed using HTTP headers | Implementation-dependent                   |
+| **Security**                 | Built-in support for SSL/TLS              | Typically relies on HTTPS for security | Requires additional implementation for security |
+| **Standardization**          | Standardized by CNCF (Cloud Native Computing Foundation) | No official standard, but widely used conventions | No strict standard, implementation-dependent |
+| **State Management**         | Stateless or stateful (depending on implementation) | Stateless                               | Stateful or Stateless (depends on implementation) |
+| **Resource Discovery**       | Service discovery through DNS or gRPC's built-in features | Often relies on service discovery mechanisms (e.g., DNS or load balancers) | Not inherently supported, may require custom implementation |
+| **Compatibility**            | May require gRPC-specific clients        | Compatible with various clients (browsers, mobile apps, etc.) | Depends on the protocol and libraries used |
+| **Usage**                    | Commonly used in microservices, cloud-native applications | Widely used in web development and APIs | Broad range of applications, including real-time applications and gaming |
+| **Community Support**        | Growing community with support from major tech companies | Large and mature community            | Diverse support from various communities and industries |
+| **Concurrency**              | Supports high concurrency with multiplexing | Limited concurrency in comparison to gRPC | Depends on implementation and use case |
+| **HTTP Methods**             | Uses HTTP/2 methods (GET, POST, PUT, DELETE, etc.) | Standard HTTP methods (GET, POST, PUT, DELETE, etc.) | No standardized methods, application-specific |
+| **Caching**                  | Built-in support for caching using HTTP headers | Supports caching using HTTP headers   | Implementation-dependent                   |
+| **Scalability**              | Highly scalable due to multiplexing and efficient serialization | Scalable, but may face challenges with large-scale systems | Depends on implementation and architecture |
+| **Maturity**                 | Maturing rapidly with growing adoption   | Mature and well-established            | Varies widely based on the specific technology and implementation |
+| **Ease of Use**              | Requires understanding of Protobuf and generated code | Relatively easy to use with standard HTTP methods | Depends on the complexity of the implementation |
+| **Request Metadata**        | Supports metadata headers for additional request information | Typically relies on headers for additional information | Depends on the implementation and protocol |
+| **Response Metadata**       | Supports metadata headers for additional response information | Headers can be used for additional response information | Depends on the implementation and protocol |
+| **Timeouts**                 | Built-in support for timeouts and deadlines | Timeouts can be managed using HTTP headers | Implementation-dependent                   |
 | **Compatibility with Web Browsers** | Requires additional steps (e.g., gRPC-Web or transcoding) | Directly accessible in web browsers using standard HTTP | Not natively supported in web browsers      |
-| **Versioning**         | Protocol Buffers support backward and forward compatibility | Typically versioned in the URL or headers  | Depends on implementation and protocol      |
-| **Language Support**   | Broad language support due to code generation from .proto files | Broad language support, not tied to specific serialization format | Depends on the implementation and language-specific libraries |
-| **Code Size**          | Protocol Buffers messages are generally more compact | JSON messages can be larger in size      | Depends on the serialization format and payload |
-| **Documentation**      | Comprehensive documentation for various languages | Documentation often specific to the API and tooling used | Documentation depends on the chosen protocol and libraries |
-| **Streaming Support**  | Built-in support for various streaming types (server, client, bidirectional) | Limited support for streaming in REST (e.g., Server-Sent Events) | Supports streaming, but implementation-specific |
-| **Service Discovery**  | May use external service discovery tools or rely on DNS | May use service registries, DNS, or manual configuration | Custom implementation or third-party tools  |
-| **Integration Testing** | May require specific testing libraries for gRPC APIs | Common testing tools like Postman or cURL can be used | Custom testing tools may be required        |
-| **Latency**            | Generally lower latency due to binary serialization and HTTP/2 | Higher latency compared to gRPC, especially with large payloads | Depends on the implementation, network conditions, and use case |
-| **Community Activity** | Actively developed and improved with frequent updates | Well-established with ongoing support and updates | Varies based on specific implementations and use cases |
-| **Authentication**     | Supports various authentication mechanisms (SSL/TLS, OAuth, API keys) | Commonly uses OAuth, API keys, or token-based authentication | Implementation-specific, may require additional layers for security |
-| **Message Size Limit** | Limited by the underlying HTTP/2 or HTTP/1.1 transport | Limited by the server and client configurations | Depends on the implementation and network conditions |
-| **Use Cases**          | Well-suited for microservices, cloud-native, and communication between different language stacks | Widely used in web applications, mobile apps, and APIs | Diverse applications, including real-time systems and IoT |
-| **Resource Utilization**| Efficient resource utilization due to binary serialization | Generally consumes more resources compared to gRPC | Depends on the implementation and use case     |
-| **Backward Compatibility** | Protobuf supports backward compatibility | URL versioning or content negotiation for backward compatibility | Depends on implementation and versioning strategy |
+| **Versioning**               | Protocol Buffers support backward and forward compatibility | Typically versioned in the URL or headers  | Depends on implementation and protocol      |
+| **Language Support**         | Broad language support due to code generation from .proto files | Broad language support, not tied to specific serialization format | Depends on the implementation and language-specific libraries |
+| **Code Size**                | Protocol Buffers messages are generally more compact | JSON messages can be larger in size      | Depends on the serialization format and payload |
+| **Documentation**            | Comprehensive documentation for various languages | Documentation often specific to the API and tooling used | Documentation depends on the chosen protocol and libraries |
+| **Streaming Support**        | Built-in support for various streaming types (server, client, bidirectional) | Limited support for streaming in REST (e.g., Server-Sent Events) | Supports streaming, but implementation-specific |
+| **Service Discovery**        | May use external service discovery tools or rely on DNS | May use service registries, DNS, or manual configuration | Custom implementation or third-party tools  |
+| **Integration Testing**      | May require specific testing libraries for gRPC APIs | Common testing tools like Postman or cURL can be used | Custom testing tools may be required        |
+| **Latency**                  | Generally lower latency due to binary serialization and HTTP/2 | Higher latency compared to gRPC, especially with large payloads | Depends on the implementation, network conditions, and use case |
+| **Community Activity**       | Actively developed and improved with frequent updates | Well-established with ongoing support and updates | Varies based on specific implementations and use cases |
+| **Authentication**           | Supports various authentication mechanisms (SSL/TLS, OAuth, API keys) | Commonly uses OAuth, API keys, or token-based authentication | Implementation-specific, may require additional layers for security |
+| **Message Size Limit**       | Limited by the underlying HTTP/2 or HTTP/1.1 transport | Limited by the server and client configurations | Depends on the implementation and network conditions |
+| **Use Cases**                | Well-suited for microservices, cloud-native, and communication between different language stacks | Widely used in web applications, mobile apps, and APIs | Diverse applications, including real-time systems and IoT |
+| **Resource Utilization**     | Efficient resource utilization due to binary serialization | Generally consumes more resources compared to gRPC | Depends on the implementation and use case     |
+| **Backward Compatibility**   | Protobuf supports backward compatibility | URL versioning or content negotiation for backward compatibility | Depends on implementation and versioning strategy |
