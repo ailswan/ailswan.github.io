@@ -1,15 +1,15 @@
 ---
 layout: essay_single
 title: Datastructure Use Cases
-date: 2023-09-13
+date: 2024-01-07
 tags:
   - Backend
   - DataStructure
 categories:
   - Backend
 feature_text: |
-  # Datastructure Use Cases
-  *Post by ailswan - Jan. 07, 2023*
+  ## Datastructure Use Cases
+  Post by ailswan - Jan. 07, 2024
 
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
