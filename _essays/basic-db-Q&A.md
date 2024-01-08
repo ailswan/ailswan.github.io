@@ -16,20 +16,30 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 
 ### BD Compare: ProtgreSQL, MySQL, MongoDB Q & A
  
-### Feature Comparison
+# Technology Comparison: gRPC vs REST vs WebSocket vs Cassandra
 
-| Feature                   | PostgreSQL                     | MySQL                          | MongoDB                        |
-|---------------------------|---------------------------------|---------------------------------|---------------------------------|
-| **Database Model**        | RDBMS                           | RDBMS                           | NoSQL Document-oriented DB     |
-| **Data Structure**         | Tables, Rows, Columns           | Tables, Rows, Columns           | Collections, Documents          |
-| **Schema**                | Supports Schemas                | Supports Schemas                | Dynamic Schema                 |
-| **Query Language**         | SQL                             | SQL                             | BSON-based Query Language      |
-| **ACID Compliance**        | Fully ACID compliant            | ACID compliant                  | Not strictly ACID compliant, but supports some ACID properties |
-| **Joins**                 | Various types of joins           | Various types of joins           | No joins, but supports embedded documents |
-| **Transactions**           | MVCC                            | ACID transactions               | ACID transactions               |
-| **Replication**            | Async and sync replication       | Async and sync replication       | Replica Sets for high availability |
-| **Partitioning**           | Table partitioning support      | Table partitioning support      | Sharding for horizontal scaling |
-|  
+| Feature                    | gRPC                         | REST                         | WebSocket                    | Cassandra                    |
+|----------------------------|------------------------------|------------------------------|------------------------------|------------------------------|
+| **Communication Protocol**  | HTTP/2                        | HTTP/1.1 or HTTP/2            | WebSocket                    | Custom binary protocol       |
+| **Data Format**             | Protocol Buffers (protobuf)   | JSON or XML                  | WebSocket message format    | Custom binary format         |
+| **Performance**             | Low latency, high performance | Moderate latency             | Low latency, real-time       | High write and read throughput|
+| **Request Type**            | Unary and streaming           | CRUD (Create, Read, Update, Delete) | Full-duplex communication   | Query-based                  |
+| **Error Handling**          | Rich status codes, detailed error messages | HTTP status codes, error payloads | WebSocket-specific error handling | Error codes and messages |
+| **Message Size**            | Efficient binary serialization | Larger, text-based serialization | Small message overhead      | Compact binary storage       |
+| **Streaming Support**       | Full-duplex streaming (bi-directional) | Limited, often requires additional protocols | Full-duplex communication   | No native streaming support  |
+| **Flexibility**             | Strongly typed messages, code generation | Flexible, loosely typed messages | Real-time bidirectional communication | Schema flexibility          |
+| **Scalability**             | Scalable, especially suitable for microservices | Scalable, but may face challenges in real-time scenarios | Scalable for real-time applications | Highly scalable, distributed |
+| **Statelessness**           | Stateless, single request-response model | Stateless, follows REST principles | Stateful or stateless depending on implementation | Stateless, data distributed across nodes |
+| **Use Cases**               | Microservices, real-time applications | Standard web services, CRUD applications | Real-time chat, gaming, financial applications | High write and read-intensive applications |
+| **Protocols/Standards**     | HTTP/2, Protocol Buffers (protobuf) | HTTP/1.1, JSON, XML           | WebSocket, WebSocket API     | Cassandra Query Language (CQL) |
+| **Tool Ecosystem**          | Wide range of tools, including grpcurl, BloomRPC | Postman, Swagger, curl        | WebSocket testing tools, socket.io | cqlsh, DataStax DevCenter |
+| **Adoption**                | Increasing adoption, especially in microservices | Widely adopted standard for web APIs | Common in real-time applications, messaging systems | Popular for distributed databases |
+| **Concurrency**             | Efficient multiplexing, high concurrency | Limited concurrency for large-scale connections | Concurrent connections, efficient for real-time | Optimized for concurrent reads and writes |
+| **Security**                | Built-in features like SSL/TLS, authentication | Standard security measures like SSL/TLS, OAuth | Secure WebSocket (WSS), may require additional measures | SSL/TLS, authentication, and authorization |
+| **Ease of Use**             | Code generation simplifies implementation | Simple and widely understood, no code generation required | Requires handling of connection states, may be complex | Learning curve for schema design and queries |
+| **Community Support**       | Growing community, strong support from major tech companies | Mature and extensive community | Active community, widely used in specific domains | Active community, strong in the NoSQL space |
+
+ 
 ## Choosing a Database: MySQL vs PostgreSQL vs MongoDB
 
 ### MySQL:
