@@ -14,7 +14,7 @@ feature_text: |
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
 
-### BD Compare: ProtgreSQL, MySQL, MongoDB Q & A
+### BD Compare: ProtgreSQL, MySQL, MongoDB and Cassandra Q & A
  
 
 
