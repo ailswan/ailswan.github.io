@@ -40,6 +40,30 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 | **Licensing**           | Open source with PostgreSQL License   | Open source with GPL or commercial   | Server Side Public License (SSPL)   | Open source with Apache License      |
 
  
+### Detailed Feature Comparison
+
+| Feature                          | PostgreSQL                                      | MySQL                                          | MongoDB                                        | Cassandra                                      |
+|----------------------------------|-------------------------------------------------|-------------------------------------------------|------------------------------------------------|------------------------------------------------|
+| **Data Integrity**               | Referential integrity, constraints                | Referential integrity, constraints                | Validation rules, atomic writes                 | Built-in support for distributed transactions,  |
+|                                  |                                                 |                                                 |                                                | data replication, eventual consistency          |
+| **Query Language**               | SQL                                             | SQL                                             | MongoDB Query Language (MQL)                    | CQL (Cassandra Query Language)                   |
+| **Secondary Indexing**           | B-tree, hash, and more                           | B-tree, hash, and more                           | JSON-based secondary indexes, compound indexes   | Various index types including secondary indexes |
+| **Joins and Relationships**      | Supports various types of joins and relationships| Supports various types of joins and relationships| Limited support for joins and relationships      | No native support for joins and relationships    |
+| **ACID Compliance**              | Fully ACID compliant with strong consistency     | ACID compliant with strong consistency           | ACID for single documents, multi-document        | Support for lightweight transactions, eventual   |
+|                                  |                                                 |                                                 | transactions with snapshot isolation            | consistency for high throughput                   |
+| **Schema Flexibility**           | Rigid schema, requires predefined structure      | Rigid schema, requires predefined structure      | Dynamic schema, accommodates unstructured data   | Flexible schema design suitable for dynamic data  |
+| **Indexing Options**             | Various indexing options for different scenarios | Various indexing options for different scenarios | Automatic and configurable indexing              | Various index types including secondary indexes |
+| **Transactions**                 | Supports complex transactions and rollbacks     | Supports complex transactions and rollbacks     | Limited multi-document transactions             | Support for lightweight transactions, eventual   |
+|                                  |                                                 |                                                 |                                                | consistency for high throughput                   |
+| **Concurrency Control**          | Multi-version concurrency control (MVCC)         | Multi-version concurrency control (MVCC)         | Optimistic concurrency control                  | Optimistic concurrency control                    |
+| **Data Distribution**            | Can be configured for distributed databases     | Can be configured for distributed databases     | Sharding for horizontal data distribution       | Designed for distributed and decentralized       |
+|                                  |                                                 |                                                 |                                                | data distribution                                |
+| **Partitioning**                 | Table partitioning options                      | Table partitioning options                      | Sharding for horizontal data partitioning       | Automatic data partitioning and distribution     |
+| **Performance Tuning**           | Fine-grained control over performance tuning     | Comprehensive performance tuning options         | Automatic performance tuning and optimization   | Tunable consistency levels, performance            |
+|                                  |                                                 |                                                 |                                                | optimizations for high write and read throughput |
+| **Geospatial Support**           | Robust support for geospatial data and queries   | Basic geospatial support                         | Limited geospatial support                       | Limited geospatial support                        |
+
+
 
 ## Choosing a Database: MySQL vs PostgreSQL vs MongoDB
 
