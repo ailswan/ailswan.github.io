@@ -153,19 +153,8 @@ feature_image: "https://picsum.photos/2560/600?image=865"
  
  ---
 ### Compare
- | Feature                | gRPC                                     | RESTful                                 | Socket                                  |
+| Feature                | gRPC                                     | RESTful                                 | Socket                                  |
 |------------------------|------------------------------------------|-----------------------------------------|-----------------------------------------|
-| **Communication Protocol** | HTTP/2                                   | HTTP/1.1 or HTTP/2                      | Custom (depends on implementation)       |
-| **Data Format**         | Protocol Buffers (protobuf) or JSON       | Typically JSON                          | Custom (depends on implementation)       |
-| **Performance**         | Generally faster due to binary protocol  | Slower compared to gRPC                | Depends on implementation and use case  |
-| **Message Types**       | Request-Response, Streaming, Bi-directional streaming | Request-Response, Stateless Operations | Bi-directional Streaming, Datagram       |
-| **Flexibility**         | Strongly typed messages, schema-based    | Flexible, less strict                   | Flexible, less strict                    |
-| **Service Definition**  | Protocol Buffers (.proto files)          | No standard, typically OpenAPI (Swagger)| Custom, often defined by the application |
-| **Error Handling**      | Rich status codes and details            | HTTP status codes, custom messages     | Depends on implementation and protocol  |
-| **Tooling Support**     | Rich tooling for various languages       | Widely supported in many languages     | Various libraries and frameworks available |
-| **Bi-directional Communication** | Yes, built-in support for bidirectional streaming | Limited support, may use WebSockets    | Yes, inherent support for bidirectional communication |
-| **Security**            | Built-in support for SSL/TLS              | Typically relies on HTTPS for security | Requires additional implementation for security |
-| **Standardization**     | Standardized by CNCF (Cloud Native Computing Foundation) | No official standard, but widely used conventions | No strict standard, implementation-dependent |
 | **Communication Protocol** | HTTP/2                                   | HTTP/1.1 or HTTP/2                      | Custom (depends on implementation)       |
 | **Data Format**         | Protocol Buffers (protobuf) or JSON       | Typically JSON                          | Custom (depends on implementation)       |
 | **Performance**         | Generally faster due to binary protocol  | Slower compared to gRPC                | Depends on implementation and use case  |
