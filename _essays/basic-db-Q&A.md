@@ -16,52 +16,30 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 
 ## BD Compare: ProtgreSQL, MySQL, MongoDB and Cassandra Q & A
 ### Feature Comparison Table
-| Feature                                   | PostgreSQL                              | MySQL                                   | MongoDB                                | Cassandra                              |
-|-------------------------------------------|-----------------------------------------|-----------------------------------------|-----------------------------------------|-----------------------------------------|
-| **Use Cases**                             | Advanced features, complex queries,      | Traditional relational database        | Flexible schema, unstructured or        | Highly scalable, distributed NoSQL    |
-|                                           | data integrity                           | applications with structured data      | semi-structured data, modern web       | database, suitable for large-scale     |
-|                                           |                                         | and complex queries, widely used        | applications with horizontal scaling  | distributed systems                    |
-|                                           |                                         | in web development                     |                                         |                                         |
-| **Scalability**                           | Vertical scaling, proper configuration  | Vertical and horizontal scaling,       | Horizontal scaling through sharding,   | Horizontal scaling, designed for       |
-|                                           | for large data, horizontal scaling      | suitable for growing applications      | suitable for large volumes of data     | distributed and decentralized systems|
-|                                           | through replication                    |                                         | and high traffic                        |                                         |
-|                                           |                                         |                                         |                                         |                                         |
-| **Consistency**                           | Fully ACID compliant with strong         | ACID compliant with strong             | Eventual consistency with configurable | Tunable consistency levels, designed    |
-|                                           | consistency guarantees, suitable for    | consistency guarantees, suitable        | consistency levels, suitable for        | for high write and read throughput      |
-|                                           | mission-critical applications           | for applications where data integrity   | applications where real-time            |                                         |
-|                                           |                                         | is crucial                              | consistency is not critical             |                                         |
-|                                           |                                         |                                         |                                         |                                         |
-| **Ease of Use**                           | Known for complexity, requires           | Known for ease of use, suitable for     | Known for simplicity and rapid          | Designed for high write and read        |
-|                                           | expertise but provides flexibility      | beginners and straightforward projects | development, well-suited for agile       | throughput, may require expertise       |
-|                                           |                                         |                                         | development and startups                |                                         |
-|                                           |                                         |                                         |                                         |                                         |
-| **Ecosystem**                             | Strong community support, rich set       | Large and mature ecosystem with        | Growing ecosystem with a focus on       | Active community support, suitable      |
-|                                           | of extensions, vibrant ecosystem         | extensive documentation and community  | modern development stacks, active       | for distributed and decentralized      |
-|                                           |                                         | support                                 | community support                       | systems                                 |
-|                                           |                                         |                                         |                                         |                                         |
-| **Licensing**                             | Open source with PostgreSQL License      | Open source with GPL or commercial      | Server Side Public License (SSPL)       | Open source with Apache License         |
-|                                           |                                         | options                                 |                                         |                                         |
-|                                           |                                         |                                         |                                         |                                         |
-| **Data Model**                            | Relational                              | Relational                              | Document-oriented                      | Wide-column store                       |
-| **Query Language**                        | SQL                                     | SQL                                     | MongoDB Query Language (MQL)            | CQL (Cassandra Query Language)          |
-| **Indexing**                              | B-tree, hash, and more                   | B-tree, hash, and more                   | JSON-based secondary indexes,           | Various index types including           |
-|                                           |                                         |                                         | compound indexes                        | secondary indexes                        |
-| **Transaction Support**                   | ACID                                    | ACID                                    | ACID for single documents,              | Support for lightweight transactions,   |
-|                                           |                                         |                                         | multi-document transactions with       | eventual consistency for high           |
-|                                           |                                         |                                         | snapshot isolation                     | throughput                             |
-| **Data Integrity**                        | Referential integrity, constraints       | Referential integrity, constraints       | Validation rules, atomic writes         | Built-in support for distributed        |
-|                                           |                                         |                                         |                                         | transactions and data replication       |
-| **Security**                              | Role-based access control, SSL/TLS       | Access control, SSL/TLS encryption      | Role-based access control, field-level  | Advanced security features like          |
-|                                           | encryption                               |                                         | security                                | authentication, authorization, and      |
-|                                           |                                         |                                         |                                         | auditing                                |
-|                                           |                                         |                                         |                                         |                                         |
-| **Storage Engine**                        | Various, including InnoDB,               | Various, including InnoDB,              | WiredTiger                              | SSTable (Sorted String Table) format    |
-|                                           | PostgreSQL native                      | MyISAM, and more                        |                                         |                                         |
-| **Joins**                                 | Supports various types of joins         | Supports various types of joins         | Limited support for joins               | Joins are not natively supported         |
-|                                           |                                         |                                         |                                         |                                         |
-| **Aggregation**                           | Rich set of aggregate functions         | Rich set of aggregate functions         | Aggregation framework                   | Aggregation support for analytics       |
-|                                           |                                         |                                         |                                         | and reporting                           |
 
+| Feature                 | PostgreSQL                           | MySQL                                | MongoDB                              | Cassandra                            |
+|-------------------------|--------------------------------------|--------------------------------------|--------------------------------------|--------------------------------------|
+| **Use Cases**           | Advanced features, complex queries,   | Traditional relational database     | Flexible schema, unstructured or      | Highly scalable, distributed NoSQL  |
+|                         | data integrity                        | applications with structured data   | semi-structured data, modern web     | database, suitable for large-scale   |
+|                         |                                      | and complex queries, widely used     | applications with horizontal scaling| distributed systems                  |
+|                         |                                      | in web development                  |                                      |                                      |
+| **Scalability**         | Vertical scaling, proper              | Vertical and horizontal scaling,    | Horizontal scaling through sharding, | Horizontal scaling, designed for     |
+|                         | configuration for large data,         | suitable for growing applications   | suitable for large volumes of data   | distributed and decentralized       |
+|                         | horizontal scaling through            |                                      | and high traffic                     | systems                              |
+|                         | replication                          |                                      |                                      |                                      |
+| **Consistency**         | Fully ACID compliant with strong      | ACID compliant with strong          | Eventual consistency with           | Tunable consistency levels, designed|
+|                         | consistency guarantees, suitable      | consistency guarantees, suitable     | configurable consistency levels,   | for high write and read throughput  |
+|                         | for mission-critical applications     | for applications where data          | suitable for applications where    |                                      |
+|                         |                                      | integrity is crucial                | real-time consistency is not critical|                                      |
+| **Ease of Use**         | Known for complexity, requires        | Known for ease of use, suitable      | Known for simplicity and rapid      | Designed for high write and read    |
+|                         | expertise but provides flexibility   | for beginners and straightforward   | development, well-suited for agile   | throughput, may require expertise   |
+|                         |                                      | projects                             | development and startups            |                                      |
+| **Ecosystem**           | Strong community support, rich set    | Large and mature ecosystem with     | Growing ecosystem with a focus on   | Active community support, suitable  |
+|                         | of extensions, vibrant ecosystem      | extensive documentation and         | modern development stacks, active   | for distributed and decentralized   |
+|                         |                                      | community support                    | community support                   | systems                              |
+| **Licensing**           | Open source with PostgreSQL License   | Open source with GPL or commercial   | Server Side Public License (SSPL)   | Open source with Apache License      |
+
+ 
 
 ## Choosing a Database: MySQL vs PostgreSQL vs MongoDB
 
