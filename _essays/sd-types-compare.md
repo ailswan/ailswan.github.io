@@ -12,7 +12,7 @@ feature_text: |
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
 
-### System Design Compare 
+### System Design Compare 1
 
 | Criteria                  | Read-Heavy System      | Write-Heavy System     | Celebrated Call System |
 |---------------------------|------------------------|------------------------|------------------------|
@@ -35,6 +35,9 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 |                           |                        |                        |                        |
 
 ---
+
+### System Design Compare 2
+
 
 | Criteria                    | Search-Intensive System | Messaging System         | Geographically Distributed System | Event-Driven System     |
 |-----------------------------|-------------------------|--------------------------|-----------------------------------|------------------------|
@@ -82,6 +85,9 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 |                           |                         |                         |                                 |                             |                          |
 
 ---
+
+### System Design Compare 3
+
 
 | Criteria                  | Internet of Things (IoT) System | Video Streaming System     | Online Gaming System        | Healthcare Information System | Fault-Tolerant System      |
 |---------------------------|----------------------------------|----------------------------|-----------------------------|---------------------------------|---------------------------|
