@@ -34,6 +34,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 |                           | News Aggregators       | Databases              | Video Streaming        |
 |                           |                        |                        |                        |
 
+---
 
 | Criteria                    | Search-Intensive System | Messaging System         | Geographically Distributed System | Event-Driven System     |
 |-----------------------------|-------------------------|--------------------------|-----------------------------------|------------------------|
@@ -52,6 +53,86 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 | **Examples of Systems**     | Search Engines (e.g.,   | Real-time Chat,           | Multi-Datacenter Systems,        | IoT Platforms,         |
 |                             | Google Search)          | Notifications Systems    | Cloud-based Applications        | Streaming Analytics    |
 |                             |                        |                          |                                   | Systems                |
+
+
+---
+
+| Criteria                  | Peer-to-Peer System     | Data Warehousing System  | Real-time Collaborative System   | Content Distribution System | Recommendation System    |
+|---------------------------|-------------------------|--------------------------|----------------------------------|-----------------------------|--------------------------|
+| **Data Access Pattern**   | Decentralized data      | Analytical queries       | Simultaneous editing and updates | Efficient content delivery | User-specific suggestions |
+|                           | sharing, minimal        | and reporting            | from multiple users             | and replication            | based on preferences      |
+|                           | reliance on central     |                         |                                  |                             |                          |
+|                           | servers                 |                         |                                  |                             |                          |
+| **Example Technologies**  | BitTorrent, Blockchain  | Amazon Redshift, Google   | Google Docs, Office 365          | Content Delivery Networks  | Netflix, Spotify, Amazon  |
+|                           |                         | BigQuery, Snowflake      |                                 |                             | Recommendations          |
+| **Optimizations**         | Distributed hash        | Query optimization,      | Conflict resolution algorithms,  | Caching, Load Balancing    | Collaborative filtering,  |
+|                           | table, Merkle trees      | Data partitioning        | Operational transforms          | Peer-to-peer protocols    | Machine learning models   |
+|                           |                         |                         |                                  |                             |                          |
+| **Scalability Concerns**  | Horizontal Scaling,     | Horizontal Scaling       | Scalability for concurrent      | Content replication,      | Scalability based on user |
+|                           | Fault Tolerance         |                         | edits                            | Load Balancing            | base and data volume      |
+|                           |                         |                         |                                  |                             |                          |
+| **Data Consistency**       | Eventual Consistency,   | Consistency models       | Operational transformations,    | Consistent Hashing         | Personalized experiences  |
+|                           | Merkle-Dag Consistency   | based on use case        | Conflict resolution            |                             | based on the latest data  |
+|                           |                         |                         |                                  |                             |                          |
+| **Concurrency Handling**  | Distributed Locking,    | Parallel processing,     | Operational transforms, CRDTs   | Multi-level caching,      | Collaborative filtering,  |
+|                           | Consensus algorithms    | Batch processing         | (Conflict-Free Replicated Data)  | Concurrent request handling| Real-time updates          |
+|                           |                         |                         |                                  |                             |                          |
+| **Examples of Systems**   | BitTorrent, Bitcoin     | Amazon Redshift, Google   | Google Docs, Figma, Slack        | Content Delivery Networks  | Netflix Recommendations,|
+|                           |                         | BigQuery                 |                                 | Akamai, Cloudflare         | Amazon Personalize       |
+|                           |                         |                         |                                 |                             |                          |
+
+---
+
+| Criteria                  | Internet of Things (IoT) System | Video Streaming System     | Online Gaming System        | Healthcare Information System | Fault-Tolerant System      |
+|---------------------------|----------------------------------|----------------------------|-----------------------------|---------------------------------|---------------------------|
+| **Data Access Pattern**   | Continuous data streams from      | On-demand video content,   | Real-time player interactions| Patient records, medical data   | Redundancy, Error Handling |
+|                           | IoT devices, Sensor data          | live streaming events      | and synchronization          | monitoring, diagnostics         | and Recovery               |
+|                           |                                 |                            |                             |                                 |                           |
+| **Example Technologies**  | MQTT, CoAP, Azure IoT Hub         | YouTube, Netflix, Hulu     | Multiplayer platforms like   | Electronic Health Record (EHR)  | Replication, Load Balancing|
+|                           |                                 |                            | Xbox Live, PlayStation      | systems, Health Information     |                           |
+|                           |                                 |                            | Network                     | Exchanges (HIE), Health IoT      |                           |
+| **Optimizations**         | Data compression, Edge            | Adaptive Bitrate Streaming,| Latency optimization,        | Data encryption, Access Control | Distributed consensus     |
+|                           | computing, Stream processing      | Content Delivery Networks,| Load balancing,              | Mechanisms, Authentication      |                           |
+|                           |                                 | Caching, Load Balancing   | Sharding                     | and Authorization                |                           |
+| **Scalability Concerns**  | Horizontal Scaling,               | Horizontal Scaling         | Dynamic scaling based on     | Scalability for patient data,    | Load Balancing,           |
+|                           | Scalability for device            | (Adding more servers for   | concurrent players          | High availability, Scalability  | Replication               |
+|                           | communication and data storage    | increased demand)          |                             | for medical data                |                           |
+|                           |                                 |                            |                             |                                 |                           |
+| **Data Consistency**       | Eventual Consistency              | Consistency based on        | Consistency models for        | Strong Consistency,             | Consensus Algorithms       |
+|                           |                                 | streaming protocols         | real-time gameplay           | Healthcare standards            |                           |
+|                           |                                 |                            |                             |                                 |                           |
+| **Concurrency Handling**  | Optimistic Concurrency Control,  | Concurrent streaming        | Distributed game state       | Versioning, Transactional       | Rollback Strategies        |
+|                           | Conflict Resolution for IoT       | with chunked encoding       | synchronization              | Processing                     |                           |
+| **Examples of Systems**   | Smart Home Automation,            | Netflix, Twitch, YouTube   | Fortnite, PUBG, World of     | Electronic Health Record (EHR),  | Google Cloud Spanner,     |
+|                           | Industrial IoT applications,      | Live, Hulu Live             | Warcraft                     | Health Information Exchanges    | Amazon DynamoDB           |
+|                           | Wearables, Environmental Sensors  |                             |                             |                                 |                           |
+
+---
+
+| Criteria                  | Chat Application System | Social Networking System  | Distributed File System  | Data Analytics System   | Location-Based Services System |
+|---------------------------|-------------------------|---------------------------|--------------------------|-------------------------|--------------------------------|
+| **Data Access Pattern**   | Real-time messaging and  | User posts, comments,     | File reads and writes    | Large-scale data        | User location tracking,        |
+|                           | notification delivery    | friend requests           | and storage              | processing, querying    | geofencing, mapping            |
+|                           |                         |                           |                          |                         |                                |
+| **Example Technologies**  | WhatsApp, Slack,         | Facebook, Twitter,        | Hadoop Distributed File  | Apache Spark, HBase,    | Google Maps API,               |
+|                           | Telegram                | Instagram, LinkedIn       | System (HDFS), Google     | Amazon S3, Elasticsearch| Foursquare                      |
+|                           |                         |                           | File System (GFS)        |                         |                                |
+| **Optimizations**         | Message indexing,        | Content caching,          | Distributed data         | Query optimization,     | Caching, Load Balancing,        |
+|                           | Compression, Push        | Friend recommendation,    | replication,              | Parallel processing,    | Geographical load distribution |
+|                           | notifications            | Sharding, Load Balancing  | Fault tolerance          | Data partitioning       |                                |
+|                           |                         |                           |                          |                         |                                |
+| **Scalability Concerns**  | Horizontal Scaling,      | Horizontal Scaling        | Horizontal Scaling       | Horizontal Scaling     | Horizontal Scaling             |
+|                           | Load Balancing           | (Adding more servers)     | (Adding more servers)    | (Adding more servers)  | (Adding more servers)          |
+|                           |                         |                           |                          |                         |                                |
+| **Data Consistency**       | Eventual Consistency,    | Consistency models        | Consistency based on      | Eventual Consistency   | Consistency based on            |
+|                           | Operational transforms   | based on social network   | replication and           | and Distributed        | distributed transactions       |
+|                           |                         | use cases                  | consensus                | Processing              |                                |
+| **Concurrency Handling**  | Optimistic Concurrency   | Concurrent processing,    | Distributed locking,     | Distributed            | Concurrency control,           |
+|                           | Control, Conflict         | Locking, Transactions      | Versioning, Conflict      | Transactions, Isolation | Distributed Transactions       |
+|                           | Resolution               | Resolution                | Resolution               |                         |                                |
+| **Examples of Systems**   | WhatsApp, Slack,         | Facebook, Twitter,        | Hadoop Distributed File  | Apache Spark,           | Google Maps, Foursquare         |
+|                           | Telegram                | Instagram, LinkedIn       | System, Google File       | HBase                   |                                |
+|                           |                         |                           | System                   |                         |                                |
 
 
 
