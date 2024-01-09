@@ -60,6 +60,9 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 
 ---
 
+### System Design Compare 3
+
+
 | Criteria                  | Peer-to-Peer System     | Data Warehousing System  | Real-time Collaborative System   | Content Distribution System | Recommendation System    |
 |---------------------------|-------------------------|--------------------------|----------------------------------|-----------------------------|--------------------------|
 | **Data Access Pattern**   | Decentralized data      | Analytical queries       | Simultaneous editing and updates | Efficient content delivery | User-specific suggestions |
@@ -86,7 +89,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 
 ---
 
-### System Design Compare 3
+### System Design Compare 4
 
 
 | Criteria                  | Internet of Things (IoT) System | Video Streaming System     | Online Gaming System        | Healthcare Information System | Fault-Tolerant System      |
@@ -114,6 +117,9 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 |                           | Wearables, Environmental Sensors  |                             |                             |                                 |                           |
 
 ---
+
+### System Design Compare 5
+
 
 | Criteria                  | Chat Application System | Social Networking System  | Distributed File System  | Data Analytics System   | Location-Based Services System |
 |---------------------------|-------------------------|---------------------------|--------------------------|-------------------------|--------------------------------|
