@@ -4,7 +4,7 @@ title: Design Patterns
 date: 2023-09-13
 tags:
   - system design
-   - Review-Q&A
+  - Review-Q&A
 categories:
 - Notes
 feature_text: |
