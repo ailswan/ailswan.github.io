@@ -15,6 +15,119 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 
 ### System Design Patterns 
 
+The characteristics of object-oriented programming include maintainability, reusability, extensibility, and good flexibility. Its greatest strength lies in the fact that, as business complexity increases, object-oriented programming still ensures a well-structured program, while procedural programming may result in increasingly cumbersome code.
+
+---
+
+## Design Patterns in Software Development
+
+The world of design patterns is diverse and colorful, encompassing various patterns such as the Factory Pattern, which produces individual "products"; the Adapter Pattern, which connects two unrelated interfaces; the Strategy Pattern, which allows for different ways of accomplishing the same task; and the Builder Pattern, which constructs objects based on stable building steps and different configurations during the construction process.
+
+Regardless of the specific design pattern, they all adhere to six major design principles:
+
+### Open/Closed Principle
+A software entity, such as a class, module, or function, should be open for extension but closed for modification. This means that new functionality can be added without altering existing code.
+
+### Single Responsibility Principle
+A class should have only one reason to change, meaning it should only have one responsibility or do one thing. This principle helps maintain code clarity and ease of modification.
+
+### Liskov Substitution Principle
+Subtypes should be substitutable for their base types. In other words, when using inheritance, new functionalities should be added without disrupting the existing functionality of the base class.
+
+### Dependency Inversion Principle
+High-level modules should not depend on low-level modules; both should depend on abstractions. This principle advocates for designing the system with abstractions that are stable and allowing details to depend on abstractions, not the other way around.
+
+### Law of Demeter (Least Knowledge Principle)
+Also known as the "least knowledge principle," a class should have minimal knowledge about the inner workings of other classes. It should only communicate with its immediate friends and not with the friends' friends.
+
+### Interface Segregation Principle
+Clients should not be forced to depend on interfaces they do not use. If an interface contains methods that are unnecessary or irrelevant for a particular client, the interface should be split into smaller, more specific interfaces.
+
+These principles serve as the foundation for designing robust, maintainable, and flexible software systems, and they guide the creation and implementation of various design patterns in the programming world.
+
+---
+
+## Creational Patterns
+
+### 1. Factory Method Pattern
+- Create a factory for each class, allowing the client to interact only with the factory to create objects.
+
+### 2. Abstract Factory Pattern
+- Extract an abstract interface for each factory, making it easy to add or replace factories.
+
+### 3. Builder Pattern
+- Used to create objects with a stable construction process; different builders can define different configurations.
+
+### 4. Singleton Pattern
+- Globally use the same object, available in eager and lazy initialization. Lazy initialization has two implementations: double-check locking and inner class.
+
+### 5. Prototype Pattern
+- Define a clone method for a class, facilitating the creation of identical objects.
+
+---
+
+## Structural Patterns
+
+### 1. Adapter Pattern
+- Used for interfaces that are correlated but incompatible.
+
+### 2. Bridge Pattern
+- Used for combining interfaces at the same level.
+
+### 3. Composite Pattern
+- Used for structuring whole-part relationships.
+
+### 4. Facade Pattern
+- Reflects the encapsulation principle.
+
+### 5. Flyweight Pattern
+- Reflects the reusability in object-oriented programming.
+
+### 6. Proxy Pattern
+- Primarily used for controlling access to an object.
+
+---
+
+## Behavioral Patterns
+
+Behavioral patterns focus on the interaction and collaboration between classes, similar to how individual behaviors at work may affect colleagues and be influenced by others. In the runtime of a program, no object operates in isolation; they can achieve complex functionalities through communication and collaboration.
+
+### 1. Chain of Responsibility Pattern
+- Handles objects with the same responsibility but different degrees, passing them along a chain.
+
+### 2. Command Pattern
+- Encapsulates "method calls," decoupling the requester of a behavior from its implementer.
+
+### 3. Interpreter Pattern
+- Defines custom syntax rules.
+
+### 4. Iterator Pattern
+- Defines `next()` and `hasNext()` methods, allowing an external class to traverse a list and hide its internal details.
+
+### 5. Mediator Pattern
+- Transforms a meshed coupling structure into a star-shaped structure by introducing a mediator.
+
+### 6. Memento Pattern
+- Stores an object's state for later restoration.
+
+### 7. Observer Pattern
+- Manages one-to-many dependencies; multiple observers receive notifications when the observed object changes.
+
+### 8. State Pattern
+- A design pattern about polymorphism, where each state class handles one state of an object.
+
+### 9. Strategy Pattern
+- Different paths lead to the same goal; multiple methods are used to accomplish the same task.
+
+### 10. Template Method Pattern
+- A design pattern about inheritance; the parent class serves as a template for its subclasses.
+
+### 11. Visitor Pattern
+- Separates the structure of data from its operations.
+
+---
+
+
 1. **Singleton**:
     - Purpose: Ensure a class has only one instance and provide a global point to access it.
     - Use Case: Database connections, Logger classes.
