@@ -4,7 +4,7 @@ title: BD Compare Q & A
 date: 2024-01-07
 tags:
   - Backend
-  - Review
+   - Review-Q&A
 categories:
 - SQL    
 - DB
