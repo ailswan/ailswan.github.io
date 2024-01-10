@@ -3648,3 +3648,74 @@ MyISAM is known for its simplicity, storing data in a compact format. It is suit
 - **Other Features:**
   - MyISAM supports compressed tables and spatial data indexes.
 
+---
+
+### **148. DDoS Attacks**
+
+### Overview
+DoS (Denial of Service) attacks and DDoS (Distributed Denial of Service) attacks are common attack methods in the field of network security. Their aim is to exhaust the resources of the target system (such as bandwidth, processing power, memory, etc.), rendering the target system incapable of providing normal services.
+
+### 1. DoS Attack
+- **Definition:** DoS attacks are typically initiated by a single attacker who floods the target system with a large number of requests or specially crafted malicious packets. This exhausts the resources of the target system, resulting in normal users being unable to access it.
+- **Common Types:** SYN Flood, ICMP Flood, UDP Flood, etc.
+- **Drawback:** The disadvantage of a DoS attack is that the attacker's IP address is easily identifiable, making them susceptible to tracking and sanctions.
+
+### 2. DDoS Attack
+- **Definition:** DDoS attacks are an advanced form of DoS attacks. They leverage multiple controlled computers (botnets) to simultaneously launch attacks, making them more difficult to defend against and trace. DDoS attacks can deplete the resources of the target system from multiple directions, causing it to become paralyzed.
+- **Challenge:** The defense against DDoS attacks is more challenging than DoS attacks due to the involvement of numerous attack sources.
+
+### Methods to Defend Against DoS and DDoS Attacks
+1. **Rate Limiting:** Restrict the request rate from a single IP address.
+2. **Security Devices:** Utilize firewalls, Intrusion Detection Systems (IDS), and Intrusion Prevention Systems (IPS).
+3. **Load Balancing:** Employ load balancing technology to distribute request pressure.
+4. **Collaboration with ISPs:** Cooperate with Internet Service Providers (ISPs) for traffic cleaning and blocking malicious IP addresses.
+
+### Conclusion
+DoS and DDoS attacks pose a serious threat to network security, necessitating comprehensive measures for prevention and mitigation.
+
+---
+
+### **149. ARP Attacks**
+
+### Overview
+In the previous section, we discussed that ARP (Address Resolution Protocol) is a protocol used to obtain MAC addresses using IP addresses. ARP attacks exploit vulnerabilities and shortcomings in the ARP protocol.
+
+ARP attacks involve attackers forging ARP request and reply messages, disrupting communication between the target device and other devices on the network. The objectives of ARP attacks include data theft, data tampering, or denial of service. Common types of ARP attacks include:
+
+#### 1. ARP Spoofing
+- **Description:** Attackers send forged ARP reply messages to devices in the network, causing the target device to bind the attacker's MAC address with an incorrect IP address. Consequently, when the target device communicates with the incorrect IP address, the data is, in fact, sent to the attacker.
+  
+#### 2. Man-in-the-Middle (MitM) Attack
+- **Description:** Attackers send forged ARP reply messages to two communicating devices, causing each device to bind the attacker's MAC address with the other device's IP address. This enables the attacker to intercept, eavesdrop, or manipulate the communication data between the two devices, executing a man-in-the-middle attack.
+
+### Methods to Defend Against ARP Attacks
+1. **Static ARP Table:** Configure static ARP tables on network devices, fixing the mapping relationship between IP addresses and MAC addresses, making it difficult for attackers to manipulate address mappings through forged ARP messages.
+2. **ARP Protection Devices:** Deploy ARP protection devices such as firewalls, Intrusion Detection Systems (IDS), etc., to monitor and block abnormal ARP messages.
+3. **Dynamic ARP Inspection (DAI):** Enable DAI on switches to inspect ARP messages passing through the switch, validating the correspondence between IP addresses and MAC addresses, and intercepting abnormal ARP messages.
+
+ARP attacks pose a significant threat to network security, and defending against them requires implementing a combination of preventive measures.
+
+---
+
+### **150. AES and RSA**
+
+### Overview
+AES (Advanced Encryption Standard) and RSA (Rivest–Shamir–Adleman, named after its inventors) are widely used encryption algorithms in cryptography, but they differ in their encryption principles and application scenarios.
+
+#### AES (Advanced Encryption Standard)
+- **Type:** Symmetric Encryption Algorithm
+- **Key Lengths:** 128-bit, 192-bit, or 256-bit
+- **Description:** AES employs a symmetric key for both encryption and decryption. The encryption process involves multiple rounds of operations, including substitution, permutation, shift rows, and mix columns. AES ensures high security and operational efficiency, making it suitable for safeguarding data confidentiality.
+
+#### RSA (Rivest–Shamir–Adleman)
+- **Type:** Asymmetric Encryption Algorithm
+- **Key Lengths:** Typically 1024-bit, 2048-bit, or longer
+- **Description:** RSA is an asymmetric encryption algorithm, utilizing a pair of distinct keys known as the public key for encryption and the private key for decryption. The security of RSA is based on the difficulty of large number factorization. It is used to ensure data confidentiality, integrity, and for functionalities like digital signatures.
+
+### Main Differences between AES and RSA
+1. **Symmetric vs. Asymmetric Encryption:** AES is a symmetric encryption algorithm, using the same key for encryption and decryption, while RSA is an asymmetric algorithm, using different keys for encryption and decryption.
+2. **Efficiency:** AES operates at a faster computational speed and consumes fewer resources. In contrast, RSA, involving large number calculations, operates more slowly and consumes more resources.
+3. **Application Scenarios:** AES is suitable for encrypting large amounts of data, such as file encryption and network communication encryption. RSA is commonly used for encrypting smaller data, such as key exchange and digital signatures.
+
+In practical applications, AES and RSA are often combined to leverage their respective strengths. For instance, in secure communication, RSA may be used initially to exchange an AES key, followed by encrypting communication data using the AES key, achieving efficient and secure data transmission.
+ 
