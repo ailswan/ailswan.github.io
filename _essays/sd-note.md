@@ -8,7 +8,7 @@ categories:
 - Notes
 feature_text: |
   ##  Design Patterns
-  Post by ailswan Sep. 13, 2023
+  Post by ailswan Sep. 13, 202
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
 
