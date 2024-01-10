@@ -4,11 +4,12 @@ title: BD Compare Q & A
 date: 2024-01-07
 tags:
   - Backend
+  - Review
 categories:
 - SQL    
 - DB
 - Backend
-- Review
+
 feature_text: |
   ## BD Compare Q & A
   Post by ailswan Jan. 07, 2024
