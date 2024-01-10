@@ -1761,6 +1761,10 @@ There are four types of header fields in HTTP: general headers, request headers,
 
 ### **78. Cookie Usage**
 
+Cookies are small pieces of data sent by a server to a user's browser, stored locally. They are carried with subsequent requests to the same server, informing the server whether the requests are from the same browser. As each request needs to carry Cookie data, it introduces additional performance overhead, especially in mobile environments.
+
+Cookies were once used as the primary means for client-side data storage due to the absence of suitable alternatives. However, with modern browsers supporting various storage methods, Cookies have gradually become obsolete. New browser APIs allow developers to store data directly locally, using Web Storage API (local storage and session storage) or IndexedDB.
+
 Cookies are commonly used for various purposes, including:
 
 - Session state management (e.g., user login status, shopping carts, game scores, or any information that needs to be recorded).
@@ -3520,4 +3524,128 @@ The performance benefits of read-write separation are:
 Read-write separation is commonly implemented using proxy servers. The proxy server receives read and write requests from the application layer and decides which server to forward them to.
 
 ---
+
+# Extra questions
+
+### **144. Basic Features**
+
+## 1. Concurrency
+Concurrency refers to the ability of multiple programs to run simultaneously within a certain period, while parallelism implies the execution of multiple instructions at the same moment.
+
+Parallelism requires hardware support, such as multiple pipelines, multi-core processors, or distributed computing systems.
+
+Operating systems enable concurrent execution of programs by introducing processes and threads.
+
+## 2. Sharing
+Sharing implies that resources in the system can be utilized by multiple concurrent processes.
+
+There are two sharing modes: mutual exclusion and simultaneous sharing.
+
+Mutual exclusion involves critical resources, like printers, where only one process is allowed access at any given time. Synchronization mechanisms are employed to achieve mutually exclusive access.
+
+## 3. Virtualization
+Virtualization technology transforms a physical entity into multiple logical entities.
+
+There are mainly two virtualization techniques: time-multiplexing (time-sharing) and space-multiplexing (space-sharing).
+
+Time-multiplexing allows multiple processes to concurrently execute on the same processor by giving each process a time slice. This enables quick switching between processes.
+
+Virtual memory utilizes space-multiplexing, abstracting physical memory into address spaces. Each process has its own address space, and pages of the address space are mapped to physical memory. Not all pages need to reside in physical memory, and when a page not in physical memory is accessed, a page replacement algorithm is executed to bring that page into memory.
+
+## 4. Asynchrony
+Asynchrony means that a process does not complete all at once but progresses intermittently at an unpredictable pace.
+
+---
+
+### **145. Deadlock Necessary Conditions**
+
+1. **Mutual Exclusion**
+   - Each resource is either already allocated to a process or available.
+
+2. **Hold and Wait**
+   - A process holding resources can request additional resources.
+
+3. **No Preemption**
+   - Resources allocated to a process cannot be forcefully taken away; they can only be released explicitly by the process holding them.
+
+4. **Circular Wait**
+   - Two or more processes form a circular chain, with each process waiting for the next one to release resources.
+
+### **146. Deadlock Avoidance**
+
+Preventing deadlock during program execution.
+
+1. **Safe State**
+   - Example: Consider the state shown in figure 'a' with columns representing 'Has' (resources held), 'Max' (maximum resources needed), and 'Free' (available resources). Starting from figure 'a', allocate all resources needed by process B (figure 'b'), release B, making 'Free' 5 (figure 'c'). Repeat for processes C and A, ensuring each process can complete successfully. Thus, the state shown in figure 'a' is considered safe.
+
+   **Definition:** A state is safe if no deadlock occurs, and even if all processes suddenly request their maximum resources, there exists a scheduling sequence that allows each process to finish.
+
+   Safety state detection is similar to deadlock detection, as a safe state must not lead to a deadlock. The Banker's algorithm, presented next, is similar to deadlock detection and serves as a reference.
+
+2. **Banker's Algorithm for a Single Resource**
+   - An algorithm used by a small-town banker who promised loan amounts to clients. The goal is to determine if fulfilling a request would lead to an unsafe state; if yes, the request is denied.
+
+3. **Banker's Algorithm for Multiple Resources**
+   - The figure displays five processes and four resources. Left matrix indicates allocated resources, right matrix indicates needed resources. 'E', 'P', and 'A' on the right represent total, allocated, and available resources, respectively (as vectors).
+
+   Safety state check algorithm:
+   - Look for a row in the right matrix less than or equal to vector 'A'. If none is found, the system is entering a deadlock; the state is unsafe.
+   - If found, mark the process as terminated, and add its allocated resources to 'A'.
+   - Repeat the above steps until all processes are marked as terminated; the state is then considered safe.
+
+   If a state is not safe, requests leading to that state should be rejected.
+
+---
+
+### **147. MySQL Storage Engines**
+
+### InnoDB
+
+InnoDB is the default transactional storage engine for MySQL. Other storage engines are considered only when features unsupported by InnoDB are required.
+
+- Implements four standard isolation levels, with the default being Repeatable Read. Under Repeatable Read, it uses Multi-Version Concurrency Control (MVCC) and Next-Key Locking to prevent phantom reads.
+  
+- The primary index is a clustered index, storing data in the index, avoiding direct disk reads, thereby significantly improving query performance.
+
+- InnoDB incorporates various optimizations, including predictable reads when fetching data from disk, automatically created adaptive hash indexes for faster reads, and an insert buffer to speed up insertion operations.
+
+- Supports true online hot backups. Unlike other storage engines that do not support online hot backups, achieving a consistent view requires stopping write operations on all tables, which, in a mixed read-write scenario, may mean stopping reads as well.
+
+### MyISAM
+
+MyISAM is known for its simplicity, storing data in a compact format. It is suitable for read-only data, small tables, or scenarios tolerant of repair operations.
+
+- Offers a range of features, including compressed tables and spatial data indexes.
+
+- Lacks transaction support.
+
+- Does not support row-level locks; only table-level locks are available. Reads acquire shared locks on all required tables, and writes acquire exclusive locks on tables. However, concurrent inserts (CONCURRENT INSERT) are allowed while reading is in progress.
+
+- Allows manual or automatic execution of check and repair operations. Unlike transaction recovery or crash recovery, these operations may result in some data loss and are notably slow.
+
+- When the DELAY_KEY_WRITE option is specified, index modifications are buffered in memory rather than immediately written to disk after each modification. While this significantly improves write performance, it may lead to index corruption in the event of a database or host crash, requiring repair operations.
+
+### Comparison
+
+- **Transaction Support:**
+  - InnoDB is transactional, supporting Commit and Rollback statements.
+  - MyISAM lacks transaction support.
+
+- **Concurrency:**
+  - MyISAM supports only table-level locks.
+  - InnoDB supports both table-level and row-level locks.
+
+- **Foreign Key Support:**
+  - InnoDB supports foreign keys.
+  - MyISAM does not support foreign keys.
+
+- **Backup:**
+  - InnoDB supports online hot backups.
+  - MyISAM does not have built-in support for online hot backups.
+
+- **Crash Recovery:**
+  - MyISAM has a higher probability of data corruption and slower recovery after a crash compared to InnoDB.
+
+- **Other Features:**
+  - MyISAM supports compressed tables and spatial data indexes.
 
