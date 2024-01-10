@@ -29,6 +29,8 @@ Internet Service Providers (ISPs) can obtain numerous IP addresses from internet
 
 The current internet structure follows a hierarchical ISP model with multiple layers. ISPs are categorized into Tier-1 ISPs, Regional ISPs, and Access ISPs based on the extent of their coverage. Internet Exchange Points (IXPs) enable direct connections between two ISPs without involving a third ISP.
 
+note:while ISPs are responsible for providing the physical connection to the internet, DNS is responsible for translating human-friendly domain names into machine-readable IP addresses, enabling users to access websites and services using easily memorable names. They are both integral parts of the internet ecosystem, working together to ensure a seamless online experience for users.
+
 ---
 
 ### **3. Communication Methods Between Hosts**
