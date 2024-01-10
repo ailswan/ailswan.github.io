@@ -1,13 +1,13 @@
 ---
 layout: essay_single
-title: System Design Patterns
+title: Design Patterns
 date: 2023-09-13
 tags:
   - system design
 categories:
 - Notes
 feature_text: |
-  ## System Design Patterns
+  ##  Design Patterns
   Post by ailswan Sep. 13, 2023
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
