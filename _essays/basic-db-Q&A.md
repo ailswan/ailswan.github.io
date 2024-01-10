@@ -8,6 +8,7 @@ categories:
 - SQL    
 - DB
 - Backend
+- Review
 feature_text: |
   ## BD Compare Q & A
   Post by ailswan Jan. 07, 2024
