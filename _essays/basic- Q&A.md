@@ -1867,7 +1867,6 @@ In scenarios where cookies are disabled, and Cookie cannot be used to store user
 
 When cookies are disabled, preventing the use of cookies to store user information, only sessions are available. In addition, Session ID should not be stored in a cookie. Instead, URL rewriting is used to pass the Session ID as a parameter in the URL.
 
-Feel free to use or modify this content. If you have more questions or need further assistance, let me know!
 
 ---
 
