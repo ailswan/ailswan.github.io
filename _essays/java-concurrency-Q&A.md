@@ -23,7 +23,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 2. `Thread` + `Runnable`
 3. `Thread` + `Callable` + `FutureTask`
 
-### Methods provided by the `Thread` class to control threads, their purposes, and their impact on thread states:
+### Methods provided by the Thread class to control threads, their purposes, and their impact on thread states:
 - `start` / `run`
   - **Purpose:** Initiates the execution of the thread.
 - `sleep` / `yield`
