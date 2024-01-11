@@ -284,7 +284,7 @@ In summary, Python and Java rely on automatic garbage collection, reducing the b
 
 ---
 
-# 6. Python backend 
+# 6. Python backend details
 
 ## 1. What is WSGI in the context of Python web development?
 
