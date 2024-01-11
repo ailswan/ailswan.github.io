@@ -286,7 +286,7 @@ In summary, Python and Java rely on automatic garbage collection, reducing the b
 
 # 6. Python backend details
 
-## 1. What is WSGI in the context of Python web development?
+### 1. What is WSGI in the context of Python web development?
 
 WSGI, or Web Server Gateway Interface, is a specification for a universal interface between web servers and Python web applications or frameworks. It defines a standard interface for communication between web servers and Python applications, allowing for interoperability and easy deployment.
 
@@ -464,7 +464,7 @@ Both executors in the `concurrent.futures` module provide a high-level interface
 
 The `asyncio.shield()` function is used to protect a task from being cancelled. It wraps a coroutine or task, preventing cancellation from propagating to the enclosed coroutine. This is useful when you want to ensure that a critical task completes, regardless of external cancellation.
 
-## 44. How does Python's `asyncio` handle timeouts in asynchronous code?
+## 44. How does Python `asyncio` handle timeouts in asynchronous code?
 
 `asyncio` provides a `asyncio.wait_for()` function to introduce timeouts in asynchronous code. It allows you to set a maximum duration for the execution of a coroutine, raising a `asyncio.TimeoutError` if the operation takes longer than the specified timeout.
 
