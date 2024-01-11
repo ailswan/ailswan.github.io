@@ -14,26 +14,23 @@ feature_text: |
   Post by ailswan Jan. 11, 2024
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
-
-# 1. Concurrency Comparison python, java, c++
-| Feature                        | Python                            | Java                               | C++                                |
-|--------------------------------|-----------------------------------|------------------------------------|------------------------------------|
-| Threading                      | Yes (threading module)            | Yes (java.lang.Thread)             | Yes (std::thread)                  |
-| Multi-Threading                | Yes (threading module)            | Yes (java.lang.Thread)             | Yes (std::thread)                  |
-| Parallelism                    | Limited (due to GIL)               | Yes (java.util.concurrent)         | Yes (std::thread, OpenMP)          |
-| Synchronization                | Yes (threading module)            | Yes (synchronized, java.util.concurrent) | Yes (std::mutex, std::atomic)      |
-| Locks                          | Yes (threading module)            | Yes (java.util.concurrent.locks)   | Yes (std::mutex, std::unique_lock) |
-| Atomic Operations              | Limited (due to GIL)               | Yes (java.util.concurrent.atomic)  | Yes (std::atomic)                  |
-| Futures/Promises               | Yes (concurrent.futures)          | Yes (java.util.concurrent.Future)  | Yes (std::future)                  |
-| Async IO                       | Yes (asyncio module)               | Yes (java.nio, CompletableFuture)  | Yes (std::async, coroutines)       |
-| Message Passing                | Yes (multiprocessing module)       | Yes (java.util.concurrent)         | Yes (std::message_queue)          |
-| Concurrency Frameworks         | asyncio, multiprocessing           | java.util.concurrent, ForkJoinPool| std::thread, std::async            |
-| Data Parallelism               | No                                | Yes (Parallel Streams, ForkJoinPool)| Yes (OpenMP, Parallel STL)        |
-| GPU Acceleration (native)      | No                                | Yes (JavaFX with JavaFX Scene Graph)| Yes (CUDA, OpenCL with libraries) |
-| Actor Model                    | No                                | No                                | Limited (Threading + Libraries)   |
+| Feature                  | Python                               | Java                                   | C++                                |
+|--------------------------|--------------------------------------|----------------------------------------|------------------------------------|
+| Threading                | Yes (threading module)               | Yes (java.lang.Thread)                 | Yes (std::thread)                  |
+| Multi-Threading          | Yes (threading module)               | Yes (java.lang.Thread)                 | Yes (std::thread)                  |
+| Parallelism              | Limited (due to GIL)                  | Yes (java.util.concurrent)             | Yes (std::thread, OpenMP)          |
+| Synchronization          | Yes (threading module)               | Yes (synchronized, java.util.concurrent)| Yes (std::mutex, std::atomic)      |
+| Locks                    | Yes (threading module)               | Yes (java.util.concurrent.locks)       | Yes (std::mutex, std::unique_lock) |
+| Atomic Operations        | Limited (due to GIL)                  | Yes (java.util.concurrent.atomic)      | Yes (std::atomic)                  |
+| Futures/Promises         | Yes (concurrent.futures)             | Yes (java.util.concurrent.Future)      | Yes (std::future)                  |
+| Async IO                 | Yes (asyncio module)                  | Yes (java.nio, CompletableFuture)      | Yes (std::async, coroutines)       |
+| Message Passing          | Yes (multiprocessing module)          | Yes (java.util.concurrent)             | Yes (std::message_queue)          |
+| Concurrency Frameworks   | asyncio, multiprocessing              | java.util.concurrent, ForkJoinPool     | std::thread, std::async            |
+| Data Parallelism         | No                                   | Yes (Parallel Streams, ForkJoinPool)   | Yes (OpenMP, Parallel STL)        |
+| GPU Acceleration (native)| No                                   | Yes (JavaFX with JavaFX Scene Graph)  | Yes (CUDA, OpenCL with libraries) |
+| Actor Model              | No                                   | No                                     | Limited (Threading + Libraries)   |
 
 
-Note:
 
 The table provides a high-level overview of concurrency features in each programming language.
 Python's Global Interpreter Lock (GIL) limits concurrent execution of threads in CPython, but multiprocessing can be used for parallelism.
