@@ -18,12 +18,12 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 
 # 1. Multithreading
 
-## Three ways to create threads (`Thread`):
+### Three ways to create threads (Thread):
 1. Directly using `Thread`
 2. `Thread` + `Runnable`
 3. `Thread` + `Callable` + `FutureTask`
 
-## Methods provided by the `Thread` class to control threads, their purposes, and their impact on thread states:
+### Methods provided by the `Thread` class to control threads, their purposes, and their impact on thread states:
 - `start` / `run`
   - **Purpose:** Initiates the execution of the thread.
 - `sleep` / `yield`
@@ -35,7 +35,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 - `setDaemon`
   - **Purpose:** Marks the thread as a daemon thread, which does not prevent the program from exiting.
 
-## Three essential properties related to thread safety:
+### Three essential properties related to thread safety:
 1. **Atomicity:**
    - **Definition:** An operation is uninterruptible, either it succeeds entirely or fails entirely (providing mutual exclusion, allowing only one thread to operate on data at any given time).
    
@@ -45,7 +45,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 3. **Ordering:**
    - **Definition:** Due to the optimization of program performance, compilers and processors may reorder instruction sequences. In a multithreaded environment, this can lead to incorrect program results.
 
-## Principles followed by compilers and processors during reordering:
+### Principles followed by compilers and processors during reordering:
 - **Data Dependency:**
   - During reordering, compilers and processors adhere to data dependency, maintaining the execution order of operations with a data dependency relationship.
 
@@ -58,17 +58,17 @@ In fact, visibility and ordering are contradictory aspects. On the one hand, for
 
 # 2. Ensuring Thread Safety in Java
 
-## Visibility
+### Visibility
 To ensure visibility in Java, the following approaches can be used:
 - Use the `volatile` keyword, which not only ensures visibility but also prevents instruction reordering.
 - Additionally, the `synchronized` and `final` keywords also guarantee visibility.
 
-## Atomicity
+### Atomicity
 To ensure atomicity in Java, the following methods can be employed:
 - Use locks and classes from the `java.util.concurrent.atomic` package. This package, commonly known as J.U.C, introduces classes that ensure atomicity through Compare-And-Swap (CAS) operations.
   - It's crucial to delve into CAS, understand the associated problems, and explore the underlying principles of these atomic classes.
 
-## Locks in Java
+### Locks in Java
 Understanding locks in Java is essential. Before delving into the topic, grasp various lock concepts, including:
 - Pessimistic locks and optimistic locks
 - Heavyweight locks and lightweight locks
@@ -78,16 +78,16 @@ Understanding locks in Java is essential. Before delving into the topic, grasp v
 - Fair locks and unfair locks
 - Shared locks and exclusive locks
 
-## Additional Concepts
+### Additional Concepts
 - Concepts related to locks, such as critical sections and race conditions, are crucial to understanding.
 
-## Implementation of Locks in Java
+### Implementation of Locks in Java
 In the early days, Java programs relied on the `synchronized` keyword for locking. After mastering its usage and underlying principles, you'll encounter associated methods like `wait/notify/notifyAll`.
 - Since Java SE 5, the concurrency package JUC introduced the `Lock` interface and related implementation classes (found in the `java.util.concurrent.locks` package) to implement locking functionality.
 
-# Introduction to the Java Lock Interface
+## Introduction to the Java Lock Interface
 
-## Why Introduce the Lock Interface and Its Implementations?
+### Why Introduce the Lock Interface and Its Implementations?
 
 The introduction of the `Lock` interface and its related implementations stemmed from the limitations of using the `synchronized` keyword. While `synchronized` implicitly acquires and releases locks, it rigidly couples lock acquisition and release—always acquiring before releasing. Although this simplifies synchronization management, it lacks the flexibility of explicitly acquiring and releasing locks.
 
@@ -101,7 +101,7 @@ AQS can be understood as a framework for constructing locks and synchronizers (u
 
 In conclusion, the article doesn't delve further into AQS, and the three concurrent keywords—`synchronized`, `volatile`, and `final`. These topics will be covered in future articles.
 
-# Overview of Java Util Concurrent (JUC)
+## Overview of Java Util Concurrent (JUC)
 
 JUC can be categorized into five main classes:
 
