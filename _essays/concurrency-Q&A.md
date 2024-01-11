@@ -43,8 +43,9 @@ GPU acceleration is typically achieved through external libraries in C++ (e.g., 
 
 # 2. Lock Comparison
 
-Locking:
-Java:
+**Locking:**
+
+**Java:**
 Java provides built-in synchronization mechanisms, such as the synchronized keyword and locks from the java.util.concurrent package. The synchronized keyword can be used on methods or code blocks to ensure that only one thread can access the protected region at a time. Additionally, the ReentrantLock class can be used for explicit locking, offering more flexibility.
 
 ```java
@@ -67,7 +68,7 @@ public void performTask() {
 }
 ```
 
-Python:
+**Python:**
 Python's threading module provides basic locking mechanisms, but due to the Global Interpreter Lock (GIL), multi-threading is not suitable for CPU-intensive tasks. For I/O-intensive tasks, asyncio can be used for asynchronous programming to bypass the limitations of the GIL.
 
 ``` python
@@ -80,7 +81,7 @@ def perform_task():
     with lock:
         # Thread-safe code block
 ```
-C++:
+**C++:**
 C++ provides tools from the standard library, such as std::mutex and std::lock_guard, for implementing locking. Threads can be created using std::thread, and std::atomic can be used for atomic operations. C++11 introduced std::shared_mutex for supporting read-write locks.
 ```cpp
 
@@ -112,8 +113,8 @@ In C++, you can also use std::shared_mutex to implement a read-write lock, allow
 
 # 3. Concurrency Comparison python, java, c++
 
-Concurrency:
-Python:
+**Concurrency:**
+**Python:**
 Python deals with concurrency using the asyncio module for asynchronous programming. Asynchronous programming is particularly suitable for I/O-bound tasks where tasks can be performed concurrently without waiting for each other. It utilizes coroutines and an event loop to achieve asynchronous behavior.
 
 ```python
@@ -128,7 +129,7 @@ async def async_task():
 loop = asyncio.get_event_loop()
 loop.run_until_complete(async_task())
 ```
-Java:
+**Java:**
 Java has robust support for concurrency with the java.util.concurrent package and built-in thread support. It provides features like thread pools, Executors, and the Future interface. Java's synchronized keyword and locks offer mechanisms for synchronized access to shared resources.
 
 ```java
@@ -150,7 +151,7 @@ public class ConcurrentTask {
     }
 }
 ```
-C++:
+**C++:**
 C++ supports concurrency through the standard library's std::thread and std::async. It also provides features like std::mutex, std::condition_variable, and std::atomic for synchronization. C++11 introduced the concept of futures and promises for asynchronous programming.
 
 ```cpp
@@ -180,7 +181,7 @@ In summary, Python utilizes asynchronous programming with coroutines and event l
 ---
 
 # 4. Multi-threading:
-Python:
+**Python:**
 Python's multi-threading is affected by the Global Interpreter Lock (GIL), limiting the parallel execution of threads. This makes multi-threading less effective for CPU-bound tasks. However, for I/O-bound tasks, the threading module can still be useful. Python also supports multi-processing for parallel execution.
 
 ```python
@@ -194,7 +195,7 @@ def thread_task():
 thread = threading.Thread(target=thread_task)
 thread.start()
 thread.join()
-Java:
+**Java:**
 Java provides robust support for multi-threading with its java.lang.Thread class and the java.util.concurrent package. The Java Virtual Machine (JVM) allows concurrent execution of multiple threads. Synchronization mechanisms, such as synchronized blocks and locks, ensure thread safety.
 
 ```java
@@ -217,7 +218,7 @@ public class MultiThreadingExample {
     }
 }
 ```
-C++:
+**C++:**
 C++ supports multi-threading through the std::thread class. C++11 introduced native support for threads, and subsequent versions enhanced the threading capabilities. Synchronization can be achieved using tools like std::mutex, std::condition_variable, and atomics.
 
 ```cpp
@@ -241,7 +242,7 @@ In summary, Python's multi-threading is impacted by the GIL, making it less suit
 ---
 
 # 5. Memory Management:
-Python:
+**Python:**
 Python utilizes automatic memory management through a garbage collector. Python's memory manager handles the allocation and deallocation of memory, making it easier for developers as they don't have to explicitly manage memory. However, it may introduce some unpredictability in terms of memory usage and timing.
 
 ```python
@@ -250,7 +251,7 @@ Python utilizes automatic memory management through a garbage collector. Python'
 data = [1, 2, 3, 4]
 # Python's garbage collector handles memory deallocation
 ```
-Java:
+**Java:**
 Java also employs automatic memory management through garbage collection. The Java Virtual Machine (JVM) handles memory allocation and garbage collection, making Java memory-safe and reducing the likelihood of memory leaks.
 
 ```java
@@ -263,7 +264,7 @@ data.add(3);
 // Java's garbage collector handles memory deallocation
 ```
 
-C++:
+**C++:**
 C++ offers manual memory management, allowing developers to control memory allocation and deallocation explicitly. This is done through operations like new and delete, and C++11 introduced smart pointers (std::shared_ptr, std::unique_ptr) to help manage memory more safely.
 
 ````cpp
