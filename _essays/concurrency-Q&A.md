@@ -38,7 +38,9 @@ Python's Global Interpreter Lock (GIL) limits concurrent execution of threads in
 Java uses the ForkJoinPool for parallelism and has extensive support for concurrency in the java.util.concurrent package.
 C++ provides low-level concurrency support with std::thread, synchronization with std::mutex, and parallelism with features like OpenMP and Parallel STL.
 GPU acceleration is typically achieved through external libraries in C++ (e.g., CUDA, OpenCL) and native support in JavaFX for Java. Python can use libraries like PyTorch or TensorFlow for GPU acceleration.
+
 ---
+
 # 2. Lock Comparison
 
 Locking:
