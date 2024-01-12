@@ -26,6 +26,16 @@ This document provides a list of common Python methods and functions spanning va
 - `s.upper()`: Convert to uppercase.
 - `s.lower()`: Convert to lowercase.
 - `s.isalnum()`: Check if string is alphanumeric.
+- `s.isdigit()`: Check if all characters in the string are digits.
+- `s.capitalize()`: Return a copy of the string with its first character capitalized and the rest lowercased.
+- `s.title()`: Return a titlecased version of the string, where words start with an uppercase character and the remaining characters are lowercase.
+- `s.isalpha()`: Check if all characters in the string are alphabetic.
+- `s.isnumeric()`: Check if all characters in the string are numeric.
+- `s.islower()`: Check if all cased characters in the string are lowercase.
+- `s.isupper()`: Check if all cased characters in the string are uppercase.
+- `s.isspace()`: Check if all characters in the string are whitespace.
+- `s.count(sub)`: Return the number of non-overlapping occurrences of substring sub in the string.
+
 
 ### **List Methods**:
 - `lst.append(item)`: Add item to list.
