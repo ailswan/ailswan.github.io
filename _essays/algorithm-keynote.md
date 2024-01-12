@@ -18,8 +18,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 
 # 1. Time Complexity (Big O)
 
-First, let's discuss the time complexity of common operations categorized by data structures/algorithms. Then, we will explore the reasonable complexity for a given input size.
-
+ 
 ## Arrays (Dynamic Arrays/Lists)
 
 Assume n = arr.length,
