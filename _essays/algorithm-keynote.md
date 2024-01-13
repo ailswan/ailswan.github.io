@@ -24,7 +24,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 Assume n = arr.length,
 
 - Append or remove elements at the end: 
-  - O(1)  
+  - O(1) 
   
 - Add or remove elements from any index: 
   - O(n)
