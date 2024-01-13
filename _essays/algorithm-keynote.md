@@ -3,13 +3,13 @@ layout: essay_single
 title: Algorithm key-note
 date: 2024-01-12
 tags:
-  - Algorithm
+  - algorithm
   - python language
   - backend
   - Review-Q&A
 categories:
 - Notes
-- Algorithm
+- algorithm 
 feature_text: |
   ## Algorithm key-note
   Post by ailswan Jan. 12, 2024
