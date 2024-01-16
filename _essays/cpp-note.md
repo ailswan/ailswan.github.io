@@ -88,4 +88,44 @@ In C++, developers have control over memory allocation and deallocation using `n
     - ```cpp
       auto it = std::find_if(vec.begin(), vec.end(), [](int n) { return n % 2 != 0; });
       ```
- 
+
+### **Math Functions**:
+
+### `std::max` and `std::min`:
+- `std::max(a, b)`: Returns the greater of the two values `a` and `b`.
+- `std::min(a, b)`: Returns the smaller of the two values `a` and `b`.
+
+### **Algorithmic Operations**:
+
+### `std::accumulate`:
+- `std::accumulate(begin, end, initial)`: Computes the sum of a range of elements.
+
+### `std::transform`:
+- `std::transform(begin1, end1, begin2, result, binary_operation)`: Applies a binary operation to pairs of elements from two ranges and stores the result in a third range.
+
+### `std::reverse`:
+- `std::reverse(begin, end)`: Reverses the order of elements in a range.
+
+### Example Usage:
+
+```cpp
+#include <algorithm>
+#include <numeric>
+
+// Example usage of std::max and std::min
+int main() {
+    int a = 5, b = 8;
+    int max_result = std::max(a, b);
+    int min_result = std::min(a, b);
+
+    int arr[] = {1, 2, 3, 4, 5};
+    int sum = std::accumulate(std::begin(arr), std::end(arr), 0);
+
+    std::vector<int> input = {1, 2, 3, 4, 5};
+    std::vector<int> output(input.size());
+    std::transform(input.begin(), input.end(), output.begin(), [](int x) { return x * 2; });
+
+    std::reverse(input.begin(), input.end());
+
+    return 0;
+}
