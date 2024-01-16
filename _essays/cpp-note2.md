@@ -1,7 +1,7 @@
 ---
 layout: essay_single
 title: C++ One-Liners
-date: 2023-10-10
+date: 2024-01-16
 tags:
    - c++ language
 categories:
