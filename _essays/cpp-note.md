@@ -31,6 +31,7 @@ This document provides a list of common C++ methods, functions, and features spa
 - `vec.begin()`, `vec.end()`: Return iterators.
 - `vec.front()`: Access first element.
 - `vec.back()`: Access last element.
+- `vec.assign(first, last)`: Assign a range of elements to the vector.
 
 ### **Set Methods**:
 - `set.insert(item)`: Add item to set.
