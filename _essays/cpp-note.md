@@ -75,6 +75,10 @@ This document provides a list of common C++ methods, functions, and features spa
 ### **String Operations**:
 Strings in C++ (`std::string`) are mutable. This is unlike strings in languages like Python or Java.
 
+### **Looping Techniques**:
+- `for(auto &item : container)`: Range-based for loop.
+- Accessing `it->first` in a map iteration.
+
 ### **Memory Management**:
 In C++, developers have control over memory allocation and deallocation using `new` and `delete`. This requires extra care to prevent memory leaks.
 
