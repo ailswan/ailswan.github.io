@@ -5,7 +5,6 @@ date: 2024-01-12
 tags:
   - algorithm
   - python language
-  - backend
   - Review-Q&A
 categories:
 - Notes
