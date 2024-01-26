@@ -66,6 +66,7 @@ This document provides a list of common C++ methods, functions, and features spa
 - `std::sort(begin, end)`: Sort elements.
 - `std::find(begin, end, value)`: Find element.
 - `std::count(begin, end, value)`: Count occurrences.
+- `std::binary_search(begin, end, value)`: Check if a value exists in a sorted range.
 
 ### **Noteworthy Differences**:
 
