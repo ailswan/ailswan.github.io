@@ -118,6 +118,8 @@ Reinforcement learning encompasses several commonly used algorithms that can be 
 
 15. **Self-Organizing Maps (SOMs):** An artificial neural network algorithm that produces a low-dimensional representation of input space.
  
+16. **TF-IDF (Term Frequency-Inverse Document Frequency):** A feature extraction technique commonly used in text analysis. It evaluates the importance of a word in a document relative to its frequency in the entire corpus, providing a numerical representation of the significance of words in text data.
+
 ---
 
 # Supervised Learning Algorithms
