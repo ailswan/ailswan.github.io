@@ -242,7 +242,7 @@ In the worst case, the time complexity of binary search is
 
 # 2. Input Size and Time Complexity
 
-Problem constraints can be seen as hints since they indicate the upper limits of the solution's time complexity. Having the ability to calculate the expected time complexity of a solution given the input size is a valuable skill. In all LeetCode problems and most Online Assessments (OAs), you will receive constraints for the problem. Unfortunately, during interviews, you usually won't be explicitly told the constraints of the problem. Nevertheless, it's still beneficial for practicing on LeetCode and completing OAs.
+Problem constraints can be seen as hints since they indicate the upper limits of the solution's time complexity. Having the ability to calculate the expected time complexity of a solution given the input size is a valuable skill.
 
 - n <= 10
 
