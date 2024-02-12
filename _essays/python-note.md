@@ -35,6 +35,7 @@ This document provides a list of common Python methods and functions spanning va
 - `s.isupper()`: Check if all cased characters in the string are uppercase.
 - `s.isspace()`: Check if all characters in the string are whitespace.
 - `s.count(sub)`: Return the number of non-overlapping occurrences of substring sub in the string.
+- `s.join(iterable)`: Join the elements of an iterable (e.g., a list) into a string, with the string s acting as a delimiter between each pair of adjacent elements.
 
 
 ### **List Methods**:
