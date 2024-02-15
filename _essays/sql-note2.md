@@ -9,7 +9,7 @@ categories:
 - SQL
 - Backend
 feature_text: |
-  ## SQL Q&A (Translated from Chinese)
+  ## SQL Q&A  
   Post by ailswan Jan.03, 2024
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
