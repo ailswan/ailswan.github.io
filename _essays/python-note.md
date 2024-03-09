@@ -72,6 +72,12 @@ This document provides a list of common Python methods and functions spanning va
 - `collections.defaultdict(default_type)`: Dictionary with default value.
 - `collections.deque()`: Double-ended queue.
 
+### **Counter Methods**:
+
+- `collections.Counter(iterable)`: Creates a Counter object from an iterable, counting occurrences of each element.
+- `counter.elements()`: Returns an iterator over elements repeating each as many times as its count.
+- `counter.most_common([n])`: Returns a list of the n most common elements and their counts in descending order. If n is omitted or None, returns all elements.
+
 ### **Looping Techniques**:
 - `enumerate(iterable)`: Loop with index.
 - `zip(iterable1, iterable2,...)`: Loop over multiple iterables.
