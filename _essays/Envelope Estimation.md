@@ -50,14 +50,15 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 
 The above strategies are for reference only, and the specific implementation methods and optimization methods may vary depending on the specific business requirements and system architecture. During the design and implementation process, it is recommended to flexibly select and adjust strategies based on the actual situation to ensure that the system can meet the expected performance and scalability requirements.
 
-
-## Storage calculation
+## Storage Calculation
 
 | Scenario                  | Example QPS | Example DAU | Average Data Size per User (MB) | Total Data Size per Day (GB) | Total Data Size per Month (TB) | Relevant Real Applications |
 |---------------------------|-------------|-------------|---------------------------------|-------------------------------|--------------------------------|---------------------------|
 | Low QPS and Low DAU       | 10          | 500         | 0.5                             | 0.25                          | 7.5                            | Personal blogs, Portfolio websites |
 | Medium QPS and Medium DAU | 100         | 5,000       | 10                              | 500                           | 15                             | Small-scale social networks, Forums |
 | High QPS and High DAU     | 10,000      | 1,000,000   | 100                             | 100,000                       | 3,000                          | Large-scale social networks, Video streaming platforms |
+
+
 ### Social Media Platform:
 
 - **Initial Data Size (Year 1):** 1 TB
@@ -108,12 +109,12 @@ The above strategies are for reference only, and the specific implementation met
   - Year 4: 13.3 TB
   - Year 5: 14.6 TB
 
+## Latency Table for Transaction Times (for 10MB data)
 
-## latency table for transaction times for 10MB data
-| Operation            | Latency (ms) |
-|----------------------|--------------|
-| Read from Cache      | 1-5          |
-| Read from Database   | 10-50        |
-| Network Roundtrip    | 50-200       |
-| External API Call    | 100-500      |
-| Complex Calculation  | 10-1000      |
+| Operation           | Latency (ms) |
+|---------------------|--------------|
+| Read from Cache     | 1-5          |
+| Read from Database  | 10-50        |
+| Network Roundtrip   | 50-200       |
+| External API Call   | 100-500      |
+| Complex Calculation| 10-1000      |
