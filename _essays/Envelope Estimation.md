@@ -109,6 +109,7 @@ The above strategies are for reference only, and the specific implementation met
   - Year 4: 13.3 TB
   - Year 5: 14.6 TB
 
+  
 ## Latency Table for Transaction Times (for 10MB data)
 
 | Operation           | Latency (ms) |
