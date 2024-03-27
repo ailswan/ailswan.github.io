@@ -3,7 +3,7 @@ layout: essay_single
 title: Design Patterns
 date: 2023-09-13
 tags:
-  - system design
+  - System Design
   - Review-Q&A
 categories:
 - Notes
