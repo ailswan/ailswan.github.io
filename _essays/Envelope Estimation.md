@@ -109,13 +109,32 @@ The above strategies are for reference only, and the specific implementation met
   - Year 4: 13.3 TB
   - Year 5: 14.6 TB
 
-  
+
 ## Latency Table for Transaction Times (for 10MB data)
 
-| Operation           | Latency (ms) |
-|---------------------|--------------|
-| Read from Cache     | 1-5          |
-| Read from Database  | 10-50        |
-| Network Roundtrip   | 50-200       |
-| External API Call   | 100-500      |
-| Complex Calculation| 10-1000      |
+<table>
+  <tr>
+    <th>Operation</th>
+    <th>Latency (ms)</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc;">Read from Cache</td>
+    <td style="border: 1px solid #ccc;">1-5</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc;">Read from Database</td>
+    <td style="border: 1px solid #ccc;">10-50</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc;">Network Roundtrip</td>
+    <td style="border: 1px solid #ccc;">50-200</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc;">External API Call</td>
+    <td style="border: 1px solid #ccc;">100-500</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc;">Complex Calculation</td>
+    <td style="border: 1px solid #ccc;">10-1000</td>
+  </tr>
+</table>
