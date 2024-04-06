@@ -66,6 +66,17 @@ This document provides a list of common Python methods and functions spanning va
 - `dict.pop(key)`: Remove key-value pair.
 - `dict.update(other_dict)`: Update dictionary.
 
+### **OrderedDict and SortedDict**:
+Python provides two specialized dictionary-like objects: `OrderedDict` and `SortedDict`.
+
+- **OrderedDict**:(leetcode 146)
+    - `OrderedDict` maintains the order of insertion of keys.
+    - Allows dictionary operations while preserving insertion order.
+
+- **SortedDict**: (leetcode 981)
+    - `SortedDict` maintains keys in sorted order.
+    - Provides efficient insertion and deletion operations.
+
 ### **collections**:
 - `collections.Counter(iterable)`: Count elements.
 - `collections.namedtuple(typename, field_names)`: Create tuple subclass.
