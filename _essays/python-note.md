@@ -77,6 +77,26 @@ Python provides two specialized dictionary-like objects: `OrderedDict` and `Sort
     - `SortedDict` maintains keys in sorted order.
     - Provides efficient insertion and deletion operations.
 
+### **SortedDict Methods**:
+
+- `SortedDict.bisect_left()`: Method to find the insertion point for an element in a sorted dictionary to maintain sorted order, considering the left side.
+- `SortedDict.keys()`: Method to return a view object that displays a list of all the keys in the dictionary.
+- `SortedDict.items()`: Method to return a view object that displays a list of key-value tuple pairs in the dictionary.
+- `SortedDict.values()`: Method to return a view object that displays a list of all the values in the dictionary.
+- `SortedDict.clear()`: Method to remove all items from the dictionary.
+- `SortedDict.pop()`: Method to remove the item with the specified key from the dictionary and return its value.
+- `SortedDict.popitem()`: Method to remove and return an arbitrary (key, value) pair from the dictionary.
+
+### **Sorted List Methods**:
+
+- `SortedList.bisect_left()`: Method to find the insertion point for an element in a sorted list to maintain sorted order, considering the left side.
+- `SortedList.bisect_right()`: Method to find the insertion point for an element in a sorted list to maintain sorted order, considering the right side.
+- `SortedList.index()`: Method to find the index of the first occurrence of a value in a sorted list.
+- `SortedList.irange()`: Method to iterate over a range of values in a sorted list.
+- `SortedList.islice()`: Method to iterate over a slice of values in a sorted list.
+- `SortedList._reset()`: Internal method to reset the sorted list.
+
+
 ### **collections**:
 - `collections.Counter(iterable)`: Count elements.
 - `collections.namedtuple(typename, field_names)`: Create tuple subclass.
