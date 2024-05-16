@@ -25,6 +25,8 @@ This document provides a list of common Java methods and features spanning vario
 - `s.replace(old, new)`: Replace substring.
 - `s.toUpperCase()`: Convert to uppercase.
 - `s.toLowerCase()`: Convert to lowercase.
+- `String.valueOf(obj)`: Convert object to string.
+- `s.toCharArray()`: Convert string to character array.
 
 ### **List Methods (ArrayList)**:
 - `list.add(item)`: Add item to list.
