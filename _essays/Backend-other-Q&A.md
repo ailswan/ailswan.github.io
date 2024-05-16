@@ -880,3 +880,124 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 
 ---
 
+# Backend Developer Interview Questions and Answers
+
+## 1. What is object-oriented programming?
+
+**Answer:**
+Object-oriented programming (OOP) is a programming paradigm based on the concept of "objects," which are instances of classes. It combines data and the methods that operate on that data into a single unit called an object. OOP focuses on four main principles: 
+- **Inheritance:** Mechanism where a new class inherits properties and behavior from an existing class.
+- **Polymorphism:** Ability to present the same interface for differing underlying forms (data types).
+- **Encapsulation:** Bundling the data and the methods that operate on the data into a single unit, and restricting access to some of the object's components.
+- **Abstraction:** Hiding the complex implementation details and showing only the essential features of the object.
+
+## 2. What is a constructor?
+
+**Answer:**
+A constructor in Java is a special method used to initialize objects. It is called when an instance of a class is created. A constructor has the same name as the class and does not have a return type. It sets initial values for the object’s attributes.
+
+## 3. What are the different types of constructors?
+
+**Answer:**
+There are three main types of constructors in Java:
+- **No-Argument Constructor:** A constructor that does not take any arguments.
+- **Default Constructor:** A constructor that is automatically created by the compiler if no constructor is defined. It is a no-argument constructor.
+- **Parameterized Constructor:** A constructor that takes arguments to initialize an object with specific values.
+
+## 4. Why is multiple inheritance not possible in Java?
+
+**Answer:**
+Multiple inheritance is not supported in Java to avoid the complexity and ambiguity caused by the "diamond problem." This occurs when a class inherits from two classes that both inherit from a common superclass, leading to ambiguity in method and property inheritance. Java resolves this by allowing multiple inheritance of interfaces, but not classes.
+
+## 5. How to create an immutable class?
+
+**Answer:**
+To create an immutable class in Java:
+- Declare the class as `final` to prevent subclassing.
+- Declare all fields as `private` to prevent direct access.
+- Declare all fields as `final` to ensure they are initialized only once.
+- Provide a constructor to initialize the fields.
+- Do not provide setter methods.
+- Perform deep copies of mutable objects in the constructor and in getter methods to ensure the internal state cannot be altered.
+
+## 6. What is the difference between Wrapper Classes and Primitive Data Types?
+
+**Answer:**
+Wrapper classes in Java provide a way to use primitive data types (like `int`, `boolean`) as objects. Wrapper classes include `Integer`, `Boolean`, etc., which encapsulate the primitive types in an object. Primitive types are basic data types provided by the language (e.g., `int`, `boolean`) and are not objects.
+
+## 7. What is serialization?
+
+**Answer:**
+Serialization is the process of converting an object's state into a byte stream so that it can be saved to a file, sent over a network, or stored in a database. Deserialization is the reverse process, converting a byte stream back into a copy of the original object. It is commonly used in Java for tasks involving data transfer and persistence.
+
+## 8. What is the difference between `finally`, `final`, and `finalize`?
+
+**Answer:**
+- **`finally`:** A block of code that follows a `try-catch` block and executes regardless of whether an exception is thrown or not.
+- **`final`:** A keyword used to declare constants, prevent method overriding, and inheritance of a class.
+- **`finalize`:** A deprecated method that was used to perform clean-up before an object is garbage collected. It is recommended to use the `AutoCloseable` interface for resource management in newer Java versions.
+
+## 9. What is the difference between `LinkedList` and `ArrayList`?
+
+**Answer:**
+- **`LinkedList`:** Uses a doubly linked list data structure. Each element is a node that contains references to the previous and next nodes. Better for frequent insertions and deletions.
+- **`ArrayList`:** Uses a dynamic array to store elements. Provides faster random access due to index-based access. Better for frequent retrieval operations.
+- Performance:
+  - Insertion at the end: O(1) for both.
+  - Insertion at a given index: O(n) for both.
+  - Search by value: O(n) for both.
+  - Get by index: O(1) for `ArrayList`, O(n) for `LinkedList`.
+  - Removal: O(n) for both.
+
+## 10. How does a `HashMap` work?
+
+**Answer:**
+`HashMap` in Java uses an array of buckets, each bucket is a linked list (or a tree in Java 8+ when the bucket exceeds a threshold). Hashing is used to convert a key into an array index (bucket). Each entry in the map contains a key, a value, and a link to the next entry in the bucket (if any). Collisions (when two keys hash to the same index) are handled by chaining entries in a linked list or tree within the same bucket.
+
+## 11. What is a thread?
+
+**Answer:**
+A thread is an independent path of execution within a program. Threads allow concurrent execution of two or more parts of a program to maximize utilization of CPU. Threads can perform tasks simultaneously, making applications more responsive.
+
+## 12. What are the different types of threads?
+
+**Answer:**
+- **User Threads:** High-priority threads created by the application to perform tasks.
+- **Daemon Threads:** Low-priority threads that run in the background to perform housekeeping tasks for the JVM, such as garbage collection.
+
+## 13. What is the difference between a process and a thread?
+
+**Answer:**
+- **Process:** An instance of a running program. It has its own memory space and resources.
+- **Thread:** A unit of execution within a process. Threads within the same process share the same memory space and resources but run independently.
+
+## 14. What is exception handling?
+
+**Answer:**
+Exception handling in Java is a mechanism to handle runtime errors, allowing the normal flow of the program to be maintained. It is done using `try`, `catch`, `finally`, and `throw` blocks to handle exceptions like `ClassNotFoundException`, `IOException`, etc.
+
+## 15. What are the different types of exceptions in Java?
+
+**Answer:**
+- **Checked Exceptions:** Exceptions that are checked at compile-time. The programmer must handle these exceptions, e.g., `IOException`, `SQLException`.
+- **Unchecked Exceptions:** Exceptions that occur at runtime and are not checked at compile-time, e.g., `NullPointerException`, `ArrayIndexOutOfBoundsException`.
+
+## 16. What is a design pattern?
+
+**Answer:**
+A design pattern is a reusable solution to a common problem in software design. It provides a template for solving problems that can be used in different situations. Design patterns are categorized into Creational, Structural, and Behavioral patterns.
+
+## 17. What are the types of Creational design patterns?
+
+**Answer:**
+The five well-known Creational design patterns are:
+- **Builder Pattern**
+- **Abstract Factory Pattern**
+- **Factory Method Pattern**
+- **Singleton Pattern**
+- **Prototype Pattern**
+
+## 18. What is a lambda expression?
+
+**Answer:**
+A lambda expression in Java is a concise way to represent an anonymous function (a block of code with parameters). It provides a clear and concise syntax to write inline implementations of functional interfaces. Example: `(parameters) -> expression`.
