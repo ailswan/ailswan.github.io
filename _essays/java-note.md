@@ -54,6 +54,98 @@ This document provides a list of common Java methods and features spanning vario
 - `Collections.sort(list)`: Sort list.
 - `Collections.reverse(list)`: Reverse list.
 
+### **Queue Methods**:
+- `queue.add(element)`: Inserts the specified element into the queue. Throws an exception if the element cannot be added.
+- `queue.offer(element)`: Inserts the specified element into the queue. Returns `false` if the element cannot be added.
+- `queue.remove()`: Retrieves and removes the head of the queue. Throws an exception if the queue is empty.
+- `queue.poll()`: Retrieves and removes the head of the queue. Returns `null` if the queue is empty.
+- `queue.element()`: Retrieves, but does not remove, the head of the queue. Throws an exception if the queue is empty.
+- `queue.peek()`: Retrieves, but does not remove, the head of the queue. Returns `null` if the queue is empty.
+- `queue.clear()`: Removes all elements from the queue.
+- `queue.size()`: Returns the number of elements in the queue.
+- `queue.isEmpty()`: Checks if the queue is empty.
+- `queue.contains(element)`: Checks if the queue contains the specified element.
+- `queue.toArray()`: Converts the queue to an array.
+
+### **Examples of Using Queue**:
+
+1. **Creating and Using a Queue**:
+    ```java
+    Queue<String> queue = new LinkedList<>();
+    queue.add("apple");
+    queue.add("banana");
+    queue.add("cherry");
+
+    System.out.println(queue); // Output: [apple, banana, cherry]
+    ```
+
+2. **Using `offer` Method**:
+    ```java
+    Queue<String> queue = new LinkedList<>();
+    queue.offer("apple");
+    queue.offer("banana");
+    queue.offer("cherry");
+
+    System.out.println(queue); // Output: [apple, banana, cherry]
+    ```
+
+3. **Removing Elements from a Queue**:
+    ```java
+    Queue<String> queue = new LinkedList<>();
+    queue.add("apple");
+    queue.add("banana");
+    queue.add("cherry");
+
+    String removedElement = queue.remove();
+    System.out.println(removedElement); // Output: apple
+    System.out.println(queue);          // Output: [banana, cherry]
+    ```
+
+4. **Polling Elements from a Queue**:
+    ```java
+    Queue<String> queue = new LinkedList<>();
+    queue.add("apple");
+    queue.add("banana");
+    queue.add("cherry");
+
+    String polledElement = queue.poll();
+    System.out.println(polledElement); // Output: apple
+    System.out.println(queue);         // Output: [banana, cherry]
+    ```
+
+5. **Peeking at the Head of the Queue**:
+    ```java
+    Queue<String> queue = new LinkedList<>();
+    queue.add("apple");
+    queue.add("banana");
+    queue.add("cherry");
+
+    String head = queue.peek();
+    System.out.println(head); // Output: apple
+    ```
+
+6. **Checking if the Queue Contains an Element**:
+    ```java
+    Queue<String> queue = new LinkedList<>();
+    queue.add("apple");
+    queue.add("banana");
+    queue.add("cherry");
+
+    boolean containsApple = queue.contains("apple");
+    System.out.println(containsApple); // Output: true
+    ```
+
+7. **Converting a Queue to an Array**:
+    ```java
+    Queue<String> queue = new LinkedList<>();
+    queue.add("apple");
+    queue.add("banana");
+    queue.add("cherry");
+
+    Object[] array = queue.toArray();
+    System.out.println(Arrays.toString(array)); // Output: [apple, banana, cherry]
+    ```
+
 ### **List Methods (LinkedList)**:
 - `list.addFirst(item)`: Add item to the beginning of the list.
 - `list.addLast(item)`: Add item to the end of the list.
