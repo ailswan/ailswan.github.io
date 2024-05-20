@@ -28,6 +28,18 @@ This document provides a list of common Java methods and features spanning vario
 - `String.valueOf(obj)`: Convert object to string.
 - `s.toCharArray()`: Convert string to character array.
 
+### **StringBuilder Methods**:
+- `sb.append(str)`: Append string to the builder.
+- `sb.insert(offset, str)`: Insert string at the specified offset.
+- `sb.replace(start, end, str)`: Replace characters from start to end with the specified string.
+- `sb.delete(start, end)`: Remove characters from start to end.
+- `sb.reverse()`: Reverse the character sequence.
+- `sb.toString()`: Convert the builder to a string.
+- `sb.length()`: Get the length of the builder.
+- `sb.setLength(newLength)`: Set the length of the builder.
+- `sb.charAt(index)`: Get the character at the specified index.
+- `sb.setCharAt(index, char)`: Set the character at the specified index.
+
 ### **List Methods (ArrayList)**:
 - `list.add(item)`: Add item to list.
 - `list.addAll(collection)`: Append all of the items in the collection to the list.
