@@ -47,10 +47,34 @@ This document provides a list of common Java methods and features spanning vario
 - `list.set(index, item)`: Replace item at index.
 - `list.remove(index)`: Remove item at index.
 - `list.indexOf(item)`: Return index of item.
+- `list.lastIndexOf(item)`: Return last index of item.
 - `list.clear()`: Remove all items from the list.
+- `list.toArray()`: Convert the list to an array.
 - `list.removeAll(collection)`: Remove all items in the specified collection from the list.
 - `Collections.sort(list)`: Sort list.
 - `Collections.reverse(list)`: Reverse list.
+
+### **List Methods (LinkedList)**:
+- `list.addFirst(item)`: Add item to the beginning of the list.
+- `list.addLast(item)`: Add item to the end of the list.
+- `list.getFirst()`: Get the first element of the list.
+- `list.getLast()`: Get the last element of the list.
+- `list.removeFirst()`: Remove the first element of the list.
+- `list.removeLast()`: Remove the last element of the list.
+- `list.offer(item)`: Add an item to the end of the list (equivalent to `addLast()`).
+- `list.offerFirst(item)`: Add an item to the beginning of the list (equivalent to `addFirst()`).
+- `list.offerLast(item)`: Add an item to the end of the list (equivalent to `addLast()`).
+- `list.peek()`: Retrieve the first element of the list without removing it.
+- `list.peekFirst()`: Retrieve the first element of the list without removing it (equivalent to `getFirst()`).
+- `list.peekLast()`: Retrieve the last element of the list without removing it (equivalent to `getLast()`).
+- `list.poll()`: Retrieve and remove the first element of the list.
+- `list.pollFirst()`: Retrieve and remove the first element of the list (equivalent to `removeFirst()`).
+- `list.pollLast()`: Retrieve and remove the last element of the list (equivalent to `removeLast()`).
+- `list.push(item)`: Push an item onto the stack represented by the list.
+- `list.pop()`: Pop the top item off the stack represented by the list.
+- `list.removeFirstOccurrence(item)`: Remove the first occurrence of the specified element from the list.
+- `list.removeLastOccurrence(item)`: Remove the last occurrence of the specified element from the list.
+- `list.descendingIterator()`: Obtain an iterator over the elements in reverse order.
 
 ### **Set Methods (HashSet)**:
 - `set.add(item)`: Add item to set.
@@ -96,6 +120,72 @@ This document provides a list of common Java methods and features spanning vario
 - `rand.nextLong()`: Returns a random long value.
 - `rand.nextFloat()`: Returns a random float between 0.0 and 1.0.
 - `rand.nextBytes(byte[] bytes)`: Fills the specified byte array with random bytes.
+
+### **Comparator Methods**:
+- `Comparator.naturalOrder()`: Returns a comparator that compares `Comparable` objects in natural order.
+- `Comparator.reverseOrder()`: Returns a comparator that compares `Comparable` objects in reverse of natural order.
+- `Comparator.comparing(Function keyExtractor)`: Returns a comparator that compares by the value extracted by the specified function.
+- `Comparator.comparingInt(ToIntFunction keyExtractor)`: Returns a comparator that compares `int` values extracted by the specified function.
+- `Comparator.comparingDouble(ToDoubleFunction keyExtractor)`: Returns a comparator that compares `double` values extracted by the specified function.
+- `Comparator.comparingLong(ToLongFunction keyExtractor)`: Returns a comparator that compares `long` values extracted by the specified function.
+- `Comparator.thenComparing(Comparator other)`: Returns a comparator that first uses this comparator, then uses the specified comparator.
+- `Comparator.thenComparing(Function keyExtractor)`: Returns a comparator that first uses this comparator, then uses a key extractor function.
+- `Comparator.thenComparingInt(ToIntFunction keyExtractor)`: Returns a comparator that first uses this comparator, then compares `int` values extracted by the specified function.
+- `Comparator.thenComparingDouble(ToDoubleFunction keyExtractor)`: Returns a comparator that first uses this comparator, then compares `double` values extracted by the specified function.
+- `Comparator.thenComparingLong(ToLongFunction keyExtractor)`: Returns a comparator that first uses this comparator, then compares `long` values extracted by the specified function`.
+
+### **Examples of Using Comparator**:
+
+1. **Sorting a List of Strings in Natural Order**:
+    ```java
+    List<String> words = Arrays.asList("apple", "banana", "cherry");
+    words.sort(Comparator.naturalOrder());
+    System.out.println(words); // Output: [apple, banana, cherry]
+    ```
+
+2. **Sorting a List of Strings in Reverse Order**:
+    ```java
+    List<String> words = Arrays.asList("apple", "banana", "cherry");
+    words.sort(Comparator.reverseOrder());
+    System.out.println(words); // Output: [cherry, banana, apple]
+    ```
+
+3. **Sorting a List of People by Age**:
+    ```java
+    class Person {
+        String name;
+        int age;
+        
+        Person(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return name + ": " + age;
+        }
+    }
+
+    List<Person> people = Arrays.asList(new Person("Alice", 30), new Person("Bob", 25), new Person("Charlie", 35));
+    people.sort(Comparator.comparingInt(person -> person.age));
+    System.out.println(people); // Output: [Bob: 25, Alice: 30, Charlie: 35]
+    ```
+
+4. **Sorting a List of People by Name, Then by Age**:
+    ```java
+    List<Person> people = Arrays.asList(new Person("Alice", 30), new Person("Bob", 25), new Person("Alice", 22));
+    people.sort(Comparator.comparing((Person person) -> person.name).thenComparingInt(person -> person.age));
+    System.out.println(people); // Output: [Alice: 22, Alice: 30, Bob: 25]
+    ```
+
+5. **Custom Comparator for Sorting by Length of String**:
+    ```java
+    List<String> words = Arrays.asList("apple", "banana", "cherry");
+    Comparator<String> lengthComparator = Comparator.comparingInt(String::length);
+    words.sort(lengthComparator);
+    System.out.println(words); // Output: [apple, cherry, banana]
+    ```
 
 ### **Noteworthy Differences**:
 
