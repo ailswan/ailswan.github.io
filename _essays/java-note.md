@@ -85,6 +85,16 @@ This document provides a list of common Java methods and features spanning vario
 - `stream.reduce(identity, accumulator)`: Combine elements.
 - `stream.forEach(action)`: Loop over elements.
 
+### **Random Methods**:
+- `Random rand = new Random()`: Create a new Random instance.
+- `rand.nextInt()`: Returns a random integer.
+- `rand.nextInt(bound)`: Returns a random integer between 0 (inclusive) and the specified bound (exclusive).
+- `rand.nextDouble()`: Returns a random double between 0.0 and 1.0.
+- `rand.nextBoolean()`: Returns a random boolean value.
+- `rand.nextLong()`: Returns a random long value.
+- `rand.nextFloat()`: Returns a random float between 0.0 and 1.0.
+- `rand.nextBytes(byte[] bytes)`: Fills the specified byte array with random bytes.
+
 ### **Noteworthy Differences**:
 
 ### **In-Place vs. Return Value**:
