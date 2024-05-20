@@ -180,9 +180,28 @@ This document provides a list of common Java methods and features spanning vario
 - `map.entrySet()`: Get key-value pairs.
 - `map.get(key)`: Get value by key.
 - `map.put(key, value)`: Put key-value pair.
+- `map.putIfAbsent(key, value)`: Put key-value pair if the key is not already associated with a value.
+- `map.put(key, value)`: Put key-value pair.
 - `map.remove(key)`: Remove key-value pair.
+- `map.remove(key, value)`: Remove key-value pair only if currently mapped to the specified value.
 - `map.containsKey(key)`: Check if map contains key.
 - `map.containsValue(value)`: Check if map contains value.
+
+### **Map Methods (HashTable)**:
+- `table.put(key, value)`: Maps the specified key to the specified value in the hashtable.
+- `table.get(key)`: Returns the value to which the specified key is mapped, or `null` if this map contains no mapping for the key.
+- `table.remove(key)`: Removes the key (and its corresponding value) from this hashtable.
+- `table.containsKey(key)`: Tests if the specified object is a key in this hashtable.
+- `table.containsValue(value)`: Returns `true` if this hashtable maps one or more keys to this value.
+- `table.isEmpty()`: Tests if this hashtable maps no keys to values.
+- `table.size()`: Returns the number of key-value mappings in this hashtable.
+- `table.clear()`: Clears this hashtable so that it contains no keys.
+- `table.putIfAbsent(key, value)`: Maps the specified key to the specified value if the key is not already mapped.
+- `table.replace(key, value)`: Replaces the entry for the specified key only if it is currently mapped to some value.
+- `table.replace(key, oldValue, newValue)`: Replaces the entry for the specified key only if it is currently mapped to the specified value.
+- `table.remove(key, value)`: Removes the entry for a key only if it is currently mapped to the specified value.
+- `table.keys()`: Returns an enumeration of the keys in this hashtable.
+- `table.elements()`: Returns an enumeration of the values in this hashtable.
 
 ### **Java Collections**:
 - `Collections.sort(list)`: Sort a list.
