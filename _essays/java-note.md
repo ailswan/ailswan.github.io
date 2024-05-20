@@ -47,6 +47,8 @@ This document provides a list of common Java methods and features spanning vario
 - `list.set(index, item)`: Replace item at index.
 - `list.remove(index)`: Remove item at index.
 - `list.indexOf(item)`: Return index of item.
+- `list.clear()`: Remove all items from the list.
+- `list.removeAll(collection)`: Remove all items in the specified collection from the list.
 - `Collections.sort(list)`: Sort list.
 - `Collections.reverse(list)`: Reverse list.
 
