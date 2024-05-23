@@ -79,6 +79,33 @@ This document provides a list of common Java methods and features spanning vario
 - `queue.contains(element)`: Checks if the queue contains the specified element.
 - `queue.toArray()`: Converts the queue to an array.
 
+### **Deque Methods (ArrayDeque)**:
+
+- `deque.add(element)`: Adds the specified element to the end of the deque. Throws an exception if the element cannot be added.
+- `deque.offer(element)`: Adds the specified element to the end of the deque. Returns `false` if the element cannot be added.
+- `deque.addFirst(element)`: Inserts the specified element at the front of the deque. Throws an exception if the element cannot be added.
+- `deque.offerFirst(element)`: Inserts the specified element at the front of the deque. Returns `false` if the element cannot be added.
+- `deque.addLast(element)`: Inserts the specified element at the end of the deque. Throws an exception if the element cannot be added.
+- `deque.offerLast(element)`: Inserts the specified element at the end of the deque. Returns `false` if the element cannot be added.
+- `deque.remove()`: Retrieves and removes the head of the deque. Throws an exception if the deque is empty.
+- `deque.poll()`: Retrieves and removes the head of the deque. Returns `null` if the deque is empty.
+- `deque.removeFirst()`: Retrieves and removes the first element of the deque. Throws an exception if the deque is empty.
+- `deque.pollFirst()`: Retrieves and removes the first element of the deque. Returns `null` if the deque is empty.
+- `deque.removeLast()`: Retrieves and removes the last element of the deque. Throws an exception if the deque is empty.
+- `deque.pollLast()`: Retrieves and removes the last element of the deque. Returns `null` if the deque is empty.
+- `deque.getFirst()`: Retrieves, but does not remove, the first element of the deque. Throws an exception if the deque is empty.
+- `deque.peek()`: Retrieves, but does not remove, the head of the deque. Returns `null` if the deque is empty.
+- `deque.peekFirst()`: Retrieves, but does not remove, the first element of the deque. Returns `null` if the deque is empty.
+- `deque.getLast()`: Retrieves, but does not remove, the last element of the deque. Throws an exception if the deque is empty.
+- `deque.peekLast()`: Retrieves, but does not remove, the last element of the deque. Returns `null` if the deque is empty.
+- `deque.removeFirstOccurrence(element)`: Removes the first occurrence of the specified element from the deque.
+- `deque.removeLastOccurrence(element)`: Removes the last occurrence of the specified element from the deque.
+- `deque.contains(element)`: Returns `true` if the deque contains the specified element.
+- `deque.size()`: Returns the number of elements in the deque.
+- `deque.isEmpty()`: Returns `true` if the deque contains no elements.
+- `deque.clear()`: Removes all elements from the deque.
+- `deque.toArray()`: Returns an array containing all of the elements in the deque.
+
 ### **Examples of Using Queue**:
 
 1. **Creating and Using a Queue**:
