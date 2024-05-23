@@ -40,6 +40,18 @@ This document provides a list of common Java methods and features spanning vario
 - `sb.charAt(index)`: Get the character at the specified index.
 - `sb.setCharAt(index, char)`: Set the character at the specified index.
 
+### **StringBuffer Methods**:
+- `sb.append(str)`: Append string to the buffer.
+- `sb.insert(offset, str)`: Insert string at the specified offset.
+- `sb.replace(start, end, str)`: Replace characters from start to end with the specified string.
+- `sb.delete(start, end)`: Remove characters from start to end.
+- `sb.reverse()`: Reverse the character sequence.
+- `sb.toString()`: Convert the buffer to a string.
+- `sb.length()`: Get the length of the buffer.
+- `sb.setLength(newLength)`: Set the length of the buffer.
+- `sb.charAt(index)`: Get the character at the specified index.
+- `sb.setCharAt(index, char)`: Set the character at the specified index.
+
 ### **List Methods (ArrayList)**:
 - `list.add(item)`: Add item to list.
 - `list.addAll(collection)`: Append all of the items in the collection to the list.
