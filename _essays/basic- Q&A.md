@@ -5,6 +5,8 @@ date: 2024-01-06
 tags:
   - Backend
   - Review-Q&A
+  - Java
+  - Redis
 categories:
 - Q&A
 - Backend
