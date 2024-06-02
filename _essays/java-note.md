@@ -184,6 +184,7 @@ This document provides a list of common Java methods and features spanning vario
     Object[] array = queue.toArray();
     System.out.println(Arrays.toString(array)); // Output: [apple, banana, cherry]
     ```
+
 ### **PriorityQueue Methods**:
 - `priorityQueue.add(element)`: Inserts the specified element into the priority queue. Throws an exception if the element cannot be added.
 - `priorityQueue.offer(element)`: Inserts the specified element into the priority queue. Returns `false` if the element cannot be added.
@@ -228,7 +229,7 @@ This document provides a list of common Java methods and features spanning vario
 
     String removedElement = queue.remove();
     System.out.println(removedElement); // Output
-    
+   
 ### **List Methods (LinkedList)**:
 - `list.addFirst(item)`: Add item to the beginning of the list.
 - `list.addLast(item)`: Add item to the end of the list.
