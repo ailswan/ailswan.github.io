@@ -184,7 +184,51 @@ This document provides a list of common Java methods and features spanning vario
     Object[] array = queue.toArray();
     System.out.println(Arrays.toString(array)); // Output: [apple, banana, cherry]
     ```
+### **PriorityQueue Methods**:
+- `priorityQueue.add(element)`: Inserts the specified element into the priority queue. Throws an exception if the element cannot be added.
+- `priorityQueue.offer(element)`: Inserts the specified element into the priority queue. Returns `false` if the element cannot be added.
+- `priorityQueue.remove()`: Retrieves and removes the head of the priority queue. Throws an exception if the priority queue is empty.
+- `priorityQueue.poll()`: Retrieves and removes the head of the priority queue. Returns `null` if the priority queue is empty.
+- `priorityQueue.element()`: Retrieves, but does not remove, the head of the priority queue. Throws an exception if the priority queue is empty.
+- `priorityQueue.peek()`: Retrieves, but does not remove, the head of the priority queue. Returns `null` if the priority queue is empty.
+- `priorityQueue.clear()`: Removes all elements from the priority queue.
+- `priorityQueue.size()`: Returns the number of elements in the priority queue.
+- `priorityQueue.isEmpty()`: Checks if the priority queue is empty.
+- `priorityQueue.contains(element)`: Checks if the priority queue contains the specified element.
+- `priorityQueue.toArray()`: Converts the priority queue to an array.
 
+### **Examples of Using Queue**:
+
+1. **Creating and Using a Queue**:
+    ```java
+    Queue<String> queue = new LinkedList<>();
+    queue.add("apple");
+    queue.add("banana");
+    queue.add("cherry");
+
+    System.out.println(queue); // Output: [apple, banana, cherry]
+    ```
+
+2. **Using `offer` Method**:
+    ```java
+    Queue<String> queue = new LinkedList<>();
+    queue.offer("apple");
+    queue.offer("banana");
+    queue.offer("cherry");
+
+    System.out.println(queue); // Output: [apple, banana, cherry]
+    ```
+
+3. **Removing Elements from a Queue**:
+    ```java
+    Queue<String> queue = new LinkedList<>();
+    queue.add("apple");
+    queue.add("banana");
+    queue.add("cherry");
+
+    String removedElement = queue.remove();
+    System.out.println(removedElement); // Output
+    
 ### **List Methods (LinkedList)**:
 - `list.addFirst(item)`: Add item to the beginning of the list.
 - `list.addLast(item)`: Add item to the end of the list.
