@@ -28,6 +28,10 @@ This document provides a list of common Java methods and features spanning vario
 - `String.valueOf(obj)`: Convert object to string.
 - `s.toCharArray()`: Convert string to character array.
 
+### **compareTo Methods**:
+- `s.compareTo(otherString)`: Compares two strings lexicographically. Returns a negative integer, zero, or a positive integer as this string is less than, equal to, or greater than the specified string.
+- `s.compareToIgnoreCase(otherString)`: Compares two strings lexicographically, ignoring case differences. Returns a negative integer, zero, or a positive integer as this string is less than, equal to, or greater than the specified string, ignoring case considerations.
+
 ### **StringBuilder Methods**:
 - `sb.append(str)`: Append string to the builder.
 - `sb.insert(offset, str)`: Insert string at the specified offset.
