@@ -87,6 +87,7 @@ This document provides a list of common Java methods and features spanning vario
 
 - `deque.add(element)`: Adds the specified element to the end of the deque. Throws an exception if the element cannot be added.
 - `deque.offer(element)`: Adds the specified element to the end of the deque. Returns `false` if the element cannot be added.
+- `deque.push(element)`: Pushes an element onto the front of the deque. Equivalent to addFirst(element).
 - `deque.addFirst(element)`: Inserts the specified element at the front of the deque. Throws an exception if the element cannot be added.
 - `deque.offerFirst(element)`: Inserts the specified element at the front of the deque. Returns `false` if the element cannot be added.
 - `deque.addLast(element)`: Inserts the specified element at the end of the deque. Throws an exception if the element cannot be added.
