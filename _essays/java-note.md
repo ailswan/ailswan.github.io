@@ -69,6 +69,7 @@ This document provides a list of common Java methods and features spanning vario
 - `list.removeAll(collection)`: Remove all items in the specified collection from the list.
 - `Collections.sort(list)`: Sort list.
 - `Collections.reverse(list)`: Reverse list.
+- `list.stream().max(Comparator.naturalOrder()).get()`: Get the maximum value in the list.
 
 ### **Queue Methods**:
 - `queue.add(element)`: Inserts the specified element into the queue. Throws an exception if the element cannot be added.
