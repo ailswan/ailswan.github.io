@@ -1,7 +1,7 @@
 ---
 layout: essay_single
 title: C# language note
-date: 2023-09-12
+date: 2024-07-29
 tags:
   - C# language
  
