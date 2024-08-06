@@ -138,3 +138,132 @@ The above strategies are for reference only, and the specific implementation met
     <td style="border: 1px solid #ccc;">10-1000</td>
   </tr>
 </table>
+
+### Storage Conversion Power Table with Approximate Values
+
+| Power (2^x) | Approximate Value        | Full Name  | Short Name |
+|-------------|--------------------------|------------|------------|
+| 2^0         | 1                        | Byte       | B          |
+| 2^10        | 1 thousand               | Kilobyte   | KB         |
+| 2^20        | 1 million                | Megabyte   | MB         |
+| 2^30        | 1 billion                | Gigabyte   | GB         |
+| 2^40        | 1 trillion               | Terabyte   | TB         |
+| 2^50        | 1 quadrillion            | Petabyte   | PB         |
+| 2^60        | 1 quintillion            | Exabyte    | EB         |
+### Storage Conversion Table Example Conversions
+
+#### 1 Gigabyte (GB) to Megabytes (MB):
+1 GB = 1,024 MB
+
+#### 500 Megabytes (MB) to Kilobytes (KB):
+500 MB = 500 × 1,024 = 512,000 KB
+
+#### 2 Terabytes (TB) to Gigabytes (GB):
+2 TB = 2 × 1,024 = 2,048 GB
+
+#### 1 Megabyte (MB) to Bytes (B):
+1 MB = 1,048,576 B
+
+## Significance and Impact of High or Low QPS and DAU in System Design
+
+In system design, high or low QPS (Queries Per Second) and DAU (Daily Active Users) have different meanings and impacts:
+
+### QPS (Queries Per Second)
+QPS represents the number of query requests a system can handle per second.
+
+#### High QPS
+- **Meaning**: High QPS means the system needs to handle a large number of concurrent requests. This requires the system to have high throughput, low latency, and high availability.
+- **Impact**:
+  - **Server Resources**: Requires more servers, load balancing, and a distributed architecture to handle high concurrency.
+  - **Database Design**: Needs optimized database queries, use of caching, and possibly sharding or NoSQL databases.
+  - **Network Bandwidth**: Requires higher network bandwidth to handle large data transfers.
+
+#### Low QPS
+- **Meaning**: Low QPS means the system handles fewer concurrent requests, thus requiring fewer resources.
+- **Impact**:
+  - **Server Resources**: Lower resource demand, can use fewer servers and a simpler architecture.
+  - **Database Design**: Less pressure on database queries, can use traditional relational databases without complex optimizations.
+  - **Network Bandwidth**: Lower network bandwidth demand.
+
+### DAU (Daily Active Users)
+DAU represents the number of unique users who use the system daily.
+
+#### High DAU
+- **Meaning**: High DAU means the system has a large number of active users, leading to significant data interaction and storage requirements daily.
+- **Impact**:
+  - **User Management**: Requires efficient user management systems to ensure data security and privacy.
+  - **Data Storage**: Needs large-capacity storage systems for user data, with backup and recovery mechanisms.
+  - **User Experience**: Needs system performance optimization to ensure a smooth user experience even under high load.
+
+#### Low DAU
+- **Meaning**: Low DAU means the system has fewer active users, resulting in lower data interaction and storage requirements.
+- **Impact**:
+  - **User Management**: Lower demand for user management, can use simpler systems.
+  - **Data Storage**: Lower storage requirements, can use smaller-scale storage systems.
+  - **User Experience**: User experience is generally not affected under low load, reducing the need for extensive optimization.
+
+### Summary
+In system design, high QPS and high DAU typically mean the system needs to have high scalability, reliability, and performance. The system must handle a large number of concurrent requests and data interactions while ensuring data security and a good user experience. In contrast, systems with low QPS and low DAU are relatively simple, with lower requirements for resources and architecture, allowing for simpler design and technical solutions.
+
+## Scenarios of QPS and DAU in different levels 
+### High QPS and Low DAU
+This scenario means that each user performs very frequent operations, leading to a high number of concurrent requests, but the overall number of users is low. For example, active traders in a financial trading system.
+
+- **Meaning**:
+  - The system needs high concurrency handling capability, but user management and storage requirements are relatively low.
+  - It requires very efficient request processing and response mechanisms to ensure low latency.
+
+- **Impact**:
+  - **Server Resources**: Requires powerful servers and load balancing mechanisms to handle high concurrent requests.
+  - **Database Design**: Needs optimized query performance, possibly using caching mechanisms to reduce database pressure.
+  - **Application Architecture**: Needs to design efficient APIs and backend services to support high-frequency requests.
+
+### Low QPS and High DAU
+This scenario means that the system has a large number of active users, but each user performs operations less frequently. For example, user browsing behavior on a large e-commerce platform.
+
+- **Meaning**:
+  - The system needs to handle a large amount of user data and storage requirements, but the number of concurrent requests is relatively low.
+  - It requires ensuring data security and user privacy protection.
+
+- **Impact**:
+  - **User Management**: Requires efficient user management systems to handle a large amount of user information and identity verification.
+  - **Data Storage**: Needs large capacity storage systems and ensures data high availability and redundancy backup.
+  - **Application Architecture**: Needs to design user-centric systems, ensuring the accuracy and efficiency of data processing.
+
+### Specific Application Scenarios for High QPS and Low DAU
+- **Financial Trading Systems**: A few users frequently trading, requiring fast processing of numerous trade requests.
+- **Online Game Servers**: A few players online at the same time, but sending numerous game state update requests per second.
+
+### Specific Application Scenarios for Low QPS and High DAU
+- **Large E-commerce Websites**: Numerous users browsing products, but each user's browsing request frequency is low.
+- **Online Education Platforms**: Numerous students accessing the platform, but each student's interaction frequency is low.
+
+### Design Strategies
+- **High QPS and Low DAU**:
+  - Optimize concurrency handling capability, using high-performance servers and load balancing.
+  - Use caching and optimized database queries.
+  - Design high-performance APIs and backend services.
+
+- **Low QPS and High DAU**:
+  - Focus on user management and data storage, ensuring data security and high availability.
+  - Use distributed storage systems and backup mechanisms.
+  - Design user-friendly systems and efficient data processing mechanisms.
+
+### an example-- Ticket Master Product Architect Design: Envelope Estimation and Corresponding Strategies
+
+| Envelope Estimate                | Strategy Keywords                                           |
+|----------------------------------|-------------------------------------------------------------|
+| **High QPS (100,000 QPS)**        | **Microservices Architecture**, **Horizontal Scaling**, **Caching (Redis, Memcached)**, **Load Balancing** |
+| **Low QPS**                       | **Simple Architecture**, **Minimal Caching**, **Basic Load Balancing** |
+| **High DAU (10 million users)**   | **High Availability**, **Horizontal Scaling**, **Data Sharding**, **Real-Time Updates**, **Scalable Storage** |
+| **Low DAU**                      | **Simpler Infrastructure**, **Basic Data Storage**, **Standard Monitoring** |
+| **Long Session Duration (15 min)**| **Session Management**, **Performance Optimization**, **Efficient Data Handling**, **Session Caching** |
+| **Short Session Duration**        | **Lightweight Transactions**, **Quick Load Times**, **Minimal Processing** |
+| **Large Data Storage (100 TB/month)** | **Data Warehousing**, **NoSQL Databases (MongoDB, Cassandra)**, **Data Compression**, **Scalable Storage Solutions** |
+| **Small Data Storage**            | **Traditional Databases**, **Basic Storage Solutions**, **Simple Backup Strategies** |
+| **High Network Bandwidth (1 Gbps)** | **CDN Usage**, **Load Balancers**, **Efficient Data Transfer Protocols**, **High-Speed Networking** |
+| **Low Network Bandwidth**         | **Data Optimization**, **Reduced Content Delivery Needs**, **Efficient Compression** |
+| **Low Latency (< 100ms)**         | **Fast Data Access**, **Real-Time Processing**, **Optimized Queries**, **Efficient Caching** |
+| **High Latency**                  | **Caching Strategies**, **Asynchronous Processing**, **Optimized Data Transfer**, **Load Balancing** |
+
+ 
