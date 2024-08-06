@@ -139,17 +139,20 @@ The above strategies are for reference only, and the specific implementation met
   </tr>
 </table>
 
+Certainly! Here's a more refined markdown table for better display on your webpage:
+
 ### Storage Conversion Power Table with Approximate Values
 
-| Power (2^x) | Approximate Value        | Full Name  | Short Name |
-|-------------|--------------------------|------------|------------|
-| 2^0         | 1                        | Byte       | B          |
-| 2^10        | 1 thousand               | Kilobyte   | KB         |
-| 2^20        | 1 million                | Megabyte   | MB         |
-| 2^30        | 1 billion                | Gigabyte   | GB         |
-| 2^40        | 1 trillion               | Terabyte   | TB         |
-| 2^50        | 1 quadrillion            | Petabyte   | PB         |
-| 2^60        | 1 quintillion            | Exabyte    | EB         |
+| Power (2^x) | Approximate Value | Full Name  | Short Name |
+|-------------|-------------------|------------|------------|
+| 2^0         | 1 Byte            | Byte       | B          |
+| 2^10        | 1 Thousand Bytes  | Kilobyte   | KB         |
+| 2^20        | 1 Million Bytes   | Megabyte   | MB         |
+| 2^30        | 1 Billion Bytes   | Gigabyte   | GB         |
+| 2^40        | 1 Trillion Bytes  | Terabyte   | TB         |
+| 2^50        | 1 Quadrillion Bytes | Petabyte | PB         |
+| 2^60        | 1 Quintillion Bytes | Exabyte  | EB         |
+
 ### Storage Conversion Table Example Conversions
 
 #### 1 Gigabyte (GB) to Megabytes (MB):
