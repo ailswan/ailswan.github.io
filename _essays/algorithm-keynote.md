@@ -343,14 +343,14 @@ Keep in mind that this table provides an overview, and the actual performance ma
 
 This is a flowchart that can help you determine which data structure or algorithm you should use. Please note that this flowchart is very general, as it's impossible to cover every scenario.
 
-1. **Start**
-2. **Problem Analysis:**
+### 1. **Start**
+### 2. **Problem Analysis:**
    - Is the problem related to searching or sorting?
 
       - **Yes:** Go to Step 3.
       - **No:** Go to Step 4.
 
-3. **Searching/Sorting Problem:**
+### 3. **Searching/Sorting Problem:**
    - **Searching Problem:**
       - Is the data sorted?
 
@@ -363,52 +363,52 @@ This is a flowchart that can help you determine which data structure or algorith
          - **Yes:** Consider Merge Sort or Timsort.
          - **No:** Consider Quick Sort or Heap Sort.
 
-4. **Data Structure Choice:**
+### 4. **Data Structure Choice:**
    - Are you dealing with a collection of unique elements?
 
       - **Yes:** Go to Step 5.
       - **No:** Go to Step 6.
 
-5. **Unique Elements Collection:**
+### 5. **Unique Elements Collection:**
    - Do you need fast insertion and deletion?
 
       - **Yes:** Consider HashSet.
       - **No:** Consider TreeSet for ordered unique elements.
 
-6. **Non-Unique Elements Collection:**
+### 6. **Non-Unique Elements Collection:**
    - Is the order of elements important?
 
       - **Yes:** Consider List or Array.
       - **No:** Go to Step 7.
 
-7. **Dynamic vs. Static Data:**
+### 7. **Dynamic vs. Static Data:**
    - Is the size of the data fixed?
 
       - **Yes:** Go to Step 8.
       - **No:** Consider LinkedList for dynamic data.
 
-8. **Memory Constraints:**
+### 8. **Memory Constraints:**
    - Are memory constraints critical?
 
       - **Yes:** Consider Array or LinkedList with less memory overhead.
       - **No:** Go to Step 9.
 
-9. **Performance Consideration:**
+### 9. **Performance Consideration:**
    - Do you need fast access to elements?
 
       - **Yes:** Consider Array or ArrayList.
       - **No:** Go to Step 10.
 
-10. **Operations on Elements:**
+### 10. **Operations on Elements:**
     - Do you need to insert or remove elements frequently?
 
        - **Yes:** Consider LinkedList.
        - **No:** Go to Step 11.
 
-11. **Conclusion:**
+### 11. **Conclusion:**
     - Consider the recommended data structure based on the above analysis.
 
-12. **End**
+### 12. **End**
 
 This flowchart provides a general guideline, and the choice of data structure or algorithm may vary based on the specific requirements and constraints of the problem at hand. Adjustments may be needed based on the characteristics of the data and the operations to be performed.
 

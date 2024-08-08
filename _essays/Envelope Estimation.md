@@ -155,7 +155,7 @@ Got it! Here's a revised version of the storage conversion table using powers of
 | 10^12        | 1 Trillion Bytes   | Terabyte   | TB         |
 | 10^15        | 1 Quadrillion Bytes| Petabyte   | PB         |
 | 10^18        | 1 Quintillion Bytes| Exabyte    | EB         |
- 
+
 ### Storage Conversion Table Example Conversions
 
 #### 1 Gigabyte (GB) to Megabytes (MB):
