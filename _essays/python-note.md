@@ -129,6 +129,16 @@ Python provides two specialized dictionary-like objects: `OrderedDict` and `Sort
 - `bisect.insort_left(a, x)`: Insert `x` in `a` in sorted order. If `x` is already present in `a`, the insertion point will be before (to the left of) any existing entries.
 - `bisect.insort_right(a, x)`: Insert `x` in `a` in sorted order. If `x` is already present in `a`, the insertion point will be after (to the right of) any existing entries.
 
+**`divmod(a, b)`: Get quotient and remainder.**  
+- Takes two numbers `a` (dividend) and `b` (divisor).
+- Returns a tuple `(quotient, remainder)`.
+- Example:
+  ```python
+  quotient, remainder = divmod(10, 3)
+  print(quotient)   # Output: 3
+  print(remainder)  # Output: 1
+  ```
+  
 **Noteworthy Differences**:
 
 ### **In-Place vs. Return Value**:
