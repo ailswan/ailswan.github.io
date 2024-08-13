@@ -65,6 +65,9 @@ This document provides a list of common Python methods and functions spanning va
 - `dict.setdefault(key, default)`: Get value or set default.
 - `dict.pop(key)`: Remove key-value pair.
 - `dict.update(other_dict)`: Update dictionary.
+- `isInteger(value)/isInteger()`: Checks if a given value can be converted to an integer.
+- `getInteger(value)/getInteger()`: Converts a given value to an integer. Returns None if conversion fails.
+- `getList(value)/getList()`: Converts a given value to a list. If the value is not iterable, it returns a list with the value as the single element.
 
 ### **OrderedDict and SortedDict**:
 Python provides two specialized dictionary-like objects: `OrderedDict` and `SortedDict`.
