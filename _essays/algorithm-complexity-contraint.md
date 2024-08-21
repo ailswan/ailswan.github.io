@@ -15,6 +15,7 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 ---
  
 ## Contraints &  Strategies
+
 | **Constraint**              | **Range**                                     | **Strategy**                                                                                                                                     |
 |-----------------------------|-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Input Size**              | \(n \leq 10^3\)                               | Use \(O(n^2)\) algorithms like brute-force, nested loops, etc.                                                                                   |
@@ -32,6 +33,11 @@ feature_image: "https://picsum.photos/2560/600?image=865"
 | **Parallelism**             | Can be distributed                            | Split the task into independent subtasks and process them in parallel using multithreading or distributed systems, suitable for large-scale data. |
 |                             | Single-threaded                               | Focus on sequential optimization, reducing the number of loops and redundant calculations.                                                       |
 | **Algorithm Robustness**    | Extreme cases or abnormal data                | Design the algorithm to handle edge cases, ensuring correct operation with empty inputs, extreme values, etc. Add input validation for robustness. |
+| **I/O Speed**               | Slow data read/write speed                    | Use batch processing to minimize I/O operations or stream processing to read data in chunks, reducing memory footprint.                           |
+
+
+
+
 
 
 ## Algorithm & Time Complexity
