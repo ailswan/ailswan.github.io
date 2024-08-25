@@ -10,8 +10,8 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <label for="searchCategory">Search Category:</label>
     <input type="text" id="searchCategory" placeholder="Enter category to search">
     <label>Select Tags:</label>
-    <input type="checkbox" name="tags" value="AMateList">AMateList
-    <br>
+    <!-- <input type="checkbox" name="tags" value="AMateList">AMateList -->
+    <!-- <br> -->
     <input type="checkbox" id="oneStarCheckbox"> One Star
     <!-- <label>Enter Tags:</label>
     <input type="text" id="manualTagInput" placeholder="Enter tag"> -->
@@ -21,8 +21,8 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <option value="time">Sort by Time</option>
     <option value="level">Sort by Level</option>
     <option value="problemName">Sort by Problem Name</option>
-    <option value="category">Sort by Category</option>
-    <option value="status">Sort by Status</option>
+    <!-- <option value="category">Sort by Category</option>
+    <option value="status">Sort by Status</option> -->
 </select>
 
 <table style="border-collapse: collapse; width: 100%; padding: 18px;">
@@ -57,17 +57,18 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
 
 <!-- JavaScript for sorting and filtering -->
 <script>
+// Sorting function remains the same
 document.getElementById('sortDropdown').addEventListener('change', function() {
     var sortingMethod = this.value;
     var tbody = document.querySelector('table tbody');
-    var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));  // Select all rows in the tbody
+    var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
     
     rows.sort(function(a, b) {
         switch(sortingMethod) {
             case 'time':
                 var dateA = new Date(a.getAttribute('data-time'));
                 var dateB = new Date(b.getAttribute('data-time'));
-                return dateB - dateA;  // We are sorting in descending order for newer posts to appear first.
+                return dateB - dateA;
             case 'level':
                 return a.querySelector('td:nth-child(2)').textContent.localeCompare(b.querySelector('td:nth-child(2)').textContent);
             case 'problemName':
@@ -85,19 +86,13 @@ document.getElementById('sortDropdown').addEventListener('change', function() {
 });
 
 document.querySelectorAll('.tag-filter input[type="checkbox"]').forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-        filterTable();
-    });
+    checkbox.addEventListener('change', filterTable);
 });
 
 // Assuming manualTagInput was commented out by mistake; uncomment if necessary
-document.getElementById('manualTagInput')?.addEventListener('input', function() {
-    filterTable();
-});
+document.getElementById('manualTagInput')?.addEventListener('input', filterTable);
 
-document.getElementById('searchCategory').addEventListener('input', function() {
-    filterTable();
-});
+document.getElementById('searchCategory').addEventListener('input', filterTable);
 
 function normalizeString(str) {
     return str.toLowerCase().replace(/\s+/g, '');
@@ -127,12 +122,12 @@ function filterTable() {
 
         var showRow = true;
 
+        // Check if tags should filter the row
         if (tags) {
             tags = tags.split(',').map(normalizeString);
+            // Ensure the row matches all selected tags
             showRow = selectedTags.every(function(tag) {
-                return tags.some(function(rowTag) {
-                    return rowTag.includes(tag);
-                });
+                return tags.includes(tag);
             });
         }
 
@@ -149,4 +144,5 @@ function filterTable() {
         row.style.display = showRow ? '' : 'none';
     });
 }
+
 </script>
