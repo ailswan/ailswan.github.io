@@ -12,8 +12,8 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <label>Select Tags:</label>
     <input type="checkbox" name="tags" value="AMateList">AMateList
     <br>
-    <label>Enter Tags:</label>
-    <input type="text" id="manualTagInput" placeholder="Enter tag">
+    <!-- <label>Enter Tags:</label>
+    <input type="text" id="manualTagInput" placeholder="Enter tag"> -->
 </div>
 
 <select id="sortDropdown">
