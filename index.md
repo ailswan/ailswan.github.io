@@ -192,45 +192,6 @@ function filterTable() {
                 return a.querySelector('td:nth-child(6)').textContent.localeCompare(b.querySelector('td:nth-child(6)').textContent);
         }
     });
-    document.getElementById('oneStarCheckbox').addEventListener('change', function() {
-        filterTable();
-    });
-
-    function filterTable() {
-        var checkboxes = document.querySelectorAll('.tag-filter input[type="checkbox"]');
-        var selectedTags = Array.from(checkboxes).filter(function(checkbox) {
-            return checkbox.checked && checkbox.id !== 'oneStarCheckbox';
-        }).map(function(checkbox) {
-            return normalizeString(checkbox.value);
-        });
-
-        var manualTag = normalizeString(document.getElementById('manualTagInput').value.trim());
-        if (manualTag) {
-            selectedTags.push(manualTag);
-        }
-
-        var filterOneStar = document.getElementById('oneStarCheckbox').checked;
-
-        var rows = document.querySelectorAll('table tbody tr');
-        rows.forEach(function(row) {
-            var tags = row.getAttribute('data-tags');
-            var status = row.getAttribute('data-status');
-            if (tags) {
-                tags = tags.split(',').map(normalizeString);
-                var showRow = selectedTags.every(function(tag) {
-                    return tags.some(function(rowTag) {
-                        return rowTag.includes(tag);
-                    });
-                });
-                if (filterOneStar && status !== '★') {
-                    showRow = false;
-                }
-                row.style.display = showRow ? '' : 'none';
-            } else {
-                row.style.display = 'none';
-            }
-        });
-    }
-
+    
 }
 </script>
