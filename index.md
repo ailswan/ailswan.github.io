@@ -12,6 +12,10 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <label>Select Tags:</label>
     <input type="checkbox" name="tags" value="AMateList">AMateList
     <br>
+    <input type="checkbox" id="oneStarCheckbox"> One Star
+    <br>
+    <input type="checkbox" id="twoStarCheckbox"> Two Star
+    <br>
     <!-- <label>Enter Tags:</label>
     <input type="text" id="manualTagInput" placeholder="Enter tag"> -->
 </div>
@@ -20,7 +24,8 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <option value="time">Sort by Time</option>
     <option value="level">Sort by Level</option>
     <option value="problemName">Sort by Problem Name</option>
-    
+    <option value="category">Sort by Category</option>
+    <option value="status">Sort by Status</option>
 </select>
 
 <table style="border-collapse: collapse; width: 100%; padding: 18px;">
@@ -171,5 +176,61 @@ function filterTable() {
     function normalizeString(str) {
         return str.toLowerCase().replace(/\s+/g, '');
     }
+    rows.sort(function(a, b) {
+        switch(sortingMethod) {
+            case 'time':
+                var dateA = new Date(a.getAttribute('data-time'));
+                var dateB = new Date(b.getAttribute('data-time'));
+                return dateB - dateA;
+            case 'level':
+                return a.querySelector('td:nth-child(2)').textContent.localeCompare(b.querySelector('td:nth-child(2)').textContent);
+            case 'problemName':
+                return a.querySelector('td:nth-child(3)').textContent.localeCompare(b.querySelector('td:nth-child(3)').textContent);
+            case 'category':
+                return a.querySelector('td:nth-child(5)').textContent.localeCompare(b.querySelector('td:nth-child(5)').textContent);
+            case 'status':
+                return a.querySelector('td:nth-child(6)').textContent.localeCompare(b.querySelector('td:nth-child(6)').textContent);
+        }
+    });
+    document.getElementById('oneStarCheckbox').addEventListener('change', function() {
+        filterTable();
+    });
+
+    function filterTable() {
+        var checkboxes = document.querySelectorAll('.tag-filter input[type="checkbox"]');
+        var selectedTags = Array.from(checkboxes).filter(function(checkbox) {
+            return checkbox.checked && checkbox.id !== 'oneStarCheckbox';
+        }).map(function(checkbox) {
+            return normalizeString(checkbox.value);
+        });
+
+        var manualTag = normalizeString(document.getElementById('manualTagInput').value.trim());
+        if (manualTag) {
+            selectedTags.push(manualTag);
+        }
+
+        var filterOneStar = document.getElementById('oneStarCheckbox').checked;
+
+        var rows = document.querySelectorAll('table tbody tr');
+        rows.forEach(function(row) {
+            var tags = row.getAttribute('data-tags');
+            var status = row.getAttribute('data-status');
+            if (tags) {
+                tags = tags.split(',').map(normalizeString);
+                var showRow = selectedTags.every(function(tag) {
+                    return tags.some(function(rowTag) {
+                        return rowTag.includes(tag);
+                    });
+                });
+                if (filterOneStar && status !== '★') {
+                    showRow = false;
+                }
+                row.style.display = showRow ? '' : 'none';
+            } else {
+                row.style.display = 'none';
+            }
+        });
     }
+
+}
 </script>
