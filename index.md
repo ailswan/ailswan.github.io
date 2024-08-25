@@ -13,9 +13,6 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <input type="checkbox" name="tags" value="AMateList">AMateList
     <br>
     <input type="checkbox" id="oneStarCheckbox"> One Star
-    <br>
-    <input type="checkbox" id="twoStarCheckbox"> Two Star
-    <br>
     <!-- <label>Enter Tags:</label>
     <input type="text" id="manualTagInput" placeholder="Enter tag"> -->
 </div>
