@@ -18,6 +18,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <option value="time">Sort by Time</option>
     <option value="level">Sort by Level</option>
     <option value="problemName">Sort by Problem Name</option>
+    
 </select>
 
 <table style="border-collapse: collapse; width: 100%; padding: 18px;">
@@ -27,6 +28,8 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
       <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Level</th>
       <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">Problem Name</th>
       <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tags</th>
+      <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Category</th>
+      <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Status</th>
     </tr>
   </thead>
   <tbody>
@@ -41,6 +44,8 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
         </td>
         <td style="border: 1px solid lightgrey; padding: 18px;"><a href="{{ post.url }}"  style="color: #45818e" >{{ post.title }}</a></td>
         <td style="border: 1px solid lightgrey; padding: 18px;"><a href="{{ post.url }}" style="color: #0d94e7;">{{ post.categories | join: ", " }}</a></td>
+        <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.category }}</td>
+        <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.status }}</td>
     </tr>
     {% endfor %}
   </tbody>
@@ -117,5 +122,52 @@ function filterTable() {
             row.style.display = 'none';
         }
     });
-}
+
+    document.getElementById('searchCategory').addEventListener('input', function() {
+        var query = normalizeString(this.value);
+        filterTable(query);
+    });
+
+    function filterTable(query) {
+        var checkboxes = document.querySelectorAll('.tag-filter input[type="checkbox"]');
+        var selectedTags = Array.from(checkboxes).filter(function(checkbox) {
+            return checkbox.checked;
+        }).map(function(checkbox) {
+            return normalizeString(checkbox.value);
+        });
+
+        var manualTag = normalizeString(document.getElementById('manualTagInput').value.trim());
+        if (manualTag) {
+            selectedTags.push(manualTag);
+        }
+
+        var rows = document.querySelectorAll('table tbody tr');
+        rows.forEach(function(row) {
+            var tags = row.getAttribute('data-tags');
+            var category = normalizeString(row.querySelector('td:nth-child(5)').textContent);
+
+            if (tags) {
+                tags = tags.split(',').map(normalizeString);
+                var showRow = selectedTags.every(function(tag) {
+                    return tags.some(function(rowTag) {
+                        return rowTag.includes(tag);
+                    });
+                });
+
+                // If there's a query, match it against the category
+                if (query && !category.includes(query)) {
+                    showRow = false;
+                }
+
+                row.style.display = showRow ? '' : 'none';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    function normalizeString(str) {
+        return str.toLowerCase().replace(/\s+/g, '');
+    }
+    }
 </script>
