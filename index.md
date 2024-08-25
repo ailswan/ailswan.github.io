@@ -38,7 +38,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
   </thead>
   <tbody>
     {% for post in site.posts %}
-    <tr data-time="{{ post.feature_text | slice: -12, 10 | date: '%Y-%m-%d' }}" data-tags="{{ post.categories | join: ',' }}">
+    <tr data-time="{{ post.feature_text | slice: -12, 10 | date: '%Y-%m-%d' }}" data-tags="{{ post.categories | join: ',' }}" data-status="{{ post.status }}">
         <td style="border: 1px solid lightgrey; padding: 18px;">{{ forloop.index }}</td>
         <td style="border: 1px solid lightgrey; padding: 18px;">
           <a href="{{ post.url }}" 
@@ -72,6 +72,10 @@ document.getElementById('sortDropdown').addEventListener('change', function() {
                 return a.querySelector('td:nth-child(2)').textContent.localeCompare(b.querySelector('td:nth-child(2)').textContent);
             case 'problemName':
                 return a.querySelector('td:nth-child(3)').textContent.localeCompare(b.querySelector('td:nth-child(3)').textContent);
+            case 'category':
+                return a.querySelector('td:nth-child(5)').textContent.localeCompare(b.querySelector('td:nth-child(5)').textContent);
+            case 'status':
+                return a.querySelector('td:nth-child(6)').textContent.localeCompare(b.querySelector('td:nth-child(6)').textContent);
         }
     });
 
@@ -86,7 +90,12 @@ document.querySelectorAll('.tag-filter input[type="checkbox"]').forEach(function
     });
 });
 
-document.getElementById('manualTagInput').addEventListener('input', function() {
+// Assuming manualTagInput was commented out by mistake; uncomment if necessary
+document.getElementById('manualTagInput')?.addEventListener('input', function() {
+    filterTable();
+});
+
+document.getElementById('searchCategory').addEventListener('input', function() {
     filterTable();
 });
 
@@ -97,98 +106,47 @@ function normalizeString(str) {
 function filterTable() {
     var checkboxes = document.querySelectorAll('.tag-filter input[type="checkbox"]');
     var selectedTags = Array.from(checkboxes).filter(function(checkbox) {
-        return checkbox.checked;
+        return checkbox.checked && checkbox.id !== 'oneStarCheckbox';
     }).map(function(checkbox) {
         return normalizeString(checkbox.value);
     });
 
-    var manualTag = normalizeString(document.getElementById('manualTagInput').value.trim());
+    var manualTag = normalizeString(document.getElementById('manualTagInput')?.value.trim() || '');
     if (manualTag) {
         selectedTags.push(manualTag);
     }
 
-    // console.log('Selected Tags:', selectedTags);  // Debugging: check selected tags
+    var filterOneStar = document.getElementById('oneStarCheckbox').checked;
+    var query = normalizeString(document.getElementById('searchCategory').value.trim());
 
     var rows = document.querySelectorAll('table tbody tr');
     rows.forEach(function(row) {
         var tags = row.getAttribute('data-tags');
+        var status = row.getAttribute('data-status');
+        var category = normalizeString(row.querySelector('td:nth-child(5)').textContent);
+
+        var showRow = true;
+
         if (tags) {
             tags = tags.split(',').map(normalizeString);
-            //console.log('Row Tags:', tags);  // Debugging: check tags of each row
-            var showRow = selectedTags.every(function(tag) {
+            showRow = selectedTags.every(function(tag) {
                 return tags.some(function(rowTag) {
                     return rowTag.includes(tag);
                 });
             });
-            //console.log('Show Row:', showRow);  // Debugging: check if the row should be shown
-            row.style.display = showRow ? '' : 'none';
-        } else {
-            row.style.display = 'none';
-        }
-    });
-
-    document.getElementById('searchCategory').addEventListener('input', function() {
-        var query = normalizeString(this.value);
-        filterTable(query);
-    });
-
-    function filterTable(query) {
-        var checkboxes = document.querySelectorAll('.tag-filter input[type="checkbox"]');
-        var selectedTags = Array.from(checkboxes).filter(function(checkbox) {
-            return checkbox.checked;
-        }).map(function(checkbox) {
-            return normalizeString(checkbox.value);
-        });
-
-        var manualTag = normalizeString(document.getElementById('manualTagInput').value.trim());
-        if (manualTag) {
-            selectedTags.push(manualTag);
         }
 
-        var rows = document.querySelectorAll('table tbody tr');
-        rows.forEach(function(row) {
-            var tags = row.getAttribute('data-tags');
-            var category = normalizeString(row.querySelector('td:nth-child(5)').textContent);
-
-            if (tags) {
-                tags = tags.split(',').map(normalizeString);
-                var showRow = selectedTags.every(function(tag) {
-                    return tags.some(function(rowTag) {
-                        return rowTag.includes(tag);
-                    });
-                });
-
-                // If there's a query, match it against the category
-                if (query && !category.includes(query)) {
-                    showRow = false;
-                }
-
-                row.style.display = showRow ? '' : 'none';
-            } else {
-                row.style.display = 'none';
-            }
-        });
-    }
-
-    function normalizeString(str) {
-        return str.toLowerCase().replace(/\s+/g, '');
-    }
-    rows.sort(function(a, b) {
-        switch(sortingMethod) {
-            case 'time':
-                var dateA = new Date(a.getAttribute('data-time'));
-                var dateB = new Date(b.getAttribute('data-time'));
-                return dateB - dateA;
-            case 'level':
-                return a.querySelector('td:nth-child(2)').textContent.localeCompare(b.querySelector('td:nth-child(2)').textContent);
-            case 'problemName':
-                return a.querySelector('td:nth-child(3)').textContent.localeCompare(b.querySelector('td:nth-child(3)').textContent);
-            case 'category':
-                return a.querySelector('td:nth-child(5)').textContent.localeCompare(b.querySelector('td:nth-child(5)').textContent);
-            case 'status':
-                return a.querySelector('td:nth-child(6)').textContent.localeCompare(b.querySelector('td:nth-child(6)').textContent);
+        // Check if "One Star" checkbox is selected and match status
+        if (filterOneStar && status !== '★') {
+            showRow = false;
         }
+
+        // If there's a query, match it against the category
+        if (query && !category.includes(query)) {
+            showRow = false;
+        }
+
+        row.style.display = showRow ? '' : 'none';
     });
-    
 }
 </script>
