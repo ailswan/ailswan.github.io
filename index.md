@@ -13,6 +13,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <!-- <input type="checkbox" name="tags" value="AMateList">AMateList -->
     <!-- <br> -->
     <input type="checkbox" id="oneStarCheckbox"> One Star
+    <input type="checkbox" id="twoStarCheckbox"> Two Star
     <!-- <label>Enter Tags:</label>
     <input type="text" id="manualTagInput" placeholder="Enter tag"> -->
 </div>
@@ -101,7 +102,7 @@ function normalizeString(str) {
 function filterTable() {
     var checkboxes = document.querySelectorAll('.tag-filter input[type="checkbox"]');
     var selectedTags = Array.from(checkboxes).filter(function(checkbox) {
-        return checkbox.checked && checkbox.id !== 'oneStarCheckbox';
+        return checkbox.checked && checkbox.id !== 'oneStarCheckbox' && checkbox.id !== 'twoStarCheckbox';
     }).map(function(checkbox) {
         return normalizeString(checkbox.value);
     });
@@ -112,12 +113,13 @@ function filterTable() {
     }
 
     var filterOneStar = document.getElementById('oneStarCheckbox').checked;
+    var filterTwoStar = document.getElementById('twoStarCheckbox').checked;
     var query = normalizeString(document.getElementById('searchCategory').value.trim());
 
     var rows = document.querySelectorAll('table tbody tr');
     rows.forEach(function(row) {
         var tags = row.getAttribute('data-tags');
-        var status = row.getAttribute('data-status');
+        var status = row.querySelector('td:nth-child(6)').textContent.trim(); // Use trimmed textContent instead of data-status attribute
         var category = normalizeString(row.querySelector('td:nth-child(5)').textContent);
 
         var showRow = true;
@@ -135,6 +137,9 @@ function filterTable() {
         if (filterOneStar && status !== '★') {
             showRow = false;
         }
+        if (filterTwoStar && status !== '★★') {
+            showRow = false;
+        }
 
         // If there's a query, match it against the category
         if (query && !category.includes(query)) {
@@ -143,6 +148,7 @@ function filterTable() {
 
         row.style.display = showRow ? '' : 'none';
     });
+ 
 }
 
 </script>

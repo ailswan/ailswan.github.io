@@ -9,6 +9,9 @@ feature_text: |
   ##  
   Post by ailswan Aug. 24, 2024
 feature_image: "https://picsum.photos/2560/600?image=872"
+category:
+- Sliding Window
+status: ★★
 python_code: >
    
 ---
