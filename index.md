@@ -48,10 +48,11 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
              {{ post.level }}
           </a>
         </td>
-        <td style="border: 1px solid lightgrey; padding: 18px;"><a href="{{ post.url }}"  style="color: #45818e" >{{ post.title }}</a></td>
+         <td style="border: 1px solid lightgrey; padding: 18px;"><a href="{{ post.url }}"  style="color: #45818e" >{{ post.title }}</a></td>
         <td style="border: 1px solid lightgrey; padding: 18px;"><a href="{{ post.url }}" style="color: #0d94e7;">{{ post.categories | join: ", " }}</a></td>
         <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.category }}</td>
-        <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.session }}</td>
+        <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.status }}</td>
+        <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.session }}</td>  
     </tr>
     {% endfor %}
   </tbody>
