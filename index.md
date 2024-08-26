@@ -149,7 +149,7 @@ function normalizeString(str) {
 function filterTable() {
     var checkboxes = document.querySelectorAll('.tag-filter input[type="checkbox"]');
     var selectedTags = Array.from(checkboxes).filter(function(checkbox) {
-        return checkbox.checked && checkbox.id !== 'oneStarCheckbox' && checkbox.id !== 'twoStarCheckbox';
+        return checkbox.checked && checkbox.id !== 'oneStarCheckbox' && checkbox.id !== 'twoStarCheckbox' && checkbox.id !== 'sessionCheckbox';
     }).map(function(checkbox) {
         return normalizeString(checkbox.value);
     });
@@ -161,8 +161,7 @@ function filterTable() {
 
     var filterOneStar = document.getElementById('oneStarCheckbox').checked;
     var filterTwoStar = document.getElementById('twoStarCheckbox').checked;
-    var filterSession = document.getElementById('sessionCheckbox')?.checked;
-    // console.log('Filter Session:', filterSession);
+    var filterSession = document.getElementById('sessionCheckbox').checked;
     var query = normalizeString(document.getElementById('searchCategory').value.trim());
 
     var rows = document.querySelectorAll('table tbody tr');
@@ -174,26 +173,34 @@ function filterTable() {
 
         var showRow = true;
 
-        // Check if tags should filter the row
-        if (tags) {
-            tags = tags.split(',').map(normalizeString);
-            showRow = selectedTags.every(function(tag) {
-                return tags.includes(tag);
-            });
+        // Check if tags match the selected tags
+        if (selectedTags.length > 0) {
+            if (tags) {
+                tags = tags.split(',').map(normalizeString);
+                showRow = selectedTags.every(function(tag) {
+                    return tags.includes(tag);
+                });
+            } else {
+                showRow = false;
+            }
         }
 
-        // Check if "One Star" checkbox is selected and match status
+        // Apply "One Star" filter if checked
         if (filterOneStar && status !== '★') {
             showRow = false;
         }
+
+        // Apply "Two Star" filter if checked
         if (filterTwoStar && status !== '★★') {
             showRow = false;
         }
 
-        // Check if session filter is applied and session value is valid
+        // Apply session filter if checked
         if (filterSession) {
             var sessionNumber = parseInt(session, 10);
-            showRow = !isNaN(sessionNumber) && sessionNumber > 0;
+            if (isNaN(sessionNumber) || sessionNumber < 1 || sessionNumber > 10) {
+                showRow = false;
+            }
         }
 
         // If there's a query, match it against the category
@@ -201,9 +208,11 @@ function filterTable() {
             showRow = false;
         }
 
+        // Show or hide the row based on the filters
         row.style.display = showRow ? '' : 'none';
     });
 }
+
 
 
 </script>

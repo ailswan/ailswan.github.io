@@ -38,5 +38,5 @@ Given a zero-based permutation nums (0-indexed), build an
 #### Algorithm
 
 #### Complexity
- **time complexity**: O(n^2)
- **space complexity**: O(1)
+ **time complexity**: O()
+ **space complexity**: O()
