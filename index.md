@@ -14,6 +14,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <!-- <br> -->
     <input type="checkbox" id="oneStarCheckbox"> One Star
     <input type="checkbox" id="twoStarCheckbox"> Two Star
+    <input type="checkbox" id="sessionCheckbox"> Session
     <!-- <label>Enter Tags:</label>
     <input type="text" id="manualTagInput" placeholder="Enter tag"> -->
 </div>
@@ -35,7 +36,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
       <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tags</th>
       <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Category</th>
       <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Status</th>
-       <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Session</th>
+      <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Session</th>
     </tr>
   </thead>
   <tbody>
@@ -97,6 +98,50 @@ document.getElementById('manualTagInput')?.addEventListener('input', filterTable
 
 document.getElementById('searchCategory').addEventListener('input', filterTable);
 
+document.getElementById('sessionCheckbox').addEventListener('change', filterTable);
+
+function normalizeString(str) {
+    return str.toLowerCase().replace(/\s+/g, '');
+}
+
+document.getElementById('sortDropdown').addEventListener('change', function() {
+    var sortingMethod = this.value;
+    var tbody = document.querySelector('table tbody');
+    var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+    
+    rows.sort(function(a, b) {
+        switch(sortingMethod) {
+            case 'time':
+                var dateA = new Date(a.getAttribute('data-time'));
+                var dateB = new Date(b.getAttribute('data-time'));
+                return dateB - dateA;
+            case 'level':
+                return a.querySelector('td:nth-child(2)').textContent.localeCompare(b.querySelector('td:nth-child(2)').textContent);
+            case 'problemName':
+                return a.querySelector('td:nth-child(3)').textContent.localeCompare(b.querySelector('td:nth-child(3)').textContent);
+            case 'category':
+                return a.querySelector('td:nth-child(5)').textContent.localeCompare(b.querySelector('td:nth-child(5)').textContent);
+            case 'status':
+                return a.querySelector('td:nth-child(6)').textContent.localeCompare(b.querySelector('td:nth-child(6)').textContent);
+        }
+    });
+
+    rows.forEach(function(row) {
+        tbody.appendChild(row);
+    });
+});
+
+document.querySelectorAll('.tag-filter input[type="checkbox"]').forEach(function(checkbox) {
+    checkbox.addEventListener('change', filterTable);
+});
+
+document.getElementById('manualTagInput')?.addEventListener('input', filterTable);
+document.getElementById('searchCategory').addEventListener('input', filterTable);
+document.getElementById('sessionCheckbox')?.addEventListener('change', function() {
+    console.log('Session Checkbox Changed');
+    filterTable();
+});
+
 function normalizeString(str) {
     return str.toLowerCase().replace(/\s+/g, '');
 }
@@ -116,12 +161,15 @@ function filterTable() {
 
     var filterOneStar = document.getElementById('oneStarCheckbox').checked;
     var filterTwoStar = document.getElementById('twoStarCheckbox').checked;
+    var filterSession = document.getElementById('sessionCheckbox')?.checked;
+    console.log('Filter Session:', filterSession);
     var query = normalizeString(document.getElementById('searchCategory').value.trim());
 
     var rows = document.querySelectorAll('table tbody tr');
     rows.forEach(function(row) {
         var tags = row.getAttribute('data-tags');
-        var status = row.querySelector('td:nth-child(6)').textContent.trim(); // Use trimmed textContent instead of data-status attribute
+        var status = row.querySelector('td:nth-child(6)').textContent.trim();
+        var session = row.getAttribute('data-session')?.trim();
         var category = normalizeString(row.querySelector('td:nth-child(5)').textContent);
 
         var showRow = true;
@@ -129,7 +177,6 @@ function filterTable() {
         // Check if tags should filter the row
         if (tags) {
             tags = tags.split(',').map(normalizeString);
-            // Ensure the row matches all selected tags
             showRow = selectedTags.every(function(tag) {
                 return tags.includes(tag);
             });
@@ -143,6 +190,12 @@ function filterTable() {
             showRow = false;
         }
 
+        // Check if session filter is applied and session value is valid
+        if (filterSession) {
+            var sessionNumber = parseInt(session, 10);
+            showRow = !isNaN(sessionNumber) && sessionNumber > 0;
+        }
+
         // If there's a query, match it against the category
         if (query && !category.includes(query)) {
             showRow = false;
@@ -150,7 +203,7 @@ function filterTable() {
 
         row.style.display = showRow ? '' : 'none';
     });
- 
 }
+
 
 </script>
