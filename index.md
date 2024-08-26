@@ -162,7 +162,7 @@ function filterTable() {
     var filterOneStar = document.getElementById('oneStarCheckbox').checked;
     var filterTwoStar = document.getElementById('twoStarCheckbox').checked;
     var filterSession = document.getElementById('sessionCheckbox')?.checked;
-    console.log('Filter Session:', filterSession);
+    // console.log('Filter Session:', filterSession);
     var query = normalizeString(document.getElementById('searchCategory').value.trim());
 
     var rows = document.querySelectorAll('table tbody tr');
