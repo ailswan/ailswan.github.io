@@ -14,9 +14,8 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <!-- <br> -->
     <input type="checkbox" id="oneStarCheckbox"> One Star
     <input type="checkbox" id="twoStarCheckbox"> Two Star
-    <input type="checkbox" id="sessionCheckbox"> Session
-    <!-- <label>Enter Tags:</label>
-    <input type="text" id="manualTagInput" placeholder="Enter tag"> -->
+    <input type="checkbox" id="session1Checkbox"> Session1
+    <input type="checkbox" id="session2Checkbox"> Session2
 </div>
 
 <select id="sortDropdown">
@@ -98,7 +97,10 @@ document.getElementById('manualTagInput')?.addEventListener('input', filterTable
 
 document.getElementById('searchCategory').addEventListener('input', filterTable);
 
-document.getElementById('sessionCheckbox').addEventListener('change', filterTable);
+document.getElementById('session1Checkbox').addEventListener('change', filterTable);
+
+document.getElementById('session2Checkbox').addEventListener('change', filterTable);
+
 
 function normalizeString(str) {
     return str.toLowerCase().replace(/\s+/g, '');
@@ -149,7 +151,7 @@ function normalizeString(str) {
 function filterTable() {
     var checkboxes = document.querySelectorAll('.tag-filter input[type="checkbox"]');
     var selectedTags = Array.from(checkboxes).filter(function(checkbox) {
-        return checkbox.checked && checkbox.id !== 'oneStarCheckbox' && checkbox.id !== 'twoStarCheckbox' && checkbox.id !== 'sessionCheckbox';
+        return checkbox.checked && checkbox.id !== 'oneStarCheckbox' && checkbox.id !== 'twoStarCheckbox' && checkbox.id !== 'session1Checkbox' && checkbox.id !== 'session2Checkbox';
     }).map(function(checkbox) {
         return normalizeString(checkbox.value);
     });
@@ -161,7 +163,8 @@ function filterTable() {
 
     var filterOneStar = document.getElementById('oneStarCheckbox').checked;
     var filterTwoStar = document.getElementById('twoStarCheckbox').checked;
-    var filterSession = document.getElementById('sessionCheckbox').checked;
+    var filterSession1 = document.getElementById('session1Checkbox').checked;
+    var filterSession2 = document.getElementById('session2Checkbox').checked;
     var query = normalizeString(document.getElementById('searchCategory').value.trim());
 
     var rows = document.querySelectorAll('table tbody tr');
@@ -195,12 +198,14 @@ function filterTable() {
             showRow = false;
         }
 
-        // Apply session filter if checked
-        if (filterSession) {
-            var sessionNumber = parseInt(session, 10);
-            if (isNaN(sessionNumber) || sessionNumber < 1 || sessionNumber > 10) {
-                showRow = false;
-            }
+        // Apply Session1 filter if checked
+        if (filterSession1 && session !== '1') {
+            showRow = false;
+        }
+
+        // Apply Session2 filter if checked
+        if (filterSession2 && session !== '2') {
+            showRow = false;
         }
 
         // If there's a query, match it against the category
@@ -212,7 +217,5 @@ function filterTable() {
         row.style.display = showRow ? '' : 'none';
     });
 }
-
-
 
 </script>
