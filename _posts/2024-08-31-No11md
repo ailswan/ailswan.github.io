@@ -1,0 +1,70 @@
+---
+title: 11. Container With Most Water
+level: medium
+categories:
+- Greedy
+- Array
+- Two Pointers
+- AMateList
+feature_text: |
+  ## Leetcode 11. Container With Most Water
+  Post by ailswan Aug. 24, 2024
+feature_image: "https://picsum.photos/2560/600?image=872"
+category:
+- Two Pointers
+status: ★
+session: 1
+python_code: >
+  class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        n = len(height)
+        l, r = 0 , n - 1
+        res = 0
+        while l < r:
+            min_bar = min(height[l], height[r])
+            res = max(res, min_bar * (r - l))
+            if height[l] > height[r]:
+                r -= 1
+            else:
+                l += 1
+        return res
+   
+---
+
+### Problem Statement
+**link:**
+[LeetCode.cn](https://leetcode.cn/problems/container-with-most-water/)
+[LeetCode](https://leetcode.com/container-with-most-water/)
+You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+
+Find two lines that together with the x-axis form a container, such that the container contains the most water.
+
+Return the maximum amount of water a container can store.
+
+Notice that you may not slant the container.
+
+
+**Example:**
+
+**Input:** `height = [1,8,6,2,5,4,8,3,7]`
+**Output:** `49`
+
+**Input:** `height = [1,1]`
+**Output:** `1`
+
+**Constraints:**
+n == height.length
+2 <= n <= 10^5
+0 <= height[i] <= 10^4
+
+### Solution Approach
+Use two pointers to find the maximum area by calculating the area between lines and moving the pointer pointing to the shorter line.
+
+#### Algorithm
+1. Initialize two pointers: Set one pointer at the start and the other at the end of the array to explore the container boundaries.
+2. Calculate area: Compute the area formed by the lines at the two pointers and update the maximum area if the current one is larger.
+3. Move pointers: Move the pointer pointing to the shorter line inward, as this may increase the container height and potentially yield a larger area.
+
+#### Complexity
+ **time complexity**: O(n)
+ **space complexity**: O(1)
