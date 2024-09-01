@@ -140,7 +140,7 @@ document.querySelectorAll('.tag-filter input[type="checkbox"]').forEach(function
 document.getElementById('manualTagInput')?.addEventListener('input', filterTable);
 document.getElementById('searchCategory').addEventListener('input', filterTable);
 document.getElementById('sessionCheckbox')?.addEventListener('change', function() {
-    console.log('Session Checkbox Changed');
+    // console.log('Session Checkbox Changed');
     filterTable();
 });
 
@@ -168,6 +168,8 @@ function filterTable() {
     var query = normalizeString(document.getElementById('searchCategory').value.trim());
 
     var rows = document.querySelectorAll('table tbody tr');
+    var visibleIndex = 1;
+
     rows.forEach(function(row) {
         var tags = row.getAttribute('data-tags');
         var status = row.querySelector('td:nth-child(6)').textContent.trim();
@@ -215,7 +217,13 @@ function filterTable() {
 
         // Show or hide the row based on the filters
         row.style.display = showRow ? '' : 'none';
+
+        // Reset index for visible rows
+        if (showRow) {
+            row.querySelector('td:nth-child(1)').textContent = visibleIndex++;
+        }
     });
 }
+
 
 </script>
