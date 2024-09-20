@@ -14,7 +14,83 @@ feature_text: |
 
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
+
+
 ### table comparing the time complexities of various data structures for different operations, including **insert**, **delete**, and **getRandom**:
+<table border="1" cellpadding="10" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Data Structure</th>
+      <th>Insert</th>
+      <th>Delete</th>
+      <th>Get Random</th>
+      <th>Access/Search</th>
+      <th>Space Complexity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Array/List</td>
+      <td>O(1) (at end), O(n) (arbitrary index)</td>
+      <td>O(n) (find + remove)</td>
+      <td>O(1)</td>
+      <td>O(1) (by index), O(n) (search by value)</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td>HashMap/Dictionary</td>
+      <td>O(1)</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+      <td>O(1) (by key)</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td>Set</td>
+      <td>O(1)</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td>Doubly Linked List</td>
+      <td>O(1) (at head or tail)</td>
+      <td>O(1) (if node is known), O(n) (search + delete)</td>
+      <td>O(n)</td>
+      <td>O(n)</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td>Heap (Min/Max)</td>
+      <td>O(log n)</td>
+      <td>O(log n)</td>
+      <td>O(n)</td>
+      <td>O(1) (peek min/max), O(n) (search)</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td>Balanced Binary Search Tree</td>
+      <td>O(log n)</td>
+      <td>O(log n)</td>
+      <td>O(n)</td>
+      <td>O(log n)</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td>Unordered Map</td>
+      <td>O(1)</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
 
 | Data Structure | Insert | Delete | Get Random | Access/Search | Space Complexity |
 |----------------|--------|--------|------------|---------------|------------------|
