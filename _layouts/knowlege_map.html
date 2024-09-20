@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+{% include site-header.html %}
+
+<main class="main container">
+
+  <div class="content">
+
+    <article class="article article--page typeset">
+
+      <h1>{{ page.title }}</h1>
+
+        {% assign sorted_essays = site.essays | sort: "date" | reverse %}
+        {% for essay in sorted_essays %}
+            <section class="section typeset essay-item" data-tags="{{ essay.tags | join: ',' }}">
+                <h3 class="essaytitle" id="{{ essay.title | slugify }}">
+                <a href="{{ site.baseurl }}{{ essay.url }}">{{ essay.title }}</a>
+                </h3>
+                <div class="meta">
+                    <span class="date-text">{{ essay.date | date: "%B %d, %Y" }}</span>
+                    |
+                    <ul class="list list--tags inline-tags">
+                    {% for tag in essay.tags %}
+                        <li class="item item--tag"><a href="javascript:void(0);" class="essay-tag" data-tag="{{ tag }}">{{ tag }}</a></li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </section>
+        {% endfor %}
+    
+    </article>
+
+  </div>
+
+  {% if page.aside == true %}{% include site-aside.html align="left" %}{% endif %}
+
+</main>
+
+{% include site-footer.html %}
+ 
