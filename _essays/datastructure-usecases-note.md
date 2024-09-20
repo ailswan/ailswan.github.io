@@ -5,6 +5,7 @@ date: 2024-01-07
 tags:
   - Backend
   - DataStructure
+  - Algorithm
 categories:
   - Backend
 feature_text: |
@@ -13,6 +14,49 @@ feature_text: |
 
 feature_image: "https://picsum.photos/2560/600?image=865"
 ---
+### table comparing the time complexities of various data structures for different operations, including **insert**, **delete**, and **getRandom**:
+
+| Data Structure | Insert | Delete | Get Random | Access/Search | Space Complexity |
+|----------------|--------|--------|------------|---------------|------------------|
+| **Array/List** | O(1) (at end), O(n) (at arbitrary index) | O(n) (find + remove) | O(1) | O(1) (by index), O(n) (search by value) | O(n) |
+| **HashMap/Dictionary** | O(1) | O(1) | O(n) (need to convert keys to list to pick random) | O(1) (by key) | O(n) |
+| **Set** | O(1) | O(1) | O(n) (need to convert to list to pick random) | O(1) (for existence checks) | O(n) |
+| **Doubly Linked List** | O(1) (at head or tail) | O(1) (if node is known), O(n) (search + delete) | O(n) (have to traverse) | O(n) (searching) | O(n) |
+| **Heap (Min/Max)** | O(log n) | O(log n) | O(n) (requires heap traversal) | O(1) (peek min/max), O(n) (search by value) | O(n) |
+| **Balanced Binary Search Tree (AVL, Red-Black)** | O(log n) | O(log n) | O(n) (traverse tree to get random) | O(log n) (search by value) | O(n) |
+| **Unordered Map** | O(1) | O(1) | O(n) (have to iterate over keys) | O(1) (search by key) | O(n) |
+
+### Breakdown:
+1. **Array/List**: 
+   - Great for random access (O(1) by index), but deletions are costly if not at the end (O(n)).
+   - Getting a random element is O(1), assuming you know the index.
+
+2. **HashMap/Dictionary**:
+   - O(1) for insertions, deletions, and lookups by key, but O(n) for picking a random element since the keys/values need to be converted to a list first.
+
+3. **Set**:
+   - Similar to a dictionary, `Set` offers O(1) insert, delete, and existence checks but O(n) for random access since you need to convert the set to a list.
+
+4. **Doubly Linked List**:
+   - Constant time insertions and deletions if you already have a reference to the node (O(1)), but O(n) to search for a node and O(n) to get a random element.
+
+5. **Heap**:
+   - Heaps are efficient for priority operations. Insert and delete are O(log n), but accessing or removing a specific element requires O(n) traversal.
+   - Random access is inefficient at O(n).
+
+6. **Balanced Binary Search Tree**:
+   - All operations (insert, delete, search) are O(log n). However, random access is O(n) since you need to perform an inorder traversal to pick an element randomly.
+
+7. **Unordered Map**:
+   - O(1) for typical operations like insertion, deletion, and lookup, but accessing a random element is O(n).
+
+### Summary:
+- **Best for Insert/Delete**: HashMap, Set (O(1)).
+- **Best for Random Access**: Array/List (O(1)).
+- **Best for Min/Max Operations**: Heap (O(1) peek).
+
+
+### ---------------------------------------------------------------------------------------------------
 
 ## 1. B-Trees
 
