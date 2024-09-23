@@ -1,0 +1,72 @@
+---
+layout: default
+---
+
+{% include site-header.html %}
+
+<main class="main  container">
+
+  <article class="article  article--post  content  typeset">
+
+    <h1>{{ page.title }}</h1>
+    {% include post-meta.html %}
+
+   
+    <div class="technologies-list">
+      {% for technology in page.technologies %}
+        <span class="technology-tag">{{ technology }}</span>
+      {% endfor %}
+    </div>
+    
+    
+    {% if page.tech_image %}
+    <div class="hero" style="background-image: url('{{ page.tech_image }}'); height: 400px; background-size: cover; background-position: center;">
+    </div>
+    {% endif %}
+    
+    <div class="technologies-list">
+      <h3>Tradeoff Priority</h3>
+      <ul>
+        {% for priority in page.tradeoff_priority %}
+          <li><a href="/tradeoff/{{ priority | downcase | replace: ' ', '-' }}">{{ priority }}</a></li>
+        {% endfor %}
+      </ul>
+
+      <h3>Key Technologies</h3>
+      <ul>
+        {% for technology in page.technologies %}
+          <li><a href="/technology/{{ technology | downcase | replace: ' ', '-' }}">{{ technology }}</a></li>
+        {% endfor %}
+      </ul>
+
+      <h3>Strategies & Tools</h3>
+      <ul>
+        {% for strategies_tool in page.strategies_tools %}
+          <li><a href="/strategy/{{ strategies_tool | downcase | replace: ' ', '-' }}">{{ strategies_tool }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <hr />
+
+    <div class="post-content">
+      {{ content }}
+    </div>
+
+    {% if page.java_code %}
+    <h4>Java Code</h4>
+    {% highlight java %}
+    {{ page.java_code }}
+    {% endhighlight %}
+    {% endif %}
+
+    {% include nav-share.html %}
+    {% include post-comments.html %}
+
+  </article>
+
+  {% if page.aside == true %}{% include site-aside.html %}{% endif %}
+
+</main>
+
+{% include site-footer.html %}

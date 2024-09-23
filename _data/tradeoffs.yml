@@ -1,0 +1,13 @@
+Scalability:
+  - Horizontal scaling
+  - Kubernetes
+  - AWS Auto Scaling
+  - Redundancy
+Reliability:
+  - Failover systems
+  - Load balancers
+  - Health checks
+user management:
+  - Access control
+  - User segmentation
+  - Multi-factor authentication
