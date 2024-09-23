@@ -4,6 +4,27 @@ layout: default
 
 {% include site-header.html %}
 
+<head>
+  <style>
+    .cell-content {
+      max-height: 40px;  
+      overflow: hidden;  
+      position: relative;
+    }
+
+    .show-more {
+      color: #0d94e7;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .expanded {
+      max-height: none;  
+    }
+  </style>
+</head>
+
 <main class="main container">
 
   <div class="content">
@@ -38,7 +59,7 @@ layout: default
           <td style="border: 1px solid lightgrey; padding: 18px;">{{ forloop.index }}</td>
           <td style="border: 1px solid lightgrey; padding: 18px;">
             <a href="{{ tech.url }}" 
-               style="color: #b51ce4">
+               style="color: #256469">
                {{ tech.title }}
             </a>
           </td>
@@ -62,59 +83,59 @@ layout: default
                 {% assign strategies_tools = strategies_tools | append: strategies | join: ',' %}
               {% endif %}
             {% endfor %}
-          
-            <!-- Rendering strategies -->
-            {% if strategies_tools %}
-              <div style="list-style-type: none; padding-left: 0; margin-left: 0;">
+            
+            <div class="cell-content">
+              {% if strategies_tools %}
                 <ul style="list-style-type: none; padding-left: 0; margin-left: 0;">
                   {% assign strategies_array = strategies_tools | split: ',' %}
                   {% for strategy in strategies_array %}
                     <li style="list-style-type: none;">
-                      <a href="/strategy/{{ strategy | slugify }}" style="text-decoration: none;">
-                      {{ strategy }}
-                      </a>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
-            {% else %}
-              <p>No strategies available.</p>
-            {% endif %}
-          </td>
-          
-          <td style="border: 1px solid lightgrey; padding: 2px; word-wrap: break-word; overflow: hidden;">
-            {% assign technologies_tools = "" %}
-            {% for technology in tech.technologies %}
-              {% assign tech_strategies = site.data.technologies_tools[technology] %}
-              {% if tech_strategies %}
-                {% assign technologies_tools = technologies_tools | append: tech_strategies | join: ',' %}
-              {% endif %}
-            {% endfor %}
-          
-            <!-- Rendering clickable technologies strategies -->
-            {% if technologies_tools %}
-              <div style="list-style-type: none; padding-left: 0; margin-left: 0;">
-                <ul style="list-style-type: none; padding-left: 0; margin-left: 0;">
-                  {% assign tech_strategies_array = technologies_tools | split: ',' %}
-                  {% for tech_strategy in tech_strategies_array %}
-                    <li style="list-style-type: none;">
-                      <a href="/strategy/{{ tech_strategy | slugify }}" style="text-decoration: none;">
-                        {{ tech_strategy }}
-                      </a>
+                      <a href="/strategy/{{ strategy | slugify }}" style="text-decoration: none;">{{ strategy }}</a>
                     </li>
                   {% endfor %}
                 </ul>
-              </div>
-            {% else %}
-              <p>No strategies available for these technologies.</p>
+              {% else %}
+                <p>No strategies available.</p>
+              {% endif %}
+            </div>
+            {% if strategies_tools %}
+              <span class="show-more">Show more</span>
             {% endif %}
           </td>
           
+          
+            <td style="border: 1px solid lightgrey; padding: 2px; word-wrap: break-word; overflow: hidden;">
+              {% assign technologies_tools = "" %}
+              {% for technology in tech.technologies %}
+                {% assign tech_strategies = site.data.technologies_tools[technology] %}
+                {% if tech_strategies %}
+                  {% assign technologies_tools = technologies_tools | append: tech_strategies | join: ',' %}
+                {% endif %}
+              {% endfor %}
+            
+              <div class="cell-content">
+                {% if technologies_tools %}
+                  <ul style="list-style-type: none; padding-left: 0; margin-left: 0;">
+                    {% assign tech_strategies_array = technologies_tools | split: ',' %}
+                    {% for tech_strategy in tech_strategies_array %}
+                      <li style="list-style-type: none;">
+                        <a href="/strategy/{{ tech_strategy | slugify }}" style="text-decoration: none;">
+                          {{ tech_strategy }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  <p>No strategies available for these technologies.</p>
+                {% endif %}
+              </div>
+              
+              {% if technologies_tools %}
+                <span class="show-more">Show more</span>
+              {% endif %}
+          </td>
+          
 
-          
-          
-          
- 
           <td style="border: 1px solid lightgrey; padding: 18px;">
             <a style="color: #0d94e7;">{{ tech.note | join: ", " }}</a>
           </td>
@@ -126,6 +147,25 @@ layout: default
   </div>
 
 </main>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const showMoreButtons = document.querySelectorAll('.show-more');
+    
+    showMoreButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const cellContent = this.previousElementSibling; // 获取之前的内容块
+        if (cellContent.classList.contains('expanded')) {
+          cellContent.classList.remove('expanded');
+          this.textContent = 'Show more'; // 更新按钮文本
+        } else {
+          cellContent.classList.add('expanded');
+          this.textContent = 'Show less'; // 更新按钮文本
+        }
+      });
+    });
+  });
+</script>
 
 {% include site-footer.html %}
  
