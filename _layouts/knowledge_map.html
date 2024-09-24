@@ -48,13 +48,13 @@ layout: default
         <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">Tradeoff Priority</th>
         <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Key Technologies</th>
         <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Strategties for Tradeoff</th>
-        <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Strategties for Technologies</th>
+        <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tools for Technologies</th>
         <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Notes</th>
         <Tools></Tools></th>
       </tr>
     </thead>
     <tbody>
-      {% for tech in site.teches %}
+      {% for tech in site.topics %}
       <tr data-time="{{ post.feature_text | slice: -12, 10 | date: '%Y-%m-%d' }}" data-tags="{{ post.categories | join: ',' }}" data-status="{{ post.status }}" data-session="{{ post.session }}">
           <td style="border: 1px solid lightgrey; padding: 18px;">{{ forloop.index }}</td>
           <td style="border: 1px solid lightgrey; padding: 18px;">
@@ -104,36 +104,37 @@ layout: default
           </td>
           
           
-            <td style="border: 1px solid lightgrey; padding: 2px; word-wrap: break-word; overflow: hidden;">
-              {% assign technologies_tools = "" %}
-              {% for technology in tech.technologies %}
-                {% assign tech_strategies = site.data.technologies_tools[technology] %}
-                {% if tech_strategies %}
-                  {% assign technologies_tools = technologies_tools | append: tech_strategies | join: ',' %}
-                {% endif %}
-              {% endfor %}
-            
-              <div class="cell-content">
-                {% if technologies_tools %}
-                  <ul style="list-style-type: none; padding-left: 0; margin-left: 0;">
-                    {% assign tech_strategies_array = technologies_tools | split: ',' %}
-                    {% for tech_strategy in tech_strategies_array %}
-                      <li style="list-style-type: none;">
-                        <a href="/strategy/{{ tech_strategy | slugify }}" style="text-decoration: none;">
-                          {{ tech_strategy }}
-                        </a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% else %}
-                  <p>No strategies available for these technologies.</p>
-                {% endif %}
-              </div>
-              
-              {% if technologies_tools %}
-                <span class="show-more">Show more</span>
+          <td style="border: 1px solid lightgrey; padding: 2px; word-wrap: break-word; overflow: hidden;">
+            {% assign technologies_tools = "" %}
+            {% for technology in tech.technologies %}
+              {% assign tech_tools = site.data.technologies_tools[technology] %}
+              {% if tech_tools %}
+                {% assign technologies_tools = technologies_tools | append: tech_tools | join: ',' %}
               {% endif %}
+            {% endfor %}
+          
+            <div class="cell-content">
+              {% if technologies_tools %}
+                <ul style="list-style-type: none; padding-left: 0; margin-left: 0;">
+                  {% assign tech_tools_array = technologies_tools | split: ',' %}
+                  {% for tech_tool in tech_tools_array %}
+                    <li style="list-style-type: none;">
+                      <a href="/tool/{{ tech_tool | slugify }}" style="text-decoration: none;">
+                        {{ tech_tool }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <p>No tools available for these technologies.</p>
+              {% endif %}
+            </div>
+          
+            {% if technologies_tools %}
+              <span class="show-more">Show more</span>
+            {% endif %}
           </td>
+          
           
 
           <td style="border: 1px solid lightgrey; padding: 18px;">
@@ -154,13 +155,13 @@ layout: default
     
     showMoreButtons.forEach(button => {
       button.addEventListener('click', function() {
-        const cellContent = this.previousElementSibling; // 获取之前的内容块
+        const cellContent = this.previousElementSibling;  
         if (cellContent.classList.contains('expanded')) {
           cellContent.classList.remove('expanded');
-          this.textContent = 'Show more'; // 更新按钮文本
+          this.textContent = 'Show more';  
         } else {
           cellContent.classList.add('expanded');
-          this.textContent = 'Show less'; // 更新按钮文本
+          this.textContent = 'Show less';  
         }
       });
     });

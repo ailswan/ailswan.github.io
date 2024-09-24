@@ -12,6 +12,6 @@ strategies_tools:
 - Redundancy
 - failover systems, load balancers, health checks
 ---
-## Ticket Management
+## Experiment tracking
 
-Ticket management refers to the process of managing and organizing support tickets raised by customers.
+Experiment tracking
