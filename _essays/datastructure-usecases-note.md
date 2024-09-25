@@ -5,7 +5,6 @@ date: 2024-01-07
 tags:
   - Backend
   - DataStructure
-  - Algorithm
 categories:
   - Backend
 feature_text: |
