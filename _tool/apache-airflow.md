@@ -8,7 +8,7 @@ feature_image: "https://picsum.photos/2560/600?image=1035"
 strategies_tools:
 - Apache Airflow
 - Workflow Management
-- Data Pipeline
+- Data Pipeline 
 - Orchestration
 ---
 ## Apache Airflow

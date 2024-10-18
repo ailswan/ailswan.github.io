@@ -35,8 +35,8 @@ layout: default
           <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">No.</th>
           <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Topic Name</th>
           <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">Tradeoff</th>
-          <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Technologies</th>
           <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Strategies (for Tradeoff)</th>
+          <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Technologies</th>
           <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tools (for Technologies)</th>
           <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Notes</th>
         </tr>
@@ -52,12 +52,7 @@ layout: default
             </td>
             <td style="border: 1px solid lightgrey; padding: 18px;">
               {% for tradeoff in tech.tradeoff_priority %}
-              <a href="/tradeoff/{{ tradeoff | slugify }}">{{ forloop.index }}.{{ tradeoff }}</a>{% if forloop.last == false %}, {% endif %}
-              {% endfor %}
-            </td>
-            <td style="border: 1px solid lightgrey; padding: 2px;">
-              {% for technology in tech.technologies %}
-              <a href="/technology/{{ technology | slugify }}" > {{ forloop.index }}. {{ technology }}</a>{% if forloop.last == false %}, {% endif %}
+              <a href="/tradeoff/{{ tradeoff | slugify }}" style="color: #0494ae">{{ forloop.index }}.{{ tradeoff }}</a>{% if forloop.last == false %}, {% endif %}
               {% endfor %}
             </td>
             <td style="border: 1px solid lightgrey; padding: 2px; word-wrap: break-word; overflow: hidden;">
@@ -65,18 +60,20 @@ layout: default
               {% for tradeoff in tech.tradeoff_priority %}
                 {% assign strategies = site.data.tradeoffs[tradeoff] %}
                 {% if strategies %}
-                  {% assign strategies_tools = strategies_tools | append: strategies | join: ',' %}
+                  {% assign strategies_tools = strategies_tools | append: strategies | append: ',' %}
                 {% endif %}
               {% endfor %}
               
               <div class="cell-content">
                 {% if strategies_tools %}
-                  <ul style="list-style-type: none; padding-left: 0; margin-left: 0;">
-                    {% assign strategies_array = strategies_tools | split: ',' %}
+                  {% assign strategies_array = strategies_tools | split: ',' %}
+                  <ul style="list-style-type: none; padding-left: 0; margin-left: 0; color: #0494ae">
                     {% for strategy in strategies_array %}
-                      <li style="list-style-type: none;">
-                        <a href="/strategy/{{ strategy | slugify }}" style="text-decoration: none;">{{ strategy }}</a>
-                      </li>
+                      {% unless strategy == "" %}
+                        <li style="list-style-type: none;">
+                          <a href="/strategy/{{ strategy | slugify }}" style="text-decoration: none; color: #0494ae">{{ strategy }}</a>
+                        </li>
+                      {% endunless %}
                     {% endfor %}
                   </ul>
                 {% else %}
@@ -87,32 +84,40 @@ layout: default
                 <span class="show-more">Show more</span>
               {% endif %}
             </td>
+
+            <td style="border: 1px solid lightgrey; padding: 2px;">
+              {% for technology in tech.technologies %}
+              <a href="/technology/{{ technology | slugify }}" > {{ forloop.index }}. {{ technology }}</a>{% if forloop.last == false %}, {% endif %}
+              {% endfor %}
+            </td>
             <td style="border: 1px solid lightgrey; padding: 2px; word-wrap: break-word; overflow: hidden;">
               {% assign technologies_tools = "" %}
               {% for technology in tech.technologies %}
                 {% assign tech_tools = site.data.technologies_tools[technology] %}
                 {% if tech_tools %}
-                  {% assign technologies_tools = technologies_tools | append: tech_tools | join: ',' %}
+                  {% assign technologies_tools = technologies_tools | append: tech_tools | append: ',' %}
                 {% endif %}
               {% endfor %}
-            
+              
               <div class="cell-content">
                 {% if technologies_tools %}
+                  {% assign tech_tools_array = technologies_tools | split: ',' %}
                   <ul style="list-style-type: none; padding-left: 0; margin-left: 0;">
-                    {% assign tech_tools_array = technologies_tools | split: ',' %}
                     {% for tech_tool in tech_tools_array %}
-                      <li style="list-style-type: none;">
-                        <a href="/tool/{{ tech_tool | slugify }}" style="text-decoration: none;">
-                          {{ tech_tool }}
-                        </a>
-                      </li>
+                      {% unless tech_tool == "" %}
+                        <li style="list-style-type: none;">
+                          <a href="/tool/{{ tech_tool | slugify }}" style="text-decoration: none;">
+                            {{ tech_tool }}
+                          </a>
+                        </li>
+                      {% endunless %}
                     {% endfor %}
                   </ul>
                 {% else %}
                   <p>No tools available for these technologies.</p>
                 {% endif %}
               </div>
-            
+              
               {% if technologies_tools %}
                 <span class="show-more">Show more</span>
               {% endif %}
@@ -124,6 +129,20 @@ layout: default
         {% endfor %}
       </tbody>
     </table>
+    <!-- Strategies List Section -->
+ 
+    <div class="strategies-list" style="margin-top: 30px;">
+      <h3>Strategies List</h3>
+      <ul style="list-style-type: none; padding-left: 0;">
+        {% for strategy in site.strategy %}
+        <li>
+          {{ forloop.index }}. <a href="{{ strategy.url }}" style="color: #0494ae;">{{ strategy.title }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    
 
     <!-- Tools List Section -->
     <div class="tools-list" style="margin-top: 30px;">
