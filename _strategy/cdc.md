@@ -15,7 +15,7 @@ strategies_tools:
 ## Change Data Capture (CDC)
 Change Data Capture (CDC) is a software design pattern that tracks and records changes in a database, allowing for the synchronization of changes across multiple systems in real-time. CDC is essential for creating reactive architectures and is commonly used for data replication, streaming, and analytics.
 
-### Why Choose CDC? 
+### Why Choose CDC?
 - **Real-Time Data Synchronization:** CDC enables real-time data replication and synchronization across systems, ensuring that changes in one database are propagated to others instantly.
 - **Event-Driven Architecture:** By capturing and transmitting database changes as events, CDC is ideal for creating event-driven applications that respond to changes dynamically.
 - **Efficient Data Streaming:** CDC minimizes data transfer by only capturing incremental changes, reducing the overhead of moving entire datasets and enhancing performance in distributed systems.
