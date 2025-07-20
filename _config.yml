@@ -71,6 +71,13 @@ collections:
     feature_text: |
       Welcome to the blog
     feature_image: "https://picsum.photos/2560/600?image=866"
+  poststwo:
+    title: List of all postsTwo
+    output: true
+    description: "List according dates"
+    feature_text: |
+      Welcome to the blog
+    feature_image: "https://picsum.photos/2560/600?image=865"
   essays:
     title: List of all essays  
     output: true
@@ -132,7 +139,7 @@ defaults:
       path: ""
       type: "pages"
     values:
-      layout: page # Set the default layout for pages
+      layout: page  
   -
     scope:
       path: ""
@@ -197,6 +204,8 @@ favicons: # Favicons are also used in the manifest file. Syntax is 'size: path'
 navigation_header:
 - title: Home
   url: /
+- title: Java
+  url: /Java/
 - title: KnowledgeMap
   url: /knowledgemap/
 - title: Essayslist

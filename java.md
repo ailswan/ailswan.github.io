@@ -1,22 +1,18 @@
 ---
-title: list of algorithm
+layout: page
+title: Java
+permalink: /Java/
 feature_text: |
-  ## AilswanCoding
-  This is a notebook for Ailswan to improving coding skills
-feature_image: "https://picsum.photos/1300/400?image=989"
+  ## Java Coding
+  This is a notebook for Ailswan to improving Java coding skills
+feature_image: "https://picsum.photos/1300/400?image=909"
 excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projects. Rather than starting from scratch, this boilerplate is designed to get the ball rolling immediately. Install it, configure it, tweak it, push it."
 ---
 <div class="tag-filter">
     <!-- <label for="searchCategory">Search Category:</label> -->
     <!-- <input type="text" id="searchCategory" placeholder="Enter category to search"> -->
     <label>Select Tags:</label>
-    <!-- <input type="checkbox" name="tags" value="AMateList">AMateList -->
-    <!-- <br> -->
-    <input type="checkbox" id="review"> review
-    <!-- <input type="checkbox" id="oneStarCheckbox"> One Star
-    <input type="checkbox" id="twoStarCheckbox"> Two Star
-    <input type="checkbox" id="session1Checkbox"> Session1
-    <input type="checkbox" id="session2Checkbox"> Session2 -->
+    <input type="checkbox" id="oneStarCheckbox"> review
 </div>
 
 <select id="sortDropdown">
@@ -36,17 +32,12 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
       <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tags</th>
       <!-- <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Category</th>
       <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Status</th> -->
-      <!-- <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Session</th> -->
-      <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Note</th>
+      <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Session</th>
     </tr>
   </thead>
   <tbody>
-    {% for post in site.posts %}
-    <tr data-time="{{ post.feature_text | slice: -12, 10 | date: '%Y-%m-%d' }}"
-        data-tags="{{ post.categories | join: ',' }}"
-        data-status="{{ post.status }}"
-        data-session="{{ post.session }}"
-        data-review="{{ post.review }}">
+    {% for post in site.postsTwo %}
+    <tr data-time="{{ post.feature_text | slice: -12, 10 | date: '%Y-%m-%d' }}" data-tags="{{ post.categories | join: ',' }}" data-status="{{ post.status }}" data-session="{{ post.session }}">
         <td style="border: 1px solid lightgrey; padding: 18px;">{{ forloop.index }}</td>
         <td style="border: 1px solid lightgrey; padding: 18px;">
           <a href="{{ post.url }}" 
@@ -58,8 +49,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
         <td style="border: 1px solid lightgrey; padding: 18px;"><a href="{{ post.url }}" style="color: #0d94e7;">{{ post.categories | join: ", " }}</a></td>
         <!-- <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.category }}</td>
         <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.status }}</td> -->
-        <!-- <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.session }}</td>   -->
-        <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.note }}</td>  
+        <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.session }}</td>  
     </tr>
     {% endfor %}
   </tbody>
@@ -158,12 +148,7 @@ function normalizeString(str) {
 function filterTable() {
     var checkboxes = document.querySelectorAll('.tag-filter input[type="checkbox"]');
     var selectedTags = Array.from(checkboxes).filter(function(checkbox) {
-        return checkbox.checked &&
-            checkbox.id !== 'oneStarCheckbox' &&
-            checkbox.id !== 'twoStarCheckbox' &&
-            checkbox.id !== 'session1Checkbox' &&
-            checkbox.id !== 'session2Checkbox' &&
-            checkbox.id !== 'review'; // 排除 review checkbox 以避免冲突
+        return checkbox.checked && checkbox.id !== 'oneStarCheckbox' && checkbox.id !== 'twoStarCheckbox' && checkbox.id !== 'session1Checkbox' && checkbox.id !== 'session2Checkbox';
     }).map(function(checkbox) {
         return normalizeString(checkbox.value);
     });
@@ -173,74 +158,69 @@ function filterTable() {
         selectedTags.push(manualTag);
     }
 
-    var filterOneStar = document.getElementById('oneStarCheckbox')?.checked;
-    var filterTwoStar = document.getElementById('twoStarCheckbox')?.checked;
-    var filterSession1 = document.getElementById('session1Checkbox')?.checked;
-    var filterSession2 = document.getElementById('session2Checkbox')?.checked;
-    var filterReview = document.getElementById('review')?.checked;
-
-    var query = normalizeString(document.getElementById('searchCategory')?.value.trim() || '');
+    var filterOneStar = document.getElementById('oneStarCheckbox').checked;
+    var filterTwoStar = document.getElementById('twoStarCheckbox').checked;
+    var filterSession1 = document.getElementById('session1Checkbox').checked;
+    var filterSession2 = document.getElementById('session2Checkbox').checked;
+    var query = normalizeString(document.getElementById('searchCategory').value.trim());
 
     var rows = document.querySelectorAll('table tbody tr');
     var visibleIndex = 1;
 
     rows.forEach(function(row) {
-        var tags = row.getAttribute('data-tags') || '';
-        var status = row.querySelector('td:nth-child(6)')?.textContent.trim() || '';
-        var session = row.getAttribute('data-session')?.trim() || '';
-        var category = normalizeString(row.querySelector('td:nth-child(5)')?.textContent || '');
-        var reviewCount = row.getAttribute('data-review')?.trim() || '';
+        var tags = row.getAttribute('data-tags');
+        var status = row.querySelector('td:nth-child(6)').textContent.trim();
+        var session = row.getAttribute('data-session')?.trim();
+        var category = normalizeString(row.querySelector('td:nth-child(5)').textContent);
 
         var showRow = true;
 
-        // 过滤 Tags
+        // Check if tags match the selected tags
         if (selectedTags.length > 0) {
             if (tags) {
-                var normalizedTags = tags.split(',').map(normalizeString);
+                tags = tags.split(',').map(normalizeString);
                 showRow = selectedTags.every(function(tag) {
-                    return normalizedTags.includes(tag);
+                    return tags.includes(tag);
                 });
             } else {
                 showRow = false;
             }
         }
 
-        // 过滤一星
+        // Apply "One Star" filter if checked
         if (filterOneStar && status !== '★') {
             showRow = false;
         }
 
-        // 过滤二星
+        // Apply "Two Star" filter if checked
         if (filterTwoStar && status !== '★★') {
             showRow = false;
         }
 
-        // 过滤 Session1
+        // Apply Session1 filter if checked
         if (filterSession1 && session !== '1') {
             showRow = false;
         }
 
-        // 过滤 Session2
+        // Apply Session2 filter if checked
         if (filterSession2 && session !== '2') {
             showRow = false;
         }
 
-        // ✅ 新增：过滤 review
-        if (filterReview && (reviewCount === '' || reviewCount === '0')) {
-            showRow = false;
-        }
-
-        // 模糊搜索分类
+        // If there's a query, match it against the category
         if (query && !category.includes(query)) {
             showRow = false;
         }
 
+        // Show or hide the row based on the filters
         row.style.display = showRow ? '' : 'none';
 
+        // Reset index for visible rows
         if (showRow) {
             row.querySelector('td:nth-child(1)').textContent = visibleIndex++;
         }
     });
 }
+
 
 </script>
