@@ -13,19 +13,19 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     -webkit-overflow-scrolling: touch; /* iOS 上滚动更顺滑 */
   }
 
-  /* 表格布局：不再强制 120% / 1200px，改为固定布局 + 100% 宽度 */
+  /* 表格布局：固定布局 + 100% 宽度 */
   table.algo-table {
     border-collapse: collapse;
     width: 100%;
     table-layout: fixed; /* 按列宽平均分配，避免某一列过宽 */
   }
 
-  /* 所有单元格：单行 + 紧凑 padding + 统一字体 */
+  /* 所有单元格：单行 + 紧凑 padding + 统一字体（默认：桌面端） */
   table.algo-table th,
   table.algo-table td {
     border: 1px solid lightgrey;
-    padding: 2px 6px;        /* 上下 2px，左右 6px，更紧凑 */
-    white-space: nowrap;     /* 单行显示 */
+    padding: 2px 6px;
+    white-space: nowrap;     /* 桌面端单行显示 */
     font-size: 12px;
     text-align: left;
   }
@@ -35,7 +35,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     background: #fafafa;
   }
 
-  /* 每列宽度控制：防止 Problem Name 一列占太多 */
+  /* 每列宽度控制：桌面端 */
   .algo-table th:nth-child(1),
   .algo-table td:nth-child(1) {
     width: 40px;  /* No. */
@@ -49,7 +49,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
 
   .algo-table th:nth-child(3),
   .algo-table td:nth-child(3) {
-    width: 55%;   /* Problem Name 占主要空间 */
+    width: 55%;   /* Problem Name */
   }
 
   .algo-table th:nth-child(4),
@@ -57,7 +57,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     width: 35%;   /* Note */
   }
 
-  /* Problem Name cell：太长用 ... 截断，避免撑宽 */
+  /* Problem Name cell：桌面端太长用 ... 截断 */
   .problem-name-cell {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -82,9 +82,9 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     margin-left: 6px;
     padding: 2px 8px;
     font-size: 11px;
-    border-radius: 999px;              /* 胶囊圆角，更精致 */
+    border-radius: 999px;              /* 胶囊圆角 */
     border: 2px solid #d6c2ff;         /* 淡淡的紫色边框 */
-    background: #a89acd;               /* 柔和的浅紫底色 */
+    background: #a89acd;               /* 浅紫底色 */
     cursor: pointer;
     line-height: 1.4;
     color: #fdfbff;
@@ -96,7 +96,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
   }
 
   .tag-toggle-btn {
-    border-bottom-color: #c6b5e9 !important; /* 保持淡紫色 */
+    border-bottom-color: #c6b5e9 !important;
   }
 
   /* 展开 tags 的那一行样式（基础样式） */
@@ -120,18 +120,74 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     color: #4a3a75;
   }
 
-  /* 手机端再紧凑一点（可选）*/
-  @media (max-width: 768px) {
-    table.algo-table th,
-    table.algo-table td {
-      font-size: 11px;
-      padding: 2px 4px;
-    }
-  }
-
-  /* ✅ 强制 tag 行的字体颜色为优雅紫色，压过主题的白色 */
+  /* 强制 tag 行字体颜色 */
   body .algo-table-wrapper table.algo-table tr.tag-row td.tag-cell {
     color: #5b4a86 !important;
+  }
+
+  /* Level 文本的两种形态：桌面端默认显示全称，缩写隐藏 */
+  .level-text-full {
+    display: inline;
+  }
+  .level-text-abbr {
+    display: none;
+  }
+
+  /* ============================
+     手机端样式：
+     - 字体更小（包括表头）
+     - 各列宽度重新分配
+     - Problem Name 尽量宽，超出用省略号
+     - 隐藏 Tags 按钮
+     - Level 列只保留首字母 + 点 (m./h./e.)
+     ============================ */
+  @media (max-width: 768px) {
+    .algo-table th,
+    .algo-table td {
+      font-size: 10px !important;
+      padding: 2px 3px;
+    }
+
+    /* 手机端重新定义各列宽度 */
+    .algo-table th:nth-child(1),
+    .algo-table td:nth-child(1) {
+      width: 26px !important;   /* No. 更窄 */
+    }
+
+    .algo-table th:nth-child(2),
+    .algo-table td:nth-child(2) {
+      width: 32px !important;   /* Level 更窄 */
+    }
+
+    .algo-table th:nth-child(4),
+    .algo-table td:nth-child(4) {
+      width: 20% !important;    /* Note 收窄 */
+    }
+
+    .algo-table th:nth-child(3),
+    .algo-table td:nth-child(3) {
+      width: auto !important;   /* 剩余都给 Problem Name */
+    }
+
+    /* Problem Name 在手机上：单行 + 省略号，防止撑出屏幕 */
+    .problem-name-cell {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 手机端隐藏 Tags 按钮 */
+    .tag-toggle-btn {
+      display: none;
+    }
+
+    /* 手机端：Level 列只显示缩写，隐藏全称 */
+    .level-text-full {
+      display: none;
+    }
+    .level-text-abbr {
+      display: inline;
+    }
   }
 </style>
 
@@ -164,17 +220,25 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
           data-session="{{ post.session }}"
           data-review="{{ post.review }}">
         <td>{{ forloop.index }}</td>
+
+        <!-- Level 列：桌面端 full 文本，手机端只显示缩写 m./h./e. -->
         <td>
           <a href="{{ post.url }}" 
              style="{% if post.level == 'hard' %}color: #f44336;{% elsif post.level == 'medium' %}color: #f68140;{% endif %}">
-             {{ post.level }}
+             <span class="level-text-full">
+               {{ post.level }}
+             </span>
+             <span class="level-text-abbr">
+               {{ post.level | slice: 0,1 | downcase }}.
+             </span>
           </a>
         </td>
+
         <td class="problem-name-cell">
           <a href="{{ post.url }}" style="color: #45818e">
               {{ post.title }}
           </a>
-          <!-- Tags toggle 按钮 -->
+          <!-- Tags toggle 按钮（桌面端可见，手机端通过 media query 隐藏） -->
           <button class="tag-toggle-btn" data-tags="{{ post.categories | join: ', ' }}">
               Tags ▼
           </button>
@@ -248,7 +312,7 @@ function filterTable() {
             checkbox.id !== 'twoStarCheckbox' &&
             checkbox.id !== 'session1Checkbox' &&
             checkbox.id !== 'session2Checkbox' &&
-            checkbox.id !== 'review'; // 排除 review checkbox 以避免冲突
+            checkbox.id !== 'review';
     }).map(function(checkbox) {
         return normalizeString(checkbox.value);
     });
@@ -271,7 +335,6 @@ function filterTable() {
 
     rows.forEach(function(row) {
         if (row.classList.contains('tag-row')) {
-            // tag-row 的显隐跟随上一行的主 row，在这里先跳过
             return;
         }
 
@@ -279,11 +342,10 @@ function filterTable() {
         var status = row.getAttribute('data-status') || '';
         var session = row.getAttribute('data-session')?.trim() || '';
         var reviewCount = row.getAttribute('data-review')?.trim() || '';
-        var category = normalizeString(tags); // 模糊搜索就直接用 tags
+        var category = normalizeString(tags);
 
         var showRow = true;
 
-        // 过滤 Tags
         if (selectedTags.length > 0) {
             if (tags) {
                 var normalizedTags = tags.split(',').map(normalizeString);
@@ -295,44 +357,35 @@ function filterTable() {
             }
         }
 
-        // 过滤一星
         if (filterOneStar && status !== '★') {
             showRow = false;
         }
 
-        // 过滤二星
         if (filterTwoStar && status !== '★★') {
             showRow = false;
         }
 
-        // 过滤 Session1
         if (filterSession1 && session !== '1') {
             showRow = false;
         }
 
-        // 过滤 Session2
         if (filterSession2 && session !== '2') {
             showRow = false;
         }
 
-        // 过滤 review
         if (filterReview && (reviewCount === '' || reviewCount === '0')) {
             showRow = false;
         }
 
-        // 模糊搜索分类（这里用 tags 内容）
         if (query && !category.includes(query)) {
             showRow = false;
         }
 
         row.style.display = showRow ? '' : 'none';
 
-        // 同步控制后面的 tag-row
         var tagRow = row.nextElementSibling;
-        if (tagRow && tagRow.classList.contains('tag-row')) {
-            if (!showRow) {
-                tagRow.style.display = 'none';
-            }
+        if (tagRow && tagRow.classList.contains('tag-row') && !showRow) {
+            tagRow.style.display = 'none';
         }
 
         if (showRow) {
@@ -341,17 +394,14 @@ function filterTable() {
     });
 }
 
-// =======================
 // TAG 展开 / 收起逻辑（每个 tag 变成单独链接）
-// =======================
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.tag-toggle-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
             var currentRow = btn.closest('tr');
-            var tagRow = currentRow.nextElementSibling;  // 就是后面的 tag-row
+            var tagRow = currentRow.nextElementSibling;
             var tagCell = tagRow.querySelector('.tag-cell');
 
-            // 简单 slugify：小写、去掉多余空格、空格换成 -
             function slugify(str) {
                 return str
                     .toLowerCase()
@@ -360,7 +410,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if (tagRow.style.display === 'none' || tagRow.style.display === '') {
-                // 展开
                 var rawTags = btn.dataset.tags || '';
                 var tagList = rawTags.split(',')
                     .map(function(t) { return t.trim(); })
@@ -381,7 +430,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 tagRow.style.display = 'table-row';
                 btn.textContent = "Tags ▲";
             } else {
-                // 收起
                 tagRow.style.display = 'none';
                 btn.textContent = "Tags ▼";
             }
