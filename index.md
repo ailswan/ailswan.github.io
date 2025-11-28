@@ -9,8 +9,16 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
 <style>
   /* 外层包一层，让表格可以横向滚动（如果真的溢出） */
   .algo-table-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* iOS 上滚动更顺滑 */
+    overflow-x: auto;                 /* 只在这里做横向滚动 */
+    overflow-y: hidden;               /* 不在内部单独竖直滚动，让竖直滚动交给整页 */
+    -webkit-overflow-scrolling: auto; /* 不作为独立滚动区域，手感更接近整页 */
+  }
+
+  /* 如果浏览器支持，限制横向 overscroll 行为，避免横向联动整页 */
+  @supports (overscroll-behavior-x: contain) {
+    .algo-table-wrapper {
+      overscroll-behavior-x: contain; /* 横向滑到底时不要带动整页 */
+    }
   }
 
   /* 表格布局：固定布局 + 100% 宽度 */
@@ -52,9 +60,13 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     width: 55%;   /* Problem Name */
   }
 
+  /* Note 列：单行 + 省略号，防止溢出（桌面端宽度 35%） */
   .algo-table th:nth-child(4),
   .algo-table td:nth-child(4) {
-    width: 35%;   /* Note */
+    width: 35%;
+    white-space: nowrap;        /* 不换行 */
+    overflow: hidden;           /* 超出的部分隐藏 */
+    text-overflow: ellipsis;    /* 显示 ... */
   }
 
   /* Problem Name cell：桌面端太长用 ... 截断 */
@@ -140,6 +152,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
      - Problem Name 尽量宽，超出用省略号
      - 隐藏 Tags 按钮
      - Level 列只保留首字母 + 点 (m./h./e.)
+     - Note 列继续单行省略号
      ============================ */
   @media (max-width: 768px) {
     .algo-table th,
@@ -161,7 +174,10 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
 
     .algo-table th:nth-child(4),
     .algo-table td:nth-child(4) {
-      width: 20% !important;    /* Note 收窄 */
+      width: 20% !important;    /* Note 收窄，但仍单行 + ... */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .algo-table th:nth-child(3),
