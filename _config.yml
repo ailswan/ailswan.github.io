@@ -77,7 +77,7 @@ collections:
     description: "List according dates"
     feature_text: |
       Welcome to the blog
-    feature_image: "https://picsum.photos/2560/600?image=865"
+    feature_image: "https://picsum.photos/2560/600?image=876"
   essays:
     title: List of all essays  
     output: true
