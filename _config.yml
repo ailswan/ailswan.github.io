@@ -206,8 +206,8 @@ navigation_header:
   url: /
 - title: Algorithm
   url: /algorithm/
-- title: KnowledgeMap
-  url: /knowledgemap/
+- title: SystemDesign
+  url: /systemdesign/
 - title: Essayslist
   url: /essayslist/
 - title: Categories

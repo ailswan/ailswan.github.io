@@ -90,7 +90,7 @@ layout: default
               <a href="/technology/{{ technology | slugify }}" > {{ forloop.index }}. {{ technology }}</a>{% if forloop.last == false %}, {% endif %}
               {% endfor %}
             </td>
-            <td style="border: 1px solid lightgrey; padding: 2px; word-wrap: break-word; overflow: hidden;">
+            <!-- <td style="border: 1px solid lightgrey; padding: 2px; word-wrap: break-word; overflow: hidden;">
               {% assign technologies_tools = "" %}
               {% for technology in tech.technologies %}
                 {% assign tech_tools = site.data.technologies_tools[technology] %}
@@ -118,10 +118,10 @@ layout: default
                 {% endif %}
               </div>
               
-              <!-- {% if technologies_tools %}
+              {% if technologies_tools %}
                 <span class="show-more">Show more</span>
-              {% endif %} -->
-            </td>
+              {% endif %}
+            </td> -->
             <td style="border: 1px solid lightgrey; padding: 18px;">
               <a style="color: #0d94e7;">{{ tech.note | join: ", " }}</a>
             </td>

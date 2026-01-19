@@ -36,7 +36,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     </tr>
   </thead>
   <tbody>
-    {% for post in site.postsTwo %}
+    {% for post in site.poststwo %}
     <tr data-time="{{ post.feature_text | slice: -12, 10 | date: '%Y-%m-%d' }}" data-tags="{{ post.categories | join: ',' }}" data-status="{{ post.status }}" data-session="{{ post.session }}">
         <td style="border: 1px solid lightgrey; padding: 18px;">{{ forloop.index }}</td>
         <td style="border: 1px solid lightgrey; padding: 18px;">
