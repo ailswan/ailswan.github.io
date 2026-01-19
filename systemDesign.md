@@ -1,7 +1,8 @@
 ---
-layout: knowledge_map
+layout: system_design
 title: System Design
 excerpt: "System Design"
+permalink: /systemdesign/
 aside: true
 feature_text: |
   ## Ailswan SD note
