@@ -204,8 +204,8 @@ favicons: # Favicons are also used in the manifest file. Syntax is 'size: path'
 navigation_header:
 - title: Home
   url: /
-- title: Java
-  url: /Java/
+- title: Algorithm
+  url: /algorithm/
 - title: KnowledgeMap
   url: /knowledgemap/
 - title: Essayslist
