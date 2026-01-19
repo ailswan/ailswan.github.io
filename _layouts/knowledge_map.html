@@ -34,10 +34,10 @@ layout: default
         <tr>
           <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">No.</th>
           <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Topic Name</th>
-          <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">Tradeoff</th>
-          <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Strategies (for Tradeoff)</th>
+          <!-- <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">Tradeoff</th>
+          <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Strategies (for Tradeoff)</th> -->
           <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Technologies</th>
-          <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tools (for Technologies)</th>
+          <!-- <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tools (for Technologies)</th> -->
           <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Notes</th>
         </tr>
       </thead>
@@ -50,21 +50,21 @@ layout: default
                 {{ tech.title }}
               </a>
             </td>
-            <td style="border: 1px solid lightgrey; padding: 18px;">
+            <!-- <td style="border: 1px solid lightgrey; padding: 18px;">
               {% for tradeoff in tech.tradeoff_priority %}
               <a href="/tradeoff/{{ tradeoff | slugify }}" style="color: #0494ae">{{ forloop.index }}.{{ tradeoff }}</a>{% if forloop.last == false %}, {% endif %}
               {% endfor %}
-            </td>
-            <td style="border: 1px solid lightgrey; padding: 2px; word-wrap: break-word; overflow: hidden;">
+            </td> -->
+            <!-- <td style="border: 1px solid lightgrey; padding: 2px; word-wrap: break-word; overflow: hidden;">
               {% assign strategies_tools = "" %}
               {% for tradeoff in tech.tradeoff_priority %}
                 {% assign strategies = site.data.tradeoffs[tradeoff] %}
                 {% if strategies %}
                   {% assign strategies_tools = strategies_tools | append: strategies | append: ',' %}
                 {% endif %}
-              {% endfor %}
+              {% endfor %} -->
               
-              <div class="cell-content">
+              <!-- <div class="cell-content">
                 {% if strategies_tools %}
                   {% assign strategies_array = strategies_tools | split: ',' %}
                   <ul style="list-style-type: none; padding-left: 0; margin-left: 0; color: #0494ae">
@@ -83,7 +83,7 @@ layout: default
               {% if strategies_tools %}
                 <span class="show-more">Show more</span>
               {% endif %}
-            </td>
+            </td> -->
 
             <td style="border: 1px solid lightgrey; padding: 2px;">
               {% for technology in tech.technologies %}
@@ -118,9 +118,9 @@ layout: default
                 {% endif %}
               </div>
               
-              {% if technologies_tools %}
+              <!-- {% if technologies_tools %}
                 <span class="show-more">Show more</span>
-              {% endif %}
+              {% endif %} -->
             </td>
             <td style="border: 1px solid lightgrey; padding: 18px;">
               <a style="color: #0d94e7;">{{ tech.note | join: ", " }}</a>
