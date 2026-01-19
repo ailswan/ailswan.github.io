@@ -1,7 +1,7 @@
 ---
 layout: knowledge_map
 title: System Design
-excerpt: "SystemDesign"
+excerpt: "System Design"
 aside: true
 feature_text: |
   ## Ailswan SD note
