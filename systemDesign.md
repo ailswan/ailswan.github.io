@@ -1,6 +1,6 @@
 ---
 layout: knowledge_map
-title: SystemDesign
+title: System Design
 excerpt: "SystemDesign"
 aside: true
 feature_text: |
