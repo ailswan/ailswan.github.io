@@ -205,7 +205,7 @@ navigation_header:
 - title: Home
   url: /
 - title: Ad-hoc
-  url: /Ad-hoc/
+  url: /ad-hoc/
 - title: SystemDesign
   url: /systemdesign/
 - title: Essayslist
