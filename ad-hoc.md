@@ -27,29 +27,29 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
   <thead>
     <tr>
       <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">No.</th>
-      <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Level</th>
-      <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">Problem Name</th>
+      <!-- <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Level</th> -->
+      <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">Question</th>
       <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tags</th>
       <!-- <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Category</th>
       <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Status</th> -->
-      <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Session</th>
+      <!-- <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Session</th> -->
     </tr>
   </thead>
   <tbody>
     {% for post in site.poststwo %}
     <tr data-time="{{ post.feature_text | slice: -12, 10 | date: '%Y-%m-%d' }}" data-tags="{{ post.categories | join: ',' }}" data-status="{{ post.status }}" data-session="{{ post.session }}">
         <td style="border: 1px solid lightgrey; padding: 18px;">{{ forloop.index }}</td>
-        <td style="border: 1px solid lightgrey; padding: 18px;">
+        <!-- <td style="border: 1px solid lightgrey; padding: 18px;">
           <a href="{{ post.url }}" 
              style="{% if post.level == 'hard' %}color: #f44336;{% elsif post.level == 'medium' %}color: #f68140;{% endif %}">
              {{ post.level }}
           </a>
-        </td>
+        </td> -->
          <td style="border: 1px solid lightgrey; padding: 18px;"><a href="{{ post.url }}"  style="color: #45818e" >{{ post.title }}</a></td>
         <td style="border: 1px solid lightgrey; padding: 18px;"><a href="{{ post.url }}" style="color: #0d94e7;">{{ post.categories | join: ", " }}</a></td>
         <!-- <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.category }}</td>
         <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.status }}</td> -->
-        <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.session }}</td>  
+        <!-- <td style="border: 1px solid lightgrey; padding: 18px;">{{ post.session }}</td>   -->
     </tr>
     {% endfor %}
   </tbody>
