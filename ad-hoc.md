@@ -1,10 +1,10 @@
 ---
 layout: page
-title: algorithm
-permalink: /algorithm/
+title: Ad-hoc
+permalink: /ad-hoc/
 feature_text: |
-  ## Algorithm Summary
-  This is a notebook for Ailswan to improving Java coding skills
+  ## Ad-hoc
+  This is a notebook for quick Q&A
 feature_image: "https://picsum.photos/1300/400?image=909"
 excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projects. Rather than starting from scratch, this boilerplate is designed to get the ball rolling immediately. Install it, configure it, tweak it, push it."
 ---
