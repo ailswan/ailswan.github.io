@@ -4,11 +4,41 @@ layout: default
 
 {% include site-header.html %}
 
-<main class="main  container">
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
 
-  <article class="article  article--post  content  typeset">
+  .lang-jump-btn {
+    position: fixed;
+    right: 40px;
+    top: 200px;
+    padding: 10px 14px;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 999;
+    opacity: 0.8;
+    transition: 0.2s;
+  }
 
-    <h1>{{ page.title }}</h1>
+  .lang-jump-btn:hover {
+    opacity: 1;
+    background: #333;
+  }
+</style>
+
+<!-- 右侧跳转按钮 -->
+<a href="#chinese-start" class="lang-jump-btn">
+  中文 ↓
+</a>
+
+<main class="main container">
+
+  <article class="article article--post content typeset">
+
     {% include post-meta.html %}
     {{ content }}
 
@@ -17,14 +47,15 @@ layout: default
     {{ page.python_code }}
     {{ page.java_code }}
     {% endhighlight %}    
- 
-    {% include nav-share.html %}
 
+    {% include nav-share.html %}
     {% include post-comments.html %}
 
   </article>
 
-  {% if page.aside == true %}{% include site-aside.html %}{% endif %}
+  {% if page.aside == true %}
+    {% include site-aside.html %}
+  {% endif %}
 
 </main>
 
