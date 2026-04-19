@@ -31,7 +31,8 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
       {% endfor %}
     </select>
   </div>
-<!-- 
+
+  <!--
   <div>
     <label for="sortDropdown" style="margin-right: 8px; font-weight: 600;">Sort by:</label>
     <select id="sortDropdown" style="padding: 6px 10px;">
@@ -39,7 +40,8 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
       <option value="problemName">Sort by Problem Name</option>
     </select>
   </div>
-</div> -->
+  -->
+</div>
 
 <table style="border-collapse: collapse; width: 100%; padding: 18px;">
   <thead>
@@ -47,6 +49,7 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
       <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">No.</th>
       <th style="text-align:center; border: 1px solid lightgrey; padding: 18px;">Question</th>
       <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Tags</th>
+      <th style="text-align:left; border: 1px solid lightgrey; padding: 18px;">Note</th>
     </tr>
   </thead>
   <tbody>
@@ -54,12 +57,19 @@ excerpt: "Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projec
     <tr
       data-time="{{ post.feature_text | slice: -12, 10 | date: '%Y-%m-%d' }}"
       data-tags="{% for tag in post.categories %}{{ tag | downcase | strip }}{% unless forloop.last %},{% endunless %}{% endfor %}">
-      <td style="border: 1px solid lightgrey; padding: 18px;">{{ forloop.index }}</td>
+      <td style="border: 1px solid lightgrey; padding: 18px; text-align:center;">{{ forloop.index }}</td>
       <td style="border: 1px solid lightgrey; padding: 18px;">
         <a href="{{ post.url }}" style="color: #45818e">{{ post.title }}</a>
       </td>
       <td style="border: 1px solid lightgrey; padding: 18px;">
         <a href="{{ post.url }}" style="color: #0d94e7;">{{ post.categories | join: ", " }}</a>
+      </td>
+      <td style="border: 1px solid lightgrey; padding: 18px;">
+        {% if post.note %}
+          {{ post.note }}
+        {% else %}
+          —
+        {% endif %}
       </td>
     </tr>
     {% endfor %}
@@ -77,13 +87,17 @@ function refreshVisibleIndex() {
 
   rows.forEach(function(row) {
     if (row.style.display !== 'none') {
-      row.querySelector('td:nth-child(1)').textContent = visibleIndex++;
+      var firstCell = row.querySelector('td:nth-child(1)');
+      if (firstCell) {
+        firstCell.textContent = visibleIndex++;
+      }
     }
   });
 }
 
 function filterTable() {
-  var selectedTag = normalizeString(document.getElementById('tagDropdown').value);
+  var tagDropdown = document.getElementById('tagDropdown');
+  var selectedTag = normalizeString(tagDropdown ? tagDropdown.value : '');
   var rows = document.querySelectorAll('table tbody tr');
 
   rows.forEach(function(row) {
@@ -100,7 +114,12 @@ function filterTable() {
 }
 
 function sortTable() {
-  var sortingMethod = document.getElementById('sortDropdown').value;
+  var sortDropdown = document.getElementById('sortDropdown');
+  if (!sortDropdown) {
+    return;
+  }
+
+  var sortingMethod = sortDropdown.value;
   var tbody = document.querySelector('table tbody');
   var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
 
@@ -128,14 +147,20 @@ function sortTable() {
   refreshVisibleIndex();
 }
 
-document.getElementById('tagDropdown').addEventListener('change', function() {
-  filterTable();
-});
+var tagDropdown = document.getElementById('tagDropdown');
+if (tagDropdown) {
+  tagDropdown.addEventListener('change', function() {
+    filterTable();
+  });
+}
 
-document.getElementById('sortDropdown').addEventListener('change', function() {
-  sortTable();
-  filterTable();
-});
+var sortDropdown = document.getElementById('sortDropdown');
+if (sortDropdown) {
+  sortDropdown.addEventListener('change', function() {
+    sortTable();
+    filterTable();
+  });
+}
 
 // Initial load
 sortTable();
