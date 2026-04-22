@@ -1,10 +1,3 @@
----
-
-# 🎬 🎤 English YouTube Script
-
-## How to Choose Cache Strategies in System Design
-
----
 
 ## 🎯 Opening
 

@@ -1,10 +1,4 @@
----
-
-# 🎬 🎤 English YouTube Script
-
-## Rate Limiting — Fairness vs Throughput Trade-offs
-
----
+ 
 
 ## 🎯 Opening
 
