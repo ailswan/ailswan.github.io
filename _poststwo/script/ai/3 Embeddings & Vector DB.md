@@ -2,7 +2,7 @@
 
 # 🎬 English YouTube Script
 
-## Embeddings & Vector Database — 3–4 Minute Version
+## Embeddings & Vector Database 
 
 ---
 

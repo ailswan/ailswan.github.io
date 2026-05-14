@@ -2,7 +2,7 @@
 
 # 🎬 English YouTube Script
 
-## Design RAG Architecture — 4-Minute Version
+## Design RAG Architecture 
 
 ---
 
