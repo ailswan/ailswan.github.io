@@ -1,6 +1,4 @@
- Below is the **10-page PPT natural English voiceover script** for **Design Real-time Analytics**, ready to read directly. 
-
----
+ 
 
 Hello everyone.
 Today I’d like to walk through how to design a **Real-time Analytics System**.

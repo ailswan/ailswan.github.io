@@ -1,6 +1,4 @@
-下面是完整的 **English-only 10-page PPT natural voiceover script**，可以直接念。内容基于你上传的 Search System 设计材料整理。
-
----
+ 
 
 Hello everyone.
 Today I’d like to walk through how to design a **Search System**.

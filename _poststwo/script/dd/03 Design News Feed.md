@@ -1,6 +1,4 @@
- 下面是 **直接可以念的 3 分钟左右英文稿子**，对应你做 **10 页 PPT** 的节奏。内容基于你上传的 News Feed 设计材料整理。
-
----
+ 
 
 Hello everyone.
 Today I’d like to walk through how to design a **News Feed** system.

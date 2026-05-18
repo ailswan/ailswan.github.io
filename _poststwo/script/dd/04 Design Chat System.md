@@ -1,253 +1,347 @@
+ 
+
+# 🎬 English YouTube Script
+
+## 04 Design Chat System
+
+---
+
+## PPT 1 — Title Slide
 
 Hello everyone.
-Today I’d like to walk through how to design a **Notification System**.
+Today I’d like to walk through a classic system design problem: **Design a Chat System**.
 
-A notification system may look like a simple message-sending service.
-But in production, it is much more than that.
+A chat system is not just WebSocket.
 
-The core question is:
+At a deeper level, it is a durable messaging system with real-time delivery on top.
 
-**How do we deliver the right message, to the right user, through the right channel, at the right time?**
+The basic flow looks like this:
 
-**(PPT: Title Slide — Design Notification System)**
-
-When I think about Notification System design, I usually break it down into five parts.
-
-First, the core flow: how an event becomes a notification.
-Second, the notification channels, such as push, email, SMS, and in-app.
-Third, user preferences and policy rules.
-Fourth, delivery pipeline, retries, deduplication, and rate limiting.
-And finally, scaling, reliability, observability, and cost control.
-
-The main trade-off is:
-
-**latency vs reliability vs cost.**
-
-**(PPT: Core Framework)**
-
-Let’s start with the core flow.
-
-Most notifications are triggered by business events.
-
-For example, when an order is shipped, the Order Service may emit an order-shipped event.
-
-The Notification Service receives that event.
-Then it checks whether the user should receive this notification.
-It checks the user’s preferences.
-It renders the message using a template.
-It decides which channel to use.
-Then it creates delivery jobs for workers to send.
-
-So the flow is:
-
-A business event comes in.
-The Notification Service checks preferences.
-It renders the template.
-It chooses the channel.
-It sends the job to a queue.
-A channel worker sends the notification through an external provider.
-Then the system updates the delivery status.
-
-**(PPT: Notification Flow)**
-
-For APIs, I would support three basic operations.
-
-One API to create a notification.
-One API to update notification preferences.
-And one API to read notification history.
-
-But in real production systems, most notifications are not created directly by users.
-
-They are triggered by internal services through events or queues.
+```text
+User sends message
+→ Store message durably
+→ Publish message event
+→ Deliver to online users
+→ Notify offline users
+→ Sync missed messages later
+```
 
 The key idea is:
 
-**A notification system is an event-driven delivery pipeline.**
+**A chat system must balance low latency, message durability, ordering, and large-scale connection management.**
 
-**(PPT: APIs and Events)**
+**(PPT: Title Slide — Design Chat System)**
 
-Now let’s look at the data model.
+---
 
-I would separate the logical notification record from the delivery records.
+## PPT 2 — Core Requirements
 
-A notification record represents the intent.
+For functional requirements, the system should support one-to-one messages, group messages, real-time message receiving, conversation history, online and offline users, delivery status, read receipts, media messages, and push notifications.
 
-For example, it stores the user, notification type, priority, status, scheduled time, and payload.
+For non-functional requirements, the system needs low-latency delivery, high availability, durable message storage, scalable concurrent connections, and reliable recovery after failures.
 
-A delivery record represents the actual channel-specific delivery attempt.
+Not everything needs the same consistency level.
 
-For example, the same notification may be sent through push, email, and SMS.
+Message content requires strong durability because users should not lose messages.
 
-Push may succeed.
-Email may fail.
-SMS may need a retry.
-
-So each channel needs its own status, attempt count, provider message ID, and error information.
-
-We also need tables for user preferences, message templates, and device tokens.
+But delivery status, read receipts, typing indicators, and presence can usually be eventually consistent.
 
 The key idea is:
 
-**A notification is the intent.
-A delivery record is the channel-specific execution.**
+**Message persistence is critical; delivery signals can be best effort or eventually consistent.**
 
-**(PPT: Data Model)**
+**(PPT: Functional + Non-Functional Requirements)**
 
-Next, let’s talk about notification channels.
+---
 
-Push notifications are fast and low-cost.
+## PPT 3 — Main APIs and Data Model
 
-They are good for mobile alerts, real-time engagement, and security alerts.
-But they require valid device tokens, and delivery is not always guaranteed.
+The main APIs include sending messages, loading conversation history, receiving real-time events through WebSocket, and marking messages as read.
 
-Email is better for receipts, account updates, marketing messages, and longer content.
-It is more durable, but slower, and sometimes it may go to spam.
+For sending a message, the client sends:
 
-SMS is useful for one-time passwords and critical security alerts.
-It has high visibility, but it is expensive and provider limits are strict.
+```text
+conversationId
+senderId
+content
+messageType
+clientMessageId
+```
 
-In-app notifications are useful for notification centers and persistent history.
-They are durable, but users only see them when they open the app.
+The `clientMessageId` is important for idempotency.
 
-The key idea is:
+If the client retries the same send request, the server can detect it and avoid storing duplicate messages.
 
-**Different channels have different trade-offs in latency, reliability, visibility, and cost.**
+For the data model, I would use tables such as:
 
-**(PPT: Notification Channels)**
+```text
+user
+conversation
+conversation_participant
+message
+message_delivery_status
+```
 
-Before sending any notification, the system must check user preferences and policy rules.
-
-For example, a security alert may use push and SMS, and it may ignore quiet hours.
-
-A marketing notification should respect opt-out rules and quiet hours.
-
-An order update may use push and email.
-
-The preference engine should check whether the user opted in or opted out.
-It should check the allowed channels.
-It should check quiet hours.
-It should check notification type, user locale, frequency limits, and compliance rules.
-
-This is important because sending unwanted notifications can damage user trust and may create compliance problems.
+Messages should be partitioned by conversation ID because history is usually queried per conversation.
 
 The key idea is:
 
-**Preference correctness is critical for trust and compliance.**
+**Store messages by conversation, and store read or delivery status separately from message content.**
 
-**(PPT: Preference and Policy Engine)**
+**(PPT: APIs + Data Model)**
 
-Now let’s talk about deduplication and idempotency.
+---
 
-Business services may retry events.
+## PPT 4 — Communication Model
 
-If the notification system does not deduplicate them, users may receive duplicate push notifications, duplicate emails, or duplicate SMS messages.
+There are three common communication options.
 
-That creates a bad user experience and increases cost.
+The first is polling.
 
-A good deduplication key should include the user, the notification type, and the business entity.
+The client asks the server for new messages every few seconds.
 
-For example, for an order-shipped notification, we can deduplicate by user ID, notification type, and order ID.
+It is simple, but it creates higher latency and wastes resources when there are no new messages.
 
-The notification creation API should also support an idempotency key.
+The second is long polling.
 
-The key idea is:
+The client request waits until the server has updates.
 
-**Upstream retries should not create duplicate user-facing notifications.**
+This is better than polling, but still has more overhead than WebSocket.
 
-**(PPT: Deduplication and Idempotency)**
+The third is WebSocket.
 
-Delivery failures are also common.
+WebSocket provides a persistent bidirectional connection between client and server.
 
-An external provider may time out.
-A device token may be invalid.
-An email may bounce.
-An SMS provider may rate limit us.
-A queue may have backlog.
-A template may fail to render.
+This is the best fit for online real-time chat delivery.
 
-For temporary failures, I would retry with exponential backoff.
+My recommendation is:
 
-For example, retry after one minute, then five minutes, then thirty minutes, and then later again.
-
-But we should not retry forever.
-
-For permanent failures, or after the maximum retry count is exceeded, I would send the job to a dead-letter queue.
-
-For invalid device tokens, I would mark the token as invalid instead of retrying repeatedly.
+```text
+WebSocket for online delivery
+Push notification for offline users
+HTTP for history and state updates
+```
 
 The key idea is:
 
-**Retry temporary failures, but do not endlessly retry permanent failures.**
+**Use WebSocket for real-time delivery, but keep HTTP for durable APIs and history.**
 
-**(PPT: Retry and Failure Handling)**
+**(PPT: Polling vs Long Polling vs WebSocket)**
 
-Rate limiting and batching are also important.
+---
 
-We can rate limit by user, notification type, channel, provider, tenant, or business service.
+## PPT 5 — Message Send Flow
 
-This prevents spam, controls cost, and respects provider limits.
+A typical send-message flow looks like this:
 
-Batching is useful for high-volume notifications.
+```text
+Client sends message with clientMessageId
+→ API authenticates user
+→ Validate conversation membership
+→ Generate server messageId
+→ Store message durably
+→ Publish message-created event
+→ Delivery service pushes to online users
+→ Push notification service notifies offline users
+→ Return acknowledgement to sender
+```
 
-For example, instead of sending three separate notifications saying Alice liked your post, Bob liked your post, and Charlie liked your post, we can send one notification saying Alice, Bob, and Charlie liked your post.
+The most important design decision is:
 
-This improves user experience and reduces delivery cost.
+```text
+Store before deliver
+```
 
-**(PPT: Rate Limiting and Batching)**
+Why?
 
-For scaling, I would use an event-driven architecture.
+Because message durability matters.
 
-Business services publish events to Kafka or another queue.
+If we deliver first but fail to store, users may briefly see a message that disappears later.
 
-The Notification Service consumes those events and creates delivery jobs.
+That is unacceptable for most chat systems.
 
-Then I would use separate queues for different channels.
+The key idea is:
 
-Push has its own queue.
-Email has its own queue.
-SMS has its own queue.
-In-app notifications have their own queue.
+**Persist first, then deliver asynchronously.**
 
-Each channel can have its own worker pool and provider adapter.
+**(PPT: Message Send Flow — Store Before Deliver)**
 
-This allows each channel to scale independently and fail independently.
+---
 
-For critical notifications, we can also support fallback providers.
-For example, if the primary SMS provider fails, we can switch to a backup provider.
+## PPT 6 — Message Receive and Offline Sync
 
-**(PPT: Scaling Architecture)**
+For an online user, the flow is:
 
-Observability is critical because notification failures are often silent.
+```text
+message event
+→ delivery service
+→ find active WebSocket connection
+→ push message to client
+→ client sends ack
+→ update delivered status
+```
 
-Users may simply not receive the message.
+For an offline user, the message is already safely stored.
 
-So I would track delivery success rate, provider error rate, retry count, queue lag, delivery latency, duplicate suppression count, user opt-out rate, and SMS or email cost.
+So the system sends a push notification.
 
-Each notification should have traceable IDs across the whole pipeline.
+Later, when the user opens the app, the client syncs missed messages from storage.
 
-From event ingestion, to template rendering, to queueing, to provider delivery, to final status update.
+This offline sync can use a cursor, timestamp, or last seen message ID.
 
-**(PPT: Observability)**
+The system should also support reconnect behavior.
 
-To summarize.
+If a WebSocket connection drops, the client reconnects and asks for messages after the last seen message.
 
-A notification system is not just about sending messages.
+The key idea is:
 
-It is a policy-driven, multi-channel delivery pipeline.
+**Real-time delivery can fail, but history sync guarantees recovery.**
 
-It receives business events.
-It deduplicates them.
-It checks user preferences.
-It renders templates.
-It chooses channels.
-It queues delivery jobs.
-It retries failures.
-And it tracks delivery status.
+**(PPT: Online Delivery + Offline Sync)**
+
+---
+
+## PPT 7 — Ordering and Idempotency
+
+Within a conversation, users expect messages to appear in order.
+
+There are a few possible ordering strategies:
+
+```text
+server timestamp
+Snowflake-style ID
+per-conversation sequence number
+```
+
+The cleanest option is often a per-conversation sequence number.
+
+It gives clear ordering inside one conversation and avoids client clock skew.
+
+Idempotency is also critical.
+
+Mobile clients may retry when the network is unstable.
+
+So each send request should include:
+
+```text
+senderId + clientMessageId
+```
+
+If the same client message is retried, the server returns the original result instead of creating a duplicate message.
+
+The key idea is:
+
+**The server should own message ordering, and clientMessageId should handle retries.**
+
+**(PPT: Ordering + Idempotency)**
+
+---
+
+## PPT 8 — Read Receipts, Presence, and Typing Indicators
+
+Chat systems usually track message states.
+
+Common states are:
+
+```text
+sent
+delivered
+read
+```
+
+For read receipts, I would store each participant’s `lastReadMessageId` per conversation.
+
+This is more scalable than storing one read row for every message-user pair, especially in group chats.
+
+Presence tracks whether a user is online.
+
+It can be stored as:
+
+```text
+userId → active connection IDs
+```
+
+This state is usually stored in Redis, an in-memory registry, or a distributed presence service.
+
+Typing indicators are even more temporary.
+
+They should use short TTLs and do not need durable storage.
+
+The key idea is:
+
+**Read state should be compact; presence and typing should be ephemeral.**
+
+**(PPT: Read Receipts + Presence + Typing)**
+
+---
+
+## PPT 9 — Scaling, Caching, and Failure Handling
+
+To scale the system, I would separate the WebSocket gateway layer from message business logic.
+
+The architecture looks like:
+
+```text
+Client
+→ WebSocket Gateway
+→ Delivery Service
+→ Message Service
+→ Message Store
+```
+
+Message delivery should be asynchronous through a queue.
+
+Messages can be sharded by conversation ID because history queries are conversation-based.
+
+Connections can be routed by user ID through a presence service.
+
+For caching, we can cache recent messages, conversation metadata, participant lists, unread counts, and presence.
+
+Media files should be stored separately and served through CDN.
+
+For failure handling, assume WebSocket drops, clients retry, queues back up, push notifications fail, and acknowledgements can be lost.
+
+The system should support retries, idempotency, durable storage, dead-letter queues, and periodic sync for missed messages.
+
+The key idea is:
+
+**A scalable chat system separates connection management, durable storage, and async delivery.**
+
+**(PPT: Scaling + Cache + Failure Handling)**
+
+---
+
+## PPT 10 — Senior-Level Explanation and Closing Insight
+
+At senior level, I would explain a chat system like this.
+
+A chat system is a durable messaging system with real-time delivery on top.
+
+The three core flows are sending messages, receiving messages in real time, and loading conversation history.
+
+I would use WebSocket for online users, push notifications for offline users, and HTTP APIs for sending messages, reading history, and updating read status.
+
+Messages should be stored durably before delivery.
+
+After persistence, the message service publishes a message-created event.
+
+Delivery workers push the message to online users through WebSocket gateways.
+
+Offline users receive push notifications and later sync missed messages from storage.
+
+Messages should be partitioned by conversation ID because history is usually read per conversation.
+
+Ordering should be assigned on the server, preferably with a per-conversation sequence number.
+
+Client retries should be deduplicated using `clientMessageId`.
 
 The final insight is:
 
-**A notification system is about reliable, policy-aware, multi-channel delivery at scale.**
+**A chat system is not just WebSocket.
+It is durable message storage plus real-time delivery, offline synchronization, ordering, idempotency, and multi-device connection management.**
+
+The goal is to provide reliable message storage and low-latency delivery across online, offline, and multi-device users.
 
 Thank you.
 
-**(PPT: Closing Insight — Right Message, Right Channel, Right Time)**
+**(PPT: Closing Insight — Durable Messaging + Real-Time Delivery)**

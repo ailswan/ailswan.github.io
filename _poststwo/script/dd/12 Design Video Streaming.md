@@ -1,6 +1,4 @@
-下面是 **10 页 PPT 对应的自然英文口播稿**，可以直接念，English-only。内容基于你上传的 **Design Video Streaming** 材料整理。
-
----
+ 
 
 Hello everyone.
 Today I’d like to walk through how to design a **Video Streaming System**.

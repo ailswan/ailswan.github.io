@@ -1,7 +1,4 @@
- Below is the **10-page PPT natural English voiceover script** for **Design Food Delivery**, ready to read directly. 
-
----
-
+ 
 Hello everyone.
 Today I’d like to walk through how to design a **Food Delivery System**.
 
