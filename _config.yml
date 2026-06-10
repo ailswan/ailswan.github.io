@@ -22,6 +22,9 @@ exclude:
 - alembic-jekyll-theme.gemspec
 - .jekyll-cache
 
+include:
+- _poststwo/script
+
 # 2. Installed Gems
 plugins:
 - jekyll-paginate
@@ -244,4 +247,4 @@ fonts:
     - https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap
 liquid:
   loops:
-    max: 200
+    max: 1000
