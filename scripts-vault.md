@@ -274,18 +274,14 @@ aside: false
 <script>
   (function () {
     var files = [
-      {% assign script_files = site.static_files | sort: "path" %}
+      {% assign script_files = site.data.script_files %}
       {% for file in script_files %}
-        {% if file.path contains "_poststwo/script/" and file.extname == ".md" %}
-          {% assign relative_path = file.path | replace: "_poststwo/script/", "" %}
-          {% assign file_url = file.path | replace: "_poststwo/", "/poststwo/" %}
-          {
-            folder: {{ relative_path | split: "/" | first | jsonify }},
-            name: {{ file.name | replace: ".md", "" | jsonify }},
-            path: {{ relative_path | jsonify }},
-            url: {{ file_url | jsonify }}
-          }{% unless forloop.last %},{% endunless %}
-        {% endif %}
+        {
+          folder: {{ file.folder | jsonify }},
+          name: {{ file.name | jsonify }},
+          path: {{ file.path | jsonify }},
+          url: {{ file.url | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
       {% endfor %}
     ].filter(Boolean);
 

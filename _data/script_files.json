@@ -1,0 +1,1502 @@
+[
+  {
+    "folder": "advanced-trade-offs",
+    "name": "01 SLO SLA Error Budget",
+    "path": "advanced-trade-offs/01 SLO SLA Error Budget.md",
+    "url": "/poststwo/script/advanced-trade-offs/01 SLO SLA Error Budget.md"
+  },
+  {
+    "folder": "advanced-trade-offs",
+    "name": "02 High Availability vs Consistency",
+    "path": "advanced-trade-offs/02 High Availability vs Consistency.md",
+    "url": "/poststwo/script/advanced-trade-offs/02 High Availability vs Consistency.md"
+  },
+  {
+    "folder": "advanced-trade-offs",
+    "name": "03 Strong vs Eventual Consistency",
+    "path": "advanced-trade-offs/03 Strong vs Eventual Consistency.md",
+    "url": "/poststwo/script/advanced-trade-offs/03 Strong vs Eventual Consistency.md"
+  },
+  {
+    "folder": "advanced-trade-offs",
+    "name": "04 Cassandra vs DynamoDB",
+    "path": "advanced-trade-offs/04 Cassandra vs DynamoDB.md",
+    "url": "/poststwo/script/advanced-trade-offs/04 Cassandra vs DynamoDB.md"
+  },
+  {
+    "folder": "advanced-trade-offs",
+    "name": "05 SQL vs NoSQL Trade-offs",
+    "path": "advanced-trade-offs/05 SQL vs NoSQL Trade-offs.md",
+    "url": "/poststwo/script/advanced-trade-offs/05 SQL vs NoSQL Trade-offs.md"
+  },
+  {
+    "folder": "advanced-trade-offs",
+    "name": "06 Read vs Write Optimization",
+    "path": "advanced-trade-offs/06 Read vs Write Optimization.md",
+    "url": "/poststwo/script/advanced-trade-offs/06 Read vs Write Optimization.md"
+  },
+  {
+    "folder": "advanced-trade-offs",
+    "name": "07 Outbox Pattern",
+    "path": "advanced-trade-offs/07 Outbox Pattern.md",
+    "url": "/poststwo/script/advanced-trade-offs/07 Outbox Pattern.md"
+  },
+  {
+    "folder": "advanced-trade-offs",
+    "name": "08 Data Modeling at Scale",
+    "path": "advanced-trade-offs/08 Data Modeling at Scale.md",
+    "url": "/poststwo/script/advanced-trade-offs/08 Data Modeling at Scale.md"
+  },
+  {
+    "folder": "advanced-trade-offs",
+    "name": "09 Handling Hot Keys",
+    "path": "advanced-trade-offs/09 Handling Hot Keys.md",
+    "url": "/poststwo/script/advanced-trade-offs/09 Handling Hot Keys.md"
+  },
+  {
+    "folder": "advanced-trade-offs",
+    "name": "10 Real-time vs Batch Systems",
+    "path": "advanced-trade-offs/10 Real-time vs Batch Systems.md",
+    "url": "/poststwo/script/advanced-trade-offs/10 Real-time vs Batch Systems.md"
+  },
+  {
+    "folder": "ai-agents-automation",
+    "name": "01 How AI Agents Actually Work in Real Systems",
+    "path": "ai-agents-automation/01 How AI Agents Actually Work in Real Systems.md",
+    "url": "/poststwo/script/ai-agents-automation/01 How AI Agents Actually Work in Real Systems.md"
+  },
+  {
+    "folder": "ai-agents-automation",
+    "name": "02 Agentic Workflow vs Traditional Backend Systems",
+    "path": "ai-agents-automation/02 Agentic Workflow vs Traditional Backend Systems.md",
+    "url": "/poststwo/script/ai-agents-automation/02 Agentic Workflow vs Traditional Backend Systems.md"
+  },
+  {
+    "folder": "ai-agents-automation",
+    "name": "03 Building Multi-Agent Systems Architecture Explained",
+    "path": "ai-agents-automation/03 Building Multi-Agent Systems Architecture Explained.md",
+    "url": "/poststwo/script/ai-agents-automation/03 Building Multi-Agent Systems Architecture Explained.md"
+  },
+  {
+    "folder": "ai-agents-automation",
+    "name": "04 Why AI Agents Fail in Production Systems",
+    "path": "ai-agents-automation/04 Why AI Agents Fail in Production Systems.md",
+    "url": "/poststwo/script/ai-agents-automation/04 Why AI Agents Fail in Production Systems.md"
+  },
+  {
+    "folder": "ai-agents-automation",
+    "name": "05 Memory Systems in AI Agents Short-term vs Long-term",
+    "path": "ai-agents-automation/05 Memory Systems in AI Agents Short-term vs Long-term.md",
+    "url": "/poststwo/script/ai-agents-automation/05 Memory Systems in AI Agents Short-term vs Long-term.md"
+  },
+  {
+    "folder": "ai-agents-automation",
+    "name": "06 Tool Calling Architecture in LLM Systems",
+    "path": "ai-agents-automation/06 Tool Calling Architecture in LLM Systems.md",
+    "url": "/poststwo/script/ai-agents-automation/06 Tool Calling Architecture in LLM Systems.md"
+  },
+  {
+    "folder": "ai-agents-automation",
+    "name": "07 Planning vs Execution in AI Agents",
+    "path": "ai-agents-automation/07 Planning vs Execution in AI Agents.md",
+    "url": "/poststwo/script/ai-agents-automation/07 Planning vs Execution in AI Agents.md"
+  },
+  {
+    "folder": "ai-agents-automation",
+    "name": "08 How AutoGPT-style Systems Are Built Internally",
+    "path": "ai-agents-automation/08 How AutoGPT-style Systems Are Built Internally.md",
+    "url": "/poststwo/script/ai-agents-automation/08 How AutoGPT-style Systems Are Built Internally.md"
+  },
+  {
+    "folder": "ai-agents-automation",
+    "name": "09 Human-in-the-loop AI Systems Design",
+    "path": "ai-agents-automation/09 Human-in-the-loop AI Systems Design.md",
+    "url": "/poststwo/script/ai-agents-automation/09 Human-in-the-loop AI Systems Design.md"
+  },
+  {
+    "folder": "ai-agents-automation",
+    "name": "10 State Management in AI Agents at Scale",
+    "path": "ai-agents-automation/10 State Management in AI Agents at Scale.md",
+    "url": "/poststwo/script/ai-agents-automation/10 State Management in AI Agents at Scale.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "01 Design a ChatGPT-style API Backend",
+    "path": "ai-infrastructure-systems/01 Design a ChatGPT-style API Backend.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/01 Design a ChatGPT-style API Backend.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "02 RAG System at Scale Architecture Deep Dive",
+    "path": "ai-infrastructure-systems/02 RAG System at Scale Architecture Deep Dive.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/02 RAG System at Scale Architecture Deep Dive.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "03 Vector Database Internals Explained",
+    "path": "ai-infrastructure-systems/03 Vector Database Internals Explained.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/03 Vector Database Internals Explained.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "04 Embedding Pipeline Design for Large Systems",
+    "path": "ai-infrastructure-systems/04 Embedding Pipeline Design for Large Systems.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/04 Embedding Pipeline Design for Large Systems.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "05 AI Inference Optimization at Scale",
+    "path": "ai-infrastructure-systems/05 AI Inference Optimization at Scale.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/05 AI Inference Optimization at Scale.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "06 Batch vs Real-time LLM Inference Systems",
+    "path": "ai-infrastructure-systems/06 Batch vs Real-time LLM Inference Systems.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/06 Batch vs Real-time LLM Inference Systems.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "07 Caching Strategies for LLM Responses",
+    "path": "ai-infrastructure-systems/07 Caching Strategies for LLM Responses.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/07 Caching Strategies for LLM Responses.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "08 Token-based Billing Systems for AI APIs",
+    "path": "ai-infrastructure-systems/08 Token-based Billing Systems for AI APIs.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/08 Token-based Billing Systems for AI APIs.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "09 Multi-model Routing System Design",
+    "path": "ai-infrastructure-systems/09 Multi-model Routing System Design.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/09 Multi-model Routing System Design.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "10 AI Model Versioning Systems",
+    "path": "ai-infrastructure-systems/10 AI Model Versioning Systems.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/10 AI Model Versioning Systems.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "11 Prompt Management System Design",
+    "path": "ai-infrastructure-systems/11 Prompt Management System Design.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/11 Prompt Management System Design.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "12 LLM Observability System Design",
+    "path": "ai-infrastructure-systems/12 LLM Observability System Design.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/12 LLM Observability System Design.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "13 AI Content Moderation Pipeline",
+    "path": "ai-infrastructure-systems/13 AI Content Moderation Pipeline.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/13 AI Content Moderation Pipeline.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "14 AI Recommendation + LLM Hybrid System",
+    "path": "ai-infrastructure-systems/14 AI Recommendation + LLM Hybrid System.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/14 AI Recommendation + LLM Hybrid System.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "15 Fine-tuning Pipeline System Design",
+    "path": "ai-infrastructure-systems/15 Fine-tuning Pipeline System Design.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/15 Fine-tuning Pipeline System Design.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "16 Distributed GPU Scheduling Systems",
+    "path": "ai-infrastructure-systems/16 Distributed GPU Scheduling Systems.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/16 Distributed GPU Scheduling Systems.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "17 Model Serving Infrastructure (Kubernetes + LLMs)",
+    "path": "ai-infrastructure-systems/17 Model Serving Infrastructure (Kubernetes + LLMs).md",
+    "url": "/poststwo/script/ai-infrastructure-systems/17 Model Serving Infrastructure (Kubernetes + LLMs).md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "18 Latency Optimization for LLM APIs",
+    "path": "ai-infrastructure-systems/18 Latency Optimization for LLM APIs.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/18 Latency Optimization for LLM APIs.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "19 Cost Optimization in AI Inference Systems",
+    "path": "ai-infrastructure-systems/19 Cost Optimization in AI Inference Systems.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/19 Cost Optimization in AI Inference Systems.md"
+  },
+  {
+    "folder": "ai-infrastructure-systems",
+    "name": "20 Building AI Agents Backend Architecture",
+    "path": "ai-infrastructure-systems/20 Building AI Agents Backend Architecture.md",
+    "url": "/poststwo/script/ai-infrastructure-systems/20 Building AI Agents Backend Architecture.md"
+  },
+  {
+    "folder": "ai-leetcode-patterns",
+    "name": "01 RAG Top-K Retrieval",
+    "path": "ai-leetcode-patterns/01 RAG Top-K Retrieval.md",
+    "url": "/poststwo/script/ai-leetcode-patterns/01 RAG Top-K Retrieval.md"
+  },
+  {
+    "folder": "ai-leetcode-patterns",
+    "name": "02 Embedding Similarity Search",
+    "path": "ai-leetcode-patterns/02 Embedding Similarity Search.md",
+    "url": "/poststwo/script/ai-leetcode-patterns/02 Embedding Similarity Search.md"
+  },
+  {
+    "folder": "ai-leetcode-patterns",
+    "name": "03 Agent Memory Cache",
+    "path": "ai-leetcode-patterns/03 Agent Memory Cache.md",
+    "url": "/poststwo/script/ai-leetcode-patterns/03 Agent Memory Cache.md"
+  },
+  {
+    "folder": "ai-leetcode-patterns",
+    "name": "04 Long-term Memory Retrieval",
+    "path": "ai-leetcode-patterns/04 Long-term Memory Retrieval.md",
+    "url": "/poststwo/script/ai-leetcode-patterns/04 Long-term Memory Retrieval.md"
+  },
+  {
+    "folder": "ai-leetcode-patterns",
+    "name": "05 Tool Routing",
+    "path": "ai-leetcode-patterns/05 Tool Routing.md",
+    "url": "/poststwo/script/ai-leetcode-patterns/05 Tool Routing.md"
+  },
+  {
+    "folder": "ai-leetcode-patterns",
+    "name": "06 Multi-step Agent Loop",
+    "path": "ai-leetcode-patterns/06 Multi-step Agent Loop.md",
+    "url": "/poststwo/script/ai-leetcode-patterns/06 Multi-step Agent Loop.md"
+  },
+  {
+    "folder": "ai-leetcode-patterns",
+    "name": "07 Context Compression",
+    "path": "ai-leetcode-patterns/07 Context Compression.md",
+    "url": "/poststwo/script/ai-leetcode-patterns/07 Context Compression.md"
+  },
+  {
+    "folder": "ai-leetcode-patterns",
+    "name": "08 Task Scheduling Agent",
+    "path": "ai-leetcode-patterns/08 Task Scheduling Agent.md",
+    "url": "/poststwo/script/ai-leetcode-patterns/08 Task Scheduling Agent.md"
+  },
+  {
+    "folder": "ai-leetcode-patterns",
+    "name": "09 Retry Fallback Agent",
+    "path": "ai-leetcode-patterns/09 Retry Fallback Agent.md",
+    "url": "/poststwo/script/ai-leetcode-patterns/09 Retry Fallback Agent.md"
+  },
+  {
+    "folder": "ai-product-system-design",
+    "name": "01 Design an AI Chat Assistant System like ChatGPT",
+    "path": "ai-product-system-design/01 Design an AI Chat Assistant System like ChatGPT.md",
+    "url": "/poststwo/script/ai-product-system-design/01 Design an AI Chat Assistant System like ChatGPT.md"
+  },
+  {
+    "folder": "ai-product-system-design",
+    "name": "02 Design an AI Search Engine like Perplexity",
+    "path": "ai-product-system-design/02 Design an AI Search Engine like Perplexity.md",
+    "url": "/poststwo/script/ai-product-system-design/02 Design an AI Search Engine like Perplexity.md"
+  },
+  {
+    "folder": "ai-product-system-design",
+    "name": "03 Design an AI Coding Assistant like Copilot",
+    "path": "ai-product-system-design/03 Design an AI Coding Assistant like Copilot.md",
+    "url": "/poststwo/script/ai-product-system-design/03 Design an AI Coding Assistant like Copilot.md"
+  },
+  {
+    "folder": "ai-product-system-design",
+    "name": "04 Design an AI Recommendation System with LLMs",
+    "path": "ai-product-system-design/04 Design an AI Recommendation System with LLMs.md",
+    "url": "/poststwo/script/ai-product-system-design/04 Design an AI Recommendation System with LLMs.md"
+  },
+  {
+    "folder": "ai-product-system-design",
+    "name": "05 Design an AI Content Moderation System",
+    "path": "ai-product-system-design/05 Design an AI Content Moderation System.md",
+    "url": "/poststwo/script/ai-product-system-design/05 Design an AI Content Moderation System.md"
+  },
+  {
+    "folder": "ai",
+    "name": "1 Intro to LLM Systems",
+    "path": "ai/1 Intro to LLM Systems.md",
+    "url": "/poststwo/script/ai/1 Intro to LLM Systems.md"
+  },
+  {
+    "folder": "ai",
+    "name": "2 Design RAG Architecture",
+    "path": "ai/2 Design RAG Architecture.md",
+    "url": "/poststwo/script/ai/2 Design RAG Architecture.md"
+  },
+  {
+    "folder": "ai",
+    "name": "3 Embeddings & Vector DB",
+    "path": "ai/3 Embeddings & Vector DB.md",
+    "url": "/poststwo/script/ai/3 Embeddings & Vector DB.md"
+  },
+  {
+    "folder": "ai",
+    "name": "4 Prompt Engineering Basics",
+    "path": "ai/4 Prompt Engineering Basics.md",
+    "url": "/poststwo/script/ai/4 Prompt Engineering Basics.md"
+  },
+  {
+    "folder": "ai",
+    "name": "5 AI Agent Design",
+    "path": "ai/5 AI Agent Design.md",
+    "url": "/poststwo/script/ai/5 AI Agent Design.md"
+  },
+  {
+    "folder": "ai",
+    "name": "6 LLM vs Traditional Systems",
+    "path": "ai/6 LLM vs Traditional Systems.md",
+    "url": "/poststwo/script/ai/6 LLM vs Traditional Systems.md"
+  },
+  {
+    "folder": "ai",
+    "name": "7 AI in Observability",
+    "path": "ai/7 AI in Observability.md",
+    "url": "/poststwo/script/ai/7 AI in Observability.md"
+  },
+  {
+    "folder": "ai",
+    "name": "8 AI for Alert Optimization",
+    "path": "ai/8 AI for Alert Optimization.md",
+    "url": "/poststwo/script/ai/8 AI for Alert Optimization.md"
+  },
+  {
+    "folder": "ai",
+    "name": "9 Building AI Backend Systems",
+    "path": "ai/9 Building AI Backend Systems.md",
+    "url": "/poststwo/script/ai/9 Building AI Backend Systems.md"
+  },
+  {
+    "folder": "ai",
+    "name": "10  MCP Tooling Integration",
+    "path": "ai/10  MCP Tooling Integration.md",
+    "url": "/poststwo/script/ai/10  MCP Tooling Integration.md"
+  },
+  {
+    "folder": "dd",
+    "name": "01 Design URL Shortener",
+    "path": "dd/01 Design URL Shortener.md",
+    "url": "/poststwo/script/dd/01 Design URL Shortener.md"
+  },
+  {
+    "folder": "dd",
+    "name": "02 Design Twitter Timeline",
+    "path": "dd/02 Design Twitter Timeline.md",
+    "url": "/poststwo/script/dd/02 Design Twitter Timeline.md"
+  },
+  {
+    "folder": "dd",
+    "name": "03 Design News Feed",
+    "path": "dd/03 Design News Feed.md",
+    "url": "/poststwo/script/dd/03 Design News Feed.md"
+  },
+  {
+    "folder": "dd",
+    "name": "04 Design Chat System",
+    "path": "dd/04 Design Chat System.md",
+    "url": "/poststwo/script/dd/04 Design Chat System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "05 Design Notification System",
+    "path": "dd/05 Design Notification System.md",
+    "url": "/poststwo/script/dd/05 Design Notification System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "06 Design Rate Limiter",
+    "path": "dd/06 Design Rate Limiter.md",
+    "url": "/poststwo/script/dd/06 Design Rate Limiter.md"
+  },
+  {
+    "folder": "dd",
+    "name": "07 Design Search System",
+    "path": "dd/07 Design Search System.md",
+    "url": "/poststwo/script/dd/07 Design Search System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "08 Design Logging System",
+    "path": "dd/08 Design Logging System.md",
+    "url": "/poststwo/script/dd/08 Design Logging System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "09 Design Metrics System",
+    "path": "dd/09 Design Metrics System.md",
+    "url": "/poststwo/script/dd/09 Design Metrics System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "10 Design Distributed Cache",
+    "path": "dd/10 Design Distributed Cache.md",
+    "url": "/poststwo/script/dd/10 Design Distributed Cache.md"
+  },
+  {
+    "folder": "dd",
+    "name": "11 Design File Storage (S3-like)",
+    "path": "dd/11 Design File Storage (S3-like).md",
+    "url": "/poststwo/script/dd/11 Design File Storage (S3-like).md"
+  },
+  {
+    "folder": "dd",
+    "name": "12 Design Video Streaming",
+    "path": "dd/12 Design Video Streaming.md",
+    "url": "/poststwo/script/dd/12 Design Video Streaming.md"
+  },
+  {
+    "folder": "dd",
+    "name": "13 Design Ride Sharing (Uber)",
+    "path": "dd/13 Design Ride Sharing (Uber).md",
+    "url": "/poststwo/script/dd/13 Design Ride Sharing (Uber).md"
+  },
+  {
+    "folder": "dd",
+    "name": "14 Design Food Delivery",
+    "path": "dd/14 Design Food Delivery.md",
+    "url": "/poststwo/script/dd/14 Design Food Delivery.md"
+  },
+  {
+    "folder": "dd",
+    "name": "15 Design Ad System",
+    "path": "dd/15 Design Ad System.md",
+    "url": "/poststwo/script/dd/15 Design Ad System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "16 Design Recommendation System",
+    "path": "dd/16 Design Recommendation System.md",
+    "url": "/poststwo/script/dd/16 Design Recommendation System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "17 Design Payment System",
+    "path": "dd/17 Design Payment System.md",
+    "url": "/poststwo/script/dd/17 Design Payment System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "18 Design Inventory System",
+    "path": "dd/18 Design Inventory System.md",
+    "url": "/poststwo/script/dd/18 Design Inventory System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "19 Design Booking System",
+    "path": "dd/19 Design Booking System.md",
+    "url": "/poststwo/script/dd/19 Design Booking System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "20 Design Auction System",
+    "path": "dd/20 Design Auction System.md",
+    "url": "/poststwo/script/dd/20 Design Auction System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "21 Design Leaderboard",
+    "path": "dd/21 Design Leaderboard.md",
+    "url": "/poststwo/script/dd/21 Design Leaderboard.md"
+  },
+  {
+    "folder": "dd",
+    "name": "22 Design Geolocation Service",
+    "path": "dd/22 Design Geolocation Service.md",
+    "url": "/poststwo/script/dd/22 Design Geolocation Service.md"
+  },
+  {
+    "folder": "dd",
+    "name": "23 Design Event Tracking System",
+    "path": "dd/23 Design Event Tracking System.md",
+    "url": "/poststwo/script/dd/23 Design Event Tracking System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "24 Design Real-time Analytics",
+    "path": "dd/24 Design Real-time Analytics.md",
+    "url": "/poststwo/script/dd/24 Design Real-time Analytics.md"
+  },
+  {
+    "folder": "dd",
+    "name": "25 Design Email System",
+    "path": "dd/25 Design Email System.md",
+    "url": "/poststwo/script/dd/25 Design Email System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "26 Design Web Crawler",
+    "path": "dd/26 Design Web Crawler.md",
+    "url": "/poststwo/script/dd/26 Design Web Crawler.md"
+  },
+  {
+    "folder": "dd",
+    "name": "27 Design Collaborative Editing",
+    "path": "dd/27 Design Collaborative Editing.md",
+    "url": "/poststwo/script/dd/27 Design Collaborative Editing.md"
+  },
+  {
+    "folder": "dd",
+    "name": "28 Design Multi-tenant System",
+    "path": "dd/28 Design Multi-tenant System.md",
+    "url": "/poststwo/script/dd/28 Design Multi-tenant System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "29 Design Feature Flag System",
+    "path": "dd/29 Design Feature Flag System.md",
+    "url": "/poststwo/script/dd/29 Design Feature Flag System.md"
+  },
+  {
+    "folder": "dd",
+    "name": "30 Design API Gateway",
+    "path": "dd/30 Design API Gateway.md",
+    "url": "/poststwo/script/dd/30 Design API Gateway.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "01 How to Approach Any System Design Interview",
+    "path": "interview-strategy-thinking/01 How to Approach Any System Design Interview.md",
+    "url": "/poststwo/script/interview-strategy-thinking/01 How to Approach Any System Design Interview.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "02 The First 10 Minutes of System Design Interview",
+    "path": "interview-strategy-thinking/02 The First 10 Minutes of System Design Interview.md",
+    "url": "/poststwo/script/interview-strategy-thinking/02 The First 10 Minutes of System Design Interview.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "03 How Senior Engineers Think About Trade-offs",
+    "path": "interview-strategy-thinking/03 How Senior Engineers Think About Trade-offs.md",
+    "url": "/poststwo/script/interview-strategy-thinking/03 How Senior Engineers Think About Trade-offs.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "04 How to Structure a Perfect System Design Answer",
+    "path": "interview-strategy-thinking/04 How to Structure a Perfect System Design Answer.md",
+    "url": "/poststwo/script/interview-strategy-thinking/04 How to Structure a Perfect System Design Answer.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "05 Common Mistakes in System Design Interviews",
+    "path": "interview-strategy-thinking/05 Common Mistakes in System Design Interviews.md",
+    "url": "/poststwo/script/interview-strategy-thinking/05 Common Mistakes in System Design Interviews.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "06 How to Handle Unknown Requirements in Interviews",
+    "path": "interview-strategy-thinking/06 How to Handle Unknown Requirements in Interviews.md",
+    "url": "/poststwo/script/interview-strategy-thinking/06 How to Handle Unknown Requirements in Interviews.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "07 Designing Under Ambiguity Real Interview Simulation",
+    "path": "interview-strategy-thinking/07 Designing Under Ambiguity Real Interview Simulation.md",
+    "url": "/poststwo/script/interview-strategy-thinking/07 Designing Under Ambiguity Real Interview Simulation.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "08 What Interviewers Actually Evaluate in SD Interviews",
+    "path": "interview-strategy-thinking/08 What Interviewers Actually Evaluate in SD Interviews.md",
+    "url": "/poststwo/script/interview-strategy-thinking/08 What Interviewers Actually Evaluate in SD Interviews.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "09 How to Ask the Right Questions in System Design",
+    "path": "interview-strategy-thinking/09 How to Ask the Right Questions in System Design.md",
+    "url": "/poststwo/script/interview-strategy-thinking/09 How to Ask the Right Questions in System Design.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "10 Breaking Down Complex Systems in 5 Steps",
+    "path": "interview-strategy-thinking/10 Breaking Down Complex Systems in 5 Steps.md",
+    "url": "/poststwo/script/interview-strategy-thinking/10 Breaking Down Complex Systems in 5 Steps.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "11 How to Estimate Scale in Interviews",
+    "path": "interview-strategy-thinking/11 How to Estimate Scale in Interviews.md",
+    "url": "/poststwo/script/interview-strategy-thinking/11 How to Estimate Scale in Interviews.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "12 When to Choose Simple vs Complex Design",
+    "path": "interview-strategy-thinking/12 When to Choose Simple vs Complex Design.md",
+    "url": "/poststwo/script/interview-strategy-thinking/12 When to Choose Simple vs Complex Design.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "13 How to Discuss Trade-offs Like a Senior Engineer",
+    "path": "interview-strategy-thinking/13 How to Discuss Trade-offs Like a Senior Engineer.md",
+    "url": "/poststwo/script/interview-strategy-thinking/13 How to Discuss Trade-offs Like a Senior Engineer.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "14 How to Improve System Design Answers Fast",
+    "path": "interview-strategy-thinking/14 How to Improve System Design Answers Fast.md",
+    "url": "/poststwo/script/interview-strategy-thinking/14 How to Improve System Design Answers Fast.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "15 Whiteboard Strategy for System Design Interviews",
+    "path": "interview-strategy-thinking/15 Whiteboard Strategy for System Design Interviews.md",
+    "url": "/poststwo/script/interview-strategy-thinking/15 Whiteboard Strategy for System Design Interviews.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "16 How to Transition from Mid to Senior Engineer Thinking",
+    "path": "interview-strategy-thinking/16 How to Transition from Mid to Senior Engineer Thinking.md",
+    "url": "/poststwo/script/interview-strategy-thinking/16 How to Transition from Mid to Senior Engineer Thinking.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "17 How to Explain Design Decisions Clearly",
+    "path": "interview-strategy-thinking/17 How to Explain Design Decisions Clearly.md",
+    "url": "/poststwo/script/interview-strategy-thinking/17 How to Explain Design Decisions Clearly.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "18 How to Handle Interview Follow-up Questions",
+    "path": "interview-strategy-thinking/18 How to Handle Interview Follow-up Questions.md",
+    "url": "/poststwo/script/interview-strategy-thinking/18 How to Handle Interview Follow-up Questions.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "19 System Design Interview Full Mock Walkthrough",
+    "path": "interview-strategy-thinking/19 System Design Interview Full Mock Walkthrough.md",
+    "url": "/poststwo/script/interview-strategy-thinking/19 System Design Interview Full Mock Walkthrough.md"
+  },
+  {
+    "folder": "interview-strategy-thinking",
+    "name": "20 How to Pass Big Tech System Design Rounds",
+    "path": "interview-strategy-thinking/20 How to Pass Big Tech System Design Rounds.md",
+    "url": "/poststwo/script/interview-strategy-thinking/20 How to Pass Big Tech System Design Rounds.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l01-2026-05-01",
+    "path": "leetcode/lcd-l01-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l01-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l02-2026-05-02",
+    "path": "leetcode/lcd-l02-2026-05-02.md",
+    "url": "/poststwo/script/leetcode/lcd-l02-2026-05-02.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l03-2026-05-01",
+    "path": "leetcode/lcd-l03-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l03-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l04-2026-05-01",
+    "path": "leetcode/lcd-l04-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l04-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l05-2026-05-01",
+    "path": "leetcode/lcd-l05-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l05-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l06-2026-05-01",
+    "path": "leetcode/lcd-l06-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l06-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l07-2026-05-01",
+    "path": "leetcode/lcd-l07-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l07-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l08-2026-05-01",
+    "path": "leetcode/lcd-l08-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l08-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l09-2026-05-01",
+    "path": "leetcode/lcd-l09-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l09-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l10-2026-05-01",
+    "path": "leetcode/lcd-l10-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l10-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l11-2026-05-01",
+    "path": "leetcode/lcd-l11-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l11-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l12-2026-05-01",
+    "path": "leetcode/lcd-l12-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l12-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l13-2026-05-01",
+    "path": "leetcode/lcd-l13-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l13-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l14-2026-05-01",
+    "path": "leetcode/lcd-l14-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l14-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l15-2026-05-01",
+    "path": "leetcode/lcd-l15-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l15-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l16-2026-05-01",
+    "path": "leetcode/lcd-l16-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l16-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l17-2026-05-01",
+    "path": "leetcode/lcd-l17-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l17-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l18-2026-05-01",
+    "path": "leetcode/lcd-l18-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l18-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l19-2026-05-01",
+    "path": "leetcode/lcd-l19-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l19-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l20-2026-05-01",
+    "path": "leetcode/lcd-l20-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l20-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l21-2026-05-01",
+    "path": "leetcode/lcd-l21-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l21-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l22-2026-05-01",
+    "path": "leetcode/lcd-l22-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l22-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l23-2026-05-01",
+    "path": "leetcode/lcd-l23-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l23-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l24-2026-05-01",
+    "path": "leetcode/lcd-l24-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l24-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l25-2026-05-01",
+    "path": "leetcode/lcd-l25-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l25-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l26-2026-05-01",
+    "path": "leetcode/lcd-l26-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l26-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l27-2026-05-01",
+    "path": "leetcode/lcd-l27-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l27-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l28-2026-05-01",
+    "path": "leetcode/lcd-l28-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l28-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l29-2026-05-01",
+    "path": "leetcode/lcd-l29-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l29-2026-05-01.md"
+  },
+  {
+    "folder": "leetcode",
+    "name": "lcd-l30-2026-05-01",
+    "path": "leetcode/lcd-l30-2026-05-01.md",
+    "url": "/poststwo/script/leetcode/lcd-l30-2026-05-01.md"
+  },
+  {
+    "folder": "llm-infrastructure",
+    "name": "01 How OpenAI-like LLM APIs Are Built",
+    "path": "llm-infrastructure/01 How OpenAI-like LLM APIs Are Built.md",
+    "url": "/poststwo/script/llm-infrastructure/01 How OpenAI-like LLM APIs Are Built.md"
+  },
+  {
+    "folder": "llm-infrastructure",
+    "name": "02 LLM Inference Pipeline Explained",
+    "path": "llm-infrastructure/02 LLM Inference Pipeline Explained.md",
+    "url": "/poststwo/script/llm-infrastructure/02 LLM Inference Pipeline Explained.md"
+  },
+  {
+    "folder": "llm-infrastructure",
+    "name": "03 Token-based Billing Systems Design",
+    "path": "llm-infrastructure/03 Token-based Billing Systems Design.md",
+    "url": "/poststwo/script/llm-infrastructure/03 Token-based Billing Systems Design.md"
+  },
+  {
+    "folder": "llm-infrastructure",
+    "name": "04 Caching Strategies for LLM Responses",
+    "path": "llm-infrastructure/04 Caching Strategies for LLM Responses.md",
+    "url": "/poststwo/script/llm-infrastructure/04 Caching Strategies for LLM Responses.md"
+  },
+  {
+    "folder": "llm-infrastructure",
+    "name": "05 Load Balancing for GPU-based Systems",
+    "path": "llm-infrastructure/05 Load Balancing for GPU-based Systems.md",
+    "url": "/poststwo/script/llm-infrastructure/05 Load Balancing for GPU-based Systems.md"
+  },
+  {
+    "folder": "llm-infrastructure",
+    "name": "06 Model Routing Systems GPT-4 vs Mini Models",
+    "path": "llm-infrastructure/06 Model Routing Systems GPT-4 vs Mini Models.md",
+    "url": "/poststwo/script/llm-infrastructure/06 Model Routing Systems GPT-4 vs Mini Models.md"
+  },
+  {
+    "folder": "llm-infrastructure",
+    "name": "07 Cost Optimization in LLM Serving Systems",
+    "path": "llm-infrastructure/07 Cost Optimization in LLM Serving Systems.md",
+    "url": "/poststwo/script/llm-infrastructure/07 Cost Optimization in LLM Serving Systems.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "01 Active-active vs Active-passive",
+    "path": "modern-distributed-systems/01 Active-active vs Active-passive.md",
+    "url": "/poststwo/script/modern-distributed-systems/01 Active-active vs Active-passive.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "02 Global Traffic Routing GeoDNS vs Anycast",
+    "path": "modern-distributed-systems/02 Global Traffic Routing GeoDNS vs Anycast.md",
+    "url": "/poststwo/script/modern-distributed-systems/02 Global Traffic Routing GeoDNS vs Anycast.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "03 Data Locality in Distributed Systems",
+    "path": "modern-distributed-systems/03 Data Locality in Distributed Systems.md",
+    "url": "/poststwo/script/modern-distributed-systems/03 Data Locality in Distributed Systems.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "04 Multi-tenant Isolation Strategies",
+    "path": "modern-distributed-systems/04 Multi-tenant Isolation Strategies.md",
+    "url": "/poststwo/script/modern-distributed-systems/04 Multi-tenant Isolation Strategies.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "05 Cross-region Replication Latency vs Consistency",
+    "path": "modern-distributed-systems/05 Cross-region Replication Latency vs Consistency.md",
+    "url": "/poststwo/script/modern-distributed-systems/05 Cross-region Replication Latency vs Consistency.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "06 Regional Failure Handling Strategies",
+    "path": "modern-distributed-systems/06 Regional Failure Handling Strategies.md",
+    "url": "/poststwo/script/modern-distributed-systems/06 Regional Failure Handling Strategies.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "07 Global Load Balancing Architectures",
+    "path": "modern-distributed-systems/07 Global Load Balancing Architectures.md",
+    "url": "/poststwo/script/modern-distributed-systems/07 Global Load Balancing Architectures.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "08 Edge-first Architecture vs Cloud-first Systems",
+    "path": "modern-distributed-systems/08 Edge-first Architecture vs Cloud-first Systems.md",
+    "url": "/poststwo/script/modern-distributed-systems/08 Edge-first Architecture vs Cloud-first Systems.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "09 Data Sovereignty Constraints in System Design",
+    "path": "modern-distributed-systems/09 Data Sovereignty Constraints in System Design.md",
+    "url": "/poststwo/script/modern-distributed-systems/09 Data Sovereignty Constraints in System Design.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "10 Designing Systems under GDPR Constraints",
+    "path": "modern-distributed-systems/10 Designing Systems under GDPR Constraints.md",
+    "url": "/poststwo/script/modern-distributed-systems/10 Designing Systems under GDPR Constraints.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "11 Multi-cloud Architecture Trade-offs",
+    "path": "modern-distributed-systems/11 Multi-cloud Architecture Trade-offs.md",
+    "url": "/poststwo/script/modern-distributed-systems/11 Multi-cloud Architecture Trade-offs.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "12 Hybrid Cloud System Design",
+    "path": "modern-distributed-systems/12 Hybrid Cloud System Design.md",
+    "url": "/poststwo/script/modern-distributed-systems/12 Hybrid Cloud System Design.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "13 Disaster Recovery RPO vs RTO Trade-offs",
+    "path": "modern-distributed-systems/13 Disaster Recovery RPO vs RTO Trade-offs.md",
+    "url": "/poststwo/script/modern-distributed-systems/13 Disaster Recovery RPO vs RTO Trade-offs.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "14 Failover Strategies in Global Systems",
+    "path": "modern-distributed-systems/14 Failover Strategies in Global Systems.md",
+    "url": "/poststwo/script/modern-distributed-systems/14 Failover Strategies in Global Systems.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "15 Multi-region Database Design Patterns",
+    "path": "modern-distributed-systems/15 Multi-region Database Design Patterns.md",
+    "url": "/poststwo/script/modern-distributed-systems/15 Multi-region Database Design Patterns.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "16 Stateless vs Stateful Service Trade-offs",
+    "path": "modern-distributed-systems/16 Stateless vs Stateful Service Trade-offs.md",
+    "url": "/poststwo/script/modern-distributed-systems/16 Stateless vs Stateful Service Trade-offs.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "17 Placement Strategy in Distributed Systems",
+    "path": "modern-distributed-systems/17 Placement Strategy in Distributed Systems.md",
+    "url": "/poststwo/script/modern-distributed-systems/17 Placement Strategy in Distributed Systems.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "18 Regional Cache vs Global Cache",
+    "path": "modern-distributed-systems/18 Regional Cache vs Global Cache.md",
+    "url": "/poststwo/script/modern-distributed-systems/18 Regional Cache vs Global Cache.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "19 Cross-border Payment System Design",
+    "path": "modern-distributed-systems/19 Cross-border Payment System Design.md",
+    "url": "/poststwo/script/modern-distributed-systems/19 Cross-border Payment System Design.md"
+  },
+  {
+    "folder": "modern-distributed-systems",
+    "name": "20 Real-world Multi-region Chat System",
+    "path": "modern-distributed-systems/20 Real-world Multi-region Chat System.md",
+    "url": "/poststwo/script/modern-distributed-systems/20 Real-world Multi-region Chat System.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "01 Latency Optimization in Distributed Systems",
+    "path": "performance-optimization/01 Latency Optimization in Distributed Systems.md",
+    "url": "/poststwo/script/performance-optimization/01 Latency Optimization in Distributed Systems.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "02 Tail Latency Why P99 Matters More Than Average",
+    "path": "performance-optimization/02 Tail Latency Why P99 Matters More Than Average.md",
+    "url": "/poststwo/script/performance-optimization/02 Tail Latency Why P99 Matters More Than Average.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "03 Cold Start Problem in Large Systems",
+    "path": "performance-optimization/03 Cold Start Problem in Large Systems.md",
+    "url": "/poststwo/script/performance-optimization/03 Cold Start Problem in Large Systems.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "04 Memory vs CPU Trade-offs in Scaling",
+    "path": "performance-optimization/04 Memory vs CPU Trade-offs in Scaling.md",
+    "url": "/poststwo/script/performance-optimization/04 Memory vs CPU Trade-offs in Scaling.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "05 Reducing Network Overhead in Microservices",
+    "path": "performance-optimization/05 Reducing Network Overhead in Microservices.md",
+    "url": "/poststwo/script/performance-optimization/05 Reducing Network Overhead in Microservices.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "06 Database Connection Pool Optimization",
+    "path": "performance-optimization/06 Database Connection Pool Optimization.md",
+    "url": "/poststwo/script/performance-optimization/06 Database Connection Pool Optimization.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "07 Read Replica vs Cache Optimization Strategy",
+    "path": "performance-optimization/07 Read Replica vs Cache Optimization Strategy.md",
+    "url": "/poststwo/script/performance-optimization/07 Read Replica vs Cache Optimization Strategy.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "08 Compression vs Compute Trade-offs",
+    "path": "performance-optimization/08 Compression vs Compute Trade-offs.md",
+    "url": "/poststwo/script/performance-optimization/08 Compression vs Compute Trade-offs.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "09 Batching vs Real-time Processing",
+    "path": "performance-optimization/09 Batching vs Real-time Processing.md",
+    "url": "/poststwo/script/performance-optimization/09 Batching vs Real-time Processing.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "10 Backpressure in Streaming Systems",
+    "path": "performance-optimization/10 Backpressure in Streaming Systems.md",
+    "url": "/poststwo/script/performance-optimization/10 Backpressure in Streaming Systems.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "11 Async Processing vs Sync Bottlenecks",
+    "path": "performance-optimization/11 Async Processing vs Sync Bottlenecks.md",
+    "url": "/poststwo/script/performance-optimization/11 Async Processing vs Sync Bottlenecks.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "12 Reducing Cross-service Communication Cost",
+    "path": "performance-optimization/12 Reducing Cross-service Communication Cost.md",
+    "url": "/poststwo/script/performance-optimization/12 Reducing Cross-service Communication Cost.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "13 Optimizing API Gateway Latency",
+    "path": "performance-optimization/13 Optimizing API Gateway Latency.md",
+    "url": "/poststwo/script/performance-optimization/13 Optimizing API Gateway Latency.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "14 Cache Warm-up Strategies",
+    "path": "performance-optimization/14 Cache Warm-up Strategies.md",
+    "url": "/poststwo/script/performance-optimization/14 Cache Warm-up Strategies.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "15 Avoiding N+1 Query Problems",
+    "path": "performance-optimization/15 Avoiding N+1 Query Problems.md",
+    "url": "/poststwo/script/performance-optimization/15 Avoiding N+1 Query Problems.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "16 Optimizing Large-scale Pagination",
+    "path": "performance-optimization/16 Optimizing Large-scale Pagination.md",
+    "url": "/poststwo/script/performance-optimization/16 Optimizing Large-scale Pagination.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "17 High-throughput Logging Systems",
+    "path": "performance-optimization/17 High-throughput Logging Systems.md",
+    "url": "/poststwo/script/performance-optimization/17 High-throughput Logging Systems.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "18 Optimizing Serialization Formats (JSON vs Protobuf)",
+    "path": "performance-optimization/18 Optimizing Serialization Formats (JSON vs Protobuf).md",
+    "url": "/poststwo/script/performance-optimization/18 Optimizing Serialization Formats (JSON vs Protobuf).md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "19 Memory Leak Patterns in Distributed Systems",
+    "path": "performance-optimization/19 Memory Leak Patterns in Distributed Systems.md",
+    "url": "/poststwo/script/performance-optimization/19 Memory Leak Patterns in Distributed Systems.md"
+  },
+  {
+    "folder": "performance-optimization",
+    "name": "20 CPU-bound vs IO-bound System Design",
+    "path": "performance-optimization/20 CPU-bound vs IO-bound System Design.md",
+    "url": "/poststwo/script/performance-optimization/20 CPU-bound vs IO-bound System Design.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "1 How to Discuss Scaling in System Design",
+    "path": "qa-p/1 How to Discuss Scaling in System Design.md",
+    "url": "/poststwo/script/qa-p/1 How to Discuss Scaling in System Design.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "2 Core Load Balancing Framework",
+    "path": "qa-p/2 Core Load Balancing Framework.md",
+    "url": "/poststwo/script/qa-p/2 Core Load Balancing Framework.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "3 How to Choose Cache Strategies in System Design",
+    "path": "qa-p/3 How to Choose Cache Strategies in System Design.md",
+    "url": "/poststwo/script/qa-p/3 How to Choose Cache Strategies in System Design.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "4 Core Content Delivery Framework",
+    "path": "qa-p/4 Core Content Delivery Framework.md",
+    "url": "/poststwo/script/qa-p/4 Core Content Delivery Framework.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "5 Why Choose SQL vs NoSQL in System Design",
+    "path": "qa-p/5 Why Choose SQL vs NoSQL in System Design.md",
+    "url": "/poststwo/script/qa-p/5 Why Choose SQL vs NoSQL in System Design.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "6 Core Sharding Framework",
+    "path": "qa-p/6 Core Sharding Framework.md",
+    "url": "/poststwo/script/qa-p/6 Core Sharding Framework.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "7 Replication in distributed systems",
+    "path": "qa-p/7 Replication in distributed systems.md",
+    "url": "/poststwo/script/qa-p/7 Replication in distributed systems.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "8 Consistency Models- Strong vs Eventual in Practice",
+    "path": "qa-p/8 Consistency Models- Strong vs Eventual in Practice.md",
+    "url": "/poststwo/script/qa-p/8 Consistency Models- Strong vs Eventual in Practice.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "9 CAP theorem",
+    "path": "qa-p/9 CAP theorem.md",
+    "url": "/poststwo/script/qa-p/9 CAP theorem.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "10 Database vs Object Storage (S3) for Large Blob Storage in System Design",
+    "path": "qa-p/10 Database vs Object Storage (S3) for Large Blob Storage in System Design.md",
+    "url": "/poststwo/script/qa-p/10 Database vs Object Storage (S3) for Large Blob Storage in System Design.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "11 Circuit Breaker vs Retry - Preventing Cascading Failures",
+    "path": "qa-p/11 Circuit Breaker vs Retry - Preventing Cascading Failures.md",
+    "url": "/poststwo/script/qa-p/11 Circuit Breaker vs Retry - Preventing Cascading Failures.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "12 Timeouts and Retries - Tuning for Reliability",
+    "path": "qa-p/12 Timeouts and Retries - Tuning for Reliability.md",
+    "url": "/poststwo/script/qa-p/12 Timeouts and Retries - Tuning for Reliability.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "13 How to Guarantee Idempotency in Distributed Systems",
+    "path": "qa-p/13 How to Guarantee Idempotency in Distributed Systems.md",
+    "url": "/poststwo/script/qa-p/13 How to Guarantee Idempotency in Distributed Systems.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "14 Rate Limiting- Fairness vs Throughput Trade-offs",
+    "path": "qa-p/14 Rate Limiting- Fairness vs Throughput Trade-offs.md",
+    "url": "/poststwo/script/qa-p/14 Rate Limiting- Fairness vs Throughput Trade-offs.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "15 Message Queues- When to Use Async Systems",
+    "path": "qa-p/15 Message Queues- When to Use Async Systems.md",
+    "url": "/poststwo/script/qa-p/15 Message Queues- When to Use Async Systems.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "16 Event-driven vs Request-response Architectures",
+    "path": "qa-p/16 Event-driven vs Request-response Architectures.md",
+    "url": "/poststwo/script/qa-p/16 Event-driven vs Request-response Architectures.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "17 Exactly-once vs At-least-once Delivery Trade-offs",
+    "path": "qa-p/17 Exactly-once vs At-least-once Delivery Trade-offs.md",
+    "url": "/poststwo/script/qa-p/17 Exactly-once vs At-least-once Delivery Trade-offs.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "18 Monolith vs Microservices- Evolution Strategy",
+    "path": "qa-p/18 Monolith vs Microservices- Evolution Strategy.md",
+    "url": "/poststwo/script/qa-p/18 Monolith vs Microservices- Evolution Strategy.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "19 Service Discovery- Client-side vs Server-side",
+    "path": "qa-p/19 Service Discovery- Client-side vs Server-side.md",
+    "url": "/poststwo/script/qa-p/19 Service Discovery- Client-side vs Server-side.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "20 API Design- Consistency vs Flexibility Trade-offs",
+    "path": "qa-p/20 API Design- Consistency vs Flexibility Trade-offs.md",
+    "url": "/poststwo/script/qa-p/20 API Design- Consistency vs Flexibility Trade-offs.md"
+  },
+  {
+    "folder": "qa-p",
+    "name": "21 Observability - Metrics vs Logs vs Traces Trade-offs",
+    "path": "qa-p/21 Observability - Metrics vs Logs vs Traces Trade-offs.md",
+    "url": "/poststwo/script/qa-p/21 Observability - Metrics vs Logs vs Traces Trade-offs.md"
+  },
+  {
+    "folder": "rag-knowledge-systems",
+    "name": "01 RAG Architecture Explained for Engineers",
+    "path": "rag-knowledge-systems/01 RAG Architecture Explained for Engineers.md",
+    "url": "/poststwo/script/rag-knowledge-systems/01 RAG Architecture Explained for Engineers.md"
+  },
+  {
+    "folder": "rag-knowledge-systems",
+    "name": "02 Why RAG Beats Fine-tuning in Most Systems",
+    "path": "rag-knowledge-systems/02 Why RAG Beats Fine-tuning in Most Systems.md",
+    "url": "/poststwo/script/rag-knowledge-systems/02 Why RAG Beats Fine-tuning in Most Systems.md"
+  },
+  {
+    "folder": "rag-knowledge-systems",
+    "name": "03 Vector Search vs Keyword Search Trade-offs",
+    "path": "rag-knowledge-systems/03 Vector Search vs Keyword Search Trade-offs.md",
+    "url": "/poststwo/script/rag-knowledge-systems/03 Vector Search vs Keyword Search Trade-offs.md"
+  },
+  {
+    "folder": "rag-knowledge-systems",
+    "name": "04 Chunking Strategies in RAG Systems",
+    "path": "rag-knowledge-systems/04 Chunking Strategies in RAG Systems.md",
+    "url": "/poststwo/script/rag-knowledge-systems/04 Chunking Strategies in RAG Systems.md"
+  },
+  {
+    "folder": "rag-knowledge-systems",
+    "name": "05 Embedding Pipeline Design in Production",
+    "path": "rag-knowledge-systems/05 Embedding Pipeline Design in Production.md",
+    "url": "/poststwo/script/rag-knowledge-systems/05 Embedding Pipeline Design in Production.md"
+  },
+  {
+    "folder": "rag-knowledge-systems",
+    "name": "06 How Retrieval Systems Scale to Billion Documents",
+    "path": "rag-knowledge-systems/06 How Retrieval Systems Scale to Billion Documents.md",
+    "url": "/poststwo/script/rag-knowledge-systems/06 How Retrieval Systems Scale to Billion Documents.md"
+  },
+  {
+    "folder": "rag-knowledge-systems",
+    "name": "07 Hybrid Search Systems BM25 + Vector Search",
+    "path": "rag-knowledge-systems/07 Hybrid Search Systems BM25 + Vector Search.md",
+    "url": "/poststwo/script/rag-knowledge-systems/07 Hybrid Search Systems BM25 + Vector Search.md"
+  },
+  {
+    "folder": "rag-knowledge-systems",
+    "name": "08 Real time RAG vs Batch RAG Systems",
+    "path": "rag-knowledge-systems/08 Real time RAG vs Batch RAG Systems.md",
+    "url": "/poststwo/script/rag-knowledge-systems/08 Real time RAG vs Batch RAG Systems.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "01 How Stripe Handles Payment Consistency",
+    "path": "real-production-systems/01 How Stripe Handles Payment Consistency.md",
+    "url": "/poststwo/script/real-production-systems/01 How Stripe Handles Payment Consistency.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "02 How Netflix Handles Video Delivery at Scale",
+    "path": "real-production-systems/02 How Netflix Handles Video Delivery at Scale.md",
+    "url": "/poststwo/script/real-production-systems/02 How Netflix Handles Video Delivery at Scale.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "03 How TikTok Builds Recommendation Pipelines",
+    "path": "real-production-systems/03 How TikTok Builds Recommendation Pipelines.md",
+    "url": "/poststwo/script/real-production-systems/03 How TikTok Builds Recommendation Pipelines.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "04 How Uber Dispatch System Works Internally",
+    "path": "real-production-systems/04 How Uber Dispatch System Works Internally.md",
+    "url": "/poststwo/script/real-production-systems/04 How Uber Dispatch System Works Internally.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "05 How Airbnb Handles Search and Ranking",
+    "path": "real-production-systems/05 How Airbnb Handles Search and Ranking.md",
+    "url": "/poststwo/script/real-production-systems/05 How Airbnb Handles Search and Ranking.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "06 How Amazon Handles Inventory Sync",
+    "path": "real-production-systems/06 How Amazon Handles Inventory Sync.md",
+    "url": "/poststwo/script/real-production-systems/06 How Amazon Handles Inventory Sync.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "07 How Google Search Indexing Pipeline Works",
+    "path": "real-production-systems/07 How Google Search Indexing Pipeline Works.md",
+    "url": "/poststwo/script/real-production-systems/07 How Google Search Indexing Pipeline Works.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "08 How YouTube Handles Video Upload Pipeline",
+    "path": "real-production-systems/08 How YouTube Handles Video Upload Pipeline.md",
+    "url": "/poststwo/script/real-production-systems/08 How YouTube Handles Video Upload Pipeline.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "09 How Slack Handles Real-time Messaging",
+    "path": "real-production-systems/09 How Slack Handles Real-time Messaging.md",
+    "url": "/poststwo/script/real-production-systems/09 How Slack Handles Real-time Messaging.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "10 How Notion Handles Collaborative Editing",
+    "path": "real-production-systems/10 How Notion Handles Collaborative Editing.md",
+    "url": "/poststwo/script/real-production-systems/10 How Notion Handles Collaborative Editing.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "11 How Discord Scales Real-time Chat",
+    "path": "real-production-systems/11 How Discord Scales Real-time Chat.md",
+    "url": "/poststwo/script/real-production-systems/11 How Discord Scales Real-time Chat.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "12 How Shopify Handles Flash Sales",
+    "path": "real-production-systems/12 How Shopify Handles Flash Sales.md",
+    "url": "/poststwo/script/real-production-systems/12 How Shopify Handles Flash Sales.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "13 How PayPal Prevents Fraud at Scale",
+    "path": "real-production-systems/13 How PayPal Prevents Fraud at Scale.md",
+    "url": "/poststwo/script/real-production-systems/13 How PayPal Prevents Fraud at Scale.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "14 How LinkedIn Builds Feed Ranking System",
+    "path": "real-production-systems/14 How LinkedIn Builds Feed Ranking System.md",
+    "url": "/poststwo/script/real-production-systems/14 How LinkedIn Builds Feed Ranking System.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "15 How Instagram Handles Story Delivery",
+    "path": "real-production-systems/15 How Instagram Handles Story Delivery.md",
+    "url": "/poststwo/script/real-production-systems/15 How Instagram Handles Story Delivery.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "16 How Twitter Handles Trending Topics",
+    "path": "real-production-systems/16 How Twitter Handles Trending Topics.md",
+    "url": "/poststwo/script/real-production-systems/16 How Twitter Handles Trending Topics.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "17 How Cloudflare Handles Edge Requests",
+    "path": "real-production-systems/17 How Cloudflare Handles Edge Requests.md",
+    "url": "/poststwo/script/real-production-systems/17 How Cloudflare Handles Edge Requests.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "18 How AWS S3 Achieves 99.999999999% Durability",
+    "path": "real-production-systems/18 How AWS S3 Achieves 99.999999999% Durability.md",
+    "url": "/poststwo/script/real-production-systems/18 How AWS S3 Achieves 99.999999999% Durability.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "19 How GitHub Handles Large Repositories",
+    "path": "real-production-systems/19 How GitHub Handles Large Repositories.md",
+    "url": "/poststwo/script/real-production-systems/19 How GitHub Handles Large Repositories.md"
+  },
+  {
+    "folder": "real-production-systems",
+    "name": "20 How OpenAI Serves LLM APIs at Scale",
+    "path": "real-production-systems/20 How OpenAI Serves LLM APIs at Scale.md",
+    "url": "/poststwo/script/real-production-systems/20 How OpenAI Serves LLM APIs at Scale.md"
+  },
+  {
+    "folder": "traditional-sd-to-llm-system-design",
+    "name": "01 ChatGPT System Design",
+    "path": "traditional-sd-to-llm-system-design/01 ChatGPT System Design.md",
+    "url": "/poststwo/script/traditional-sd-to-llm-system-design/01 ChatGPT System Design.md"
+  },
+  {
+    "folder": "traditional-sd-to-llm-system-design",
+    "name": "02 RAG System Design",
+    "path": "traditional-sd-to-llm-system-design/02 RAG System Design.md",
+    "url": "/poststwo/script/traditional-sd-to-llm-system-design/02 RAG System Design.md"
+  },
+  {
+    "folder": "traditional-sd-to-llm-system-design",
+    "name": "03 AI Agent System Design",
+    "path": "traditional-sd-to-llm-system-design/03 AI Agent System Design.md",
+    "url": "/poststwo/script/traditional-sd-to-llm-system-design/03 AI Agent System Design.md"
+  },
+  {
+    "folder": "traditional-sd-to-llm-system-design",
+    "name": "04 Memory System Design",
+    "path": "traditional-sd-to-llm-system-design/04 Memory System Design.md",
+    "url": "/poststwo/script/traditional-sd-to-llm-system-design/04 Memory System Design.md"
+  },
+  {
+    "folder": "traditional-sd-to-llm-system-design",
+    "name": "05 Tool Calling Architecture",
+    "path": "traditional-sd-to-llm-system-design/05 Tool Calling Architecture.md",
+    "url": "/poststwo/script/traditional-sd-to-llm-system-design/05 Tool Calling Architecture.md"
+  },
+  {
+    "folder": "traditional-sd-to-llm-system-design",
+    "name": "06 Context Window Management",
+    "path": "traditional-sd-to-llm-system-design/06 Context Window Management.md",
+    "url": "/poststwo/script/traditional-sd-to-llm-system-design/06 Context Window Management.md"
+  },
+  {
+    "folder": "traditional-sd-to-llm-system-design",
+    "name": "07 Hallucination Control System",
+    "path": "traditional-sd-to-llm-system-design/07 Hallucination Control System.md",
+    "url": "/poststwo/script/traditional-sd-to-llm-system-design/07 Hallucination Control System.md"
+  },
+  {
+    "folder": "traditional-sd-to-llm-system-design",
+    "name": "08 Evaluation System for LLM",
+    "path": "traditional-sd-to-llm-system-design/08 Evaluation System for LLM.md",
+    "url": "/poststwo/script/traditional-sd-to-llm-system-design/08 Evaluation System for LLM.md"
+  },
+  {
+    "folder": "traditional-sd-to-llm-system-design",
+    "name": "09 Cost Optimization for LLM",
+    "path": "traditional-sd-to-llm-system-design/09 Cost Optimization for LLM.md",
+    "url": "/poststwo/script/traditional-sd-to-llm-system-design/09 Cost Optimization for LLM.md"
+  },
+  {
+    "folder": "traditional-sd-to-llm-system-design",
+    "name": "10 Vector DB Scaling",
+    "path": "traditional-sd-to-llm-system-design/10 Vector DB Scaling.md",
+    "url": "/poststwo/script/traditional-sd-to-llm-system-design/10 Vector DB Scaling.md"
+  }
+]
