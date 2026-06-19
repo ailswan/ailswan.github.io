@@ -4,11 +4,11 @@
 
 ---
 
-## 🎯 Opening
+## 🎯 Opening 
 
 Hello everyone.
 Today I’d like to walk through **Cost Optimization for LLM**.
-
+  
 This is part of the series **From Traditional System Design to LLM System Design**.
 The goal is to show how a traditional system design answer changes when the core product experience is powered by an LLM.
 

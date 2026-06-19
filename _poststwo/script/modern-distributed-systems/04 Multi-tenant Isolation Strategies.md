@@ -7,7 +7,7 @@
 ## 🎯 Opening
 
 Hello everyone.
-Today I’d like to walk through **Multi-tenant Isolation Strategies**.
+Today I’d like to walk through **Mult i-tenant Isolation Strategies**.
 
 This topic matters because it is not just a keyword in system design.
 It is a way to reason about production systems under real constraints.
