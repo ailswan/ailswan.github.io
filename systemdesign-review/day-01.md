@@ -85,3 +85,12 @@ Why did you prioritize correctness over latency for Ticketmaster?
 - User Experience → Latency / Availability
 - System Growth → Scalability
 先找出最严重的失败后果，再看用户体验，最后看规模挑战。用这三个角度选择 NFR，是你 Day 1 最值得反复练习的能力。
+
+
+
+一、推荐的面试需求分析框架
+步骤	做什么	时间
+1. Clarify Scope	确认用户、业务场景、系统边界	1–2 min
+2. Functional Requirements	选出 3 个最重要的功能	1–2 min
+3. Non-functional Requirements	选出 3 个最重要的质量目标并排序	1–2 min
+4. Validate	询问面试官是否同意范围与假设	30 sec
