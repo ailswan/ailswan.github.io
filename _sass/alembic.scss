@@ -9,3 +9,12 @@
   "flex",
   "theme"
 ;
+
+// Alternating rows make daily study tables easier to scan.
+.daily-notes table tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.daily-notes table tbody tr:nth-child(even) {
+  background-color: #fff;
+}

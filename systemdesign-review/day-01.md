@@ -94,3 +94,242 @@ Why did you prioritize correctness over latency for Ticketmaster?
 2. Functional Requirements	选出 3 个最重要的功能	1–2 min
 3. Non-functional Requirements	选出 3 个最重要的质量目标并排序	1–2 min
 4. Validate	询问面试官是否同意范围与假设	30 sec
+
+
+-------------------------
+可以。这个模板最重要的其实是：**NFR 不要只说“我要高可用、高性能”，而是要说明“为什么这个指标重要”，然后把它变成架构取舍依据。**
+
+你系统设计面试时可以准备下面这些高频版本。
+
+### 例子 1：高并发 API / 社交 Feed
+
+> **For non-functional requirements, I'd prioritize three areas.**
+>
+> **First, low latency**, because users expect the feed to load quickly and delays would directly hurt user engagement.
+>
+> **Second, high availability**, since the feed is a core user-facing feature and downtime would affect a large number of users.
+>
+> **Third, scalability**, to ensure the system can handle traffic spikes and continued growth in the number of users.
+>
+> **I'll use these priorities to guide the architectural trade-offs.**
+
+你脑子里对应：
+
+**Latency → Availability → Scalability**
+
+所以架构上可能想到：
+
+`CDN → Load Balancer → Cache → Stateless Services → DB`
+
+---
+
+### 例子 2：支付系统
+
+这个非常适合体现 **Correctness > Availability**。
+
+> **For non-functional requirements, I'd prioritize three areas.**
+>
+> **First, correctness**, because we must prevent duplicate charges, incorrect balances, and lost transactions.
+>
+> **Second, durability**, since once a payment is confirmed, we cannot afford to lose the transaction record.
+>
+> **Third, availability**, so users can complete payments reliably without unnecessary failures.
+>
+> **I'll use these priorities to guide the architectural trade-offs.**
+
+这里你要意识到：
+
+**Correctness > Durability > Availability**
+
+所以你不会为了 availability 而简单地接受错误支付。
+
+可能会引出：
+
+- Idempotency
+- Unique transaction ID
+- ACID transaction
+- Strong consistency
+- Transaction log
+- Retry + idempotency
+- Reconciliation
+
+---
+
+### 例子 3：Rate Limiter
+
+你最近正在复习 Rate Limiter，这个非常适合。
+
+> **For non-functional requirements, I'd prioritize three areas.**
+>
+> **First, correctness**, because the rate limiter must accurately enforce the configured limits and prevent users from exceeding their quotas.
+>
+> **Second, low latency**, since rate limiting sits directly in the request path and should add minimal overhead.
+>
+> **Third, scalability**, to ensure the limiter can handle a very large number of requests across multiple servers.
+>
+> **I'll use these priorities to guide the architectural trade-offs.**
+
+这里就是：
+
+**Correctness → Latency → Scalability**
+
+然后你就可以自然进入：
+
+> “Given these priorities, I would use a distributed counter with Redis…”
+
+---
+
+### 例子 4：聊天系统
+
+比如 WhatsApp / Slack。
+
+> **For non-functional requirements, I'd prioritize three areas.**
+>
+> **First, low latency**, because users expect messages to be delivered almost immediately.
+>
+> **Second, availability**, since users should still be able to send and receive messages even if some servers fail.
+>
+> **Third, scalability**, because the system needs to support a large number of concurrent users and messages.
+>
+> **I'll use these priorities to guide the architectural trade-offs.**
+
+这里：
+
+**Latency → Availability → Scalability**
+
+然后可以引出：
+
+- WebSocket
+- Message Queue
+- Kafka
+- Connection servers
+- Partitioning
+- Retry
+- Offline messages
+
+---
+
+### 例子 5：文件存储系统
+
+比如 Dropbox / Google Drive。
+
+> **For non-functional requirements, I'd prioritize three areas.**
+>
+> **First, durability**, because users expect uploaded files to remain available and not be lost.
+>
+> **Second, availability**, since users should be able to access their files reliably.
+>
+> **Third, scalability**, to support a growing number of users and potentially petabytes of data.
+>
+> **I'll use these priorities to guide the architectural trade-offs.**
+
+这里：
+
+**Durability → Availability → Scalability**
+
+所以你自然会想到：
+
+`Object Storage + Replication + Metadata DB`
+
+而不是把文件全部放在普通 relational DB 里面。
+
+---
+
+### 例子 6：搜索系统
+
+比如 Google / e-commerce search。
+
+> **For non-functional requirements, I'd prioritize three areas.**
+>
+> **First, low latency**, because users expect search results within a fraction of a second.
+>
+> **Second, scalability**, since the system needs to handle a very large number of search queries and documents.
+>
+> **Third, availability**, because search is a critical part of the user experience and should remain accessible during partial failures.
+>
+> **I'll use these priorities to guide the architectural trade-offs.**
+
+这里：
+
+**Latency → Scalability → Availability**
+
+然后自然进入：
+
+`Load Balancer → Search Service → Elasticsearch → Cache`
+
+---
+
+## 例子 7：银行账户余额
+
+这个例子特别适合你理解 **Consistency / Correctness**。
+
+> **For non-functional requirements, I'd prioritize three areas.**
+>
+> **First, consistency**, because users must see an accurate account balance after a transaction.
+>
+> **Second, correctness**, because an incorrect balance or duplicated transaction could have direct financial consequences.
+>
+> **Third, availability**, so customers can access their accounts reliably.
+>
+> **I'll use these priorities to guide the architectural trade-offs.**
+
+这里最重要的是：
+
+**Consistency / Correctness 比 Availability 更重要。**
+
+所以如果发生：
+
+> “Do you prefer slightly stale data or temporarily rejecting the request?”
+
+你可以回答：
+
+> **For financial transactions, I'd prefer temporary unavailability over returning incorrect financial data.**
+
+这就是 **NFR → Trade-off** 真正连起来了。
+
+---
+
+# 你面试时可以直接套的 5 种组合
+
+| System | Priority 1 | Priority 2 | Priority 3 |
+|---|---|---|---|
+| Feed | Latency | Availability | Scalability |
+| Payment | Correctness | Durability | Availability |
+| Rate Limiter | Correctness | Latency | Scalability |
+| Chat | Latency | Availability | Scalability |
+| File Storage | Durability | Availability | Scalability |
+| Search | Latency | Scalability | Availability |
+| Banking | Consistency | Correctness | Availability |
+| Notification | Availability | Scalability | Latency |
+
+### 你真正需要背的不是这些句子，而是这个逻辑：
+
+**NFR → Why → Priority → Architecture → Trade-off**
+
+例如：
+
+> **Correctness is important because duplicate payments have financial consequences.**
+
+↓
+
+所以：
+
+> **We need idempotency.**
+
+↓
+
+所以：
+
+> **Use an idempotency key + durable transaction record.**
+
+↓
+
+Trade-off：
+
+> **We may sacrifice some availability during uncertain transaction states rather than risk charging the customer twice.**
+
+这就比单纯说：
+
+> “The system needs high availability, scalability and low latency.”
+
+**强很多。**
