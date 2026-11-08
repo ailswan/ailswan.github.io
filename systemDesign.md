@@ -1,11 +1,13 @@
 ---
-layout: system_design
+layout: page
 title: System Design
-excerpt: "System Design"
 permalink: /systemdesign/
-aside: true
-feature_text: |
-  ## System design note
-  This is a notebook for Ailswan to improving sd teches
-feature_image: "https://picsum.photos/1300/400?image=852"
 ---
+
+## [System Design Notes]({{ "/systemdesign/notes/" | relative_url }})
+
+系统设计案例表格与现有的 System design note。
+
+## [每日学习笔记]({{ "/systemdesign-review/" | relative_url }})
+
+按四周复习计划整理的 28 天笔记，点击当天主题进入笔记页。
