@@ -292,7 +292,7 @@ Why did you prioritize correctness over latency for Ticketmaster?
 # 你面试时可以直接套的 5 种组合
 
 | System | Priority 1 | Priority 2 | Priority 3 |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Feed | Latency | Availability | Scalability |
 | Payment | Correctness | Durability | Availability |
 | Rate Limiter | Correctness | Latency | Scalability |
@@ -301,6 +301,16 @@ Why did you prioritize correctness over latency for Ticketmaster?
 | Search | Latency | Scalability | Availability |
 | Banking | Consistency | Correctness | Availability |
 | Notification | Availability | Scalability | Latency |
+
+### 五类 NFR Priority 记忆表
+
+| 类别 | 记忆关键词 | NFR Priority 组合 | 典型系统 |
+| --- | --- | --- | --- |
+| 1 | 高并发<br>High Traffic | Latency → Availability → Scalability | Feed、Search、Chat、API Gateway |
+| 2 | 高精度<br>High Accuracy | Correctness → Latency → Scalability | Rate Limiter、Inventory |
+| 3 | 高可靠<br>High Reliability | Correctness → Durability → Availability | Payment、Order |
+| 4 | 高持久<br>High Durability | Durability → Availability → Scalability | File Storage、Backup |
+| 5 | 强一致<br>Strong Consistency | Consistency → Correctness → Availability | Banking、Account Balance |
 
 ### 你真正需要背的不是这些句子，而是这个逻辑：
 
@@ -333,3 +343,29 @@ Trade-off：
 > “The system needs high availability, scalability and low latency.”
 
 **强很多。**
+
+
+-----------------------
+### System Design 四大核心性能指标对比
+
+| 对比维度 | Concurrency | Throughput | Latency | Scalability |
+| --- | --- | --- | --- | --- |
+| 中文 | 并发量 | 吞吐量 | 延迟 | 可扩展性 |
+| 核心问题 | 同时处理多少请求？ | 每秒完成多少请求？ | 每个请求需要多长时间？ | 请求量增长时如何扩展？ |
+| 衡量指标 | Concurrent Requests | QPS / RPS | ms / seconds | Capacity / Scaling |
+| 关注重点 | 同时处理能力 | 整体处理效率 | 单个请求响应速度 | 系统增长能力 |
+| 主要挑战 | 线程<br>连接数<br>内存<br>资源竞争 | CPU<br>IO<br>数据库处理能力 | Network<br>DB Query<br>Cache<br>Processing | Load Balancer<br>Horizontal Scaling<br>Partitioning |
+| 常见优化 | Async I/O<br>Thread Pool<br>Connection Pool | Batching<br>Caching<br>Parallel Processing | CDN<br>Caching<br>Indexing<br>优化查询 | Horizontal Scaling<br>Sharding<br>Partitioning<br>Auto Scaling |
+| 典型问题 | 大量用户同时发起请求 | 每秒需要处理 10,000 个请求 | p95 latency 必须低于 200ms | 用户从 10 万增长到 1,000 万 |
+
+### 面试时可以直接套用的英文理由库
+
+| NFR | English Reason 1 | English Reason 2 | English Reason 3 |
+| --- | --- | --- | --- |
+| **Low Latency** | Users expect fast responses, and delays would hurt user experience. | The operation is on the critical request path, so we should minimize additional latency. | Users expect the result to be available almost immediately. |
+| **Correctness** | The system must process operations correctly because errors could have serious consequences. | Incorrect results could directly impact users or business operations. | We need to ensure the system behaves according to the business rules and does not produce incorrect results. |
+| **Durability** | Once data is saved or a transaction is confirmed, it must not be lost. | We need to preserve the data even after server failures or restarts. | Users expect their confirmed transactions and uploaded data to remain available. |
+| **Consistency** | Users must see accurate and consistent data across the system. | After an update, users should not see stale or conflicting information. | The latest state needs to be reflected correctly across relevant services and replicas. |
+| **Availability** | Users should still be able to use the system even if some servers fail. | This is a user-facing service, so downtime would directly impact users. | The system should remain accessible during partial failures and maintenance. |
+| **Scalability** | The system needs to handle increasing traffic and a growing number of users. | We need to support a large number of concurrent requests as the system grows. | The system should continue to perform well as traffic, users, and data volume increase. |
+
