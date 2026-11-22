@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 10 · News Feed"
+title: "Day 10 · Rate Limiter"
 permalink: /systemdesign-review/day-10/
 ---
 

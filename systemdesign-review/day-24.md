@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 24 · 针对弱点做组件级深入练习"
+title: "Day 24 · 复盘遗漏的需求和技术取舍"
 permalink: /systemdesign-review/day-24/
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 20 · Observability、Capacity Planning"
+title: "Day 20 · Multi-region、Disaster Recovery"
 permalink: /systemdesign-review/day-20/
 ---
 

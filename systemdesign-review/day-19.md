@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 19 · Multi-region、Disaster Recovery"
+title: "Day 19 · Distributed Transactions"
 permalink: /systemdesign-review/day-19/
 ---
 

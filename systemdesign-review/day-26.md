@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 26 · RAG 系统设计"
+title: "Day 26 · AI Agent 系统设计"
 permalink: /systemdesign-review/day-26/
 ---
 

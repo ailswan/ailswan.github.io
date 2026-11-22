@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 06 · Availability、Consistency、Scalability"
+title: "Day 06 · Database 与 Queue"
 permalink: /systemdesign-review/day-06/
 ---
 

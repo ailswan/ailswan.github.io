@@ -254,3 +254,155 @@ Mobile  ~99.45%
 这些数据本身还不足以证明需要 Redis、Kafka、更多 ECS Tasks 或提高 Lambda Memory。
 
 应该先通过压测和可观测性数据确定瓶颈，再选择技术方案。
+
+
+1. QPS — 每秒请求量
+\[
+Average\ QPS=\frac{Daily\ Requests}{86400}
+\]
+
+\[
+Peak\ QPS=Average\ QPS\times Peak\ Factor
+\]
+
+如果系统读写模式不同，最好分别计算 Read QPS 和 Write QPS。
+2. Storage — 存储量
+\[
+Storage=Daily\ Records\times Record\ Size\times Retention\ Days
+\]
+
+但需要区分三类指标：
+类别	核心问题	典型指标
+Capacity / Load 容量与负载	系统需要承受多少工作量？	QPS、Storage、Bandwidth、Concurrency
+SLI / SLO 服务质量	用户实际体验如何？目标是什么？	P95/P99、Success Rate、Availability、Error Budget
+Resilience 故障恢复能力	出现故障后能否保持服务或及时恢复？	RTO、RPO、MTTR、Failover Time、Recovery Success
+
+最重要的关系是：
+
+Capacity 决定你需要设计多大规模的系统；SLO 决定系统要达到什么服务质量；Resilience 决定故障发生时系统要如何应对。
+一、QPS、Storage、Bandwidth 影响哪些指标？
+这是我建议你加入 System Design 学习笔记的核心表格。
+容量估算	直接影响的运行指标	关联的 SLI / SLO	关联的 Resilience 指标
+QPS / Peak QPS	CPU、Memory、Concurrency、Queue Depth、Resource Saturation	P95/P99 Latency、Error Rate、Availability	Failover Capacity、Overload Recovery Time
+Storage	Disk Utilization、Storage Growth、IOPS、Disk Throughput	Read/Write Latency、Durability、Successful Writes	RPO、RTO、Backup/Restore Time
+Bandwidth	Network Utilization、Throughput、Packet Loss、Network Saturation	Network Latency、Timeout Rate、Transfer Success Rate	Replication Lag、Cross-Region Failover Capacity
+
+这里的“影响”不是简单的数学对应关系，而是通过资源瓶颈和系统故障间接影响用户体验。
+
+例如 QPS 增长不一定导致 P99 增长。如果系统有足够的容量，P99 可以保持稳定；但当资源接近饱和时，排队时间可能快速增加。 
+
+六、最后如何记忆？
+指标	记忆公式	架构关注点
+QPS	Daily Requests ÷ 86,400	Server / Scaling
+Storage	Records × Size × Time	Database / Storage
+Bandwidth	QPS × Payload Size	Network / CDN
+
+
+3. 如果面试官没有给数字，应该怎么推算？
+不要直接背数字，最好掌握这三个步骤。
+Step 1：先判断数据类型
+类型	估算方法
+Structured data	根据字段数量和类型
+Text	根据平均字符数
+JSON	字段内容 + JSON overhead
+Image	根据图片分辨率、格式、压缩
+Video	根据码率 × 视频时长
+Audio	根据音频码率 × 时长
+
+Step 2：判断一条还是多条
+例如：
+- User Profile：1 个 User
+- Feed：20 个 Posts
+- Search：20 个 Results
+- Chat History：50 条 Messages
+计算：
+Payload Size
+= Number of Objects × Average Object Size
+
+
+Step 3：考虑压缩
+例如：
+Uncompressed JSON = 100 KB
+Gzip compression = 30 KB
+
+
+那么实际网络传输可能是：
+Payload ≈ 30 KB
+
+
+但要注意：估算时最好先使用未压缩大小，再说明压缩可以降低网络带宽。
+
+4. 特殊情况：Image / Video 怎么估算？
+这个在 System Design 非常重要，因为媒体文件通常远远大于普通 JSON。
+类型	面试估算参考
+Thumbnail	10–50 KB
+Compressed image	100–500 KB
+High-resolution image	1–5 MB
+Short audio clip	100 KB–1 MB
+1-minute audio	1 MB 左右（取决于码率）
+1-minute video	5–20 MB（取决于分辨率和码率）
+
+例如 Instagram-like System：
+1 user uploads 2 images/day
+
+Average image = 500 KB
+
+10M DAU × 2 × 500 KB
+= 10 TB/day
+
+
+这里还要进一步考虑：
+- Original image
+- Thumbnail
+- Multiple resolutions
+- Replication
+- CDN caching
+注意：图片上传和下载还需要分别估算 Ingress 和 Egress Bandwidth。
+
+5. 面试最实用的速记表
+下面这张表建议你保存下来，作为 Capacity Estimation 的参考。
+System Design — Size Cheat Sheet
+Storage Data Size
+Object	Estimate
+User	1 KB
+Post	1 KB
+Comment	0.5 KB
+Message	1 KB
+Metadata	1 KB
+
+
+
+API Payload Size
+API	Estimate
+Login	1 KB
+Profile	2 KB
+Single Post	2 KB
+Feed (20 posts)	25 KB
+Search (20 results)	50 KB
+Chat batch (20 messages)	20 KB
+
+
+
+Media Size
+Media	Estimate
+Thumbnail	20 KB
+Image	500 KB
+High-res image	2 MB
+1-min video	10 MB
+
+
+以上是便于面试心算的初始假设，不是行业统一标准。实际大小取决于 schema、内容长度、编码、压缩和媒体质量。
+
+6. 面试时如何表达你的假设？
+假设面试官让你设计一个 Social Media Feed，没有提供数据大小。
+
+你可以这样说：
+Since the exact payload size is not specified, I'll make some reasonable assumptions.
+
+I'll assume an average post record is around 1 KB, including its text and metadata.
+
+For a feed API, I'll assume each response returns 20 posts, resulting in approximately 20–25 KB per response, excluding images.
+
+I'll estimate image storage and bandwidth separately because media files are significantly larger than structured data.
+
+这段话很重要，因为它体现了你具备合理假设和拆解问题的能力，而不是单纯背公式。

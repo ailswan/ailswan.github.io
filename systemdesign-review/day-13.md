@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 13 · File Storage / Object Storage"
+title: "Day 13 · Notification System"
 permalink: /systemdesign-review/day-13/
 ---
 

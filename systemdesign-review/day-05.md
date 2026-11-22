@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 05 · Database 与 Queue"
+title: "Day 05 · Load Balancer 与 Cache"
 permalink: /systemdesign-review/day-05/
 ---
 

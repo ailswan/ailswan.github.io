@@ -10,4 +10,4 @@ permalink: /systemdesign/
 
 ## [每日学习笔记]({{ "/systemdesign-review/" | relative_url }})
 
-按四周复习计划整理的 28 天笔记，点击当天主题进入笔记页。
+按四周复习计划整理的 29 篇笔记，点击当天主题进入笔记页。

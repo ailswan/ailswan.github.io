@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 12 · Notification System"
+title: "Day 12 · Chat / Messaging"
 permalink: /systemdesign-review/day-12/
 ---
 

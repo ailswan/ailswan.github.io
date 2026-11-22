@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 11 · Chat / Messaging"
+title: "Day 11 · News Feed"
 permalink: /systemdesign-review/day-11/
 ---
 

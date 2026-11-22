@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 27 · 45 分钟限时设计（二）"
+title: "Day 27 · RAG 系统设计"
 permalink: /systemdesign-review/day-27/
 ---
 

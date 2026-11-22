@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 25 · AI Agent 系统设计"
+title: "Day 25 · 针对弱点做组件级深入练习"
 permalink: /systemdesign-review/day-25/
 ---
 

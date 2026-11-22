@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 21 · 扩展性与故障处理复盘"
+title: "Day 21 · Observability、Capacity Planning"
 permalink: /systemdesign-review/day-21/
 ---
 

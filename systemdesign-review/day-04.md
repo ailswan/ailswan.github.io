@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 04 · Load Balancer 与 Cache"
+title: "Day 04 · 数据模型"
 permalink: /systemdesign-review/day-04/
 ---
 

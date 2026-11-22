@@ -1,12 +1,12 @@
 ---
 layout: page
-title: "Day 08 · URL Shortener"
+title: "Day 08 · 拆题框架综合复习"
 permalink: /systemdesign-review/day-08/
 ---
 
 [← 返回每日笔记目录]({{ "/systemdesign-review/" | relative_url }})
 
-第 2 周 · 经典题型
+第 1 周 · 基础框架
 
 ## 学习笔记
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 03 · 数据模型与容量估算"
+title: "Day 03 · API 设计"
 permalink: /systemdesign-review/day-03/
 ---
 

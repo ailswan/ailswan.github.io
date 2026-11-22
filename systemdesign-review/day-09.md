@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 09 · Rate Limiter"
+title: "Day 09 · URL Shortener"
 permalink: /systemdesign-review/day-09/
 ---
 

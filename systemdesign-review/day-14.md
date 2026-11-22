@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 14 · 经典题型架构复盘"
+title: "Day 14 · File Storage / Object Storage"
 permalink: /systemdesign-review/day-14/
 ---
 

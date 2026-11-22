@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 16 · Sharding、Replication、Consistency"
+title: "Day 16 · Kafka / Event-driven Architecture"
 permalink: /systemdesign-review/day-16/
 ---
 

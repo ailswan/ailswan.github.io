@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 18 · Distributed Transactions"
+title: "Day 18 · Idempotency、Retry、Deduplication"
 permalink: /systemdesign-review/day-18/
 ---
 

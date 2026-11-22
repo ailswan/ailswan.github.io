@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 17 · Idempotency、Retry、Deduplication"
+title: "Day 17 · Sharding、Replication、Consistency"
 permalink: /systemdesign-review/day-17/
 ---
 

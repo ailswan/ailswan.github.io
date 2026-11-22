@@ -1,12 +1,12 @@
 ---
 layout: page
-title: "Day 15 · Kafka / Event-driven Architecture"
+title: "Day 15 · 经典题型架构复盘"
 permalink: /systemdesign-review/day-15/
 ---
 
 [← 返回每日笔记目录]({{ "/systemdesign-review/" | relative_url }})
 
-第 3 周 · Senior 深度
+第 2 周 · 经典题型
 
 ## 学习笔记
 

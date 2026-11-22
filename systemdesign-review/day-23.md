@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 23 · 复盘遗漏的需求和技术取舍"
+title: "Day 23 · 45 分钟限时设计（一）"
 permalink: /systemdesign-review/day-23/
 ---
 

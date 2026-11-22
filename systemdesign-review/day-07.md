@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 07 · 拆题框架综合复习"
+title: "Day 07 · Availability、Consistency、Scalability"
 permalink: /systemdesign-review/day-07/
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Day 28 · 四周复盘与口头表达练习"
+title: "Day 28 · 45 分钟限时设计（二）"
 permalink: /systemdesign-review/day-28/
 ---
 

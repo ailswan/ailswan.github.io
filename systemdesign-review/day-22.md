@@ -1,12 +1,12 @@
 ---
 layout: page
-title: "Day 22 · 45 分钟限时设计（一）"
+title: "Day 22 · 扩展性与故障处理复盘"
 permalink: /systemdesign-review/day-22/
 ---
 
 [← 返回每日笔记目录]({{ "/systemdesign-review/" | relative_url }})
 
-第 4 周 · 模拟面试
+第 3 周 · Senior 深度
 
 ## 学习笔记
 
