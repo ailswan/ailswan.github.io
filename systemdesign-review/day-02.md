@@ -172,7 +172,6 @@ Capacity Estimation 不需要每次完整计算六项。
 > If these numbers aren't available, I'll make reasonable assumptions based on the use case, estimate the average and peak QPS, and calculate storage and bandwidth where relevant.
 >
 > I'll use these estimates to guide the architecture decisions.
->
 
 ## 十二、面试官没有数据时，怎么合理估算？
 
@@ -255,154 +254,383 @@ Mobile  ~99.45%
 
 应该先通过压测和可观测性数据确定瓶颈，再选择技术方案。
 
+## 十四、容量估算公式
 
-1. QPS — 每秒请求量
-\[
-Average\ QPS=\frac{Daily\ Requests}{86400}
-\]
+### 1. QPS — 每秒请求量
 
-\[
-Peak\ QPS=Average\ QPS\times Peak\ Factor
-\]
+```text
+Average QPS = Daily Requests ÷ 86,400
+```
+
+```text
+Peak QPS = Average QPS × Peak Factor
+```
 
 如果系统读写模式不同，最好分别计算 Read QPS 和 Write QPS。
-2. Storage — 存储量
-\[
-Storage=Daily\ Records\times Record\ Size\times Retention\ Days
-\]
 
-但需要区分三类指标：
-类别	核心问题	典型指标
-Capacity / Load 容量与负载	系统需要承受多少工作量？	QPS、Storage、Bandwidth、Concurrency
-SLI / SLO 服务质量	用户实际体验如何？目标是什么？	P95/P99、Success Rate、Availability、Error Budget
-Resilience 故障恢复能力	出现故障后能否保持服务或及时恢复？	RTO、RPO、MTTR、Failover Time、Recovery Success
+### 2. Storage — 存储量
+
+```text
+Storage = Daily Records × Record Size × Retention Days
+```
+
+## 十五、区分容量、服务质量与故障恢复指标
+
+| 类别 | 核心问题 | 典型指标 |
+| --- | --- | --- |
+| Capacity / Load 容量与负载 | 系统需要承受多少工作量？ | QPS、Storage、Bandwidth、Concurrency |
+| SLI / SLO 服务质量 | 用户实际体验如何？目标是什么？ | P95/P99、Success Rate、Availability、Error Budget |
+| Resilience 故障恢复能力 | 出现故障后能否保持服务或及时恢复？ | RTO、RPO、MTTR、Failover Time、Recovery Success |
 
 最重要的关系是：
 
 Capacity 决定你需要设计多大规模的系统；SLO 决定系统要达到什么服务质量；Resilience 决定故障发生时系统要如何应对。
-一、QPS、Storage、Bandwidth 影响哪些指标？
+
+### 容量估算与运行指标的关联
+
 这是我建议你加入 System Design 学习笔记的核心表格。
-容量估算	直接影响的运行指标	关联的 SLI / SLO	关联的 Resilience 指标
-QPS / Peak QPS	CPU、Memory、Concurrency、Queue Depth、Resource Saturation	P95/P99 Latency、Error Rate、Availability	Failover Capacity、Overload Recovery Time
-Storage	Disk Utilization、Storage Growth、IOPS、Disk Throughput	Read/Write Latency、Durability、Successful Writes	RPO、RTO、Backup/Restore Time
-Bandwidth	Network Utilization、Throughput、Packet Loss、Network Saturation	Network Latency、Timeout Rate、Transfer Success Rate	Replication Lag、Cross-Region Failover Capacity
+
+| 容量估算 | 直接影响的运行指标 | 关联的 SLI / SLO | 关联的 Resilience 指标 |
+| --- | --- | --- | --- |
+| QPS / Peak QPS | CPU、Memory、Concurrency、Queue Depth、Resource Saturation | P95/P99 Latency、Error Rate、Availability | Failover Capacity、Overload Recovery Time |
+| Storage | Disk Utilization、Storage Growth、IOPS、Disk Throughput | Read/Write Latency、Durability、Successful Writes | RPO、RTO、Backup/Restore Time |
+| Bandwidth | Network Utilization、Throughput、Packet Loss、Network Saturation | Network Latency、Timeout Rate、Transfer Success Rate | Replication Lag、Cross-Region Failover Capacity |
 
 这里的“影响”不是简单的数学对应关系，而是通过资源瓶颈和系统故障间接影响用户体验。
 
-例如 QPS 增长不一定导致 P99 增长。如果系统有足够的容量，P99 可以保持稳定；但当资源接近饱和时，排队时间可能快速增加。 
+例如 QPS 增长不一定导致 P99 增长。如果系统有足够的容量，P99 可以保持稳定；但当资源接近饱和时，排队时间可能快速增加。
 
-六、最后如何记忆？
-指标	记忆公式	架构关注点
-QPS	Daily Requests ÷ 86,400	Server / Scaling
-Storage	Records × Size × Time	Database / Storage
-Bandwidth	QPS × Payload Size	Network / CDN
+## 十六、核心公式速记表
 
+| 指标 | 记忆公式 | 架构关注点 |
+| --- | --- | --- |
+| QPS | Daily Requests ÷ 86,400 | Server / Scaling |
+| Storage | Records × Size × Time | Database / Storage |
+| Bandwidth | QPS × Payload Size | Network / CDN |
 
-3. 如果面试官没有给数字，应该怎么推算？
+## 十七、没有数据大小时，如何推算？
+
 不要直接背数字，最好掌握这三个步骤。
-Step 1：先判断数据类型
-类型	估算方法
-Structured data	根据字段数量和类型
-Text	根据平均字符数
-JSON	字段内容 + JSON overhead
-Image	根据图片分辨率、格式、压缩
-Video	根据码率 × 视频时长
-Audio	根据音频码率 × 时长
 
-Step 2：判断一条还是多条
+### Step 1：先判断数据类型
+
+| 类型 | 估算方法 |
+| --- | --- |
+| Structured data | 根据字段数量和类型 |
+| Text | 根据平均字符数 |
+| JSON | 字段内容 + JSON overhead |
+| Image | 根据图片分辨率、格式、压缩 |
+| Video | 根据码率 × 视频时长 |
+| Audio | 根据音频码率 × 时长 |
+
+### Step 2：判断一条还是多条
+
 例如：
+
 - User Profile：1 个 User
 - Feed：20 个 Posts
 - Search：20 个 Results
 - Chat History：50 条 Messages
+
 计算：
-Payload Size
-= Number of Objects × Average Object Size
 
+```text
+Payload Size = Number of Objects × Average Object Size
+```
 
-Step 3：考虑压缩
+### Step 3：考虑压缩
+
 例如：
+
+```text
 Uncompressed JSON = 100 KB
 Gzip compression = 30 KB
-
+```
 
 那么实际网络传输可能是：
-Payload ≈ 30 KB
 
+```text
+Payload ≈ 30 KB
+```
 
 但要注意：估算时最好先使用未压缩大小，再说明压缩可以降低网络带宽。
 
-4. 特殊情况：Image / Video 怎么估算？
+## 十八、特殊情况：Image / Video 怎么估算？
+
 这个在 System Design 非常重要，因为媒体文件通常远远大于普通 JSON。
-类型	面试估算参考
-Thumbnail	10–50 KB
-Compressed image	100–500 KB
-High-resolution image	1–5 MB
-Short audio clip	100 KB–1 MB
-1-minute audio	1 MB 左右（取决于码率）
-1-minute video	5–20 MB（取决于分辨率和码率）
+
+| 类型 | 面试估算参考 |
+| --- | --- |
+| Thumbnail | 10–50 KB |
+| Compressed image | 100–500 KB |
+| High-resolution image | 1–5 MB |
+| Short audio clip | 100 KB–1 MB |
+| 1-minute audio | 1 MB 左右（取决于码率） |
+| 1-minute video | 5–20 MB（取决于分辨率和码率） |
 
 例如 Instagram-like System：
+
+```text
 1 user uploads 2 images/day
-
 Average image = 500 KB
-
-10M DAU × 2 × 500 KB
-= 10 TB/day
-
+10M DAU × 2 × 500 KB = 10 TB/day
+```
 
 这里还要进一步考虑：
+
 - Original image
 - Thumbnail
 - Multiple resolutions
 - Replication
 - CDN caching
+
 注意：图片上传和下载还需要分别估算 Ingress 和 Egress Bandwidth。
 
-5. 面试最实用的速记表
+## 十九、面试最实用的速记表
+
 下面这张表建议你保存下来，作为 Capacity Estimation 的参考。
-System Design — Size Cheat Sheet
-Storage Data Size
-Object	Estimate
-User	1 KB
-Post	1 KB
-Comment	0.5 KB
-Message	1 KB
-Metadata	1 KB
 
+**System Design — Size Cheat Sheet**
 
+### Storage Data Size
 
-API Payload Size
-API	Estimate
-Login	1 KB
-Profile	2 KB
-Single Post	2 KB
-Feed (20 posts)	25 KB
-Search (20 results)	50 KB
-Chat batch (20 messages)	20 KB
+| Object | Estimate |
+| --- | --- |
+| User | 1 KB |
+| Post | 1 KB |
+| Comment | 0.5 KB |
+| Message | 1 KB |
+| Metadata | 1 KB |
 
+### API Payload Size
 
+| API | Estimate |
+| --- | --- |
+| Login | 1 KB |
+| Profile | 2 KB |
+| Single Post | 2 KB |
+| Feed (20 posts) | 25 KB |
+| Search (20 results) | 50 KB |
+| Chat batch (20 messages) | 20 KB |
 
-Media Size
-Media	Estimate
-Thumbnail	20 KB
-Image	500 KB
-High-res image	2 MB
-1-min video	10 MB
+### Media Size
 
+| Media | Estimate |
+| --- | --- |
+| Thumbnail | 20 KB |
+| Image | 500 KB |
+| High-res image | 2 MB |
+| 1-min video | 10 MB |
 
 以上是便于面试心算的初始假设，不是行业统一标准。实际大小取决于 schema、内容长度、编码、压缩和媒体质量。
 
-6. 面试时如何表达你的假设？
+## 二十、面试时如何表达你的假设？
+
 假设面试官让你设计一个 Social Media Feed，没有提供数据大小。
 
 你可以这样说：
-Since the exact payload size is not specified, I'll make some reasonable assumptions.
 
-I'll assume an average post record is around 1 KB, including its text and metadata.
-
-For a feed API, I'll assume each response returns 20 posts, resulting in approximately 20–25 KB per response, excluding images.
-
-I'll estimate image storage and bandwidth separately because media files are significantly larger than structured data.
+> Since the exact payload size is not specified, I'll make some reasonable assumptions.
+>
+> I'll assume an average post record is around 1 KB, including its text and metadata.
+>
+> For a feed API, I'll assume each response returns 20 posts, resulting in approximately 20–25 KB per response, excluding images.
+>
+> I'll estimate image storage and bandwidth separately because media files are significantly larger than structured data.
 
 这段话很重要，因为它体现了你具备合理假设和拆解问题的能力，而不是单纯背公式。
+
+可以。我们用一个**非常简单的银行 Customer Account 查询系统**来演示。面试时你可以几乎照这个套路说。
+
+## 二十一、实战例子：Design a Bank Account Service
+
+假设银行有：
+
+- **10M active customers**
+- 每个 customer 平均每天查询账户 **5 次**
+- Peak traffic = average 的 **5×**
+- 每次请求/响应平均 **5 KB**
+- Account data 平均 **2 KB / customer**
+- 保存 **7 年**
+- 平均 latency = **100 ms**
+
+### 1. QPS —— 每秒多少请求？
+
+每天请求：
+
+```text
+10M × 5 = 50M/day
+```
+
+平均 QPS：
+
+```text
+50M / 86,400 ≈ 580
+```
+
+所以：
+
+> **Average QPS ≈ 600**
+
+Peak：
+
+```text
+580 × 5 ≈ 2,900
+```
+
+所以面试时可以直接说：
+
+> **“I'll estimate around 600 average QPS and 3K peak QPS.”**
+
+### 2. Storage —— 存多少数据？
+
+假设每个 customer 的 account information：
+
+```text
+2KB
+```
+
+10M customers：
+
+```text
+10M × 2KB = 20GB
+```
+
+所以：
+
+> **Current account data ≈ 20 GB**
+
+如果考虑交易记录就完全不同了。
+
+例如每个 customer 每天平均 **3 transactions**：
+
+```text
+10M × 3 = 30M transactions/day
+```
+
+假设每条 transaction = 1 KB：
+
+```text
+30M × 1KB = 30GB/day
+```
+
+一年：
+
+```text
+30GB × 365 ≈ 11TB
+```
+
+7 年：
+
+```text
+11TB × 7 ≈ 77TB
+```
+
+所以你可以说：
+
+> **“Account metadata is relatively small, but transaction history is much larger, around 77 TB over seven years.”**
+
+### 3. Bandwidth —— 每秒多少数据？
+
+Peak QPS ≈ 3K。
+
+假设一个 request + response 平均：
+
+```text
+5KB
+```
+
+那么：
+
+```text
+3K × 5KB = 15MB/s
+```
+
+所以：
+
+> **Peak bandwidth ≈ 15 MB/s**
+
+这里你要注意：
+
+**Bandwidth ≠ Storage。**
+
+Storage 是：
+
+> **总共存多少**
+
+Bandwidth 是：
+
+> **每秒传多少**
+
+### 4. Concurrency —— 同时多少请求？
+
+Peak QPS：
+
+```text
+3K
+```
+
+Average latency：
+
+```text
+100ms = 0.1s
+```
+
+所以：
+
+```text
+Concurrency = 3K × 0.1 = 300
+```
+
+所以：
+
+> **Peak concurrent requests ≈ 300**
+
+### 5. 容量估算汇总表
+
+| Metric | Estimate |
+| --- | ---: |
+| Customers | 10M |
+| Requests/day | 50M |
+| Average QPS | ~600 |
+| **Peak QPS** | **~3K** |
+| Account data | ~20 GB |
+| Transaction storage | ~77 TB / 7 years |
+| **Peak Bandwidth** | **~15 MB/s** |
+| **Concurrency** | **~300** |
+
+### 6. 面试英文话术
+
+> **“Let me do a quick capacity estimation. Assuming 10 million active customers and about 5 account queries per customer per day, we have roughly 50 million requests per day, or about 600 average QPS. Assuming a 5x peak factor, that's about 3K peak QPS. If each request and response is around 5 KB, peak bandwidth is roughly 15 MB/s. With an average latency of 100 ms, we expect around 300 concurrent requests. For storage, account metadata is relatively small, but transaction history is much larger; assuming 3 transactions per customer per day and 1 KB per transaction, we'd need roughly 77 TB for seven years.”**
+
+这就是一个非常标准的 **Senior System Design Capacity Estimation**。
+
+### 7. 容量估算记忆链
+
+```text
+10M customers
+    ↓
+50M requests/day
+    ↓
+600 QPS → 3K Peak QPS
+```
+
+然后从 **Peak QPS** 分叉：
+
+```text
+                 3K Peak QPS
+                 /           \
+                ↓             ↓
+           Bandwidth  Concurrency
+             × 5KB     × 100ms
+                ↓          ↓
+             15MB/s      300
+```
+
+而 **Storage** 单独从：
+
+> **“每天产生多少数据 × 保存多久”**
+
+去算。
+
+这就是你在面试里看到 **Capacity Estimation** 后脑子里应该自动出现的模板。
